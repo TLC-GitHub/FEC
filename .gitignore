@@ -1,0 +1,3 @@
+node_modules
+#ignore .env
+#need to put config.js in here later containing token
