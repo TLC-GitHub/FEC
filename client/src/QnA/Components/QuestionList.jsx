@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import QuestionCard from '/QuestionCard.jsx';
+import helper from './server/hrapi.js';
 
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
   let [questionCount, setQuestionCount] = useState(2);
   //get the questions data from the API endpoint
-  get()
+  helper.getProductInfo('qa', 'questions')
+  .then((data) => {
+    console.log(data);
+    let data = data;
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+  console.log(data);
     //http request uses parameters productID(which product), page(which page), count (how many questions per page)
-  let data = data.results;
 
   return(
     <div>

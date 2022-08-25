@@ -15,6 +15,7 @@ let getProductInfo = (widget, queryParams, subCategory='') => {
   }
 
   let options = {
+    method: "get",
     url: apiLink,
     headers: {
       'Authorization': process.env.API_TOKEN
