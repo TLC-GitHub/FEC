@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 function Answers({answers}) {
-  //should sort the incoming
+  //should sort the incoming answers according to seller > helpfulness > rest
 
-let [helpfulAnswer, setHelpfulAnswer] =
 
   return (
     <div>
-      <div> A: Answer body</div> <div> Helpful <button type="button" text={answers.helpfulness} onClick={setCount(count + 1)} />  </div>
+      <div> A: Answer body</div> <div> Helpful <button type="button" text={answers.helpfulness} onClick={console.log("put request")} />  </div>
     </div>
   )
 }
+
+export default Answers;

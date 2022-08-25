@@ -22,3 +22,5 @@ let [answerCount, setAnswerCount] = useState(2);
     </div>
   )
 }
+
+export default QuestionCard
