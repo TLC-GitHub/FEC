@@ -10,13 +10,83 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/src/RatingsReviews/Components/IndividualReviewTile/index.jsx":
+/*!*****************************************************************************!*\
+  !*** ./client/src/RatingsReviews/Components/IndividualReviewTile/index.jsx ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction IndividualReviewTile() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Individual Review Tile\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndividualReviewTile);\n\n//# sourceURL=webpack://fec/./client/src/RatingsReviews/Components/IndividualReviewTile/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsReviews/Components/KeywordSearch/index.jsx":
+/*!**********************************************************************!*\
+  !*** ./client/src/RatingsReviews/Components/KeywordSearch/index.jsx ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction KeywordSearch() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Keyword Search\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (KeywordSearch);\n\n//# sourceURL=webpack://fec/./client/src/RatingsReviews/Components/KeywordSearch/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsReviews/Components/ProductBreakdown/index.jsx":
+/*!*************************************************************************!*\
+  !*** ./client/src/RatingsReviews/Components/ProductBreakdown/index.jsx ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction ProductBreakdown() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Product Breakdown\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductBreakdown);\n\n//# sourceURL=webpack://fec/./client/src/RatingsReviews/Components/ProductBreakdown/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsReviews/Components/RatingBreakdown/index.jsx":
+/*!************************************************************************!*\
+  !*** ./client/src/RatingsReviews/Components/RatingBreakdown/index.jsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction RatingBreakdown() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Rating Breakdown\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingBreakdown);\n\n//# sourceURL=webpack://fec/./client/src/RatingsReviews/Components/RatingBreakdown/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsReviews/Components/Sorting/index.jsx":
+/*!****************************************************************!*\
+  !*** ./client/src/RatingsReviews/Components/Sorting/index.jsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction Sorting() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Sorting\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Sorting);\n\n//# sourceURL=webpack://fec/./client/src/RatingsReviews/Components/Sorting/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsReviews/Components/WriteNewReview/index.jsx":
+/*!***********************************************************************!*\
+  !*** ./client/src/RatingsReviews/Components/WriteNewReview/index.jsx ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction WriteNewReview() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, \"Write New Review\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WriteNewReview);\n\n//# sourceURL=webpack://fec/./client/src/RatingsReviews/Components/WriteNewReview/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/RatingsReviews/Components/component.jsx":
+/*!************************************************************!*\
+  !*** ./client/src/RatingsReviews/Components/component.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _IndividualReviewTile_index_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IndividualReviewTile/index.jsx */ \"./client/src/RatingsReviews/Components/IndividualReviewTile/index.jsx\");\n/* harmony import */ var _ProductBreakdown_index_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductBreakdown/index.jsx */ \"./client/src/RatingsReviews/Components/ProductBreakdown/index.jsx\");\n/* harmony import */ var _RatingBreakdown_index_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingBreakdown/index.jsx */ \"./client/src/RatingsReviews/Components/RatingBreakdown/index.jsx\");\n/* harmony import */ var _Sorting_index_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Sorting/index.jsx */ \"./client/src/RatingsReviews/Components/Sorting/index.jsx\");\n/* harmony import */ var _WriteNewReview_index_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WriteNewReview/index.jsx */ \"./client/src/RatingsReviews/Components/WriteNewReview/index.jsx\");\n/* harmony import */ var _KeywordSearch_index_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./KeywordSearch/index.jsx */ \"./client/src/RatingsReviews/Components/KeywordSearch/index.jsx\");\n\n\n\n\n\n\n // import KeywordSearch from './KeywordSearch';\n\nfunction RatingsAndReviews() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h2\", null, \"Ratings and Reviews\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_IndividualReviewTile_index_jsx__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductBreakdown_index_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RatingBreakdown_index_jsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Sorting_index_jsx__WEBPACK_IMPORTED_MODULE_4__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_WriteNewReview_index_jsx__WEBPACK_IMPORTED_MODULE_5__[\"default\"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_KeywordSearch_index_jsx__WEBPACK_IMPORTED_MODULE_6__[\"default\"], null));\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingsAndReviews);\n\n//# sourceURL=webpack://fec/./client/src/RatingsReviews/Components/component.jsx?");
+
+/***/ }),
+
 /***/ "./client/src/index.js":
 /*!*****************************!*\
   !*** ./client/src/index.js ***!
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h1\", null, \"Hello World\"), document.getElementById('root')); ///testing\n/// more testing\n//more testing here\n\n//# sourceURL=webpack://fec/./client/src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var _RatingsReviews_Components_component_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RatingsReviews/Components/component.jsx */ \"./client/src/RatingsReviews/Components/component.jsx\");\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"h1\", null, \"Hello World\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RatingsReviews_Components_component_jsx__WEBPACK_IMPORTED_MODULE_2__[\"default\"], null)), document.getElementById('root')); ///testing\n/// more testing\n//more testing here\n\n//# sourceURL=webpack://fec/./client/src/index.js?");
 
 /***/ }),
 
