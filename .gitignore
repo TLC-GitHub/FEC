@@ -1,3 +1,4 @@
 node_modules
 .env
+package-lock.json
 #need to put config.js in here later containing token
