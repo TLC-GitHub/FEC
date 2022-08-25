@@ -11,18 +11,9 @@ app.use(express.json());
 
 //----------for testing only, will delete after testing----------------//
 let queryParams = {
-  product_id: 65656,
-  // page: 1,
-  // count: 10
-  // sort: "newest"
-  rating: 4,
-  summary: "summary of my review",
-  body: "this is a review for testing testing testing",
-  recommend: true,
-  name: "testing testing testing",
-  email: "testing@gmail.com",
-  photos: [],
-  characteristics: {}
+  // product_id: 65656,
+  page: 1,
+  count: 10
 }
 
 let bodyParams = {
@@ -45,7 +36,7 @@ let bodyParams = {
 // let pathVariable = 642691 //question_id
 let pathVariable = 5987428 //answer_id
 
-// helper.getInfo('qa/questions', queryParams)
+// helper.getInfo('products', queryParams)
 //   .then((response) => {
 //     console.log("data from api: ", response.data);
 //   })
