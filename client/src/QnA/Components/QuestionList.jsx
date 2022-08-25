@@ -6,7 +6,7 @@ function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
   let [questionCount, setQuestionCount] = useState(2);
   //get the questions data from the API endpoint
-  helper.getInfo('qa', 'questions')
+  helper.getInfo('qa/questions' )
   .then((data) => {
     console.log(data);
     let data = data;
