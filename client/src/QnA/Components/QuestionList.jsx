@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import QuestionCard from '/QuestionCard.jsx';
 import helper from './server/hrapi.js';
+import SearchBar from '/SearchBar.jsx';
 
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
   let [questionCount, setQuestionCount] = useState(2);
+  let [questions, setQuestions] = useState([]);
   //get the questions data from the API endpoint
-  helper.getInfo('qa/questions' )
-  .then((data) => {
-    console.log(data);
-    let data = data;
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  console.log(data);
+  let handleSearch = (query) => {
+    //product ID is queryParams
+    return helper.getInfo('qa/questions', "productID")
+  }
+
     //http request uses parameters productID(which product), page(which page), count (how many questions per page)
 
   return(
     <div>
+      <SearchBar setQuestions={setQuestions} handleSearch={handleSearch}/>
       <div>
       {for (let i = 0; i < questionCount; i++) => {
-        <QuestionCard question={data} setCount={setQuestionCount} />
+        <QuestionCard question={questions} setCount={setQuestionCount} />
       }}
       </div>
       <button type="button" name="loadAnswers" text="Load more answers" />
