@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function OverviewModule() {
+const OverviewModule = () => {
   const [data, setData] = useState('');
   const getData = () => setData(data);
 
