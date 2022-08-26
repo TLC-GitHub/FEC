@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders the Logo component to the DOM 1`] = `
+<h1
+  className="sc-bczRLJ fknBqq"
+>
+  Stylish Skin Coverings
+</h1>
+`;
+
+exports[`renders the OverviewModule component to the DOM 1`] = `<div />`;
+
 exports[`renders the component to the DOM 1`] = `<div />`;
