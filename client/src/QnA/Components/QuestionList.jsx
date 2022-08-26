@@ -10,7 +10,7 @@ function QuestionList() {
   //get the questions data from the API endpoint
   let handleSearch = (query) => {
     //product ID is queryParams
-    return helper.getInfo('qa/questions', "productID")
+    return helper.getInfo('qa/questions', {product_id: 5})
   }
 
     //http request uses parameters productID(which product), page(which page), count (how many questions per page)

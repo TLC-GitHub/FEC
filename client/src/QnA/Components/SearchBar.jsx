@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import helper from ('.../server/hrapi.js');
+import helper from '../../../.././server/hrapi.js';
+
 
 function SearchBar({setQuestions, handleSearch}) {
   let [query, setQuery] = useState('');
@@ -41,6 +42,7 @@ function SearchBar({setQuestions, handleSearch}) {
       <form onSubmit={searchFilter} >
       <input
         type="text"
+        placeholder="Need answers? Search here"
         value={query}
         onChange={twoCalls}
       />
@@ -49,4 +51,4 @@ function SearchBar({setQuestions, handleSearch}) {
   )
 }
 
-export default searchBar;
+export default SearchBar;
