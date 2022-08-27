@@ -1,5 +1,5 @@
 const axios = require('axios');
-const url = require('url')
+const url = require('url');
 
 let apiLink = "";
 

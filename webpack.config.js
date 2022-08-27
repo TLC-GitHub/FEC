@@ -25,5 +25,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "client/src", "index.html"),
     }),
+    new NodePolyfillPlugin()
   ],
+  resolve: {
+    fallback: {
+      "url": require.resolve("url/"),
+      // "path": false,
+      // "os": false
+      "path": require.resolve("path-browserify"),
+      "os": require.resolve("os-browserify/browser")
+    }
+  }
 }
