@@ -26,4 +26,7 @@ module.exports = {
       template: path.join(__dirname, "client/src", "index.html"),
     }),
   ],
+  resolve: {
+    fallback: { "url": require.resolve("url/") }
+  }
 }
