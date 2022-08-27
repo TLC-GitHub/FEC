@@ -13,10 +13,14 @@ app.get('/get', (req, res) => {
   console.log("AM I HERER?");
   console.log("req: ", req.query);
 
-  helper.getInfo(req.query.widget, JSON.parse(req.query.queryParams))
+  let widget = req.query.widget;
+  let queryParams = JSON.parse(req.query.queryParams) || '';
+  let pathVariable = req.query.pathVariable || '';
+  let subCategory = req.query.subCategory || ''
+
+  helper.getInfo(widget, queryParams, pathVariable, subCategory)
     .then((result) => {
       console.log("data from API: ", result.data);
-
       res.status(200).send(result.data);
     })
     .catch((err) => {

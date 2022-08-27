@@ -13,8 +13,9 @@ function ProductCard() {
       count: 10,
       product_id: 65656
     }
+    // pathVariable: 574069,
+    // subCategory: "answers"
   };
-
 
   axios.get('/get', {
     params: requestBody
