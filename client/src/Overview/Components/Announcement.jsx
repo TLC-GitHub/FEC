@@ -5,7 +5,7 @@ const Announcement = () => {
   const getData = () => setData(data);
 
   return (
-    <h2>There are some new fabrics you can cover your preferred selection of skin cells with!</h2>
+    <h2>Our new pants are all yours, only on the app. Download the App</h2>
   );
 }
 
