@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import "./RelatedProducts.css";
 import ProductCard from './ProductCard.jsx';
 
 const axios = require('axios');
@@ -23,6 +25,7 @@ function RelatedProducts() {
       console.log("related products errors: ");
       console.log(err);
     });
+
   // make a get request to get the product info for the related party
     // save the following info for product card: 'category', 'name', 'default_price'
     // and then make a get request to the style (/products/:product_id/styles)
@@ -31,7 +34,7 @@ function RelatedProducts() {
 
 
   return (
-    <div>
+    <div className="related_prod">
       <ProductCard />
     </div>
   )
