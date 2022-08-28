@@ -23,6 +23,12 @@ exports[`Overview module Search component renders the Search component to the DO
 </form>
 `;
 
+exports[`overview module renders the Announcement component to the DOM 1`] = `
+<h2>
+  There are some new fabrics you can cover your preferred selection of skin cells with!
+</h2>
+`;
+
 exports[`overview module renders the Logo component to the DOM 1`] = `
 <h1
   className="sc-bczRLJ eFcBDS"
