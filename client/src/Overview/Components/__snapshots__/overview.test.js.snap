@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Overview module Logo component renders the Logo component to the DOM 1`] = `
+<h1
+  className="sc-bczRLJ fknBqq"
+>
+  Stylish Skin Coverings
+</h1>
+`;
+
+exports[`Overview module OverviewModule component renders the OverviewModule component to the DOM 1`] = `<div />`;
+
+exports[`Overview module Search component renders the Search component to the DOM 1`] = `
+<form>
+  <label>
+    Search Products
+  </label>
+  <input
+    name="product-search"
+    onChange={[Function]}
+    type="text"
+  />
+</form>
+`;
+
+exports[`overview module renders the Announcement component to the DOM 1`] = `
+<h2>
+  There are some new fabrics you can cover your preferred selection of skin cells with!
+</h2>
+`;
+
+exports[`overview module renders the Logo component to the DOM 1`] = `
+<h1
+  className="sc-bczRLJ eFcBDS"
+>
+  Stylish Skin Coverings
+</h1>
+`;
+
+exports[`overview module renders the OverviewModule component to the DOM 1`] = `<div />`;
+
+exports[`overview module renders the Search component to the DOM 1`] = `
+<form>
+  <label>
+    Search Products
+  </label>
+  <input
+    name="product-search"
+    onChange={[Function]}
+    type="text"
+  />
+</form>
+`;
+
 exports[`renders the Logo component to the DOM 1`] = `
 <h1
   className="sc-bczRLJ fknBqq"
@@ -9,5 +61,18 @@ exports[`renders the Logo component to the DOM 1`] = `
 `;
 
 exports[`renders the OverviewModule component to the DOM 1`] = `<div />`;
+
+exports[`renders the Search component to the DOM 1`] = `
+<form>
+  <label>
+    Search Products
+  </label>
+  <input
+    name="product-search"
+    onChange={[Function]}
+    type="text"
+  />
+</form>
+`;
 
 exports[`renders the component to the DOM 1`] = `<div />`;
