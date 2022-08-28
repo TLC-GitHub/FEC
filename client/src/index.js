@@ -1,18 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReviewsAndRatings from './RatingsReviews/Components/component.jsx'
-
-
+import App from './App.jsx';
 
 ReactDOM.render(
-  <div>
-    <h1>Hello World</h1>
-    <ReviewsAndRatings />
-  </div>,
+    <App />,
   document.getElementById('root')
 );
-
-///testing
-/// more testing
-
-//more testing here
