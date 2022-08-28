@@ -14,9 +14,9 @@ app.get('/get', (req, res) => {
   console.log("req: ", req.query);
 
   let widget = req.query.widget;
-  let queryParams = JSON.parse(req.query.queryParams) || '';
   let pathVariable = req.query.pathVariable || '';
   let subCategory = req.query.subCategory || ''
+  let queryParams = req.query.queryParams === undefined ? '' : JSON.parse(req.query.queryParams);
 
   helper.getInfo(widget, queryParams, pathVariable, subCategory)
     .then((result) => {
