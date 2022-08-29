@@ -14,11 +14,11 @@ function App() {
      <div>
      </div>
      <div>
-       <h3>Related Products</h3>
+       <h3>YOU MAY ALSO LIKE</h3>
        <RelatedProducts />
      </div>
      <div>
-      <h3>My Outfits</h3>
+      <h3>MY OUTFITS</h3>
       <MyOutfit />
     </div>
      <div><h1>Q&A</h1></div>
