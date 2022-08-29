@@ -29,6 +29,8 @@ exports[`overview module renders the Announcement component to the DOM 1`] = `
 </h2>
 `;
 
+exports[`overview module renders the Image Gallery component to the DOM 1`] = `<ul />`;
+
 exports[`overview module renders the Logo component to the DOM 1`] = `
 <h1
   className="sc-bczRLJ eFcBDS"
