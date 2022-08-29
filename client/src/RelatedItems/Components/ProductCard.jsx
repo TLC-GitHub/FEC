@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-const helper = require('../../../../server/hrapi.js');
 const axios = require('axios');
 
 function ProductCard() {
@@ -13,18 +12,19 @@ function ProductCard() {
       count: 10,
       product_id: 65656
     }
+    // pathVariable: 574069,
+    // subCategory: "answers"
   };
 
-
-  axios.get('/get', {
-    params: requestBody
-  })
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log("frontend: ", err);
-    });
+  // axios.get('/get', {
+  //   params: requestBody
+  // })
+  //   .then((result) => {
+  //     console.log(result);
+  //   })
+  //   .catch((err) => {
+  //     console.log("frontend: ", err);
+  //   });
 
   return (
 
