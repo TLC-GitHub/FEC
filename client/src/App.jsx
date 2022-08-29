@@ -2,10 +2,11 @@ import React from 'react';
 import RelatedProducts from './RelatedItems/Components/RelatedProducts.jsx';
 import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import MyOutfit from './RelatedItems/Components/MyOutfit.jsx';
+// import ProductCard from './ProductCard.jsx';
 
 function App() {
 
-
+  const testing = 'Related Products are located here';
 
   return (
     <div>
@@ -15,7 +16,7 @@ function App() {
      </div>
      <div>
        <h3>YOU MAY ALSO LIKE</h3>
-       <RelatedProducts />
+        <RelatedProducts />
      </div>
      <div>
       <h3>MY OUTFITS</h3>
