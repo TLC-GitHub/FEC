@@ -3,8 +3,7 @@ import Logo from './Logo.jsx';
 import Search from './Search.jsx';
 import Announcement from './Announcement.jsx';
 import ImageGallery from './ImageGallery.jsx';
-import SizeDropdown from './SizeDropdown.jsx';
-import QuantityDropdown from './QuantityDropdown.jsx';
+import AddToCart from './AddToCart.jsx';
 
 const OverviewModule = () => {
   const [data, setData] = useState('');
@@ -25,10 +24,7 @@ const OverviewModule = () => {
         <ImageGallery />
       </div>
       <div>
-      <SizeDropdown />
-      </div>
-      <div>
-      <QuantityDropdown />
+        <AddToCart />
       </div>
     </div>
   );

@@ -20,16 +20,13 @@ module.exports = {
         }
       },
       {
-<<<<<<< HEAD
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
-=======
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
->>>>>>> c9b7bed101d3aadf54a7ec645040c725d24780d1
     ]
   },
   plugins: [
