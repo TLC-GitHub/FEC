@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Answers from '/Answers.jsx';
+import Answers from './Answers.jsx';
 
 function QuestionCard ({question, setCount}) {
 
@@ -15,9 +15,10 @@ let [answerCount, setAnswerCount] = useState(2);
         <button> On Click Add Helpfulness Put Request</button>
         <button> Report Button Put Request </button>
         <div>
-          {for (var i = 0; i < answerCount; i++) => {
-            <Answers setCount={setAnswerCount} answers={question.answers} />
-          }}
+          {question.answers.splice(0, answerCount).map(answer => {
+            <Answers setCount={setAnswerCount} answer={answer} />
+          })
+        }
         </div>
     </div>
   )

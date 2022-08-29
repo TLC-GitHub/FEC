@@ -11,7 +11,6 @@ app.use(express.json());
 //routes
 
 app.get('/get', (req, res) => {
-  console.log("AM I HERER?");
   console.log("req: ", req.query);
 
   helper.getInfo(req.query.widget, JSON.parse(req.query.queryParams))
