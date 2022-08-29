@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import QuestionCard from './QuestionCard.jsx';
-import helper from '../../../.././server/hrapi.js';
 import SearchBar from './SearchBar.jsx';
 import axios from 'axios';
+import {setAnswerCount} from './AnswerModule.jsx';
 
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
   let productID = 5;
-  let [questionCount, setQuestionCount] = useState(2);
-  let [questions, setQuestions] = useState([]);
+  const [questionCount, setQuestionCount] = useState(2);
+  const [questions, setQuestions] = useState([]);
 
   let requestBody = {
     widget: 'qa/questions',
@@ -18,8 +18,8 @@ function QuestionList() {
       product_id:65656
     }
   };
-  //get the questions data from the API endpoint
-  let handleSearch = (query) => {
+
+  const handleSearch = (query) => {
     return axios.get('/get', {
         params: requestBody
     })
@@ -32,32 +32,35 @@ function QuestionList() {
     }
 
   useEffect(() => {
-    return axios.get('/get', {
+    axios.get('/get', {
         params: requestBody
     })
     .then((data) => {
       console.log(data.data.results, 'this is data.results');
-      setQuestions(data.data.results);
+      setQuestions(data.data.results)
     })
     .catch((err) => {
-      console.log(err);
+      console.log('error rendering');
     })
-  })
+  }, [])
 
-    //http request uses parameters productID(which product), page(which page), count (how many questions per page)
+  const addMoreQuestions = () => {
+    setQuestionCount(questionCount + 2);
+  }
+
+  const addQuestion = () => {
+    axios.post
+  }
 
   return(
-    <div>
+    <div className="question-list">
       <SearchBar setQuestions={setQuestions} handleSearch={handleSearch}/>
-      <div>
-        {questions.splice(0, questionCount).map(question => {
-          return <QuestionCard question={question} setCount={setQuestionCount}/>
+        {questions.slice(0, questionCount).map(question => {
+          return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
         })}
-      </div>
-      <button type="button" name="loadAnswers" text="Load more answers" />
-      <div>
-      <button type="button" name="loadQuestions" text="Load More Questions"/>
-      <button type="button" name="addQuestion" text="Add A Question" />
+      <div className="button-container">
+      <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button>
+      <button type="button" name="addQuestion" text="Add A Question"> Add A Question </button>
       </div>
     </div>
   )

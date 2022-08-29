@@ -6,7 +6,6 @@ let apiLink = "";
 module.exports = {
 
   getInfo: function (widget, queryParams, pathVariable, subCategory='') {
-    console.log("I AM HERER IN THE HELPER FUNCTION");
     console.log('params: ', queryParams);
     console.log(typeof queryParams);
     // console.log()
@@ -46,16 +45,33 @@ module.exports = {
     return axios(options);
   },
 
-  updateInfo: function (widget, queryParams, subCategory) {
-    apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
-    console.log(apiLink);
+  updateInfo: function (widget, queryParams, pathVariable, subCategory) {
+    if (pathVariable === '') {
+      const params = new url.URLSearchParams(queryParams);
+      apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
+      console.log('api: ', apiLink);
+    } else {
+      // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
+      apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${pathVariable}/${subCategory}`;
+      console.log('else api: ', apiLink);
+    }
     let options = {
       url: apiLink,
-      method: 'PUT',
+      method: "PUT",
       headers: {
         'Authorization': process.env.API_TOKEN
       }
     };
     return axios(options);
+    // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
+    // console.log(apiLink);
+    // let options = {
+    //   url: apiLink,
+    //   method: 'PUT',
+    //   headers: {
+    //     'Authorization': process.env.API_TOKEN
+    //   }
+    // };
+    // return axios(options);
   }
 }

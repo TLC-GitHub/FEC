@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import helper from '../../../.././server/hrapi.js';
 
 
 function SearchBar({setQuestions, handleSearch}) {
-  let [query, setQuery] = useState('');
+  const [query, setQuery] = useState('');
 
 
-  let componentDidMount = () => {
+  const componentDidMount = () => {
     handleSearch();
   }
 
 
-  let handleChange = (event) => {
+  const handleChange = (event) => {
     setQuery(event.target.value)
   }
 
-  let searchFilter = (query) => {
+  const searchFilter = (query) => {
     //on keystroke < 3, should start to filter out responses
     //filter our get requests for possible questions
     handleSearch(query)
@@ -29,7 +28,7 @@ function SearchBar({setQuestions, handleSearch}) {
     })
   }
 
-  let twoCalls = (e) => {
+  const twoCalls = (e) => {
     handleChange(e)
     .then((query) => {
       searchFilter(query);

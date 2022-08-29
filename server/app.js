@@ -16,19 +16,39 @@ app.get('/get', (req, res) => {
   let widget = req.query.widget;
   let pathVariable = req.query.pathVariable || '';
   let subCategory = req.query.subCategory || ''
+
   let queryParams = req.query.queryParams === undefined ? '' : JSON.parse(req.query.queryParams);
 
   helper.getInfo(widget, queryParams, pathVariable, subCategory)
     .then((result) => {
-      console.log("data from API: ", result.data);
+      // console.log("data from API: ", result.data);
       res.status(200).send(result.data);
     })
     .catch((err) => {
       console.log("I HAVE ERROR");
-      console.log(err);
+      // console.log(err);
       res.sendStatus(500);
     })
 });
+
+app.put('/put', (req, res) => {
+
+  let widget = req.body.widget;
+  let pathVariable = req.body.pathVariable || '';
+  let subCategory = req.body.subCategory || '';
+
+  console.log(req.body.queryParams, 'queryParams');
+  console.log(typeof req.body.queryParams);
+  let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
+
+  helper.updateInfo(widget, queryParams, pathVariable, subCategory)
+    .then((result) => {
+      res.status(204).send('successfully updated')
+    })
+    .catch((err) => {
+      res.status(500).send('could not update');
+    })
+})
 
 
 app.listen(process.env.PORT);
