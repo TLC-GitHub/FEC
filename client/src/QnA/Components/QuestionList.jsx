@@ -9,6 +9,7 @@ function QuestionList() {
   let productID = 5;
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
+  const [expandStatus, setExpandStatus] = useState(false)
 
   let requestBody = {
     widget: 'qa/questions',
@@ -20,7 +21,7 @@ function QuestionList() {
   };
 
   const handleSearch = (query) => {
-    return axios.get('/get', {
+    axios.get('/get', {
         params: requestBody
     })
     .then((search) => {
@@ -49,7 +50,6 @@ function QuestionList() {
   }
 
   const addQuestion = () => {
-    axios.post
   }
 
   return(

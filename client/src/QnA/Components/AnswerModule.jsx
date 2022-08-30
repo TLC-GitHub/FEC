@@ -7,13 +7,6 @@ function AnswerModule({questionID}) {
 
   const [answerCount, setAnswerCount] = useState(2);
   const [answers, setAnswers] = useState([]);
-  const [helpfulCountA, setHelpfulCountA] = useState()
-
-  let requestBody = {
-    widget: 'qa/questions',
-    pathVariable: '',
-    subCategory: ''
-  }
 
   let requestBodyGet = {
     widget: 'qa/questions',
