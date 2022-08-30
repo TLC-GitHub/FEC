@@ -2,16 +2,12 @@ import React from 'react';
 import RelatedProducts from './RelatedItems/Components/RelatedProducts.jsx';
 import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import MyOutfit from './RelatedItems/Components/MyOutfit.jsx';
-// import ProductCard from './ProductCard.jsx';
 
 function App() {
-
-  const testing = 'Related Products are located here';
 
   return (
     <div>
       <OverviewModule />
-     <div><h1>Overview</h1></div>
      <div>
      </div>
      <div>

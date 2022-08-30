@@ -10,7 +10,7 @@ const ProductCard = ({ image, category, name, original_price, sale_price }) => {
     <div className="product_card">
       {image !== null ?
         <img className="RPImage" src={image} alt="" /> :
-        <img className="RPImage" src={NoPhotoImg} alt="" />
+        <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="" />
       }
       <div className="card_text">
         <div>{category}</div>

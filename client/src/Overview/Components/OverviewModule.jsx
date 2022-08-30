@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import Logo from './Logo.jsx';
 import Search from './Search.jsx';
 import Announcement from './Announcement.jsx';
+import ImageGallery from './ImageGallery.jsx';
+import AddToCart from './AddToCart.jsx';
+import ProductOverview from './ProductOverview.jsx';
 
 const OverviewModule = () => {
   const [data, setData] = useState('');
@@ -17,6 +20,15 @@ const OverviewModule = () => {
       </div>
       <div>
         <Announcement />
+      </div>
+      <div>
+        <ImageGallery />
+      </div>
+      <div>
+        <AddToCart />
+      </div>
+      <div>
+        <ProductOverview />
       </div>
     </div>
   );
