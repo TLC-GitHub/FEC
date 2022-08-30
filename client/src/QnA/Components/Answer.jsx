@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import './styles.css'
 
 function Answer({answer, helpfulCount, setHelpfulCount}) {
 

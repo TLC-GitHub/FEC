@@ -57,7 +57,8 @@ function AnswerModule({questionID}) {
   }
 
   return (
-    <div className="answer-list">
+    <div className="answer-parent">
+      <div className="answer-list">
       <div className="answer">
         {answers.length < 1
         ? <div> </div>
@@ -67,9 +68,10 @@ function AnswerModule({questionID}) {
         return <Answer answer={answer} key={answer.answer_id}/>
       })}
       </div>
+      </div>
 
-      <div>
-        {answers.length < 1
+      <div className="answer-buttons">
+        {answers.length <= 2
         ? <div></div>
         : answerCount < answers.length
           ? <button type="button" name="loadAnswers" text="Load more answers"

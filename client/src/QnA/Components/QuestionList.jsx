@@ -3,6 +3,8 @@ import QuestionCard from './QuestionCard.jsx';
 import SearchBar from './SearchBar.jsx';
 import axios from 'axios';
 import {setAnswerCount} from './AnswerModule.jsx';
+import styled from 'styled-components';
+import './styles.css'
 
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
@@ -51,17 +53,22 @@ function QuestionList() {
   }
 
   return(
+    <div className="question-parent">
     <div className="question-list">
       <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={prevQuestions}/>
         {filteredQ.slice(0, questionCount).map(question => {
           return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
         })}
+    </div>
       <div className="button-container">
-        {filteredQ.length > 1
-      ? <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button> : <div></div>}
+        {filteredQ.length < 1
+      ? <div></div>
+      : questionCount >= filteredQ.length
+      ? <div></div>
+      : <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button>}
       <button type="button" name="addQuestion" text="Add A Question"> Add A Question </button>
       </div>
-    </div>
+      </div>
   )
 }
 
