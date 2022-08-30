@@ -10,6 +10,9 @@ function QuestionList() {
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
   const [expandStatus, setExpandStatus] = useState(false)
+  const [filteredQ, setFilteredQ] = useState([]);
+  let prevQuestions = questions;
+
 
   let requestBody = {
     widget: 'qa/questions',
@@ -20,17 +23,18 @@ function QuestionList() {
     }
   };
 
-  const handleSearch = (query) => {
-    axios.get('/get', {
-        params: requestBody
-    })
-    .then((search) => {
-      var newQuestions = search.data.results.filter(questions => {
-        return questions.question_body.includes(query);
-      })
-      setQuestions(newQuestions);
-    })
-    }
+  // const handleSearch = (query) => {
+  //   return axios.get('/get', {
+  //       params: requestBody
+  //   })
+  //   .then((search) => {
+  //     var newQuestions = search.data.results.filter(questions => {
+  //       return questions.question_body.includes(query);
+  //     })
+  //       console.log(newQuestions, 'new questions');
+  //     setQuestions(newQuestions);
+  //   })
+  //   }
 
     const getQuestions = () => {
       axios.get('/get', {
@@ -40,6 +44,7 @@ function QuestionList() {
         console.log(data.data.results.sort(), 'this is the data being sorted');
         console.log(data.data.results, 'this is data.results');
         setQuestions(data.data.results)
+        setFilteredQ(data.data.results)
       })
       .catch((err) => {
         console.log('error rendering');
@@ -60,8 +65,8 @@ function QuestionList() {
 
   return(
     <div className="question-list">
-      <SearchBar setQuestions={setQuestions} handleSearch={handleSearch}/>
-        {questions.slice(0, questionCount).map(question => {
+      <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={prevQuestions}/>
+        {filteredQ.slice(0, questionCount).map(question => {
           return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
         })}
       <div className="button-container">
