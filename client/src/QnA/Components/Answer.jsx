@@ -62,6 +62,13 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
   return (
     <div className = "answerCard" key={answer.answer_id}>
       <div className= "answer"> {answer.body}</div>
+      <div className='images'>
+        {answer.photos
+        ? answer.photos.map(photo => {
+          return <div src={photo.url} key={photo.id}> </div>})
+        : null
+        }
+      </div>
      <div> by {answer.answerer_name.toLowerCase() === 'seller' ? <span style={{fontWeight: "bold"}}> {answer.answerer_name}
      </span> : answer.answerer_name}, {date} </div>
       <div className = "helpfulCount">  Helpful?

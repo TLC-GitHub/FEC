@@ -11,8 +11,10 @@ function QuestionList() {
   let productID = 5;
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
-  const [expandStatus, setExpandStatus] = useState(false)
+  // const [expandStatus, setExpandStatus] = useState(false)
   const [filteredQ, setFilteredQ] = useState([]);
+  const [questionModal, setQuestionModal] = useState(false)
+
   let prevQuestions = questions;
 
 
@@ -20,7 +22,7 @@ function QuestionList() {
     widget: 'qa/questions',
     queryParams: {
       page: 1,
-      count: 10,
+      count: 20,
       product_id:65656
     }
   };
@@ -42,7 +44,8 @@ function QuestionList() {
 
     useEffect(() => {
      getQuestions();
-    }, [])
+     console.log(questionModal);
+    }, [questionCount, questionModal])
 
 
   const addMoreQuestions = () => {
@@ -50,6 +53,7 @@ function QuestionList() {
   }
 
   const addQuestion = () => {
+    setQuestionModal(true);
   }
 
   return(
@@ -66,7 +70,7 @@ function QuestionList() {
       : questionCount >= filteredQ.length
       ? <div></div>
       : <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button>}
-      <button type="button" name="addQuestion" text="Add A Question"> Add A Question </button>
+      <button type="button" name="addQuestion" text="Add A Question" onClick={addQuestion}> Add A Question </button>
       </div>
       </div>
   )

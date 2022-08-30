@@ -9,8 +9,6 @@ function SearchBar({setQuestions, questions, prevQuestions}) {
   const handleChange = (e) => {
     val = e.target.value;
     console.log(val);
-    // setQuery(event.target.value)
-    // console.log(query, 'query');
       if (val.length >= 3) {
         setQuestions(questions.filter(question => question.question_body.includes(val)))
       } else {
