@@ -3,18 +3,22 @@
   flex-direction: row;
   justify-content: flex-start;
   gap: 10px;
-  background-color: #E9DAC1;
+  /* background-color: #E9DAC1; */
   width: 100%;
-  height: 200px;
-}
-
-.related_prod {
-  width: 100%;
-  height: 250px;
-  background-color: #E9DAC1;
+  height: 280px;
 }
 
 .product_card {
+  width: 150px;
+  height: 100%;
   border: 1px solid #FDEEDC;
+}
 
+.card_text {
+  padding: 0 8px;
+}
+
+.RPImage {
+  width: 100%;
+  height: 65%;
 }
