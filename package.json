@@ -4,7 +4,7 @@
   "description": "FEC e-commerce app",
   "main": "client/src/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "client-dev": "npx webpack --watch",
     "server-dev": "npx nodemon --watch server server/app.js",
     "build": "webpack"
