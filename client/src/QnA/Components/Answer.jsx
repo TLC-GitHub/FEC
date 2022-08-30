@@ -18,7 +18,6 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
   useEffect(() => {
     console.log(reportStatus);
     console.log(helpfulClicked);
-
   }, [reportStatus, helpfulClicked])
 
   let date = moment(answer.date).format('MMMM Do YYYY')
@@ -66,7 +65,7 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
      </span> : answer.answerer_name}, {date} </div>
       <div className = "helpfulCount">  Helpful?
       <button type="button" onClick={handleAnswerHelpful}> Yes </button> {helpfulCountA}
-      <button type="button" text='Report nswer' onClick={handleAnswerReport}> {!reportStatus ? "Report Question" : "Reported"} </button>
+      <button type="button" text='Report Answer' onClick={handleAnswerReport}> {!reportStatus ? "Report Answer" : "Reported"} </button>
       </div>
     </div>
   )

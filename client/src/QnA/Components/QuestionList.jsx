@@ -23,19 +23,6 @@ function QuestionList() {
     }
   };
 
-  // const handleSearch = (query) => {
-  //   return axios.get('/get', {
-  //       params: requestBody
-  //   })
-  //   .then((search) => {
-  //     var newQuestions = search.data.results.filter(questions => {
-  //       return questions.question_body.includes(query);
-  //     })
-  //       console.log(newQuestions, 'new questions');
-  //     setQuestions(newQuestions);
-  //   })
-  //   }
-
     const getQuestions = () => {
       axios.get('/get', {
         params: requestBody
@@ -70,7 +57,8 @@ function QuestionList() {
           return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
         })}
       <div className="button-container">
-      <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button>
+        {filteredQ.length > 1
+      ? <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button> : <div></div>}
       <button type="button" name="addQuestion" text="Add A Question"> Add A Question </button>
       </div>
     </div>
