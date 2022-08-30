@@ -2,14 +2,10 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 14px;
   /* background-color: #E9DAC1; */
   width: 100%;
   height: 320px;
-}
-
-.card_container {
-  /* position: relative; */
 }
 
 .product_card {
@@ -29,22 +25,6 @@
   width: 100%;
   height: 70%;
 }
-
-/* .prevCard {
-  left: calc(0% + 2rem);
-  opacity: 0;
-}
-
-.activeCard {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.nextCard {
-  left: 100%;
-  transform: translateX(calc(-100% - 2rem));
-  opacity: 0;
-} */
 
 .rightArrow {
   position: absolute;

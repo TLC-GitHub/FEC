@@ -1,18 +1,21 @@
 import React from 'react';
 import "./RelatedProducts.css";
 import NoPhotoImg from "../images/imgComingSoon.png";
+import { FaSplotch } from "react-icons/fa";
 
 const axios = require('axios');
 
-const ProductCard = ({ image, category, name, original_price, sale_price, cardStyle }) => {
+const ProductCard = ({ image, category, name, original_price, sale_price }) => {
 
   return (
     <div className="product_card">
-    {/* <div className={`product_card ${cardStyle}`}> */}
-      {image !== null ?
-        <img className="RPImage" src={image} alt="" /> :
-        <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="" />
-      }
+      {/* <div className="img_container"> */}
+        {image !== null ?
+          <img className="RPImage" src={image} alt="" /> :
+          <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="" />
+        }
+        {/* <FaSplotch /> */}
+      {/* </div> */}
       <div className="card_text">
         <div>{category}</div>
         <div><strong>{name}</strong></div>
