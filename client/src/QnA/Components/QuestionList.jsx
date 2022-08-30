@@ -32,18 +32,24 @@ function QuestionList() {
     })
     }
 
-  useEffect(() => {
-    axios.get('/get', {
+    const getQuestions = () => {
+      axios.get('/get', {
         params: requestBody
-    })
-    .then((data) => {
-      console.log(data.data.results, 'this is data.results');
-      setQuestions(data.data.results)
-    })
-    .catch((err) => {
-      console.log('error rendering');
-    })
-  }, [])
+      })
+      .then((data) => {
+        console.log(data.data.results.sort(), 'this is the data being sorted');
+        console.log(data.data.results, 'this is data.results');
+        setQuestions(data.data.results)
+      })
+      .catch((err) => {
+        console.log('error rendering');
+      })
+    }
+
+    useEffect(() => {
+     getQuestions();
+    }, [])
+
 
   const addMoreQuestions = () => {
     setQuestionCount(questionCount + 2);

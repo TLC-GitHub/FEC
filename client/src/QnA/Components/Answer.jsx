@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 function Answer({answer, helpfulCount, setHelpfulCount}) {
 
   const [helpfulCountA, setHelpfulCountA] = useState(answer.helpfulness)
+  const [helpfulClicked, setHelpfulClicked] = useState(false)
+
 
   let requestBody = {
     widget: 'qa/questions',
@@ -11,17 +14,27 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
     subCategory: ''
   }
 
+
+  answer.date = moment(answer.date).format('MMMM Do YYYY,')
+
   const handleAnswerHelpful = () => {
-    requestBody.subCategory = 'helpful';
-    requestBody.pathVariable = answer.answer_id;
-    return axios.put('/put', requestBody)
-    .then((success) => {
-      console.log('succesfully voted answer helpful');
-      setHelpfulCountA(helpfulCountA + 1);
-    })
-    .catch((err) => {
-      console.log('error, could not vote on answer');
-    })
+    console.log(helpfulClicked, 'helpfulClicked');
+    if (!helpfulClicked) {
+      requestBody.subCategory = 'helpful';
+      requestBody.pathVariable = answer.answer_id;
+      return axios.put('/put', requestBody)
+      .then((success) => {
+        console.log('succesfully voted answer helpful');
+        incrementHelpful();
+      })
+      .catch((err) => {
+        console.log('error, could not vote on answer');
+      })
+    }
+  }
+
+  const incrementHelpful = () => {
+    setHelpfulCountA(helpfulCountA + 1);
   }
 
   const handleAnswerReport = () => {
@@ -40,11 +53,13 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
 
   return (
     <div className = "answerCard" key={answer.answer_id}>
-    <div className= "answer"> A: {answer.body}</div>
-    <div> by {answer.answerer_name},  </div>
-    <div className = "helpfulCount"> Helpful?  <button type="button" onClick={handleAnswerHelpful}> Yes </button> {helpfulCountA}
-    </div>
-    <button type="button" text='Report Answer' onClick={handleAnswerReport}> Report Question</button>
+      <div className= "answer"> {answer.body}</div>
+     <div> by {answer.answerer_name.toLowerCase() === 'seller' ? <span style={{fontWeight: "bold"}}> {answer.answerer_name}
+     </span> : answer.answerer_name}, {answer.date} </div>
+      <div className = "helpfulCount">  Helpful?
+      <button type="button" onClick={handleAnswerHelpful}> Yes </button> {helpfulCountA}
+      <button type="button" text='Report nswer' onClick={handleAnswerReport}> Report Question</button>
+      </div>
     </div>
   )
 }

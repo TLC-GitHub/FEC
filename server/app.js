@@ -36,9 +36,6 @@ app.put('/put', (req, res) => {
   let widget = req.body.widget;
   let pathVariable = req.body.pathVariable || '';
   let subCategory = req.body.subCategory || '';
-
-  console.log(req.body.queryParams, 'queryParams');
-  console.log(typeof req.body.queryParams);
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
 
   helper.updateInfo(widget, queryParams, pathVariable, subCategory)

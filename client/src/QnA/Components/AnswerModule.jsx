@@ -25,7 +25,11 @@ function AnswerModule({questionID}) {
 
 
   const addMoreAnswers = () => {
-    setAnswerCount(answerCount + 2);
+    setAnswerCount(answers.length);
+  }
+
+  const resetAnswers = () => {
+    setAnswerCount(2);
   }
 
   const getAnswers = () => {
@@ -33,7 +37,18 @@ function AnswerModule({questionID}) {
       params: requestBodyGet
     })
     .then((answers) => {
-      console.log(answers, 'this is answers');
+      //sort through the answers to find if seller name is answerer name, push it to the front
+      // let result = answers.data.results.sort((a, b) => {
+      //   if (a.answerer_name.toLowerCase() === 'seller' && a.helpfulness < b.helpfulness) {
+      //     return -1
+      //   }
+      //   if (a.helpfulness > b.helpfulness) {
+      //     return 1
+      //   }
+      //   return 0;
+      // })
+      // console.log(result);
+      console.log(answers.data.results, 'this is answers');
       setAnswers(answers.data.results);
       })
     .catch((err) => {
@@ -43,11 +58,18 @@ function AnswerModule({questionID}) {
 
   return (
     <div className="answer-list">
+      <div> A:
       {answers.slice(0, answerCount).map(answer => {
-        return <Answer answer={answer} key={answer.answer_id} helpfulCount={helpfulCountA} setHelpfulCount={setHelpfulCountA}/>
+        return <Answer answer={answer} key={answer.answer_id}/>
       })}
+      </div>
       <div>
-        <button type="button" name="loadAnswers" text="Load more answers" onClick={addMoreAnswers}> Load More Answers </button>
+        {answerCount < answers.length
+          ? <button type="button" name="loadAnswers" text="Load more answers"
+          onClick={addMoreAnswers}> Load More Answers </button>
+          : <button type="button" name="collapse" text="Hide Answers"
+          onClick={resetAnswers}> Hide Answers </button>
+        }
       </div>
     </div>
   )
