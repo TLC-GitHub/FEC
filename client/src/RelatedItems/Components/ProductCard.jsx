@@ -4,10 +4,11 @@ import NoPhotoImg from "../images/imgComingSoon.png";
 
 const axios = require('axios');
 
-const ProductCard = ({ image, category, name, original_price, sale_price }) => {
+const ProductCard = ({ image, category, name, original_price, sale_price, cardStyle }) => {
 
   return (
     <div className="product_card">
+    {/* <div className={`product_card ${cardStyle}`}> */}
       {image !== null ?
         <img className="RPImage" src={image} alt="" /> :
         <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="" />

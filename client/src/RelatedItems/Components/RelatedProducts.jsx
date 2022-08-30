@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import "./RelatedProducts.css";
+import RelatedProdSlider from './RelatedProdSlider.jsx';
 import ProductCard from './ProductCard.jsx';
 
 const axios = require('axios');
 
-function RelatedProducts({testing}) {
+function RelatedProducts() {
   const [relatedProd, setRelatedProd] = useState([]);
 
   // need to get the product_id of the current product =====> use product_id: 65633 for testing
@@ -63,29 +63,9 @@ function RelatedProducts({testing}) {
     fetchData();
   }, [])
       // get the star rating from review component
-  console.log(relatedProd);
-  // const testingData = [
-  //   { category: 'shirt', name: 'good shirt', original_price: 29.99, sale_price: null },
-  //   { category: 'skirt', name: 'good skirt', original_price: 29.99, sale_price: 19.99 },
-  //   { category: 'sunglasses', name: 'good sunglasses', original_price: 29.99, sale_price: null }
-  // ]
-
-  const producsList = relatedProd.map(({ id, image, category, name, original_price, sale_price }) => (
-    <div key={id}>
-      <ProductCard
-        image={image}
-        category={category}
-        name={name}
-        original_price={original_price}
-        sale_price={sale_price}
-      />
-    </div>
-  ));
 
   return (
-    <div className="relatedProd_container">
-      {producsList}
-    </div>
+    <RelatedProdSlider relatedProd={relatedProd} />
   )
 }
 
