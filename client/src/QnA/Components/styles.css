@@ -1,9 +1,98 @@
+/* .qna-container {
+
+} */
+
+
+/*
+QUESTION LIST AREA
+-----------------------------------------------------------------------------------
+*/
 .question-list {
   max-height: 500px;
   overflow: auto;
+  display: inline-block;
 }
+
+.button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+
+
+
+
+
+
+/*
+QUESTION CARD AREA
+--------------------------------------------------------------------------------
+*/
+.question-body {
+  font-size: 18px;
+}
+
+.helpful-button {
+  padding: 0;
+  border: none;
+  background: none;
+
+}
+
+.add-answer-button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.helpful-count {
+  float: right;
+  padding: 10px;
+}
+
+.report-button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/*
+ANSWER LIST AREA
+-----------------------------------------------------------------------
+*/
+
 
 .answer-list {
   max-height: 150px;
   overflow: auto;
+}
+
+
+/*
+ANSWER CARD AREA
+--------------------------------------------------------------------------
+*/
+.answerCard {
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+
+.answer-info {
+  display:flex;
+  justify-content: space-between;
+  float:right;
+}
+
+
+/*
+SEARCHBAR AREA
+------------------------------------------------------------------------------
+*/
+.search-bar-input {
+  width: 90%;
+  height: 20px;
+  text-align: center;
+  font-size: 25px;
 }

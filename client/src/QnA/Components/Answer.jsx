@@ -70,10 +70,13 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
         }
       </div>
      <div> by {answer.answerer_name.toLowerCase() === 'seller' ? <span style={{fontWeight: "bold"}}> {answer.answerer_name}
-     </span> : answer.answerer_name}, {date} </div>
-      <div className = "helpfulCount">  Helpful?
-      <button type="button" onClick={handleAnswerHelpful}> Yes </button> {helpfulCountA}
-      <button type="button" text='Report Answer' onClick={handleAnswerReport}> {!reportStatus ? "Report Answer" : "Reported"} </button>
+     </span> : answer.answerer_name}, {date}
+     <div className="answer-info">
+      <div className="helpful-count">  Helpful?
+      <button className="helpful-button" type="button" onClick={handleAnswerHelpful}><u> Yes </u></button> {helpfulCountA}
+      <button className="report-button" type="button" text='Report Answer' onClick={handleAnswerReport}> <u> {!reportStatus ? "Report Answer" : "Reported"} </u> </button>
+      </div>
+      </div>
       </div>
     </div>
   )

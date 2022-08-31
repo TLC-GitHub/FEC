@@ -1,16 +1,16 @@
 import React from 'react';
-import SearchBar from './SearchBar.jsx';
+import SearchBar, {handleChange} from './SearchBar.jsx';
 import {render, fireEvent} from '@testing-library/react';
 
 
 
-it.only('should alter the text of the form', () => {
+it("should filter search results by query", () => {
+  const handleSearch = jest.fn();
 
-  const {queryByPlaceholderText} = render(<SearchBar/>)
+  render(<SearchBar searchInputValue="testing"/>);
 
-  const searchInput = queryByPlaceholderText('Need answers? Search here')
+  const searchInput = fireEvent.change(input, {target: {value: 'testing'}});
 
-  fireEvent.change(searchInput, { target: { value: 'te' } })
 
-  expect(searchInput.value).toBe('test')
+  expect(searchInput).toBe('testing');
 })

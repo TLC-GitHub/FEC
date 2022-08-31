@@ -5,17 +5,16 @@ import axios from 'axios';
 import {setAnswerCount} from './AnswerModule.jsx';
 import styled from 'styled-components';
 import './styles.css'
+import QuestionModal from './Modals/QuestionModal.jsx';
 
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
   let productID = 5;
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
-  // const [expandStatus, setExpandStatus] = useState(false)
   const [filteredQ, setFilteredQ] = useState([]);
-  const [questionModal, setQuestionModal] = useState(false)
+  const [questionModal, setQuestionModal] = useState(false);
 
-  let prevQuestions = questions;
 
 
   let requestBody = {
@@ -36,6 +35,7 @@ function QuestionList() {
         console.log(data.data.results, 'this is data.results');
         setQuestions(data.data.results)
         setFilteredQ(data.data.results)
+
       })
       .catch((err) => {
         console.log('error rendering');
@@ -57,21 +57,24 @@ function QuestionList() {
   }
 
   return(
-    <div className="question-parent">
-    <div className="question-list">
-      <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={prevQuestions}/>
-        {filteredQ.slice(0, questionCount).map(question => {
-          return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
-        })}
-    </div>
-      <div className="button-container">
-        {filteredQ.length < 1
-      ? <div></div>
-      : questionCount >= filteredQ.length
-      ? <div></div>
-      : <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button>}
-      <button type="button" name="addQuestion" text="Add A Question" onClick={addQuestion}> Add A Question </button>
+    <div className="qna-container">
+      <div className="question-list">
+        <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={questions}/>
+          {filteredQ.slice(0, questionCount).map(question => {
+            return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
+          })}
       </div>
+        <div className="button-container">
+          {filteredQ.length < 1
+        ? <div></div>
+        : questionCount >= filteredQ.length
+        ? <div></div>
+        : <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> <b>Load More Questions</b> </button>}
+        {!questionModal
+        ? <button type="button" name="addQuestion" text="Add A Question" onClick={addQuestion}><b> Add A Question </b></button>
+        : <QuestionModal productID={65656}/>
+        }
+        </div>
       </div>
   )
 }

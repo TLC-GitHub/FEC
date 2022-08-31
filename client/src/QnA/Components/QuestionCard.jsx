@@ -1,6 +1,8 @@
 import React, {useState, useEffect } from 'react';
 import AnswerModule from './AnswerModule.jsx';
 import axios from 'axios';
+import AnswerModal from './Modals/AnswerModal.jsx';
+
 
 function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
 
@@ -14,10 +16,11 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
   const [reportedQuestions, setReportedQuestions] = useState([]);
   const [helpfulStatusQ, setHelpfulStatusQ] = useState(false);
   const [reportStatusQ, setReportStatusQ] = useState(false);
+  const [answerModal, setAnswerModal] = useState(false);
 
   useEffect(() => {
-    console.log(helpfulStatusQ, reportStatusQ)
-  }, [helpfulStatusQ, reportStatusQ])
+    console.log(helpfulStatusQ, reportStatusQ, answerModal)
+  }, [helpfulStatusQ, reportStatusQ, answerModal])
 
   const handleHelpfulness = () => {
     if (!helpfulStatusQ) {
@@ -51,20 +54,33 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
     setHelpfulCount(helpfulCount + 1)
   }
 
-  return (
+  const addAnswer = () => {
+    setAnswerModal(true);
+  }
+  if (answerModal) {
+    return(
+      <div className="answer-modal-component">
+        <AnswerModal questionID={question.question_id}/>
+      </div>
+    )
+  } else {
+
+    return (
     <div className="question-card">
-        <h1> Q: {question.question_body} </h1>
-        <div> Helpful?
-        <button onClick={handleHelpfulness}> Yes </button> {helpfulCount}
-        </div>
+        <h1 className="question-body"> Q: {question.question_body} </h1>
+          <div> Helpful? </div>
+            <button className="helpful-button" onClick={handleHelpfulness}><u> Yes </u> </button>
+            <div className="helpful-count">{helpfulCount}</div>
+            <button className="add-answer-button" onClick={addAnswer}> <u>Add Answer</u></button>
         <div>
-        <button onClick = {handleReport}> {reportStatusQ ? 'Reported' : 'Report Question'} </button>
+        <button className="report-button" onClick = {handleReport}> <u>{reportStatusQ ? 'Reported' : 'Report Question'} </u></button>
         </div>
         <div>
           {<AnswerModule questionID={question.question_id}/>}
         </div>
     </div>
   )
+  }
 }
 
-export default QuestionCard
+export default QuestionCard;

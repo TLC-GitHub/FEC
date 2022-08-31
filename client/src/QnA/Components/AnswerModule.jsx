@@ -62,7 +62,7 @@ function AnswerModule({questionID}) {
       <div className="answer">
         {answers.length < 1
         ? <div> </div>
-        : <div> A </div>
+        : <div> <b>A:</b> </div>
         }
       {answers.slice(0, answerCount).map(answer => {
         return <Answer answer={answer} key={answer.answer_id}/>
@@ -74,9 +74,9 @@ function AnswerModule({questionID}) {
         {answers.length <= 2
         ? <div></div>
         : answerCount < answers.length
-          ? <button type="button" name="loadAnswers" text="Load more answers"
-          onClick={addMoreAnswers}> Load More Answers </button>
-          : <button type="button" name="collapse" text="Hide Answers"
+          ? <button className="button" type="button" name="loadAnswers" text="Load more answers"
+          onClick={addMoreAnswers}> <b>Load More Answers</b></button>
+          : <button className="button" type="button" name="collapse" text="Hide Answers"
           onClick={resetAnswers}> Hide Answers </button>
         }
       </div>

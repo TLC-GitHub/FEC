@@ -17,11 +17,11 @@ function SearchBar({setQuestions, questions, prevQuestions}) {
   }
 
   return (
-    <div>
-      <form>
-      <input
+    <div className="search-bar-container">
+      <form className="search-bar">
+      <input className="search-bar-input"
         type="text"
-        placeholder="Need answers? Search here"
+        placeholder="Have a question? Search for answers"
         value={val}
         onChange={handleChange}
       />
