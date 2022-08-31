@@ -1,5 +1,43 @@
-.related_prod {
+.relatedProd_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 14px;
+  /* background-color: #E9DAC1; */
   width: 100%;
-  height: 300px;
-  background-color: #E9DAC1;
+  height: 320px;
+}
+
+.product_card {
+  /* position: absolute;  // this will stack all cards together */
+  width: 200px;
+  height: 100%;
+  border: 1px solid #A2B5BB;
+  /* cursor: pointer; */
+  overflow: hidden;
+}
+
+.card_text {
+  padding: 0 8px;
+}
+
+.RPImage {
+  width: 100%;
+  height: 70%;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  font-size: 2rem;
+  cursor: pointer;
 }

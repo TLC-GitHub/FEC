@@ -7,6 +7,13 @@ function AnswerModule({questionID}) {
 
   const [answerCount, setAnswerCount] = useState(2);
   const [answers, setAnswers] = useState([]);
+  const [helpfulCountA, setHelpfulCountA] = useState()
+
+  let requestBody = {
+    widget: 'qa/questions',
+    pathVariable: '',
+    subCategory: ''
+  }
 
   let requestBodyGet = {
     widget: 'qa/questions',
@@ -25,6 +32,7 @@ function AnswerModule({questionID}) {
 
 
   const addMoreAnswers = () => {
+    setAnswerCount(answerCount + 2);
     setAnswerCount(answers.length);
   }
 
@@ -37,6 +45,9 @@ function AnswerModule({questionID}) {
       params: requestBodyGet
     })
     .then((answers) => {
+
+      console.log(answers, 'this is answers');
+
       //sort through the answers to find if seller name is answerer name, push it to the front
       // let result = answers.data.results.sort((a, b) => {
       //   if (a.answerer_name.toLowerCase() === 'seller' && a.helpfulness < b.helpfulness) {
@@ -49,6 +60,7 @@ function AnswerModule({questionID}) {
       // })
       // console.log(result);
       console.log(answers.data.results, 'this is answers');
+
       setAnswers(answers.data.results);
       })
     .catch((err) => {
@@ -82,6 +94,7 @@ function AnswerModule({questionID}) {
       </div>
     </div>
     )
+
 }
 
 export default AnswerModule;

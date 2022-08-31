@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+import React from 'react';
+=======
 import React from 'react';
 import axios from 'axios';
 
@@ -56,3 +59,4 @@ function answerModal({questionID}) {
 
   )
 }
+>>>>>>> main

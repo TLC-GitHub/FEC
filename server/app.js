@@ -36,11 +36,15 @@ app.put('/put', (req, res) => {
   let widget = req.body.widget;
   let pathVariable = req.body.pathVariable || '';
   let subCategory = req.body.subCategory || '';
+
+
+  console.log(req.body.queryParams, 'queryParams');
+  console.log(typeof req.body.queryParams);
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
 
   helper.updateInfo(widget, queryParams, pathVariable, subCategory)
     .then((result) => {
-      res.status(204).send('successfully updated');
+      res.status(204).send('successfully updated')
     })
     .catch((err) => {
       res.status(500).send('could not update');
@@ -48,8 +52,6 @@ app.put('/put', (req, res) => {
 })
 
 app.post('/post', (req, res) => {
-  console.log(req.body);
-  console.log(req);
   let widget = req.body.widget;
   let subCategory = req.body.subCategory || '';
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;

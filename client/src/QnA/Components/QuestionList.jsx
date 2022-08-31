@@ -6,11 +6,13 @@ import {setAnswerCount} from './AnswerModule.jsx';
 import styled from 'styled-components';
 import './styles.css'
 
+
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
   let productID = 5;
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
+
   // const [expandStatus, setExpandStatus] = useState(false)
   const [filteredQ, setFilteredQ] = useState([]);
   const [questionModal, setQuestionModal] = useState(false)
@@ -18,15 +20,41 @@ function QuestionList() {
   let prevQuestions = questions;
 
 
+
   let requestBody = {
     widget: 'qa/questions',
     queryParams: {
       page: 1,
+      count: 10,
       count: 20,
       product_id:65656
     }
   };
 
+  const handleSearch = (query) => {
+    return axios.get('/get', {
+        params: requestBody
+    })
+    .then((search) => {
+      var newQuestions = search.data.results.filter(questions => {
+        return questions.question_body.includes(query);
+      })
+      setQuestions(newQuestions);
+    })
+    }
+
+  useEffect(() => {
+    axios.get('/get', {
+        params: requestBody
+    })
+    .then((data) => {
+      console.log(data.data.results, 'this is data.results');
+      setQuestions(data.data.results)
+    })
+    .catch((err) => {
+      console.log('error rendering');
+    })
+  }, [])
     const getQuestions = () => {
       axios.get('/get', {
         params: requestBody
@@ -53,7 +81,7 @@ function QuestionList() {
   }
 
   const addQuestion = () => {
-    setQuestionModal(true);
+    axios.post
   }
 
   return(
