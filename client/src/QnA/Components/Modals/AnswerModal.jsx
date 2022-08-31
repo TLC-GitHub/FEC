@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
-=======
-<<<<<<< HEAD
-import React from 'react';
-=======
-import React from 'react';
->>>>>>> e111f43c61d1c18b30bf9a5f2e3c9b67f6060218
 import axios from 'axios';
 
 function AnswerModal({questionID}) {
