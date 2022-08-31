@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import "./RelatedProducts.css";
 import ProductCard from './ProductCard.jsx';
-import { StyledSlider, StyledInactiveItems } from "./SlideCard.jsx";
+import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider } from "./Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 const axios = require('axios');
@@ -37,39 +36,43 @@ function RelatedProdSlider({relatedProd}) {
 
   return (
     <StyledSlider>
-      <div><FaChevronLeft className="leftArrow" onClick={prevSlide} style={{display: leftDisplay}}/></div>
-      <div className="relatedProd_container">
-          {relatedProd.map(({ id, image, category, name, original_price, sale_price }, n) => {
-            if (n < start || n > end) {
-              return (
-                <StyledInactiveItems key={id}>
-                    <ProductCard
-                      image={image}
-                      category={category}
-                      name={name}
-                      original_price={original_price}
-                      sale_price={sale_price}
-                      />
-                  </StyledInactiveItems>
-              )
-            } else {
-              return (
-                <ProductCard
-                key={id}
-                image={image}
-                category={category}
-                name={name}
-                original_price={original_price}
-                sale_price={sale_price}
-                />
-                )
-              }
+      <StyledArrow>
+        <FaChevronLeft className="" onClick={prevSlide} style={{display: leftDisplay}}/>
+      </StyledArrow>
 
-            }
-            )}
-      </div>
-    <div><FaChevronRight className="rightArrow" onClick={nextSlide} style={{display: rightDisplay}}/></div>
-   </StyledSlider>
+      <InnerSlider>
+        {relatedProd.map(({ id, image, category, name, original_price, sale_price }, n) => {
+          if (n < start || n > end) {
+            return (
+              <StyledInactiveItems key={id}>
+                <ProductCard
+                  image={image}
+                  category={category}
+                  name={name}
+                  original_price={original_price}
+                  sale_price={sale_price}
+                  />
+              </StyledInactiveItems>
+            )
+          } else {
+            return (
+              <ProductCard
+              key={id}
+              image={image}
+              category={category}
+              name={name}
+              original_price={original_price}
+              sale_price={sale_price}
+              />
+            )
+          }
+        })}
+      </InnerSlider>
+
+      <StyledArrow>
+        <FaChevronRight className="" onClick={nextSlide} style={{display: rightDisplay}}/>
+      </StyledArrow>
+    </StyledSlider>
   )
 }
 

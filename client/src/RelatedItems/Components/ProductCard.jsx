@@ -1,5 +1,5 @@
 import React from 'react';
-import "./RelatedProducts.css";
+import { CardContainer } from "./Styles.jsx";
 import NoPhotoImg from "../images/imgComingSoon.png";
 import { FaSplotch } from "react-icons/fa";
 
@@ -8,15 +8,15 @@ const axios = require('axios');
 const ProductCard = ({ image, category, name, original_price, sale_price }) => {
 
   return (
-    <div className="product_card_container">
+    <CardContainer>
       {/* <div className="img_container"> */}
         {image !== null ?
-          <img className="RPImage" src={image} alt="apiImg" /> :
-          <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="noImg" />
+          <img style={{width: "100%", height: "70%"}} src={image} alt="apiImg" /> :
+          <img style={{width: "100%", height: "70%"}} src={require("../images/imgComingSoon.png")} alt="noImg" />
         }
         {/* <FaRegStar /> */}
       {/* </div> */}
-      <div className="card_text">
+      <div style={{padding: "0 8px"}}>
         <div>{category}</div>
         <div><strong>{name}</strong></div>
         {sale_price === null ?
@@ -25,7 +25,7 @@ const ProductCard = ({ image, category, name, original_price, sale_price }) => {
         }
         <div>star rating</div>
       </div>
-    </div>
+    </CardContainer>
   );
 };
 

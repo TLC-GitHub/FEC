@@ -13,6 +13,27 @@ export const StyledSlider = styled.div`
   display: flex;
 `;
 
+export const InnerSlider = styled.div`
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  height: 320px;
+`
+
 export const StyledInactiveItems = styled.div`
   display: none;
 `;
+
+export const StyledArrow = styled.div`
+  align-self: center;
+  font-size: 2rem;
+  cursor: pointer;
+`;
+
+export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100%;
+  border: 1px solid #A2B5BB;
+`
