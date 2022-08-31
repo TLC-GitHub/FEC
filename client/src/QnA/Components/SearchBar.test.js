@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar, {handleChange} from './SearchBar.jsx';
-import {render, fireEvent} from '@testing-library/react';
-
+import {render, screen} from '@testing-library/react';
+import '@testing-library/jest-dom'
 
 
 it("should filter search results by query", () => {
@@ -9,8 +9,8 @@ it("should filter search results by query", () => {
 
   render(<SearchBar searchInputValue="testing"/>);
 
-  const searchInput = fireEvent.change(input, {target: {value: 'testing'}});
+  const searchInput = screen.getByPlaceholderText("Have a question? Search for answers")
 
 
-  expect(searchInput).toBe('testing');
+  expect(searchInput).toBeInTheDocument();
 })
