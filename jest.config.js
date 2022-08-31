@@ -1,9 +1,4 @@
 module.exports = {
-<<<<<<< HEAD
-  testEnvironment: "jsdom",
-  setupFilesAfterEnv: ["<rootDir>/setupTests.js"]
-=======
-
   testEnvironment: "jsdom",
 
   "modulePaths": ["/shared/vendor/modules"],
@@ -16,6 +11,4 @@ module.exports = {
 
     "^config$": "<rootDir>/configs/app-config.js"
   }
-
->>>>>>> e111f43c61d1c18b30bf9a5f2e3c9b67f6060218
 }
