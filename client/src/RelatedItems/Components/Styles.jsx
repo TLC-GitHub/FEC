@@ -31,9 +31,24 @@ export const StyledArrow = styled.div`
 `;
 
 export const CardContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 200px;
   height: 100%;
   border: 1px solid #A2B5BB;
+`
+export const ImgContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 70%;
+`
+
+export const StyledStar = styled.div`
+  position: absolute;
+  left: 80%;
+  top: 5%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #7F8487;
 `
