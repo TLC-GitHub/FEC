@@ -8,13 +8,13 @@ const axios = require('axios');
 const ProductCard = ({ image, category, name, original_price, sale_price }) => {
 
   return (
-    <div className="product_card">
+    <div className="product_card_container">
       {/* <div className="img_container"> */}
         {image !== null ?
           <img className="RPImage" src={image} alt="apiImg" /> :
           <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="noImg" />
         }
-        {/* <FaSplotch /> */}
+        {/* <FaRegStar /> */}
       {/* </div> */}
       <div className="card_text">
         <div>{category}</div>

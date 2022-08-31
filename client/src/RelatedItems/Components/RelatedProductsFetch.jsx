@@ -4,7 +4,7 @@ import ProductCard from './ProductCard.jsx';
 
 const axios = require('axios');
 
-function RelatedProducts() {
+function RelatedProductsFetch() {
   const [relatedProd, setRelatedProd] = useState([]);
 
   // need to get the product_id of the current product =====> use product_id: 65633 for testing
@@ -69,4 +69,4 @@ function RelatedProducts() {
   )
 }
 
-export default RelatedProducts;
+export default RelatedProductsFetch;

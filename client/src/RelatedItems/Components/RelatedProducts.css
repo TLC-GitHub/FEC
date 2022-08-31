@@ -8,13 +8,16 @@
   height: 320px;
 }
 
-.product_card {
+.product_card_container {
   /* position: absolute;  // this will stack all cards together */
   width: 200px;
   height: 100%;
   border: 1px solid #A2B5BB;
   /* cursor: pointer; */
   overflow: hidden;
+  /* position: relative;
+  display: flex;
+  flex-direction: column; */
 }
 
 .card_text {
@@ -36,6 +39,7 @@
 
 .leftArrow {
   position: absolute;
+  order: 0;
   top: 50%;
   left: 20px;
   font-size: 2rem;

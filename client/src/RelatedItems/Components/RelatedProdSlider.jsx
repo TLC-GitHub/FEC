@@ -37,8 +37,7 @@ function RelatedProdSlider({relatedProd}) {
 
   return (
     <StyledSlider>
-      <FaChevronLeft className="leftArrow" onClick={prevSlide} style={{display: leftDisplay}}/>
-      <FaChevronRight className="rightArrow" onClick={nextSlide} style={{display: rightDisplay}}/>
+      <div><FaChevronLeft className="leftArrow" onClick={prevSlide} style={{display: leftDisplay}}/></div>
       <div className="relatedProd_container">
           {relatedProd.map(({ id, image, category, name, original_price, sale_price }, n) => {
             if (n < start || n > end) {
@@ -55,20 +54,21 @@ function RelatedProdSlider({relatedProd}) {
               )
             } else {
               return (
-                  <ProductCard
-                    key={id}
-                    image={image}
-                    category={category}
-                    name={name}
-                    original_price={original_price}
-                    sale_price={sale_price}
-                    />
-              )
-            }
+                <ProductCard
+                key={id}
+                image={image}
+                category={category}
+                name={name}
+                original_price={original_price}
+                sale_price={sale_price}
+                />
+                )
+              }
 
-          }
-          )}
+            }
+            )}
       </div>
+    <div><FaChevronRight className="rightArrow" onClick={nextSlide} style={{display: rightDisplay}}/></div>
    </StyledSlider>
   )
 }

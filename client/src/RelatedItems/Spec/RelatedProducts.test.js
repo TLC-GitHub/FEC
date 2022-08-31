@@ -17,8 +17,8 @@ describe('Product Card', () => {
 
 describe('Related Products', () => {
   test('renders Related Products component', () => {
-    render(<RelatedProducts>
+    render(<RelatedProductsFetch>
              <RelatedProdSlider />
-           </RelatedProducts>);
+           </RelatedProductsFetch>);
   });
 });
