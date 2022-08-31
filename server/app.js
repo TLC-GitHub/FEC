@@ -37,6 +37,7 @@ app.put('/put', (req, res) => {
   let pathVariable = req.body.pathVariable || '';
   let subCategory = req.body.subCategory || '';
 
+
   console.log(req.body.queryParams, 'queryParams');
   console.log(typeof req.body.queryParams);
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
@@ -50,6 +51,19 @@ app.put('/put', (req, res) => {
     })
 })
 
+app.post('/post', (req, res) => {
+  let widget = req.body.widget;
+  let subCategory = req.body.subCategory || '';
+  let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
+  let bodyParams = req.body.params
 
+  helper.postInfo(widget, queryParams, bodyParams, subCategory)
+    .then(() => {
+      res.status(201).send('succesfully posted');
+    })
+    .catch((err) => {
+      res.status(500).send('could not post');
+    })
+})
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

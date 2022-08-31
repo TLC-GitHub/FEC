@@ -6,19 +6,17 @@ import QuestionList from './QnA/Components/QuestionList.jsx'
 
 function App() {
 
-
-
   return (
     <div>
       <OverviewModule />
      <div>
      </div>
      <div>
-       <h3>Related Products</h3>
-       <RelatedProducts />
+       <h3>YOU MAY ALSO LIKE</h3>
+        <RelatedProducts />
      </div>
      <div>
-      <h3>My Outfits</h3>
+      <h3>MY OUTFITS</h3>
       <MyOutfit />
     </div>
      <div>
