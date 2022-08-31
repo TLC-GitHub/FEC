@@ -1,42 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import "./RelatedProducts.css";
+import NoPhotoImg from "../images/imgComingSoon.png";
+import { FaSplotch } from "react-icons/fa";
 
-const helper = require('../../../../server/hrapi.js');
 const axios = require('axios');
 
-function ProductCard() {
-
-
-  let requestBody = {
-    widget: "qa/questions",
-    queryParams: {
-      page: 1,
-      count: 10,
-      product_id: 65656
-    }
-  };
-
-
-  axios.get('/get', {
-    params: requestBody
-  })
-    .then((result) => {
-      // console.log(result);
-    })
-    .catch((err) => {
-      console.log("frontend: ", err);
-    });
+const ProductCard = ({ image, category, name, original_price, sale_price }) => {
 
   return (
-
-    <div>
-      {/* <img>image</img> */}
-      <div>category</div>
-      <div>name</div>
-      <div>price</div>
-      <div>star rating</div>
+    <div className="product_card">
+      {/* <div className="img_container"> */}
+        {image !== null ?
+          <img className="RPImage" src={image} alt="apiImg" /> :
+          <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="noImg" />
+        }
+        {/* <FaSplotch /> */}
+      {/* </div> */}
+      <div className="card_text">
+        <div>{category}</div>
+        <div><strong>{name}</strong></div>
+        {sale_price === null ?
+          <span>${original_price}</span> :
+          <div><span style={{color: "red"}}>${sale_price}</span> <span><s>${original_price}</s></span></div>
+        }
+        <div>star rating</div>
+      </div>
     </div>
-
-  )
-}
+  );
+};
 
 export default ProductCard;

@@ -6,6 +6,7 @@ module.exports = {
   entry: path.join(__dirname, "client/src", "index.js"),
   output: {
     path:path.resolve(__dirname, "client/dist"),
+    clean: true
   },
   module: {
     rules: [
@@ -19,7 +20,27 @@ module.exports = {
           }
         }
       },
-    ]
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpg)$/i,
+        type: 'asset',
+        parser: {
+            dataUrlCondition: {
+                maxSize: 10 * 1024 // Inline images under 10KB
+            }
+        },
+        generator: {
+            filename: 'images/[name]-[hash][ext]'
+        }
+      }
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -28,6 +49,7 @@ module.exports = {
 
   ],
   resolve: {
-    fallback: { "url": require.resolve("url/") }
+    fallback: { "url": require.resolve("url/") },
+
   }
 }

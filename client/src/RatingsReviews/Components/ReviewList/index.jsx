@@ -38,5 +38,5 @@ function ReviewList ({allReviews}) {
     </div>
   )
 }
-console.log('Test', ReviewList.someReviews)
+// console.log('Test', ReviewList.someReviews)
 export default ReviewList;

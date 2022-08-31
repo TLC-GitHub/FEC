@@ -1,46 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function SearchBar() {
-  let [query, setQuery] = useState('');
+function SearchBar({setQuestions, questions, prevQuestions}) {
+  // const [query, setQuery] = useState('');
 
+  let val;
 
-  let handleChange = (event) => {
-    setQuery(event.target.value)
+  const handleChange = (e) => {
+    val = e.target.value;
+    console.log(val);
+      if (val.length >= 3) {
+        setQuestions(questions.filter(question => question.question_body.includes(val)))
+      } else {
+        setQuestions(prevQuestions);
+      }
   }
-
-  let handleSearch = (query) => {
-    //get request to the API for data
-  }
-
-
-  let keyStrokesFilter = (query) => {
-    //on keystroke < 3, should start to filter out responses
-    if (query.length >= 3) {
-      //filter our get requests for possible questions
-      handleSearch(query)
-    }
-  }
-
-  let twoCalls = (e) => {
-    handleChange(e)
-    .then((query) => {
-      keyStokesFilter(query);
-    })
-  }
-  //onchange should
 
   return (
     <div>
-      <form onSubmit={handleSearch} >
+      <form>
       <input
         type="text"
-        value={query}
-        onChange={twoCalls}
+        placeholder="Need answers? Search here"
+        value={val}
+        onChange={handleChange}
       />
       </form>
-
     </div>
   )
 }
 
-export default searchBar;
+export default SearchBar;
