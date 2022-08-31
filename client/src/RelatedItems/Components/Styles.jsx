@@ -18,7 +18,7 @@ export const InnerSlider = styled.div`
   gap: 14px;
   width: 100%;
   height: 320px;
-`
+`;
 
 export const StyledInactiveItems = styled.div`
   display: none;
@@ -37,18 +37,24 @@ export const CardContainer = styled.div`
   width: 200px;
   height: 100%;
   border: 1px solid #A2B5BB;
-`
+`;
+
 export const ImgContainer = styled.div`
   position: relative;
   width: 100%;
   height: 70%;
-`
+`;
 
-export const StyledStar = styled.div`
+export const StyledStarBtn = styled.div`
   position: absolute;
-  left: 80%;
-  top: 5%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #7F8487;
-`
+  left: 70%;
+  top: 3%;
+`;
+
+export const ModalBox = styled.div`
+  position: fixed;
+  top: 10%;
+  width: 500px;
+  height: 500px;
+  background-color: #000;
+`;

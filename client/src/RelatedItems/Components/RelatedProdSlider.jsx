@@ -46,6 +46,7 @@ function RelatedProdSlider({relatedProd}) {
             return (
               <StyledInactiveItems key={id}>
                 <ProductCard
+                  id={id}
                   image={image}
                   category={category}
                   name={name}
@@ -58,6 +59,7 @@ function RelatedProdSlider({relatedProd}) {
             return (
               <ProductCard
               key={id}
+              id={id}
               image={image}
               category={category}
               name={name}

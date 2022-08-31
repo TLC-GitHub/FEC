@@ -1,24 +1,34 @@
-import React from 'react';
-import { CardContainer, ImgContainer, StyledStar } from "./Styles.jsx";
+import React, { useState }from 'react';
+import { CardContainer, ImgContainer, StyledStarBtn } from "./Styles.jsx";
 import NoPhotoImg from "../images/imgComingSoon.png";
-import { FaRegStar } from "react-icons/fa";
+import ComparisonModal from "./ComparisonModal.jsx";
+import useModal from "./useModal.jsx";
 
-const axios = require('axios');
+const ProductCard = ({ id, image, category, name, original_price, sale_price }) => {
+  const [target, setTarget] = useState(0);
+  const {showModal, toggle} = useModal();
 
-const ProductCard = ({ image, category, name, original_price, sale_price }) => {
+  const handleClick = (e) => {
+    setTarget(e.target.value);
+    toggle();
+  }
 
   return (
     <CardContainer>
       <ImgContainer>
         {image !== null ?
-          <img style={{width: "100%", height: "100%", "object-fit": "cover"}} src={image} alt="apiImg" /> :
-          <img style={{width: "100%", height: "100%", "object-fit": "cover"}} src={require("../images/imgComingSoon.png")} alt="noImg" />
+          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={image} alt="apiImg" /> :
+          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={require("../images/imgComingSoon.png")} alt="noImg" />
         }
-        <StyledStar>
-          <FaRegStar onClick={()=> {alert('i got clicked')}}/>
-        </StyledStar>
+        <StyledStarBtn>
+          <button type="button" value={id} onClick={handleClick}
+            style={{border: "none", fontSize: "1.5rem", cursor: "pointer", backgroundColor: "rgba(0,0,0,0)", color: "#7F8487"}}
+          >&#9734;
+          </button>
+          <ComparisonModal showModal={showModal} hide={toggle} targetID={target} />
+        </StyledStarBtn>
       </ImgContainer>
-      <div style={{padding: "0 8px", "margin-top": "8px"}}>
+      <div style={{padding: "0 8px", marginTop: "8px"}}>
         <div>{category}</div>
         <div><strong>{name}</strong></div>
           { sale_price === null ?
