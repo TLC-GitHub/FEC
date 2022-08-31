@@ -11,7 +11,6 @@ function App() {
   return (
     <div>
       <OverviewModule />
-     <div><h1>Overview</h1></div>
      <div>
      </div>
      <div>

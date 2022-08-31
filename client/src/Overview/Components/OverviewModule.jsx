@@ -22,6 +22,9 @@ const OverviewModule = () => {
         <Announcement />
       </div>
       <div>
+        <h1>Overview</h1>
+      </div>
+      <div>
         <ImageGallery />
       </div>
       <div>
