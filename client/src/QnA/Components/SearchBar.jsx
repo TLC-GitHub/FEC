@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 function SearchBar({setQuestions, handleSearch}) {
@@ -44,6 +44,30 @@ function SearchBar({setQuestions, handleSearch}) {
         placeholder="Need answers? Search here"
         value={query}
         onChange={twoCalls}
+
+function SearchBar({setQuestions, questions, prevQuestions}) {
+  // const [query, setQuery] = useState('');
+
+  let val;
+
+  const handleChange = (e) => {
+    val = e.target.value;
+    console.log(val);
+      if (val.length >= 3) {
+        setQuestions(questions.filter(question => question.question_body.includes(val)))
+      } else {
+        setQuestions(prevQuestions);
+      }
+  }
+
+  return (
+    <div>
+      <form>
+      <input
+        type="text"
+        placeholder="Need answers? Search here"
+        value={val}
+        onChange={handleChange}
       />
       </form>
     </div>

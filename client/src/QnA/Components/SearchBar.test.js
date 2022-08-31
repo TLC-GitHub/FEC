@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar.jsx';
 import {render, fireEvent} from '@testing-library/react';
 
+
 const handleSearch = (query) => {
   //product ID is queryParams
   return helper.getInfo('qa/questions', {product_id: 5})
@@ -29,6 +30,17 @@ it('should alter the text of the form', () => {
   const searchInput = queryByPlaceholderText('Search...')
 
   fireEvent.change(searchInput, { target: { value: 'test' } })
+
+
+
+it.only('should alter the text of the form', () => {
+
+  const {queryByPlaceholderText} = render(<SearchBar/>)
+
+  const searchInput = queryByPlaceholderText('Need answers? Search here')
+
+  fireEvent.change(searchInput, { target: { value: 'te' } })
+
 
   expect(searchInput.value).toBe('test')
 })

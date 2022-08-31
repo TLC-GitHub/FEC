@@ -42,6 +42,7 @@ module.exports = {
         'Authorization': process.env.API_TOKEN
       }
     };
+    console.log(options, 'this is options')
     return axios(options);
   },
 
