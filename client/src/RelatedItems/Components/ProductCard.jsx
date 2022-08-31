@@ -11,8 +11,8 @@ const ProductCard = ({ image, category, name, original_price, sale_price }) => {
     <div className="product_card">
       {/* <div className="img_container"> */}
         {image !== null ?
-          <img className="RPImage" src={image} alt="" /> :
-          <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="" />
+          <img className="RPImage" src={image} alt="apiImg" /> :
+          <img className="RPImage" src={require("../images/imgComingSoon.png")} alt="noImg" />
         }
         {/* <FaSplotch /> */}
       {/* </div> */}

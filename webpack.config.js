@@ -40,7 +40,7 @@ module.exports = {
             filename: 'images/[name]-[hash][ext]'
         }
       }
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -48,6 +48,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    fallback: { "url": require.resolve("url/") }
+    fallback: { "url": require.resolve("url/") },
+
   }
 }

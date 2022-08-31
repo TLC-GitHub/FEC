@@ -11,7 +11,7 @@ function RelatedProdSlider({relatedProd}) {
     const [end, setEnd] = useState(4);
     const [leftDisplay, setLeftDisplay] = useState('none');
     const [rightDisplay, setRightDisplay] = useState('');
-    const length = relatedProd.length;
+    const length = Object.keys(relatedProd).length;
 
     const nextSlide = () => {
       if (end + 1 <= length - 1) {
@@ -51,7 +51,6 @@ function RelatedProdSlider({relatedProd}) {
                       original_price={original_price}
                       sale_price={sale_price}
                       />
-                {/* </div> */}
                   </StyledInactiveItems>
               )
             } else {

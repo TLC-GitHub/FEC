@@ -2,6 +2,7 @@ import React from 'react';
 import RelatedProducts from './RelatedItems/Components/RelatedProducts.jsx';
 import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import MyOutfit from './RelatedItems/Components/MyOutfit.jsx';
+import QuestionList from './QnA/Components/QuestionList.jsx'
 
 function App() {
 
@@ -18,7 +19,10 @@ function App() {
       <h3>MY OUTFITS</h3>
       <MyOutfit />
     </div>
-     <div><h1>Q&A</h1></div>
+     <div>
+        <h1> Questions and Answers</h1>
+        <QuestionList />
+      </div>
      <div><h1>Reviews</h1></div>
     </div>
   )

@@ -1,46 +1,53 @@
 import React, { useState } from 'react';
 
-function SearchBar() {
-  let [query, setQuery] = useState('');
+
+function SearchBar({setQuestions, handleSearch}) {
+  const [query, setQuery] = useState('');
 
 
-  let handleChange = (event) => {
+  const componentDidMount = () => {
+    handleSearch();
+  }
+
+
+  const handleChange = (event) => {
     setQuery(event.target.value)
   }
 
-  let handleSearch = (query) => {
-    //get request to the API for data
-  }
-
-
-  let keyStrokesFilter = (query) => {
+  const searchFilter = (query) => {
     //on keystroke < 3, should start to filter out responses
-    if (query.length >= 3) {
-      //filter our get requests for possible questions
-      handleSearch(query)
-    }
+    //filter our get requests for possible questions
+    handleSearch(query)
+      .then((questions) => {
+        if (query.length >= 3) {
+        //filter through the array of objects and only keep objects that include query
+          setQuestions(questions.filter(question => question.contains(query)))
+        } else {
+          setQuestions(questions);
+      }
+    })
   }
 
-  let twoCalls = (e) => {
+  const twoCalls = (e) => {
     handleChange(e)
     .then((query) => {
-      keyStokesFilter(query);
+      searchFilter(query);
     })
   }
   //onchange should
 
   return (
     <div>
-      <form onSubmit={handleSearch} >
+      <form onSubmit={searchFilter} >
       <input
         type="text"
+        placeholder="Need answers? Search here"
         value={query}
         onChange={twoCalls}
       />
       </form>
-
     </div>
   )
 }
 
-export default searchBar;
+export default SearchBar;
