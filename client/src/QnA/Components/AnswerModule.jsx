@@ -69,17 +69,6 @@ function AnswerModule({questionID}) {
   }
 
   return (
-
-    <div className="answer-list">
-      {answers.slice(0, answerCount).map(answer => {
-        return <Answer answer={answer} key={answer.answer_id} helpfulCount={helpfulCountA} setHelpfulCount={setHelpfulCountA}/>
-      })}
-      <div>
-        <button type="button" name="loadAnswers" text="Load more answers" onClick={addMoreAnswers}> Load More Answers </button>
-      </div>
-    </div>
-  )
-
     <div className="answer-parent">
       <div className="answer-list">
       <div className="answer">

@@ -16,19 +16,6 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
     subCategory: ''
   }
 
-
-  const handleAnswerHelpful = () => {
-    requestBody.subCategory = 'helpful';
-    requestBody.pathVariable = answer.answer_id;
-    return axios.put('/put', requestBody)
-    .then((success) => {
-      console.log('succesfully voted answer helpful');
-      setHelpfulCountA(helpfulCountA + 1);
-    })
-    .catch((err) => {
-      console.log('error, could not vote on answer');
-    })
-
   useEffect(() => {
     console.log(reportStatus);
     console.log(helpfulClicked);

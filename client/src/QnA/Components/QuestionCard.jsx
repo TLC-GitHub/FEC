@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import React, {useState} from 'react';
-=======
+
 import React, {useState, useEffect } from 'react';
->>>>>>> main
 import AnswerModule from './AnswerModule.jsx';
 import axios from 'axios';
 
@@ -16,17 +13,6 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
 
   const [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness);
   const [reportedQuestions, setReportedQuestions] = useState([]);
-
-  const handleHelpfulness = () => {
-    requestBody.subCategory = 'helpful';
-    return axios.put('/put', requestBody)
-    .then((success) => {
-      console.log('successfully voted');
-      setHelpfulCount(helpfulCount + 1);
-    })
-    .catch((err) => {
-      console.log('error, could not add helpfulness');
-    })
   const [helpfulStatusQ, setHelpfulStatusQ] = useState(false);
   const [reportStatusQ, setReportStatusQ] = useState(false);
 
@@ -89,4 +75,4 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
   )
 }
 
-export default QuestionCard
+export default QuestionCard;

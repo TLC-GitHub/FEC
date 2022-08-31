@@ -85,18 +85,6 @@ function QuestionList() {
   }
 
   return(
-    <div className="question-list">
-      <SearchBar setQuestions={setQuestions} handleSearch={handleSearch}/>
-        {questions.slice(0, questionCount).map(question => {
-          return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
-        })}
-      <div className="button-container">
-      <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button>
-      <button type="button" name="addQuestion" text="Add A Question"> Add A Question </button>
-    setQuestionModal(true);
-  }
-
-  return(
     <div className="question-parent">
     <div className="question-list">
       <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={prevQuestions}/>
