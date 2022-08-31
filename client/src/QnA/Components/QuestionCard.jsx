@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect } from 'react';
 import AnswerModule from './AnswerModule.jsx';
 import axios from 'axios';
@@ -34,12 +35,14 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
         console.log('error, could not add helpfulness');
       })
     }
+
   }
 
   const handleReport = () => {
     requestBody.subCategory = 'report'
     return axios.put('/put', requestBody)
     .then((success) => {
+
       setReportStatusQ(true);
       console.log('successfully reported');
     })
@@ -48,6 +51,7 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
     })
 
   }
+
 
   const incrementHelpful = () => {
     setHelpfulStatusQ(true)

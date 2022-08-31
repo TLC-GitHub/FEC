@@ -49,6 +49,7 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
     requestBody.pathVariable = answer.answer_id;
     return axios.put('/put', requestBody)
     .then((success) => {
+
       setReportStatus(true);
       console.log('successfully reported answer');
     })
@@ -61,6 +62,11 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
 
   return (
     <div className = "answerCard" key={answer.answer_id}>
+    <div className= "answer"> A: {answer.body}</div>
+    <div> by {answer.answerer_name},  </div>
+    <div className = "helpfulCount"> Helpful?  <button type="button" onClick={handleAnswerHelpful}> Yes </button> {helpfulCountA}
+    </div>
+    <button type="button" text='Report Answer' onClick={handleAnswerReport}> Report Question</button>
       <div className= "answer"> {answer.body}</div>
       <div className='images'>
         {answer.photos
