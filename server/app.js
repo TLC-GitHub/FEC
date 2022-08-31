@@ -10,18 +10,18 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(express.json());
 
 app.get('/get', (req, res) => {
-  console.log("AM I HERER?");
-  console.log("req: ", req.query);
+  // console.log("AM I HERER?");
+  // console.log("req: ", req.query);
 
   helper.getInfo(req.query.widget, JSON.parse(req.query.queryParams))
     .then((result) => {
-      console.log("data from API: ", result.data);
+      // console.log("data from API: ", result.data);
 
       res.status(200).send(result.data);
     })
     .catch((err) => {
-      console.log("I HAVE ERROR");
-      console.log(err);
+      // console.log("I HAVE ERROR");
+      // console.log(err);
       res.sendStatus(500);
     })
 });

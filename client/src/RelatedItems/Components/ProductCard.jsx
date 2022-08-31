@@ -20,7 +20,7 @@ function ProductCard() {
     params: requestBody
   })
     .then((result) => {
-      console.log(result);
+      // console.log(result);
     })
     .catch((err) => {
       console.log("frontend: ", err);

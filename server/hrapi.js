@@ -6,14 +6,14 @@ let apiLink = "";
 module.exports = {
 
   getInfo: function (widget, queryParams, subCategory='') {
-    console.log("I AM HERER IN THE HELPER FUNCTION");
-    console.log('params: ', queryParams);
-    console.log(typeof queryParams);
+    // console.log("I AM HERER IN THE HELPER FUNCTION");
+    // console.log('params: ', queryParams);
+    // console.log(typeof queryParams);
     // console.log()
     if (typeof queryParams === 'object') {
       const params = new url.URLSearchParams(queryParams);
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
-      console.log('api: ', apiLink);
+      // console.log('api: ', apiLink);
     } else {
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
       console.log('else api: ', apiLink);
