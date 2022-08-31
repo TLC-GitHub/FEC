@@ -46,6 +46,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "client/src", "index.html"),
     }),
+
   ],
   resolve: {
     fallback: { "url": require.resolve("url/") },
