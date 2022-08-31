@@ -6,15 +6,14 @@ let apiLink = "";
 module.exports = {
 
   getInfo: function (widget, queryParams, pathVariable, subCategory='') {
-    if (pathVariable === '' && queryParams === '') {
-      const params = new url.URLSearchParams(subCategory);
-      // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
-      apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${pathVariable}/${subCategory}`;
-      console.log('else api: ', apiLink);
-    } else {
+    if (pathVariable === '') {
       const params = new url.URLSearchParams(queryParams);
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
       console.log('api: ', apiLink);
+    } else {
+      // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
+      apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${pathVariable}/${subCategory}`;
+      console.log('else api: ', apiLink);
     }
     let options = {
       url: apiLink,
