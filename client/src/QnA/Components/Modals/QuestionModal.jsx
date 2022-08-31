@@ -1,13 +1,10 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function questionModal() {
-  const [username, setUsername] = setState('');
-  const [email, setEmail] = setState('');
-  const [question, setQuestion] = setState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [question, setQuestion] = useState('');
 
   let requestBody = {
     widget: 'qa/questions',
@@ -40,6 +37,7 @@ function questionModal() {
 
 
   return(
+
     <form className="question-form" onSubmit={sendQuestion}>
       <input name="body" onChange={handleChange}/>
       <input name="name" onChange={handleChange}/>
@@ -50,4 +48,3 @@ function questionModal() {
   )
 
 }
->>>>>>> main

@@ -1,14 +1,12 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-function answerModal({questionID}) {
+function AnswerModal({questionID}) {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [imageModal, setImageModal] = useState(false);
 
   let requestBody = {
     widget: 'qa/questions',
@@ -48,15 +46,21 @@ function answerModal({questionID}) {
 
 
   return(
-    <form onSubmit={sendAnswer}>
-      <input name="body" />
-      <input name="name" />
-      <input name="email" />
-      <input name="photos" />
+    <div className="answer-modal-container">
+      <form onSubmit={sendAnswer}>
+        <input name="body" />
+        <br />
+        <input name="name" />
+        <br />
+        <input name="email" />
+        <br />
+        <input name="photos" />
 
-    </form>
-
+      </form>
+    </div>
 
   )
 }
->>>>>>> main
+
+export default AnswerModal;
+

@@ -74,7 +74,7 @@ function AnswerModule({questionID}) {
       <div className="answer">
         {answers.length < 1
         ? <div> </div>
-        : <div> A </div>
+        : <div> A: </div>
         }
       {answers.slice(0, answerCount).map(answer => {
         return <Answer answer={answer} key={answer.answer_id}/>
