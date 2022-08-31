@@ -17,14 +17,11 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
   }
 
   useEffect(() => {
-    console.log(reportStatus);
-    console.log(helpfulClicked);
   }, [reportStatus, helpfulClicked])
 
   let date = moment(answer.date).format('MMMM Do YYYY')
 
   const handleAnswerHelpful = () => {
-    console.log(helpfulClicked, 'helpfulClicked');
     if (!helpfulClicked) {
       requestBody.subCategory = 'helpful';
       requestBody.pathVariable = answer.answer_id;
@@ -71,7 +68,7 @@ function Answer({answer, helpfulCount, setHelpfulCount}) {
       <div className='images'>
         {answer.photos
         ? answer.photos.map(photo => {
-          return <div src={photo.url} key={photo.id}> </div>})
+          return <img className="image" src={photo.url} key={photo.id}></img>})
         : null
         }
       </div>

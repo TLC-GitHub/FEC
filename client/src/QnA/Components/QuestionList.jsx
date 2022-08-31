@@ -10,18 +10,10 @@ import QuestionModal from './Modals/QuestionModal.jsx';
 
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
-  let productID = 5;
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
-<<<<<<< HEAD
-=======
-
-  // const [expandStatus, setExpandStatus] = useState(false)
->>>>>>> e111f43c61d1c18b30bf9a5f2e3c9b67f6060218
   const [filteredQ, setFilteredQ] = useState([]);
   const [questionModal, setQuestionModal] = useState(false);
-
-
 
 
   let requestBody = {
@@ -58,6 +50,8 @@ function QuestionList() {
       console.log('error rendering');
     })
   }, [])
+
+
     const getQuestions = () => {
       axios.get('/get', {
         params: requestBody
@@ -84,9 +78,10 @@ function QuestionList() {
     setQuestionCount(questionCount + 2);
   }
 
-  const addQuestion = () => {
-    axios.post
+  const toggleQuestionModal = () => {
+    setQuestionModal(!questionModal);
   }
+
 
   return(
     <div className="qna-container">
@@ -103,8 +98,8 @@ function QuestionList() {
         ? <div></div>
         : <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> <b>Load More Questions</b> </button>}
         {!questionModal
-        ? <button type="button" name="addQuestion" text="Add A Question" onClick={addQuestion}><b> Add A Question </b></button>
-        : <QuestionModal productID={65656}/>
+        ? <button type="button" name="addQuestion" text="Add A Question" onClick={toggleQuestionModal}><b> Add A Question </b></button>
+        : <QuestionModal productID={65656} toggle={toggleQuestionModal}/>
         }
         </div>
       </div>

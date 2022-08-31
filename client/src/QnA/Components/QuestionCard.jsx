@@ -19,8 +19,9 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
   const [reportStatusQ, setReportStatusQ] = useState(false);
   const [answerModal, setAnswerModal] = useState(false);
 
+  console.log(setAnswerModal);
+
   useEffect(() => {
-    console.log(helpfulStatusQ, reportStatusQ, answerModal)
   }, [helpfulStatusQ, reportStatusQ, answerModal])
 
   const handleHelpfulness = () => {
@@ -58,13 +59,14 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
     setHelpfulCount(helpfulCount + 1)
   }
 
-  const addAnswer = () => {
-    setAnswerModal(true);
+  const toggleAnswerModal = () => {
+      setAnswerModal(!answerModal);
   }
+
   if (answerModal) {
     return(
       <div className="answer-modal-component">
-        <AnswerModal questionID={question.question_id}/>
+        <AnswerModal questionID={question.question_id} toggle={toggleAnswerModal}/>
       </div>
     )
   } else {
@@ -75,12 +77,12 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
           <div> Helpful? </div>
             <button className="helpful-button" onClick={handleHelpfulness}><u> Yes </u> </button>
             <div className="helpful-count">{helpfulCount}</div>
-            <button className="add-answer-button" onClick={addAnswer}> <u>Add Answer</u></button>
+            <button className="add-answer-button" onClick={toggleAnswerModal}> <u>Add Answer</u></button>
         <div>
         <button className="report-button" onClick = {handleReport}> <u>{reportStatusQ ? 'Reported' : 'Report Question'} </u></button>
         </div>
         <div>
-          {<AnswerModule questionID={question.question_id}/>}
+          <AnswerModule questionID={question.question_id} />
         </div>
     </div>
   )

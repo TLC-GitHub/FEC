@@ -16,13 +16,11 @@ function AnswerModule({questionID}) {
   }
 
   let requestBodyGet = {
-    widget: 'qa/questions',
-    pathVariable: questionID,
+    widget: `qa/questions/${questionID}/answers`,
     queryParams: {
       page: 1,
-      count: 5
-    },
-    subCategory: 'answers'
+      count: 40
+    }
   }
 
 
@@ -45,23 +43,16 @@ function AnswerModule({questionID}) {
       params: requestBodyGet
     })
     .then((answers) => {
-
-      console.log(answers, 'this is answers');
-
-      //sort through the answers to find if seller name is answerer name, push it to the front
-      // let result = answers.data.results.sort((a, b) => {
-      //   if (a.answerer_name.toLowerCase() === 'seller' && a.helpfulness < b.helpfulness) {
-      //     return -1
-      //   }
-      //   if (a.helpfulness > b.helpfulness) {
-      //     return 1
-      //   }
-      //   return 0;
-      // })
-      // console.log(result);
-      console.log(answers.data.results, 'this is answers');
-
-      setAnswers(answers.data.results);
+      let result = answers.data.results.sort((a, b) => {
+        if (a.answerer_name.toLowerCase() === 'seller') {
+          return -1
+        }
+        if (a.helpfulness < b.helpfulness) {
+          return 1
+        }
+        return 0;
+      })
+      setAnswers(result);
       })
     .catch((err) => {
       console.log(err, 'this is getAnswer error');

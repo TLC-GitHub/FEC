@@ -6,18 +6,15 @@ let apiLink = "";
 module.exports = {
 
   getInfo: function (widget, queryParams, pathVariable, subCategory='') {
-    console.log('params: ', queryParams);
-    console.log(typeof queryParams);
-    // console.log()
-    // if (typeof queryParams === 'object') {
-    if (pathVariable === '') {
-      const params = new url.URLSearchParams(queryParams);
-      apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
-      console.log('api: ', apiLink);
-    } else {
+    if (pathVariable === '' && queryParams === '') {
+      const params = new url.URLSearchParams(subCategory);
       // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${pathVariable}/${subCategory}`;
       console.log('else api: ', apiLink);
+    } else {
+      const params = new url.URLSearchParams(queryParams);
+      apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
+      console.log('api: ', apiLink);
     }
     let options = {
       url: apiLink,
@@ -25,11 +22,12 @@ module.exports = {
         'Authorization': process.env.API_TOKEN
       }
     };
+    console.log(options);
     return axios(options);
   },
 
   postInfo: function (widget, bodyParams, queryParams, subCategory='') {
-    if (queryParams === undefined) {
+    if (queryParams === '') {
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}`;
     } else {
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
@@ -42,7 +40,6 @@ module.exports = {
         'Authorization': process.env.API_TOKEN
       }
     };
-    console.log(options, 'this is options')
     return axios(options);
   },
 
@@ -64,15 +61,5 @@ module.exports = {
       }
     };
     return axios(options);
-    // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
-    // console.log(apiLink);
-    // let options = {
-    //   url: apiLink,
-    //   method: 'PUT',
-    //   headers: {
-    //     'Authorization': process.env.API_TOKEN
-    //   }
-    // };
-    // return axios(options);
   }
 }

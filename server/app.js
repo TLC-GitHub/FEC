@@ -55,9 +55,9 @@ app.post('/post', (req, res) => {
   let widget = req.body.widget;
   let subCategory = req.body.subCategory || '';
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
-  let bodyParams = req.body.params
+  let bodyParams = req.body.bodyParams
 
-  helper.postInfo(widget, queryParams, bodyParams, subCategory)
+  helper.postInfo(widget, bodyParams, queryParams, subCategory)
     .then(() => {
       res.status(201).send('succesfully posted');
     })

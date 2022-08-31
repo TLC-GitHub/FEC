@@ -1,68 +1,92 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import ImageModal from './ImageModal.jsx';
 
-function AnswerModal({questionID}) {
-  const [body, setBody] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [photos, setPhotos] = useState([]);
+function AnswerModal({questionID, toggle}) {
+
+  const [state, setState] = useState({});
+  const [imageModal, setImageModal] = useState(false);
+
 
   let requestBody = {
     widget: 'qa/questions',
-    queryParams: 'questionID',
+    queryParams: questionID,
     bodyParams: {
       body: '',
       name: '',
       email: '',
       photos: []
-    }
+    },
+    subCategory: 'answers'
+  }
+
+  const showImageModal = () => {
+    setImageModal(true);
   }
 
   const handleChange = (e) => {
+    const {target: {value, name} } = e;
 
+    setState(prev => ({
+      ...prev,
+      [name]: value
+    }))
   }
 
 
-  const sendAnswer = () => {
-    requestBody.queryParams = questionID;
-    requestBody.bodyParams.body = body;
-    requestBody.bodyParams.name = name;
-    requestBody.bodyParams.email = email;
-    requestBody.bodyParams.photos = photos;
+  const sendAnswer = (e) => {
+    e.preventDefault();
 
+    requestBody.bodyParams.body = state.body;
+    requestBody.bodyParams.name = state.name;
+    requestBody.bodyParams.email = state.email;
+    requestBody.bodyParams.photos = state.photos
 
     axios.post('/post', requestBody)
       .then(() => {
         console.log('successfully posted answer');
+        toggle();
       })
       .catch((err) => {
+        console.log(err);
         console.log('error, could not post answer');
       })
   }
 
+  if (imageModal) {
 
+    return(
+      <ImageModal setState={setState} setImageModal={setImageModal}/>
+    )
+  } else {
 
 
 
   return(
-    <div className="answer-modal-container">
-      <form onSubmit={sendAnswer}>
-        <input name="body" />
+    <div className="modal-container">
+      <form className="form" onSubmit={sendAnswer}>
+      <button className="exit-button" onClick={toggle}> X </button>
+        <input name="body" type="text" maxLength="1000" placeholder="Write Answer here" onChange={handleChange}/>
         <br />
-        <input name="name" />
+        <label>
+          <p>Write Name Here</p>
+          <input name="name" placeholder="Example: jack543" onChange={handleChange}/>
+          <div> For privacy reasons, do not use your full name or email address </div>
+          </label>
+          <br />
+        <label>
+          <p>Write Email Here</p>
+        <input name="email" placeholder="Example: jack@email.com" onChange={handleChange}/>
+        <div> For authentication reasons, you will not be emailed </div>
+        </label>
         <br />
-        <input name="email" />
-        <br />
-        <input name="photos" />
-
+        <input name="photos" type="button" value="Upload Photos" onClick={showImageModal}/>
+        <input type="submit" value="submit answer"/>
       </form>
     </div>
 
   )
+  }
 }
-<<<<<<< HEAD
 
 export default AnswerModal;
-=======
->>>>>>> main
->>>>>>> e111f43c61d1c18b30bf9a5f2e3c9b67f6060218
