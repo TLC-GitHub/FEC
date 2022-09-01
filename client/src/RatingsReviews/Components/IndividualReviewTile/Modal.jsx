@@ -6,25 +6,33 @@ import styled from 'styled-components'
 
 const Modal = ({ showModal, hide, img }) => showModal ? ReactDOM.createPortal(
   <React.Fragment>
-    <modalOverlay/>
-    <modalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
-      <modal>
-        <modalHeader>
-          <modalCloseButton type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-          <span aria-hidden="true">&times;</span>
-        </modalCloseButton>
-      </modalHeader>
-      <p>
-        {img}
-      </p>
-      </modal>
-    </modalWrapper>
+    <ModalOverlay/>
+    <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
+      <MainModal>
+        <ModalHeader>
+          <ModalCloseButton
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+            onClick={hide}>
+            <span aria-hidden="true">&times;</span>
+          </ModalCloseButton>
+        </ModalHeader>
+        <ImageModal>
+          {img}
+        </ImageModal>
+      </MainModal>
+    </ModalWrapper>
   </React.Fragment>, document.body
 ) : null;
 
-export default Modal;
 
-const modalOverlay = styled.div`
+const ImageModal = styled.p`
+  width: 50%;
+  height: 50%;
+`;
+
+const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -33,9 +41,9 @@ const modalOverlay = styled.div`
   height: 100vh;
   background-color: #000;
   opacity: .5;
-`
+`;
 
-const modalWrapper = styled.div`
+const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -45,30 +53,34 @@ const modalWrapper = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
-`
+`;
 
-const modal = styled.div`
+const MainModal = styled.div`
   z-index: 100;
-  background: black;
   position: absolute;
-  top: 40px; left: 40px;
+  top: 15%; left: 15%;
   margin: 1.75rem auto;
   border-radius: 3px;
-  max-width: 500px;
-  padding: 2rem;
-`
+  max-width: 700px;
+  padding: 1rem;
+`;
 
-const modalHeader = styled.div`
+const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
-`
+`;
 
-const modalCloseButton = styled.div`
-  font-size: 1.4rem;
+const ModalCloseButton = styled.div`
+  font-size: 4rem;
   font-weight: 700;
-  line-height: 1;
-  color: #000;
-  opacity: .3;
+  line-height: .5;
+  color: white;
   cursor: pointer;
   border: none;
-`
+  margin: 0px 120px 0px 0px;
+  &:hover {
+    opacity: .5;
+    color: black;
+  }
+`;
+export default Modal;

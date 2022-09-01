@@ -13,6 +13,7 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
 
 //porduct sample: 65651
+//product sample: 65647
 
 
 function RatingsAndReviews () {
