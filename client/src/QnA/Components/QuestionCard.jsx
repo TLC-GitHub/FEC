@@ -3,6 +3,8 @@ import React, {useState, useEffect } from 'react';
 import AnswerModule from './AnswerModule.jsx';
 import axios from 'axios';
 import AnswerModal from './Modals/AnswerModal.jsx';
+import styled from 'styled-components';
+import {Button, Wrapper, QuestionCardContainer, QuestionBody} from './styles.jsx';
 
 
 function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
@@ -65,26 +67,26 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
 
   if (answerModal) {
     return(
-      <div className="answer-modal-component">
         <AnswerModal questionID={question.question_id} toggle={toggleAnswerModal}/>
-      </div>
     )
   } else {
 
     return (
-    <div className="question-card">
-        <h1 className="question-body"> Q: {question.question_body} </h1>
+    <QuestionCardContainer>
+      <QuestionBody> Q: {question.question_body} </QuestionBody>
+        <Wrapper>
           <div> Helpful? </div>
-            <button className="helpful-button" onClick={handleHelpfulness}><u> Yes </u> </button>
-            <div className="helpful-count">{helpfulCount}</div>
-            <button className="add-answer-button" onClick={toggleAnswerModal}> <u>Add Answer</u></button>
-        <div>
-        <button className="report-button" onClick = {handleReport}> <u>{reportStatusQ ? 'Reported' : 'Report Question'} </u></button>
-        </div>
-        <div>
-          <AnswerModule questionID={question.question_id} />
-        </div>
-    </div>
+          <Button onClick={handleHelpfulness}> <u> Yes </u> </Button>
+          <div>({helpfulCount})</div>
+          <Button onClick={toggleAnswerModal}> <u>Add Answer</u> </Button>
+          <Button onClick = {handleReport}> <u>
+            {reportStatusQ
+              ? 'Reported'
+              : 'Report Question'} </u>
+          </Button>
+        </Wrapper>
+      <AnswerModule questionID={question.question_id} />
+    </QuestionCardContainer>
   )
   }
 }

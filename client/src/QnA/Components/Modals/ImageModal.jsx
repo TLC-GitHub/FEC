@@ -1,43 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
-function ImageModal({setImageModal, setState}) {
+function ImageModal({setImageModal, setState, photos, showImageModal}) {
 
-  const [currentFiles, setCurrentFiles] = setState([]);
-  const [maxFiles, setMaxFiles] = setState(false);
-
+  const [currentFiles, setCurrentFiles] = useState([]);
+  const [maxFiles, setMaxFiles] = useState(false);
 
   useEffect(() => {
-    handlePhotos()
-  }, [maxFiles])
+    console.log(currentFiles, 'current files in effect hook');
+  }, [currentFiles])
 
 
   const handleChange = (e) => {
     let selectedFile = e.target.files[0];
-    if (currentFiles.length = 5) {
-      setMaxFiles(true);
-    } else {
-      setCurrentFiles(...currentFiles, selectedFile);
+    var imgSrc = URL.createObjectURL(e.target.files[0]);
+    console.log(currentFiles, 'currentFiles');
+    if (!maxFiles) {
+      if (currentFiles.length === 5) {
+        setMaxFiles(true);
+      } else {
+        setCurrentFiles([...currentFiles, imgSrc]);
+        setState(prev => ({
+        ...prev,
+        photos: currentFiles
+        }))
+      }
     }
   }
 
+//upload button will set the state of photos current files with new selected file
+//submit button will set modal view back to answers
 
+//if photos state has pictures, render out pictures underneath
   const handlePhotos = () => {
-    setState(prev => ({
-      [photos]: currentFiles
-    }))
+    showImageModal();
   }
 
   return (
-    <div className="image-modal">
-      <div className='image-modal-container'>
-        <form onSubmit={handlePhotos}>
-          {/* {maxFiles
-          ? <div></div> */}
-          {/* : */}
-          <input id='upload-photos' type="file" multiple accept=".jpeg, .jpg, .png" onChange={handleChange} value={currentFiles}/>
-          {/* } */}
+    <div className="modal-container">
+      <div className='image-modal-wrapper'>
+        <form className='form' onSubmit={showImageModal}>
+          {maxFiles
+          ? <div></div>
+          :<input id='upload-photos' type="file" multiple accept=".jpeg, .jpg, .png" onChange={handleChange}/>}
+          <input id='photo-submit-button' type="submit" value="submit photos" />
         </form>
+        <div>
+          {currentFiles.length > 0
+          ? currentFiles.map((photo, index) => {
+            return <img className="image-thumbnails-modal" src={photo} key={index} />
+          })
+          : null
+          }
+        </div>
       </div>
     </div>
   )

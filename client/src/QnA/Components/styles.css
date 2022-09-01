@@ -118,7 +118,7 @@ MODAL WINDOW
   width: 100vw;
   height: 100vh;
   background-color: #000;
-  opacity: .5;
+  opacity: .9;
 }
 
 .form {
@@ -136,8 +136,12 @@ MODAL WINDOW
   font-weight: 700;
   line-height: 1;
   color: #000;
-  opacity: .3;
+  opacity: .5;
   cursor: pointer;
   border: none;
 }
 
+.image-thumbnails-modal {
+  max-height: 100px;
+  max-width: 100px;
+}

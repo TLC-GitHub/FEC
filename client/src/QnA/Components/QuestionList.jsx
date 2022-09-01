@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import QuestionCard from './QuestionCard.jsx';
 import SearchBar from './SearchBar.jsx';
 import axios from 'axios';
-import {setAnswerCount} from './AnswerModule.jsx';
-import styled from 'styled-components';
-import './styles.css'
 import QuestionModal from './Modals/QuestionModal.jsx';
+import styled from "styled-components";
+import {QuestionContainer, BigButton, Wrapper} from './styles.jsx';
+
+
+
+
+
+
 
 
 function QuestionList() {
@@ -20,8 +25,7 @@ function QuestionList() {
     widget: 'qa/questions',
     queryParams: {
       page: 1,
-      count: 10,
-      count: 20,
+      count: 50,
       product_id:65656
     }
   };
@@ -43,7 +47,6 @@ function QuestionList() {
         params: requestBody
     })
     .then((data) => {
-      console.log(data.data.results, 'this is data.results');
       setQuestions(data.data.results)
     })
     .catch((err) => {
@@ -57,8 +60,6 @@ function QuestionList() {
         params: requestBody
       })
       .then((data) => {
-        console.log(data.data.results.sort(), 'this is the data being sorted');
-        console.log(data.data.results, 'this is data.results');
         setQuestions(data.data.results)
         setFilteredQ(data.data.results)
 
@@ -84,25 +85,23 @@ function QuestionList() {
 
 
   return(
-    <div className="qna-container">
-      <div className="question-list">
+      <QuestionContainer>
         <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={questions}/>
           {filteredQ.slice(0, questionCount).map(question => {
             return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
           })}
-      </div>
-        <div className="button-container">
+        <Wrapper>
           {filteredQ.length < 1
-        ? <div></div>
+        ? null
         : questionCount >= filteredQ.length
-        ? <div></div>
-        : <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> <b>Load More Questions</b> </button>}
+        ? null
+        : <BigButton onClick={addMoreQuestions}> <b>MORE ANSWERED QUESTIONS</b> </BigButton>}
         {!questionModal
-        ? <button type="button" name="addQuestion" text="Add A Question" onClick={toggleQuestionModal}><b> Add A Question </b></button>
+        ? <BigButton onClick={toggleQuestionModal}> <b>ADD A QUESTION</b></BigButton>
         : <QuestionModal productID={65656} toggle={toggleQuestionModal}/>
         }
-        </div>
-      </div>
+        </Wrapper>
+      </QuestionContainer>
   )
 }
 
