@@ -4,16 +4,17 @@ import ProductCard from './ProductCard.jsx';
 
 const axios = require('axios');
 
-function RelatedProductsFetch() {
+function RelatedProductsFetch({productID}) {
   const [relatedProd, setRelatedProd] = useState([]);
 
   // need to get the product_id of the current product =====> use product_id: 65633 for testing
+  productID = 65637;
 
   useEffect(() => {
     async function fetchData() {
       let requestBody = {
         widget: 'products',
-        pathVariable: 65637, // placeholder, will get the id from overview as a prop
+        pathVariable: productID,
         subCategory: 'related'
       }
 
@@ -60,7 +61,7 @@ function RelatedProductsFetch() {
       // get the star rating from review component
 
   return (
-    <RelatedProdSlider relatedProd={relatedProd} />
+    <RelatedProdSlider relatedProd={relatedProd} productID={productID}/>
   )
 }
 
