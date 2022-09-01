@@ -13,7 +13,7 @@ const ComparisonTable = ({curProduct, comProduct}) => {
   helper(curProduct.styles, 'name', curStyles);
   helper(curProduct.features, 'feature', curFeatures);
   helper(curProduct.features, 'value', curValues);
-  console.log('curProduct features: ', curFeatures);
+
   // sample data... to be deleted
   const comFeatures = ['Material', 'Mid-Sole', 'Stitching'];
   const comValues = ['FullControlSkin', 'ControlSupport Arch Bridge', 'Single Stitch'];
@@ -78,7 +78,7 @@ const ComparisonTable = ({curProduct, comProduct}) => {
             let targetIndex = comFeatures.indexOf(feature);
             if (targetIndex !== -1) {
               duplicateIndex.push(targetIndex);
-              console.log("table: ", targetIndex);
+
               return (
                 <tr key={feature}>
                   <StyledCell>{curValues[index]}</StyledCell>
