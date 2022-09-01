@@ -27,7 +27,7 @@ function RatingsAndReviews () {
         setReviews(response.data.results)
       })
       .catch((err) => {
-        console.log(err)
+        console.log('RATING AND REVIEWS', err)
       })
 
 
