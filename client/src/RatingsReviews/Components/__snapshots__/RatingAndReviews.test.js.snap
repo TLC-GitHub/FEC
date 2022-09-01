@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ratings and Reviews Renders Ratings and Reviews components to the DOM 1`] = `
+<div>
+  Write New Review
+</div>
+`;
