@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { ModalBox } from './Styles.jsx'
 import ProductCard from './ProductCard.jsx';
 import ComparisonFetch from './ComparisonFetch.jsx';
-import { StyledHead, StyledCell } from './CompTableStyles.jsx';
+
 import './Modal.css';  // to be deleted
 
 const ComparisonModal = ({ showModal, hide, targetID, productID }) => showModal ? ReactDOM.createPortal(

@@ -14,7 +14,7 @@ function App() {
       </div>
       <div>
         <h3>YOU MAY ALSO LIKE</h3>
-        <RelatedProducts />
+        <RelatedProductsFetch />
       </div>
       <div>
         <h3>MY OUTFITS</h3>

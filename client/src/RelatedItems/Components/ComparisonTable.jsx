@@ -3,7 +3,8 @@ import { Table, StyledHead, StyledCell } from './Styles.jsx';
 
 const ComparisonTable = ({curProduct, comProduct}) => {
   const [curStyles, curFeatures, curValues] = [[], [], []];
-  const [comStyles, comFeatures, comValues] = [[], [], []];
+  //const [comStyles, comFeatures, comValues] = [[], [], []];
+
   const helper = (array, targetVal, resArray) => {
     return array.map((value) => {
       return resArray.push(value[targetVal]);
@@ -12,6 +13,12 @@ const ComparisonTable = ({curProduct, comProduct}) => {
   helper(curProduct.styles, 'name', curStyles);
   helper(curProduct.features, 'feature', curFeatures);
   helper(curProduct.features, 'value', curValues);
+  console.log('curProduct features: ', curFeatures);
+  // sample data... to be deleted
+  const comFeatures = ['Material', 'Mid-Sole', 'Stitching'];
+  const comValues = ['FullControlSkin', 'ControlSupport Arch Bridge', 'Single Stitch'];
+  const duplicateIndex = [];
+  const remainingIndex = [];
 
   return (
     <Table>
@@ -68,15 +75,40 @@ const ComparisonTable = ({curProduct, comProduct}) => {
           <StyledCell></StyledCell>
         </tr>
         { curFeatures.map((feature, index) => {
-            return (
-              <tr key={feature}>
-                <StyledCell>{curValues[index]}</StyledCell>
-                <StyledCell>{feature}</StyledCell>
-                <StyledCell>PLACEHOLDER</StyledCell>
-              </tr>
-            )
-        })
-
+            let targetIndex = comFeatures.indexOf(feature);
+            if (targetIndex !== -1) {
+              duplicateIndex.push(targetIndex);
+              console.log("table: ", targetIndex);
+              return (
+                <tr key={feature}>
+                  <StyledCell>{curValues[index]}</StyledCell>
+                  <StyledCell>{feature}</StyledCell>
+                  <StyledCell>{comValues[targetIndex]}</StyledCell>
+                </tr>
+              )
+            } else {
+              return (
+                <tr key={feature}>
+                  <StyledCell>{curValues[index]}</StyledCell>
+                  <StyledCell>{feature}</StyledCell>
+                  <StyledCell></StyledCell>
+                </tr>
+              )
+            }
+          })
+        }
+        {
+          comFeatures.map((feature, index) => {
+            if (duplicateIndex.indexOf(index) === -1) {
+              return (
+                <tr key={feature}>
+                  <StyledCell></StyledCell>
+                  <StyledCell>{feature}</StyledCell>
+                  <StyledCell>{comValues[index]}</StyledCell>
+                </tr>
+              )
+            }
+          })
         }
 
       </tbody>
