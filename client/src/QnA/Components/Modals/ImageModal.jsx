@@ -8,7 +8,10 @@ function ImageModal({setImageModal, setState, photos, showImageModal}) {
   const [maxFiles, setMaxFiles] = useState(false);
 
   useEffect(() => {
+    if (currentFiles.length === 5) {
+      setMaxFiles(true);
     console.log(currentFiles, 'current files in effect hook');
+    }
   }, [currentFiles])
 
 
@@ -17,15 +20,11 @@ function ImageModal({setImageModal, setState, photos, showImageModal}) {
     var imgSrc = URL.createObjectURL(e.target.files[0]);
     console.log(currentFiles, 'currentFiles');
     if (!maxFiles) {
-      if (currentFiles.length === 5) {
-        setMaxFiles(true);
-      } else {
         setCurrentFiles([...currentFiles, imgSrc]);
         setState(prev => ({
         ...prev,
         photos: currentFiles
         }))
-      }
     }
   }
 
