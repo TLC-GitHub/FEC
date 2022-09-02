@@ -46,7 +46,15 @@ function App() {
             }
             return axios.get('/get', {params: requestBodyForReviews})
               .then((reviews) => {
-                currentProduct.ratings = reviews.data.ratings;
+                let ratingsObj = reviews.data.ratings;
+                let numOfRatings = 0
+                let total = 0;
+                for (let key in reviews.data.ratings) {
+                  total += Number(key) * Number(ratingsObj[key]);
+                  numOfRatings += Number(ratingsObj[key]);
+                }
+                let average = total / numOfRatings;
+                currentProduct.ratings = average;
               })
               .then(() => {
                 setCurProduct(() => ({

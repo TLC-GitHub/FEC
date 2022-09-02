@@ -1,8 +1,7 @@
 import React from 'react';
-import { Table, StyledHead, StyledCell } from './Styles.jsx';
+import { Table, StyledHead, StyledCell, Star } from './Styles.jsx';
 
-const ComparisonTable = ({curProduct, comProduct}) => {
-  console.log('in comparison table: ', curProduct);
+const ComparisonTable = ({ curProduct, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => {
   const [curStyles, curFeatures, curValues] = [[], [], []];
   const [comStyles, comFeatures, comValues] = [[], [], []];
 
@@ -14,14 +13,10 @@ const ComparisonTable = ({curProduct, comProduct}) => {
   helper(curProduct.styles, 'name', curStyles);
   helper(curProduct.features, 'feature', curFeatures);
   helper(curProduct.features, 'value', curValues);
+  helper(targetStyles, 'name', comStyles);
+  helper(targetFeatures, 'feature', comFeatures);
+  helper(targetFeatures, 'value', comValues);
 
-  helper(comProduct.styles, 'name', comStyles);
-  helper(comProduct.features, 'feature', comFeatures);
-  helper(comProduct.features, 'value', comValues);
-
-  // sample data... to be deleted
-  // const comFeatures = ['Material', 'Mid-Sole', 'Stitching'];
-  // const comValues = ['FullControlSkin', 'ControlSupport Arch Bridge', 'Single Stitch'];
   const duplicateIndex = [];
   const remainingIndex = [];
 
@@ -34,14 +29,14 @@ const ComparisonTable = ({curProduct, comProduct}) => {
         <tr>
           <StyledHead>{curProduct.name}</StyledHead>
           <StyledHead></StyledHead>
-          <StyledHead>{comProduct.name}</StyledHead>
+          <StyledHead>{targetName}</StyledHead>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <StyledCell>placeholder</StyledCell>
+          <StyledCell><Star percentage={((curProduct.ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></StyledCell>
           <StyledCell><strong>Reviews</strong></StyledCell>
-          <StyledCell>placeholder</StyledCell>
+          <StyledCell><Star percentage={((targetRatings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></StyledCell>
         </tr>
 
         <tr>
@@ -53,16 +48,16 @@ const ComparisonTable = ({curProduct, comProduct}) => {
           </StyledCell>
           <StyledCell><strong>Price</strong></StyledCell>
           <StyledCell>
-            { comProduct.sale_price === null ?
-              <span>${comProduct.original_price}</span> :
-              <div><span style={{color: "red"}}>${comProduct.sale_price}</span> <span><s>${comProduct.original_price}</s></span></div>
+            { targetSale_price === null ?
+              <span>${targetOriginal_price}</span> :
+              <div><span style={{color: "red"}}>${targetSale_price}</span> <span><s>${targetOriginal_price}</s></span></div>
             }
           </StyledCell>
         </tr>
         <tr>
           <StyledCell>{curProduct.category}</StyledCell>
           <StyledCell><strong>Category</strong></StyledCell>
-          <StyledCell>{comProduct.category}</StyledCell>
+          <StyledCell>{targetCategory}</StyledCell>
         </tr>
         <tr>
           <StyledCell>

@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import { ModalBox } from './Styles.jsx'
 import ProductCard from './ProductCard.jsx';
 import ComparisonFetch from './ComparisonFetch.jsx';
+import ComparisonTable from './ComparisonTable.jsx';
 
 import './Modal.css';  // to be deleted
 
-const ComparisonModal = ({ showModal, hide, targetID, productID, curProduct }) => showModal ? ReactDOM.createPortal(
+const ComparisonModal = ({ showModal, hide, curProduct, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => showModal ? ReactDOM.createPortal(
   <React.Fragment>
 
     <div className="modal-overlay"/>
@@ -20,11 +21,19 @@ const ComparisonModal = ({ showModal, hide, targetID, productID, curProduct }) =
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <p>
-            TO BE DELETED ---- product: {targetID} vs {productID}
-          </p>
           <div>
-            <ComparisonFetch targetID={targetID} productID={productID} curProduct={curProduct}/>
+            {/* <ComparisonFetch */}
+            <ComparisonTable
+              targetID={targetID}
+              targetCategory={targetCategory}
+              targetName={targetName}
+              targetOriginal_price={targetOriginal_price}
+              targetSale_price={targetSale_price}
+              targetRatings={targetRatings}
+              targetFeatures={targetFeatures}
+              targetStyles={targetStyles}
+              curProduct={curProduct}
+            />
           </div>
         </div>
       </div>

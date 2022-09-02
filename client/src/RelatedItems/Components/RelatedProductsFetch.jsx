@@ -27,6 +27,7 @@ function RelatedProductsFetch({productID, curProduct}) {
         .then((result) => {
           productInfo.category = result.data.category;
           productInfo.name = result.data.name;
+          productInfo.features = result.data.features;
         })
         .then(() => {
           let requestBodyForStyles = {
@@ -36,9 +37,9 @@ function RelatedProductsFetch({productID, curProduct}) {
           }
           return axios.get('/get', { params: requestBodyForStyles })
             .then((styles) => {
+              productInfo.styles = styles.data.results;
               productInfo.original_price = styles.data.results[0].original_price;
               productInfo.sale_price = styles.data.results[0].sale_price;
-              productInfo.original_price = styles.data.results[0].original_price;
               productInfo.image = styles.data.results[0].photos[0].thumbnail_url;
             })
             .then(() => {
@@ -66,9 +67,6 @@ function RelatedProductsFetch({productID, curProduct}) {
             })
         })
       }
-    })
-    .then(() => {
-      console.log("related products fetch: ", relatedProd);
     })
     .catch((err) => {
       console.log("related products errors: ");
@@ -115,7 +113,7 @@ function RelatedProductsFetch({productID, curProduct}) {
   }, [])
 
   return (
-    <RelatedProdSlider relatedProd={relatedProd} productID={productID} curProduct={curProduct}/>
+    <RelatedProdSlider relatedProd={relatedProd} curProduct={curProduct}/>
   )
 }
 
