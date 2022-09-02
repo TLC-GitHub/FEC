@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const LeftButton = (props) => {
+const RightButton = (props) => {
   const [current, setCurrent] = useState(0);
 
   return (
@@ -8,4 +8,4 @@ const LeftButton = (props) => {
   );
 }
 
-export default LeftButton;
+export default RightButton;
