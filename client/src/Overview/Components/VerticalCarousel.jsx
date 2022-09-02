@@ -23,10 +23,6 @@ const VerticalCarousel = () => {
     setCurrent(current === length ? 0 : current + 1);
   };
 
-  const previousImage = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1);
-  }
-
     return (
     <div>
       <VerticalSlider>
