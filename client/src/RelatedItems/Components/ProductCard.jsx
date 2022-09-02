@@ -4,7 +4,7 @@ import NoPhotoImg from "../images/imgComingSoon.png";
 import ComparisonModal from "./ComparisonModal.jsx";
 import useModal from "./useModal.jsx";
 
-const ProductCard = ({ id, image, category, name, original_price, sale_price, productID }) => {
+const ProductCard = ({ id, image, category, name, original_price, sale_price, productID, curProduct }) => {
   const [target, setTarget] = useState(0);
   const {showModal, toggle} = useModal();
 
@@ -25,7 +25,7 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, pr
             style={{border: "none", fontSize: "1.5rem", cursor: "pointer", backgroundColor: "rgba(0,0,0,0)", color: "#7F8487"}}
           >&#9734;
           </button>
-          <ComparisonModal showModal={showModal} hide={toggle} targetID={target} productID={productID}/>
+          <ComparisonModal showModal={showModal} hide={toggle} targetID={target} productID={productID} curProduct={curProduct} />
         </StyledStarBtn>
       </ImgContainer>
       <div style={{padding: "0 8px", marginTop: "8px"}}>

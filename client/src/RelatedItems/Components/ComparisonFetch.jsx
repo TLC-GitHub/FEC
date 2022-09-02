@@ -5,60 +5,60 @@ import Auth from '../../../../config.js';
 const axios = require('axios');
 // const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/';
 
-const ComparisonFetch = ({productID, targetID}) => {
-  const [curProduct, setCurProduct] = useState({ features: [], styles: [] });
+const ComparisonFetch = ({productID, targetID, curProduct}) => {
+  console.log("In comparison fetch: ", curProduct);
   const [comProduct, setComProduct] = useState({ features: [], styles: [] });
 
   useEffect(() => {
 
     async function fetchData() {
-      let currentProduct = { id: productID }
+      let comparedProduct = { id: targetID }
       // info needed: name, category, default_price, sale_price, list of styles, available sizes, feature
       let requestBody = {
         widget: 'products',
-        pathVariable: productID
+        pathVariable: targetID
       }
       axios.get('/get', {params: requestBody})
         .then((result) => {
-            currentProduct.category = result.data.category,
-            currentProduct.name = result.data.name,
-            currentProduct.features = result.data.features                //array
+            comparedProduct.category = result.data.category,
+            comparedProduct.name = result.data.name,
+            comparedProduct.features = result.data.features                //array
         })
         .then(() => {
           let requestBody = {
             widget: 'products',
-            pathVariable: productID,
+            pathVariable: targetID,
             subCategory: 'styles'
           }
          return axios.get('/get', {params: requestBody})
           .then((styles) => {
-            currentProduct.styles = styles.data.results            // array (sizes, colors, phhotos)
-            currentProduct.original_price = styles.data.results[0].original_price;
-            currentProduct.sale_price = styles.data.results[0].sale_price;
+            comparedProduct.styles = styles.data.results            // array (sizes, colors, phhotos)
+            comparedProduct.original_price = styles.data.results[0].original_price;
+            comparedProduct.sale_price = styles.data.results[0].sale_price;
           });
         })
         .then(() => {
           let requestBody = {
             widget: 'reviews/meta',
             queryParams: {
-              product_id: productID
+              product_id: targetID
             }
           }
           return axios.get('/get', {params: requestBody})
             .then((reviews) => {
-              currentProduct.ratings = reviews.data.ratings;
+              comparedProduct.ratings = reviews.data.ratings;
             });
         })
         .then(() => {
-          setCurProduct(() => ({
-            id: currentProduct.id,
-            name: currentProduct.name,
-            category: currentProduct.category,
-            features: [...currentProduct.features],
-            styles: [...currentProduct.styles],
-            original_price: currentProduct.original_price,
-            sale_price: currentProduct.sale_price,
-            ratings: currentProduct.ratings
+          setComProduct(() => ({
+            id: comparedProduct.id,
+            name: comparedProduct.name,
+            category: comparedProduct.category,
+            features: [...comparedProduct.features],
+            styles: [...comparedProduct.styles],
+            original_price: comparedProduct.original_price,
+            sale_price: comparedProduct.sale_price,
+            ratings: comparedProduct.ratings
           }))
         })
         .catch((err) => {
@@ -70,7 +70,7 @@ const ComparisonFetch = ({productID, targetID}) => {
   }, [])
 
   return (
-    <ComparisonTable curProduct={curProduct} comProduct={comProduct}/>
+    <ComparisonTable curProduct={curProduct} comProduct={comProduct} />
   )
 }
 

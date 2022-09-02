@@ -11,7 +11,7 @@ app.use(express.json());
 //routes
 
 app.get('/get', (req, res) => {
-  console.log("req: ", req.query);
+  // console.log("req: ", req.query);
 
   let widget = req.query.widget;
   let pathVariable = req.query.pathVariable || '';
@@ -25,7 +25,7 @@ app.get('/get', (req, res) => {
       res.status(200).send(result.data);
     })
     .catch((err) => {
-      console.log("I HAVE ERROR");
+      // console.log("I HAVE ERROR");
       // console.log(err);
       res.sendStatus(500);
     })
@@ -38,8 +38,8 @@ app.put('/put', (req, res) => {
   let subCategory = req.body.subCategory || '';
 
 
-  console.log(req.body.queryParams, 'queryParams');
-  console.log(typeof req.body.queryParams);
+  // console.log(req.body.queryParams, 'queryParams');
+  // console.log(typeof req.body.queryParams);
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
 
   helper.updateInfo(widget, queryParams, pathVariable, subCategory)

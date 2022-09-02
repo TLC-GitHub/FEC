@@ -6,7 +6,7 @@ import ComparisonFetch from './ComparisonFetch.jsx';
 
 import './Modal.css';  // to be deleted
 
-const ComparisonModal = ({ showModal, hide, targetID, productID }) => showModal ? ReactDOM.createPortal(
+const ComparisonModal = ({ showModal, hide, targetID, productID, curProduct }) => showModal ? ReactDOM.createPortal(
   <React.Fragment>
 
     <div className="modal-overlay"/>
@@ -24,7 +24,7 @@ const ComparisonModal = ({ showModal, hide, targetID, productID }) => showModal 
             TO BE DELETED ---- product: {targetID} vs {productID}
           </p>
           <div>
-            <ComparisonFetch targetID={targetID} productID={productID} />
+            <ComparisonFetch targetID={targetID} productID={productID} curProduct={curProduct}/>
           </div>
         </div>
       </div>

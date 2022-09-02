@@ -2,8 +2,9 @@ import React from 'react';
 import { Table, StyledHead, StyledCell } from './Styles.jsx';
 
 const ComparisonTable = ({curProduct, comProduct}) => {
+  console.log('in comparison table: ', curProduct);
   const [curStyles, curFeatures, curValues] = [[], [], []];
-  //const [comStyles, comFeatures, comValues] = [[], [], []];
+  const [comStyles, comFeatures, comValues] = [[], [], []];
 
   const helper = (array, targetVal, resArray) => {
     return array.map((value) => {
@@ -14,9 +15,13 @@ const ComparisonTable = ({curProduct, comProduct}) => {
   helper(curProduct.features, 'feature', curFeatures);
   helper(curProduct.features, 'value', curValues);
 
+  helper(comProduct.styles, 'name', comStyles);
+  helper(comProduct.features, 'feature', comFeatures);
+  helper(comProduct.features, 'value', comValues);
+
   // sample data... to be deleted
-  const comFeatures = ['Material', 'Mid-Sole', 'Stitching'];
-  const comValues = ['FullControlSkin', 'ControlSupport Arch Bridge', 'Single Stitch'];
+  // const comFeatures = ['Material', 'Mid-Sole', 'Stitching'];
+  // const comValues = ['FullControlSkin', 'ControlSupport Arch Bridge', 'Single Stitch'];
   const duplicateIndex = [];
   const remainingIndex = [];
 
@@ -29,7 +34,7 @@ const ComparisonTable = ({curProduct, comProduct}) => {
         <tr>
           <StyledHead>{curProduct.name}</StyledHead>
           <StyledHead></StyledHead>
-          <StyledHead>{curProduct.name}</StyledHead>
+          <StyledHead>{comProduct.name}</StyledHead>
         </tr>
       </thead>
       <tbody>
@@ -48,16 +53,16 @@ const ComparisonTable = ({curProduct, comProduct}) => {
           </StyledCell>
           <StyledCell><strong>Price</strong></StyledCell>
           <StyledCell>
-            { curProduct.sale_price === null ?
-              <span>${curProduct.original_price}</span> :
-              <div><span style={{color: "red"}}>${curProduct.sale_price}</span> <span><s>${curProduct.original_price}</s></span></div>
+            { comProduct.sale_price === null ?
+              <span>${comProduct.original_price}</span> :
+              <div><span style={{color: "red"}}>${comProduct.sale_price}</span> <span><s>${comProduct.original_price}</s></span></div>
             }
           </StyledCell>
         </tr>
         <tr>
           <StyledCell>{curProduct.category}</StyledCell>
           <StyledCell><strong>Category</strong></StyledCell>
-          <StyledCell>{curProduct.category}</StyledCell>
+          <StyledCell>{comProduct.category}</StyledCell>
         </tr>
         <tr>
           <StyledCell>
@@ -67,7 +72,12 @@ const ComparisonTable = ({curProduct, comProduct}) => {
             }
           </StyledCell>
           <StyledCell><strong>Styles</strong></StyledCell>
-          <StyledCell>placeholder</StyledCell>
+          <StyledCell>
+            { comStyles.map((style) => (
+              <div key={style}>{style} </div>
+              ))
+            }
+          </StyledCell>
         </tr>
         <tr>
           <StyledCell></StyledCell>

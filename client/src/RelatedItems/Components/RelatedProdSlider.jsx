@@ -5,7 +5,7 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 const axios = require('axios');
 
-function RelatedProdSlider({relatedProd, productID}) {
+function RelatedProdSlider({relatedProd, productID, curProduct}) {
 
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);
@@ -54,6 +54,7 @@ function RelatedProdSlider({relatedProd, productID}) {
                   original_price={original_price}
                   sale_price={sale_price}
                   productID={productID}
+                  curProduct={curProduct}
                   />
               </StyledInactiveItems>
             )
@@ -68,6 +69,7 @@ function RelatedProdSlider({relatedProd, productID}) {
               original_price={original_price}
               sale_price={sale_price}
               productID={productID}
+              curProduct={curProduct}
               />
             )
           }
