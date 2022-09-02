@@ -73,3 +73,20 @@ const tableDataStyles = [`
 
 export const StyledHead = styled.th(tableDataStyles);
 export const StyledCell = styled.td(tableDataStyles);
+
+export const Star = styled.span`
+  display: inline-block;
+  position: relative;
+  font-size: 1.2rem;
+  color: #ddd;
+
+  &:after {
+    content: "\\2605\\2605\\2605\\2605\\2605";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: ${(props) => props.percentage};
+    overflow: hidden;
+    color: #f80;
+  }
+`;

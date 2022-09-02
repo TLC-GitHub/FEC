@@ -1,10 +1,10 @@
 import React, { useState }from 'react';
-import { CardContainer, ImgContainer, StyledStarBtn } from "./Styles.jsx";
+import { CardContainer, ImgContainer, StyledStarBtn, Star } from "./Styles.jsx";
 import NoPhotoImg from "../images/imgComingSoon.png";
 import ComparisonModal from "./ComparisonModal.jsx";
 import useModal from "./useModal.jsx";
 
-const ProductCard = ({ id, image, category, name, original_price, sale_price, productID, curProduct }) => {
+const ProductCard = ({ id, image, category, name, original_price, sale_price, ratings, productID, curProduct }) => {
   const [target, setTarget] = useState(0);
   const {showModal, toggle} = useModal();
 
@@ -34,7 +34,7 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, pr
           { sale_price === null ?
             <span>${original_price}</span> :
             <div><span style={{color: "red"}}>${sale_price}</span> <span><s>${original_price}</s></span></div> }
-        <div>star rating</div>
+        <div><Star percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
       </div>
     </CardContainer>
   );

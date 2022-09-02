@@ -42,7 +42,7 @@ function RelatedProdSlider({relatedProd, productID, curProduct}) {
       </StyledArrow>
 
       <InnerSlider>
-        {relatedProd.map(({ id, image, category, name, original_price, sale_price }, n) => {
+        {relatedProd.map(({ id, image, category, name, original_price, sale_price, ratings }, n) => {
           if (n < start || n > end) {
             return (
               <StyledInactiveItems key={id}>
@@ -53,6 +53,7 @@ function RelatedProdSlider({relatedProd, productID, curProduct}) {
                   name={name}
                   original_price={original_price}
                   sale_price={sale_price}
+                  ratings={ratings}
                   productID={productID}
                   curProduct={curProduct}
                   />
@@ -68,6 +69,7 @@ function RelatedProdSlider({relatedProd, productID, curProduct}) {
               name={name}
               original_price={original_price}
               sale_price={sale_price}
+              ratings={ratings}
               productID={productID}
               curProduct={curProduct}
               />
