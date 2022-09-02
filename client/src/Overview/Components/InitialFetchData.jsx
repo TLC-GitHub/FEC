@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
-
-import Auth from '../../../../config.js';
+import RelatedProductsFetch from '../../RelatedItems/Components/RelatedProductsFetch.jsx';
 
 const axios = require('axios');
-// const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/';
 
-const ComparisonFetch = ({productID, targetID}) => {
-  const [curProduct, setCurProduct] = useState({ features: [], styles: [] });
-  const [comProduct, setComProduct] = useState({ features: [], styles: [] });
+const InitialFetchData = () => {
+  const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
+
+  let randomID = Math.floor(Math.random() * (65660 - 65631) + 65631); // to generate a random productID first 30 ID's
+  console.log('logging out the random product_id: ', randomID);
 
   useEffect(() => {
-
-    async function fetchData() {
+    async function fetchData(productID) {
       let currentProduct = { id: productID }
-      // info needed: name, category, default_price, sale_price, list of styles, available sizes, feature
+
       let requestBody = {
         widget: 'products',
         pathVariable: productID
@@ -22,6 +21,7 @@ const ComparisonFetch = ({productID, targetID}) => {
         .then((result) => {
             currentProduct.category = result.data.category,
             currentProduct.name = result.data.name,
+            currentProduct.default_price = result.data.default_price,
             currentProduct.features = result.data.features                //array
         })
         .then(() => {
@@ -33,8 +33,6 @@ const ComparisonFetch = ({productID, targetID}) => {
          return axios.get('/get', {params: requestBody})
           .then((styles) => {
             currentProduct.styles = styles.data.results            // array (sizes, colors, phhotos)
-            currentProduct.original_price = styles.data.results[0].original_price;
-            currentProduct.sale_price = styles.data.results[0].sale_price;
           });
         })
         .then(() => {
@@ -50,28 +48,42 @@ const ComparisonFetch = ({productID, targetID}) => {
             });
         })
         .then(() => {
+          let requestBody = {
+            widget: 'products',
+            pathVariable: productID,
+            subCategory: 'related'
+          }
+          return axios.get('/get', {params: requestBody})
+            .then((related) => {
+              currentProduct.related = related.data
+            });
+        })
+        .then(() => {
           setCurProduct(() => ({
             id: currentProduct.id,
             name: currentProduct.name,
             category: currentProduct.category,
             features: [...currentProduct.features],
             styles: [...currentProduct.styles],
-            original_price: currentProduct.original_price,
-            sale_price: currentProduct.sale_price,
-            ratings: currentProduct.ratings
+            default_price: currentProduct.default_price,
+            ratings: currentProduct.ratings,
+            related: [...currentProduct.related]
           }))
         })
         .catch((err) => {
-          console.log("comparison data fetch error: ");
+          console.log("Initial data fetch error: ");
           console.log(err);
         });
     }
-    fetchData();
+    fetchData(randomID);
   }, [])
 
   return (
-    <ComparisonTable curProduct={curProduct} comProduct={comProduct}/>
+    // <>
+    //   <RelatedProductsFetch curProduct={curProduct}/>
+    // </>
+    console.log(curProduct)
   )
 }
 
-export default ComparisonFetch;
+export default InitialFetchData;

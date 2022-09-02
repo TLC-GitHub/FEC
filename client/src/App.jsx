@@ -4,6 +4,7 @@ import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import MyOutfit from './RelatedItems/Components/MyOutfit.jsx';
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
 import QuestionList from './QnA/Components/QuestionList.jsx'
+import InitialFetchData from './Overview/Components/InitialFetchData.jsx'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       </div>
       <div>
         <h3>MY OUTFITS</h3>
+        <InitialFetchData />
         <MyOutfit />
       </div>
       <div>
