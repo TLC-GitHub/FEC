@@ -12,10 +12,11 @@ const Images = ({ src, id }) => {
       <Modal
         showModal={showModal}
         hide={toggle}
-        img={<div>
-
-          <ModalImg src={src} key={id} onClick={toggle}/>
-        </div>}
+        img={
+          <div>
+            <ModalImg src={src} key={id} onClick={toggle}/>
+          </div>
+        }
       />
     </b>
   )
