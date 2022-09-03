@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import Bullet from './Bullet.jsx';
 
-const ProductBullets = () => {
+const ProductBullets = (props) => {
   const [data, setData] = useState([]);
   const getData = () => setData(data);
-  const points = ['First point', 'Another point', 'Yet another point', 'One last point'];
-  const bullets = points.map((item, i) =>{
-    return <Bullet key={i} item={item} />;
-  });
+  const bullets = props.features.length ? props.features.map((item, i) =>{
+    return <Bullet key={i} feature={item.feature} value={item.value}/>;
+  }) : 'No features';
 
   return(
     <div>

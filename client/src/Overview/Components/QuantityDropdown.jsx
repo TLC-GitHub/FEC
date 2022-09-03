@@ -1,12 +1,37 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+// import axios from 'axios';
+// import Authorization from '../../../../config.js';
+// const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
+
 
 const Display = styled.div `
 display: inline-block
 `;
-const QuantityDropdown = () => {
+const QuantityDropdown = (props) => {
   const [quantities, setQuantity] = useState('');
   const getQuantity = () => setQuantity(quantities);
+
+  let availableQuantities = [];
+  let currentQuantity;
+  for(let i = 0; i < props.sizeNumbers.length; i++){
+    if(props.sizeNumbers[i][1] === props.menuOption){
+      currentQuantity = props.sizeNumbers[i][0];
+      break;
+    }
+  }
+
+  if(currentQuantity > 15){
+    currentQuantity = 15;
+  }
+
+  for(let i = 0; i < currentQuantity; i++){
+    availableQuantities.push(i + 1);
+  }
+
+  const quantityOptions = availableQuantities.map((quantity, i) => {
+    return <option key={i} value={quantity}>{quantity}</option>
+  })
 
   return (
   <Display>
@@ -15,21 +40,7 @@ const QuantityDropdown = () => {
 
     <select name="quantities" id="quantity-select">
       <option value="">Please choose a quantity--</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
+      {quantityOptions}
     </select>
   </div>
   </Display>

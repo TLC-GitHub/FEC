@@ -2,5 +2,5 @@ node_modules
 .env
 config.js
 package-lock.json
-
+client/dist/main.js
 #need to put config.js in here later containing token

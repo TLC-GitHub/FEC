@@ -6,14 +6,20 @@ import BookmarkButton from './BookmarkButton.jsx';
 
 const AddToCart = () => {
   const [data, setData] = useState('');
+  const [menuOption, setMenuOption] = useState('select');
+  const [sizeNumbers, setSizeNumbers] = useState([]);
+
+  const changeMenuOption = (event) => {
+    setMenuOption(event.target.value);
+  };
 
   return (
   <div>
     <div>
-    <SizeDropdown />
+    <SizeDropdown sizeNumbers={sizeNumbers} menuOption={menuOption} changeMenuOption={changeMenuOption} />
     </div>
     <div>
-    <QuantityDropdown />
+    <QuantityDropdown sizeNumbers={sizeNumbers} menuOption={menuOption} changeMenuOption={changeMenuOption} />
     </div>
     <div>
     <AddToBagButton />
@@ -23,6 +29,6 @@ const AddToCart = () => {
     </div>
   </div>
   );
-}
+};
 
 export default AddToCart;
