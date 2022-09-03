@@ -3,9 +3,7 @@ import ProductCard from './ProductCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider } from "./Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
-const axios = require('axios');
-
-function RelatedProdSlider({relatedProd, curProduct}) {
+function RelatedProdSlider({ relatedProd, curProduct }) {
 
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);

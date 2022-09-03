@@ -8,9 +8,13 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
   const [target, setTarget] = useState(0);
   const {showModal, toggle} = useModal();
 
-  const handleClick = (e) => {
+  const handleIconClick = (e) => {
     setTarget(e.target.value);
     toggle();
+  }
+
+  const handleButtonClick = (e) => {
+    console.log(e.target.name)
   }
 
   return (
@@ -21,7 +25,7 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
           <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={require("../images/imgComingSoon.png")} alt="noImg" />
         }
         <StyledStarBtn>
-          <button type="button" value={id} onClick={handleClick}
+          <button type="button" value={id} onClick={handleIconClick}
             style={{border: "none", fontSize: "1.5rem", cursor: "pointer", backgroundColor: "rgba(0,0,0,0)", color: "#7F8487"}}
           >&#9734;
           </button>
@@ -40,7 +44,7 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
           />
         </StyledStarBtn>
       </ImgContainer>
-      <div style={{padding: "0 8px", marginTop: "8px"}}>
+      <div style={{padding: "0 8px", marginTop: "8px"}} onClick={handleButtonClick} name="testing">
         <div>{category}</div>
         <div><strong>{name}</strong></div>
           { sale_price === null ?

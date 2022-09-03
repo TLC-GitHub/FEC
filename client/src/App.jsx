@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RelatedProductsFetch from './RelatedItems/Components/RelatedProductsFetch.jsx';
 import OverviewModule from './Overview/Components/OverviewModule.jsx'
-import MyOutfit from './RelatedItems/Components/MyOutfit.jsx';
+import OutfitSlider from './RelatedItems/Components/OutfitList/OutfitSlider.jsx';
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
 import QuestionList from './QnA/Components/QuestionList.jsx'
 
@@ -73,7 +73,7 @@ function App() {
         console.log("Initial data fetch error: ");
         console.log(err);
       })
-  }, []);
+  }, [productID]);
 
   return (
     <div>
@@ -81,12 +81,12 @@ function App() {
         <OverviewModule />
       </div>
       <div>
-        <h3>YOU MAY ALSO LIKE</h3>
+        <h1>You May Also Like</h1>
         <RelatedProductsFetch productID={productID} curProduct={curProduct}/>
       </div>
       <div>
-        <h3>MY OUTFITS</h3>
-        <MyOutfit />
+        <h1>Your Outfit</h1>
+        <OutfitSlider productID={productID} curProduct={curProduct}/>
       </div>
       <div>
         <h1>Questions and Answers</h1>

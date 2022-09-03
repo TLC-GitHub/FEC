@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { ModalBox } from './Styles.jsx'
 import ProductCard from './ProductCard.jsx';
-import ComparisonFetch from './ComparisonFetch.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 
 import './Modal.css';  // to be deleted

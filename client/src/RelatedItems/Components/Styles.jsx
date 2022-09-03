@@ -11,13 +11,14 @@ import styled from "styled-components";
 export const StyledSlider = styled.div`
   position: relative;
   display: flex;
+  height: 320px;
 `;
 
 export const InnerSlider = styled.div`
   display: flex;
   gap: 14px;
   width: 100%;
-  height: 320px;
+  height: 100%;
 `;
 
 export const StyledInactiveItems = styled.div`
@@ -43,6 +44,23 @@ export const ImgContainer = styled.div`
   position: relative;
   width: 100%;
   height: 70%;
+`;
+
+export const AddOutfitBtn = styled.div`
+  width: 253px;
+  height: 320px;
+  cursor: pointer;
+  border: 1px solid #A2B5BB;
+`;
+
+export const OutfitButton = styled.button`
+  width: 248.1px;
+  height: 100%;
+  margin-left: 0px;
+  padding: 0px;
+  cursor: pointer;
+  border: 1px solid #A2B5BB;
+  background-color: white;
 `;
 
 export const StyledStarBtn = styled.div`
