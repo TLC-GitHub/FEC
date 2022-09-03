@@ -10,12 +10,16 @@ const axios = require('axios');
 function App() {
   const [productID, setProduct] = useState(65637);
   const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
+  const [curStyle, setCurStyle] = useState({});
+  const [curStylePhoto, setCurStylePhoto] = useState([]);
 
   // let randomID = Math.floor(Math.random() * (65660 - 65631) + 65631); // to generate a random productID first 30 ID's
   // setProduct(randomID)
   // console.log('logging out the random product_id: ', randomID);
   useEffect(() => {
-    let currentProduct = { id: productID }
+    let currentProduct = { id: productID };
+    let style = {};
+    let photos = [];
     let requestBody = {
       widget: 'products',
       pathVariable: productID
@@ -35,6 +39,8 @@ function App() {
         }
         return axios.get('/get', {params: requestBodyForStyles})
           .then((styles) => {
+            style = styles.data.results[0];
+            photos = style.photos;
             currentProduct.styles = styles.data.results;
           })
           .then(() => {
@@ -66,6 +72,8 @@ function App() {
                   default_price: currentProduct.default_price,
                   ratings: currentProduct.ratings
                 }));
+                setCurStyle(style);
+                setCurStylePhoto(photos);
               })
           })
       })
@@ -86,7 +94,12 @@ function App() {
       </div>
       <div>
         <h1>Your Outfit</h1>
-        <OutfitSlider productID={productID} curProduct={curProduct}/>
+        <OutfitSlider
+          productID={productID}
+          curProduct={curProduct}
+          curStyle={curStyle}
+          curStylePhoto={curStylePhoto}
+        />
       </div>
       <div>
         <h1>Questions and Answers</h1>
