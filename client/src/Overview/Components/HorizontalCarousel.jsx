@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { HorizontalImage, HorizontalSlider } from './HorizontalScrollEntry.js';
 import RightButton from './RightButton.jsx';
 import LeftButton from './LeftButton.jsx';
-//import ExpandShrinkButton from './ExpandShrinkButton.jsx';
 
 
 const HorizontalCarousel = () => {
@@ -38,7 +37,6 @@ const HorizontalCarousel = () => {
         <RightButton nextImage={nextImage} />
         <button onClick = {(event) => expand(!expanded)}>&#9744;</button>
         {images.map((slide, i) => {
-          console.log('slide ', slide); console.log('slide ', slide);
           return (
             <div key={i}>
               {i === current && (
