@@ -51,8 +51,8 @@ function OutfitSlider({ productID, curProduct }) {
       });
       if (!alreadyAdded) {
         console.log('i should be here');
-        setOutfits((oldArray) => (
-          [...oldArray, curProduct]
+        setOutfits((outfits) => (
+          [curProduct, ...outfits]
         ));
         setLength(length + 1);
       }
@@ -60,13 +60,11 @@ function OutfitSlider({ productID, curProduct }) {
 
     const removeCard = (value) => {
       setOutfits((outfits) => {
-        console.log(outfits);
-        return outfits.filter((outfit) => (
-          outfit.id !== value
-        ))
+        return outfits.filter((outfit) => {
+          return outfit.id !== Number(value)
         })
+      })
       setLength(length - 1);
-      console.log("i am here: ", value)
     }
 
   return (
