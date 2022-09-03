@@ -10,7 +10,6 @@ const BookmarkButton = () => {
     <div>
       {star}
     </div>
-
   );
 }
 
