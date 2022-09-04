@@ -26,10 +26,8 @@ const SizeDropdown = (props) => {
   }, []);
 
   for(let sku in sizes){
-    props.sizeNumbers.push([sizes[sku].quantity, sizes[sku].size]);
+    props.sizeNumbers.push([sizes[sku].quantity, sizes[sku].size, sku]);
   }
-
-  console.log(props.menuOption);
 
 
   const sizeOptions = props.sizeNumbers.map((size, i) => {

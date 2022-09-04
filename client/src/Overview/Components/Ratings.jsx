@@ -14,20 +14,32 @@ const Ratings = (props) => {
   const [averageRating, setAverageRating] = useState(0);
 
   useEffect(() => {
-    axios.get(`${API_URL}/reviews?product_id=65651&sort=newest&count=200`, {
+    axios.get(`${API_URL}/reviews/meta?product_id=65651&sort=newest&count=200`, {
       headers: Authorization
     })
       .then((response) => {
-        console.log('do something')
+        console.log('ratings',response.data.ratings);
+        console.log(response);
+        let averageSum = 0;
+        let numberOfRatings = 0;
+        let ratingsList = response.data.ratings;
+        for(let total in ratingsList ){
+          numberOfRatings += Number(ratingsList[total]);
+          averageSum += Number(total) * Number(ratingsList[total]);
+        }
+        let average = averageSum / numberOfRatings;
+        setAverageRating(average);
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
 
+      let percent = (averageRating / 5) * 100;
+      console.log('percent', percent);
   return(
   <div>
-    <Star percentage={10}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
+    <Star percentage={percent + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
     <Link>Read Reviews</Link>
   </div>
 

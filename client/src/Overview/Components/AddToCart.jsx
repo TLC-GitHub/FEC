@@ -8,6 +8,7 @@ const AddToCart = () => {
   const [data, setData] = useState('');
   const [menuOption, setMenuOption] = useState('select');
   const [sizeNumbers, setSizeNumbers] = useState([]);
+  const [selectedQuantity, selectQuantity] = useState(0);
 
   const changeMenuOption = (event) => {
     setMenuOption(event.target.value);
@@ -19,10 +20,10 @@ const AddToCart = () => {
     <SizeDropdown sizeNumbers={sizeNumbers} menuOption={menuOption} changeMenuOption={changeMenuOption} />
     </div>
     <div>
-    <QuantityDropdown sizeNumbers={sizeNumbers} menuOption={menuOption} changeMenuOption={changeMenuOption} />
+    <QuantityDropdown selectedQuantity={selectedQuantity} sizeNumbers={sizeNumbers} menuOption={menuOption} changeMenuOption={changeMenuOption} />
     </div>
     <div>
-    <AddToBagButton />
+    <AddToBagButton selectedQuantity={selectedQuantity} sizeNumbers={sizeNumbers} />
     </div>
     <div>
     <BookmarkButton />
