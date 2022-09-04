@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import RelatedProdSlider from './RelatedProdSlider.jsx';
 import ProductCard from './ProductCard.jsx';
-import Auth from '../../../../config.js';
+import Auth from '../../../../../config.js';
 const axios = require('axios');
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
-function RelatedProductsFetch({productID, curProduct}) {
+function RelatedProductsFetch({ productID, curProduct, curStyle, selectFromRelated }) {
   const [relatedProd, setRelatedProd] = useState([]);
 
   useEffect(() => {
+    setRelatedProd([]);
 
     let requestBody = {
       widget: 'products',
@@ -110,10 +111,15 @@ function RelatedProductsFetch({productID, curProduct}) {
   //       console.log(err);
   //     })
 
-  }, [])
+  }, [productID])
 
   return (
-    <RelatedProdSlider relatedProd={relatedProd} curProduct={curProduct}/>
+    <RelatedProdSlider
+      relatedProd={relatedProd}
+      curProduct={curProduct}
+      curStyle={curStyle}
+      selectFromRelated={selectFromRelated}
+    />
   )
 }
 

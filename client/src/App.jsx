@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RelatedProductsFetch from './RelatedItems/Components/RelatedProductsFetch.jsx';
+import RelatedProductsFetch from './RelatedItems/Components/RelatedProducts/RelatedProductsFetch.jsx';
 import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import OutfitSlider from './RelatedItems/Components/OutfitList/OutfitSlider.jsx';
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
@@ -8,7 +8,7 @@ import QuestionList from './QnA/Components/QuestionList.jsx'
 const axios = require('axios');
 
 function App() {
-  const [productID, setProduct] = useState(65637);
+  const [productID, setProductID] = useState(65637);
   const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
   const [curStyle, setCurStyle] = useState({});
   const [curStylePhoto, setCurStylePhoto] = useState([]);
@@ -17,6 +17,7 @@ function App() {
   // setProduct(randomID)
   // console.log('logging out the random product_id: ', randomID);
   useEffect(() => {
+    console.log("I should be here when something is clicked");
     let currentProduct = { id: productID };
     let style = {};
     let photos = [];
@@ -83,6 +84,12 @@ function App() {
       })
   }, [productID]);
 
+  const selectFromRelated = (value) => {
+    console.log('i got clicked. other product was selected: ', value);
+    // setProductID(value);
+    // setProductID(65635);
+  }
+
   return (
     <div>
       <div>
@@ -90,7 +97,12 @@ function App() {
       </div>
       <div>
         <h1>You May Also Like</h1>
-        <RelatedProductsFetch productID={productID} curProduct={curProduct}/>
+        <RelatedProductsFetch
+          productID={productID}
+          curProduct={curProduct}
+          curStyle={curStyle}
+          selectFromRelated={selectFromRelated}
+        />
       </div>
       <div>
         <h1>Your Outfit</h1>

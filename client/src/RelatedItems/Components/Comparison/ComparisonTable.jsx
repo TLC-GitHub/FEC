@@ -1,7 +1,7 @@
 import React from 'react';
-import { Table, StyledHead, StyledCell, Star } from './Styles.jsx';
+import { Table, StyledHead, StyledCell, Star } from '../Styles.jsx';
 
-const ComparisonTable = ({ curProduct, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => {
+const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => {
   const [curStyles, curFeatures, curValues] = [[], [], []];
   const [comStyles, comFeatures, comValues] = [[], [], []];
 
@@ -41,9 +41,12 @@ const ComparisonTable = ({ curProduct, targetID, targetCategory, targetName, tar
 
         <tr>
           <StyledCell>
-            { curProduct.sale_price === null ?
-              <span>${curProduct.original_price}</span> :
-              <div><span style={{color: "red"}}>${curProduct.sale_price}</span> <span><s>${curProduct.original_price}</s></span></div>
+            { curProduct.sale_price === undefined && curStyle.sale_price === null ?
+              <span>${curStyle.original_price}</span> :
+              <div>
+                <span style={{color: "red"}}>${curStyle.sale_price}</span>
+                <span><s>${curStyle.original_price}</s></span>
+              </div>
             }
           </StyledCell>
           <StyledCell><strong>Price</strong></StyledCell>

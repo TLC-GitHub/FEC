@@ -4,9 +4,6 @@ import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider, OutfitButt
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
-  console.log('outfit slider - curProduct: ', curProduct);
-  console.log('outfit slider - style: ', curStyle);
-  console.log('outfit slider - photo: ', curStylePhoto);
   // initial state for outfits will be deleted
   const [outfits, setOutfits] = useState([
     {id: 1, category: 'shirt', name: 'a shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.8, image: null},
@@ -15,6 +12,7 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
     {id: 4, category: 'funny', name: 'a funny looking shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.2, image: null},
     {id: 5, category: 'clothing', name: 'nice looking shirt', original_price: 89.99, sale_price: 19.99, ratings: 4.2, image: null}
   ]);
+  // const [outfits, setOutfits] = useState([]);
   const [first, setFirst] = useState(0);
   const [last, setLast] = useState(3);
   const [leftArrow, setLeftArrow] = useState('none');
@@ -54,6 +52,8 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
         [curProduct, ...outfits]
       ));
       setLength(length + 1);
+    } else {
+      alert("Item is already in your outfit list!")
     }
   }
 
@@ -93,7 +93,6 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
                   original_price={original_price}
                   sale_price={sale_price}
                   ratings={ratings}
-                  // curProduct={curProduct}
                   curStyle={curStyle}
                   curStylePhoto={curStylePhoto}
                   removeOutfit={removeOutfit}
@@ -111,7 +110,6 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
               original_price={original_price}
               sale_price={sale_price}
               ratings={ratings}
-              // curProduct={curProduct}
               curStyle={curStyle}
               curStylePhoto={curStylePhoto}
               removeOutfit={removeOutfit}

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { ModalBox } from './Styles.jsx'
-import ProductCard from './ProductCard.jsx';
+import { ModalBox } from '../Styles.jsx'
+// import ProductCard from './ProductCard.jsx';
 import ComparisonTable from './ComparisonTable.jsx';
 
 import './Modal.css';  // to be deleted
 
-const ComparisonModal = ({ showModal, hide, curProduct, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => showModal ? ReactDOM.createPortal(
+const ComparisonModal = ({ showModal, hide, curProduct, curStyle, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => showModal ? ReactDOM.createPortal(
   <React.Fragment>
 
     <div className="modal-overlay"/>
@@ -32,6 +32,7 @@ const ComparisonModal = ({ showModal, hide, curProduct, targetID, targetCategory
               targetFeatures={targetFeatures}
               targetStyles={targetStyles}
               curProduct={curProduct}
+              curStyle={curStyle}
             />
           </div>
         </div>

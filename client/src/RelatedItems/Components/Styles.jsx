@@ -87,6 +87,7 @@ export const Table = styled.table`
 const tableDataStyles = [`
   border-bottom: 1px solid #ddd;
   text-align: center;
+  padding: 1rem 0rem;
 `];
 
 export const StyledHead = styled.th(tableDataStyles);

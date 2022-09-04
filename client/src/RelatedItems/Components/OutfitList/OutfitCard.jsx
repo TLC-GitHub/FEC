@@ -33,13 +33,13 @@ const OutfitCard = ({ id, image, category, name, original_price, sale_price, rat
             original_price === undefined ?
             <div>
               <span style={{color: "red"}}>${curStyle.sale_price}</span>
-              <span><s>${curStyle.original_price}</s></span>
+              <span> <s>${curStyle.original_price}</s></span>
             </div> :
             sale_price === null ?
             <span>${original_price}</span> :
             <div>
               <span style={{color: "red"}}>${sale_price}</span>
-              <span><s>${original_price}</s></span>
+              <span> <s>${original_price}</s></span>
             </div> }
         <div><Star percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
       </div>
