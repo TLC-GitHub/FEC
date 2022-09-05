@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
@@ -8,10 +8,27 @@ function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelate
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);
     const [leftDisplay, setLeftDisplay] = useState('none');
-    const [rightDisplay, setRightDisplay] = useState('');
-    const length = Object.keys(relatedProd).length;
+    const [rightDisplay, setRightDisplay] = useState('none');
+    // let length = relatedProd.length;
+
+    useEffect (() => {
+      console.log("related products in slider: ", relatedProd);
+      let length = relatedProd.length;
+      console.log('how many related products: ', length);
+      setStart(0);
+      setEnd(4);
+      setLeftDisplay('none');
+
+      if(length > 5) {
+        setRightDisplay('');
+      } else {
+        setRightDisplay('none');
+      }
+    }, [relatedProd])
 
     const nextSlide = () => {
+      console.log("next button click - length: ", length)
+      console.log("next button click - end: ", end)
       if (end + 1 <= length - 1) {
         setStart(start + 1)
         setEnd(end + 1);

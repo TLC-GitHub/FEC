@@ -1,28 +1,39 @@
-import React, { useState }from 'react';
+import React, { useState, useRef }from 'react';
 import { CardContainer, ImgContainer, StyledStarBtn, Star } from "../Styles.jsx";
 import NoPhotoImg from "../../images/imgComingSoon.png";
 import ComparisonModal from "../Comparison/ComparisonModal.jsx";
 import useModal from "./useModal.jsx";
 
 const ProductCard = ({ id, image, category, name, original_price, sale_price, ratings, features, styles, curProduct, curStyle, selectFromRelated }) => {
+
   const [target, setTarget] = useState(0);
   const {showModal, toggle} = useModal();
+  // const ref = useRef(id);
 
   const handleIconClick = (e) => {
+    console.log('compare icon was clicked: ', e.target.value)
     setTarget(e.target.value);
     toggle();
   }
 
-  const handleButtonClick = (e) => {
-    console.log('id: ', e.target.id);
+  const handleProductClick = (e) => {
+    console.log('what is being clicked: ', e.target)
+    console.log('product card was clicked: ', e.target.id);
+    selectFromRelated(e.target.id);
   }
 
   return (
     <CardContainer>
       <ImgContainer>
         {image !== null ?
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={image} alt="apiImg" /> :
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={require("../../images/imgComingSoon.png")} alt="noImg" />
+          <img style={{width: "100%", height: "100%", objectFit: "cover"}}
+            src={image} alt="apiImg"
+            id={id} onClick={handleProductClick}
+          /> :
+          <img style={{width: "100%", height: "100%", objectFit: "cover"}}
+            src={require("../../images/imgComingSoon.png")} alt="noImg"
+            id={id} onClick={handleProductClick}
+          />
         }
         <StyledStarBtn>
           <button type="button" value={id} onClick={handleIconClick}
@@ -45,20 +56,20 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
           />
         </StyledStarBtn>
       </ImgContainer>
-      <div style={{padding: "0 8px", marginTop: "8px"}} id={id}
-           onClick={event => selectFromRelated(event.target.id)}
-          // onClick={handleButtonClick}
-          // name='testing'
+      <div style={{padding: "0 8px", marginTop: "8px"}}
+        id={id} onClick={handleProductClick}
       >
-        <div>{category}</div>
-        <div><strong>{name}</strong></div>
-          { sale_price === null ?
-            <span>${original_price}</span> :
-            <div>
-              <span style={{color: "red"}}>${sale_price}</span>
-              <span> <s>${original_price}</s></span>
-            </div> }
-        <div><Star percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
+          <div id={id} onClick={handleProductClick}>{category}</div>
+          <div id={id} onClick={handleProductClick}><strong>{name}: {id}</strong></div>
+            { sale_price === null ?
+              <div id={id} onClick={handleProductClick}>
+                <span>${original_price}</span>
+              </div> :
+              <div id={id} onClick={handleProductClick}>
+                <span style={{color: "red"}}>${sale_price}</span>
+                <span> <s>${original_price}</s></span>
+              </div> }
+          <div id={id} onClick={handleProductClick}><Star percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
       </div>
     </CardContainer>
   );

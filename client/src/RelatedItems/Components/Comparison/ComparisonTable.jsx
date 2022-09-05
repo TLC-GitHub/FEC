@@ -29,7 +29,7 @@ const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targe
         <tr>
           <StyledHead>{curProduct.name}</StyledHead>
           <StyledHead></StyledHead>
-          <StyledHead>{targetName}</StyledHead>
+          <StyledHead>{targetName}: {targetID}</StyledHead>
         </tr>
       </thead>
       <tbody>
