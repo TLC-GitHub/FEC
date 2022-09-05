@@ -3,7 +3,7 @@ import ProductCard from './ProductCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
-function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelated }) {
+function ImageSlider({ relatedProd, curProduct, curStyle, selectFromRelated }) {
     console.log('related products in slider: ', relatedProd)
 
     const [start, setStart] = useState(0);

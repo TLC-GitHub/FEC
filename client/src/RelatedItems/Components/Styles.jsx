@@ -61,20 +61,16 @@ export const OutfitButton = styled.button`
   cursor: pointer;
   border: 1px solid #A2B5BB;
   background-color: white;
+  &:hover {
+    background-color: #C9D6DF;
+    font-size: 1rem;
+  }
 `;
 
 export const StyledStarBtn = styled.div`
   position: absolute;
   left: 70%;
   top: 3%;
-`;
-
-export const ModalBox = styled.div`
-  position: fixed;
-  top: 10%;
-  width: 500px;
-  height: 500px;
-  background-color: #000;
 `;
 
 export const Table = styled.table`

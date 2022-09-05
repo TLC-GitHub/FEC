@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table, StyledHead, StyledCell, Star } from '../Styles.jsx';
+import ReactDOM from 'react-dom';
+import { StyledCell, Star } from '../Styles.jsx';
 
 const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => {
   const [curStyles, curFeatures, curValues] = [[], [], []];
@@ -21,19 +22,8 @@ const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targe
   const remainingIndex = [];
 
   return (
-    <Table>
-      <thead style={{backgroundColor: '#C9D6DF'}}>
-        <tr><th colSpan='3'>Comparing</th></tr>
-      </thead>
-      <thead>
-        <tr>
-          <StyledHead>{curProduct.name}</StyledHead>
-          <StyledHead></StyledHead>
-          <StyledHead>{targetName}: {targetID}</StyledHead>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
+    <tbody>
+      <tr>
           <StyledCell><Star percentage={((curProduct.ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></StyledCell>
           <StyledCell><strong>Reviews</strong></StyledCell>
           <StyledCell><Star percentage={((targetRatings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></StyledCell>
@@ -57,43 +47,45 @@ const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targe
             }
           </StyledCell>
         </tr>
+
         <tr>
           <StyledCell>{curProduct.category}</StyledCell>
           <StyledCell><strong>Category</strong></StyledCell>
           <StyledCell>{targetCategory}</StyledCell>
         </tr>
+
         <tr>
           <StyledCell>
             { curStyles.map((style) => (
               <div key={style}>{style} </div>
-              ))
-            }
+                ))
+              }
           </StyledCell>
           <StyledCell><strong>Styles</strong></StyledCell>
           <StyledCell>
             { comStyles.map((style) => (
-              <div key={style}>{style} </div>
+                <div key={style}>{style} </div>
               ))
             }
           </StyledCell>
         </tr>
-        <tr>
-          <StyledCell></StyledCell>
-          <StyledCell><strong>Features</strong></StyledCell>
-          <StyledCell></StyledCell>
-        </tr>
+          <tr>
+            <StyledCell></StyledCell>
+            <StyledCell><strong>Features</strong></StyledCell>
+            <StyledCell></StyledCell>
+          </tr>
         { curFeatures.map((feature, index) => {
-            let targetIndex = comFeatures.indexOf(feature);
+          let targetIndex = comFeatures.indexOf(feature);
             if (targetIndex !== -1) {
               duplicateIndex.push(targetIndex);
 
-              return (
-                <tr key={feature}>
-                  <StyledCell>{curValues[index]}</StyledCell>
-                  <StyledCell>{feature}</StyledCell>
-                  <StyledCell>{comValues[targetIndex]}</StyledCell>
-                </tr>
-              )
+                return (
+                  <tr key={feature}>
+                    <StyledCell>{curValues[index]}</StyledCell>
+                    <StyledCell>{feature}</StyledCell>
+                    <StyledCell>{comValues[targetIndex]}</StyledCell>
+                  </tr>
+                )
             } else {
               return (
                 <tr key={feature}>
@@ -105,22 +97,19 @@ const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targe
             }
           })
         }
-        {
-          comFeatures.map((feature, index) => {
-            if (duplicateIndex.indexOf(index) === -1) {
-              return (
-                <tr key={feature}>
-                  <StyledCell></StyledCell>
-                  <StyledCell>{feature}</StyledCell>
-                  <StyledCell>{comValues[index]}</StyledCell>
-                </tr>
-              )
-            }
+        { comFeatures.map((feature, index) => {
+          if (duplicateIndex.indexOf(index) === -1) {
+            return (
+              <tr key={feature}>
+                <StyledCell></StyledCell>
+                <StyledCell>{feature}</StyledCell>
+                <StyledCell>{comValues[index]}</StyledCell>
+              </tr>
+            )
+          }
           })
         }
-
-      </tbody>
-    </Table>
+    </tbody>
   )
 }
 

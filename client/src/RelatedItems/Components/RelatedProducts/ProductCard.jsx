@@ -1,4 +1,4 @@
-import React, { useState, useRef }from 'react';
+import React, { useState }from 'react';
 import { CardContainer, ImgContainer, StyledStarBtn, Star } from "../Styles.jsx";
 import NoPhotoImg from "../../images/imgComingSoon.png";
 import ComparisonModal from "../Comparison/ComparisonModal.jsx";
@@ -8,7 +8,6 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
 
   const [target, setTarget] = useState(0);
   const {showModal, toggle} = useModal();
-  // const ref = useRef(id);
 
   const handleIconClick = (e) => {
     console.log('compare icon was clicked: ', e.target.value)
@@ -60,16 +59,16 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
         id={id} onClick={handleProductClick}
       >
           <div id={id} onClick={handleProductClick}>{category}</div>
-          <div id={id} onClick={handleProductClick}><strong>{name}: {id}</strong></div>
+          <div id={id}><strong id={id} onClick={handleProductClick}>{name}</strong></div>
             { sale_price === null ?
               <div id={id} onClick={handleProductClick}>
-                <span>${original_price}</span>
+                <span id={id}>${original_price}</span>
               </div> :
               <div id={id} onClick={handleProductClick}>
-                <span style={{color: "red"}}>${sale_price}</span>
-                <span> <s>${original_price}</s></span>
+                <span id={id} style={{color: "red"}}>${sale_price}</span>
+                <span id={id}> <s id={id}>${original_price}</s></span>
               </div> }
-          <div id={id} onClick={handleProductClick}><Star percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
+          <div id={id} onClick={handleProductClick}><Star id={id} percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
       </div>
     </CardContainer>
   );

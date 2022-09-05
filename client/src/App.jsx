@@ -87,7 +87,6 @@ function App() {
   const selectFromRelated = (value) => {
     console.log('i got clicked. New product ID is: ', value);
     setProductID(value);
-    // setProductID(65635);
   }
 
   return (
