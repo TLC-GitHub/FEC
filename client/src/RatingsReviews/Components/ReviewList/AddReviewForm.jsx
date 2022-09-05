@@ -1,33 +1,78 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa';
-import '../styles.css'
-
+import '../styles.css';
+import CloudinaryUpload from './CloudinaryUpload.jsx';
+import axios from 'axios';
+import Auth from '../../../../../config.js'
+const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
 function AddReviewForm () {
-  // create a bunch of state
+
+  // Info
   let [name, setName] = useState('');
   let [email, setEmail] = useState('');
-  let [starRate, setStarRate] = useState(null);
-  let [starHover, setStarHover] = useState(null);
 
-  let [reviewSummary, setReviewSummary] = useState('');
-  let [bodySummary, setBodySummary] = useState(''); // Optional
+  // Star
+  let [starRate, setStarRate] = useState(null);
+  let [starHover, setStarHover] = useState(null); // No Need ❌
+
+  // Body
+  let [reviewBody, setReviewBody] = useState('');
+  let [bodyCount, setBodyCount] = useState(''); // No Need ❌
+
+  // summary
+  let [reviewSummary, setReviewSummary] = useState('');  // Optional
+
+  // characteristics
   let [sizeChar, setSizeChar] = useState('');
   let [widthChar, setWidthChar] = useState('');
   let [comfortChar, setComfortChar] = useState('');
   let [qualityChar, setQualityChar] = useState('');
   let [lengthChar, setLengthChar] = useState('');
   let [fitChar, setFitChar] = useState('');
+
+  // recommend
   let [recommend, setRecommend] = useState('');
-  let [photos, setPhotos] = useState(''); // Optional
-  let [bodyCount, setBodyCount] = useState('');
+
+  // photos
+  let [photos, setPhotos] = useState([]); // Optional
+
+
+  var axiosPost = () => {
+    axios.post(`${API_URL}/reviews`,
+      {
+        product_id: 65651, // CHANGE, HARDCODE FOR NOW
+        rating: starRate,
+        summary: reviewSummary,
+        body: reviewBody,
+        recommend: recommend,
+        name: name,
+        email: email,
+        photos: photos,
+        characteristics: {},
+      },
+      {headers: Auth}
+    )
+
+  }
+
+
+  let addFromCloud = (image) => {
+    var copyArr = photos.slice()
+    var add = copyArr.push(image)
+    setPhotos(copyArr)
+  }
 
 
   var bodyChange = (val, count) => {
-    setBodySummary(val);
+    setReviewBody(val);
     setBodyCount(count);
   };
+
+  var handleSubmit = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <ReviewForm>
@@ -49,7 +94,7 @@ function AddReviewForm () {
           </Email>
         </Info>
 
-        <Review>Stars<Required> *</Required></Review>
+        <InfoTitle>Stars<Required> *</Required></InfoTitle>
         <Review>
           {[...Array(5)].map((star, i) => {
             const ratingValue = i + 1;
@@ -77,7 +122,7 @@ function AddReviewForm () {
             )
           })}
         </Review>
-        <Review>Summary</Review>
+        <InfoTitle>Summary</InfoTitle>
         <Review>
           <input
             type="text"
@@ -89,9 +134,8 @@ function AddReviewForm () {
           />
         </Review>
 
-        <Review>Review Body<Required> *</Required></Review>
+        <InfoTitle>Review Body<Required> *</Required></InfoTitle>
         <Body>
-          {/* include a counter */}
           <textarea
             minlength="51"
             maxlength="1000"
@@ -104,17 +148,17 @@ function AddReviewForm () {
 
 
 
-          <Rec>
-            <legend>Do you recommend this product?<Required> *</Required></legend>
-            <div>
-              <input type="radio" value="Yes" name="rec" required/>
-              <label for="Yes">Yes</label>
-            </div>
-            <div>
-              <input type="radio" value="No" name="rec" required/>
-              <label for="No">No</label>
-            </div>
-          </Rec>
+        <Rec>
+          <legend>Do you recommend this product?<Required> *</Required></legend>
+          <div>
+            <input type="radio" value="Yes" name="rec" required/>
+            <label for="Yes">Yes</label>
+          </div>
+          <div>
+            <input type="radio" value="No" name="rec" required/>
+            <label for="No">No</label>
+          </div>
+        </Rec>
 
 
         <Characteristics>
@@ -184,16 +228,16 @@ function AddReviewForm () {
               <option value="5">Runs long</option>
             </select>
           </div>
-          {/* {console.log('TEST', fitChar)} */}
         </Characteristics>
 
+
         <Photo>
-          📷 Upload Photo
+          {/* {console.log('TEST IN FORM', photos)} */}
+          <CloudinaryUpload addFromCloud={addFromCloud}/>
         </Photo>
 
         <SubButtWrap>
           <SubButt type="submit" value="Add Review!"/>
-
         </SubButtWrap>
       </form>
     </ReviewForm>
@@ -217,12 +261,14 @@ const Characteristics = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0em 0em 1em 0em;
 `;
 
 const Rec = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: .5em 0em 1em 0em;
 `;
 
 const Required = styled.b`
@@ -231,6 +277,7 @@ const Required = styled.b`
 
 const Summary = styled.div`
   display: flex;
+  margin: 0em 0em 1em 0em;
   //
 `;
 
@@ -238,11 +285,13 @@ const Body = styled.div`
   display: flex;
   justify-content: center;
   line-height: 140%;
+  // margin: 0em 0em 1em 0em;
 `;
 
 const Review = styled.div`
   display: flex;
   justify-content: center;
+  margin: 0em 0em 1em 0em;
 `;
 
 const Name = styled.div`
@@ -250,7 +299,8 @@ const Name = styled.div`
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  margin: 0px 10px 0px 10px;
+  // margin: 0px 10px 0px 10px;
+  margin: .5em .5em .5em .5em;
 `;
 
 const Email = styled.div`
@@ -258,17 +308,20 @@ const Email = styled.div`
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  margin: 0px 10px 0px 10px;
+  margin: .5em .5em .5em .5em;
+  // margin: 0px 10px 0px 10px;
 `;
 
 const InfoTitle = styled.div`
-  // margin: 0px 0px 0px 60px;
+  display: flex;
+  justify-content: center;
 `;
 
 const Info = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 0em 0em 1em 0em;
 `;
 
 const ReviewForm = styled.div`
@@ -279,11 +332,13 @@ const ReviewForm = styled.div`
 const Photo = styled.div`
   display: flex;
   place-content: center;
+  margin: 0em 0em 1em 0em;
 `;
 
 const SubButtWrap = styled.div`
   display: flex;
   place-content: center;
+  margin: 1em 0em 1em 0em;
 `;
 
 const SubButt = styled.input`

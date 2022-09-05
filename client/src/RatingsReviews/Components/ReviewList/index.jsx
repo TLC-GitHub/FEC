@@ -48,8 +48,7 @@ function ReviewList ({allReviews}) {
 
   return (
     <div>
-      {/* {console.log('afterasdasd', sortHelp)} */}
-      {/* {reviews.map((el, i) => console.log('SHEEESH', el.helpfulness))} */}
+      {console.log('ALL REVIEWWWSS', allReviews)}
       <h3>
         <form onSubmit={handleSubmit}>
           {allReviews.length} reviews, sorted by&nbsp;
