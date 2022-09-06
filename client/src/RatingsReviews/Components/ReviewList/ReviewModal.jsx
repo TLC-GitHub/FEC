@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { showModal, toggle } from './index.jsx';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import AddReviewForm from './AddReviewForm.jsx';
 
-
-const Modal = ({ showModal, hide, img }) => showModal ? ReactDOM.createPortal(
+const ReviewModal = ({ showReviewModal, hide }) => showReviewModal ? ReactDOM.createPortal(
   <React.Fragment>
     <ModalOverlay/>
     <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
@@ -18,19 +17,14 @@ const Modal = ({ showModal, hide, img }) => showModal ? ReactDOM.createPortal(
             <span aria-hidden="true">&times;</span>
           </ModalCloseButton>
         </ModalHeader>
-        <ImageModal>
-          {img}
-        </ImageModal>
+        <p>
+          <AddReviewForm />
+        </p>
       </MainModal>
     </ModalWrapper>
   </React.Fragment>, document.body
 ) : null;
 
-
-const ImageModal = styled.p`
-  width: 50%;
-  height: 50%;
-`;
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -53,34 +47,37 @@ const ModalWrapper = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
-`;
+  `;
 
-const MainModal = styled.div`
+  const MainModal = styled.div`
   z-index: 100;
-  position: absolute;
-  top: 15%; left: 15%;
-  margin: 1.75rem auto;
-  border-radius: 3px;
-  max-width: 700px;
-  padding: 1rem;
-`;
+  background: white;
+  position: relative;
+  margin: 10rem auto;
+  // margin: 1.75rem auto;
+  border-radius: 1.5rem;
+  width: 1000px;
+  height: 1000px;
+  padding: 2rem;
+  `;
 
 const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
+  `;
 
 const ModalCloseButton = styled.div`
+  z-index: 1060;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: .5;
-  color: white;
+  color: green;
   cursor: pointer;
   border: none;
-  margin: 0px 140px 0px 0px;
+  // margin: 0px 140px 0px 0px;
   &:hover {
     opacity: .5;
     color: black;
   }
 `;
-export default Modal;
+export default ReviewModal;
