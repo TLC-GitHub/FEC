@@ -36,6 +36,36 @@ export const ImgContainer = styled.div`
   position: relative;
   width: 100%;
   height: 70%;
+  `;
+
+export const ImageStyled = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const StyledStarBtn = styled.div`
+  position: absolute;
+  left: 80%;
+  top: 3%;
+`;
+
+export const ImageOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: rgb(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  transition: .1s ease;
+  font-size: 20px;
+  text-align: center;
+  visibility: hidden;
+  cursor: pointer;
+
+  ${ImgContainer}:hover & {
+    visibility: visible;
+  }
 `;
 
 export const AddOutfitBtn = styled.div`
@@ -59,11 +89,6 @@ export const OutfitButton = styled.button`
   }
 `;
 
-export const StyledStarBtn = styled.div`
-  position: absolute;
-  left: 80%;
-  top: 3%;
-`;
 
 export const Star = styled.span`
   display: inline-block;

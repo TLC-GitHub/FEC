@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '@testing-library/jest-dom';
-import RelatedProducts from '../Components/RelatedProducts.jsx'
-import RelatedProdSlider from '../Components/RelatedProdSlider.jsx';
-import ProductCard from '../Components/ProductCard.jsx';
 import {render, fireEvent, cleanup, screen} from '@testing-library/react';
+import App from '../../App.jsx'
+import RelatedProdSlider from '../Components/RelatedProducts/RelatedProdSlider.jsx';
+import ProductCard from '../Components/RelatedProducts/ProductCard.jsx';
 
 
 describe('Product Card', () => {
@@ -17,8 +17,13 @@ describe('Product Card', () => {
 
 describe('Related Products', () => {
   test('renders Related Products component', () => {
-    render(<RelatedProductsFetch>
+    render(<App >
              <RelatedProdSlider />
-           </RelatedProductsFetch>);
+           </App>);
+
   });
 });
+
+describe('Outfit button', () => {
+  test('calls the onClick ')
+})

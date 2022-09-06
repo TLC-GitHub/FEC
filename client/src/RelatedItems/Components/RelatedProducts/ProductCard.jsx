@@ -1,8 +1,9 @@
 import React, { useState }from 'react';
-import { CardContainer, ImgContainer, StyledStarBtn, Star } from "../Styles.jsx";
+import { CardContainer, ImgContainer, ImageStyled, StyledStarBtn, Star, ImageOverlay, OverlayText } from "../Styles.jsx";
 import NoPhotoImg from "../../images/imgComingSoon.png";
 import ComparisonModal from "../Comparison/ComparisonModal.jsx";
-import useModal from "./useModal.jsx";
+import useModal from "../Comparison/useModal.jsx";
+import ImageSlider from "./ImageSlider.jsx";
 
 const ProductCard = ({ id, image, category, name, original_price, sale_price, ratings, features, styles, curProduct, curStyle, selectFromRelated }) => {
 
@@ -25,15 +26,22 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
     <CardContainer>
       <ImgContainer>
         {image !== null ?
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}}
-            src={image} alt="apiImg"
-            id={id} onClick={handleProductClick}
+          <ImageStyled
+          src={image} alt="apiImg"
+          id={id} onClick={handleProductClick}
           /> :
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}}
-            src={require("../../images/imgComingSoon.png")} alt="noImg"
-            id={id} onClick={handleProductClick}
+          <ImageStyled
+          src={require("../../images/imgComingSoon.png")} alt="noImg"
+          id={id} onClick={handleProductClick}
           />
         }
+        <ImageOverlay>
+          <ImageSlider styles={styles}>
+
+          </ImageSlider>
+            Hello
+        </ImageOverlay>
+
         <StyledStarBtn>
           <button type="button" value={id} onClick={handleIconClick}
             style={{border: "none", fontSize: "1.5rem", cursor: "pointer", backgroundColor: "rgba(0,0,0,0)", color: "#7F8487"}}
