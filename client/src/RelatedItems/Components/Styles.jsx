@@ -11,13 +11,14 @@ import styled from "styled-components";
 export const StyledSlider = styled.div`
   position: relative;
   display: flex;
+  height: 320px;
 `;
 
 export const InnerSlider = styled.div`
   display: flex;
   gap: 14px;
   width: 100%;
-  height: 320px;
+  height: 100%;
 `;
 
 export const StyledInactiveItems = styled.div`
@@ -45,6 +46,23 @@ export const ImgContainer = styled.div`
   height: 70%;
 `;
 
+export const AddOutfitBtn = styled.div`
+  width: 253px;
+  height: 320px;
+  cursor: pointer;
+  border: 1px solid #A2B5BB;
+`;
+
+export const OutfitButton = styled.button`
+  width: 248.1px;
+  height: 100%;
+  margin-left: 0px;
+  padding: 0px;
+  cursor: pointer;
+  border: 1px solid #A2B5BB;
+  background-color: white;
+`;
+
 export const StyledStarBtn = styled.div`
   position: absolute;
   left: 70%;
@@ -69,7 +87,25 @@ export const Table = styled.table`
 const tableDataStyles = [`
   border-bottom: 1px solid #ddd;
   text-align: center;
+  padding: 1rem 0rem;
 `];
 
 export const StyledHead = styled.th(tableDataStyles);
 export const StyledCell = styled.td(tableDataStyles);
+
+export const Star = styled.span`
+  display: inline-block;
+  position: relative;
+  font-size: 1.2rem;
+  color: #ddd;
+
+  &:after {
+    content: "\\2605\\2605\\2605\\2605\\2605";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: ${(props) => props.percentage};
+    overflow: hidden;
+    color: #f80;
+  }
+`;

@@ -1,77 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import ComparisonTable from './ComparisonTable.jsx';
-import Auth from '../../../../config.js';
+// import React, { useState, useEffect } from 'react';
+// import ComparisonTable from './ComparisonTable.jsx';
+// import Auth from '../../../../config.js';
 
-const axios = require('axios');
-// const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/';
+// const axios = require('axios');
+// // const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/';
 
-const ComparisonFetch = ({productID, targetID}) => {
-  const [curProduct, setCurProduct] = useState({ features: [], styles: [] });
-  const [comProduct, setComProduct] = useState({ features: [], styles: [] });
+// const ComparisonFetch = ({ curProduct, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings }) => {
+//   const [targetFeatures, setTargetFeatures] = useState([]);
+//   const [targetStyles, setTargetStyles] = useState([]);
 
-  useEffect(() => {
+//   useEffect(() => {
+//     let requestBody = {
+//       widget: 'products',
+//       pathVariable: targetID
+//     }
+//     axios.get('/get', {params: requestBody})
+//       .then((result) => {
+//         setTargetFeatures(result.data.features)
+//       })
+//       .catch((err) => {
+//         console.log("Comparison data fetch error (features): ", err);
+//       })
 
-    async function fetchData() {
-      let currentProduct = { id: productID }
-      // info needed: name, category, default_price, sale_price, list of styles, available sizes, feature
-      let requestBody = {
-        widget: 'products',
-        pathVariable: productID
-      }
-      axios.get('/get', {params: requestBody})
-        .then((result) => {
-            currentProduct.category = result.data.category,
-            currentProduct.name = result.data.name,
-            currentProduct.features = result.data.features                //array
-        })
-        .then(() => {
-          let requestBody = {
-            widget: 'products',
-            pathVariable: productID,
-            subCategory: 'styles'
-          }
-         return axios.get('/get', {params: requestBody})
-          .then((styles) => {
-            currentProduct.styles = styles.data.results            // array (sizes, colors, phhotos)
-            currentProduct.original_price = styles.data.results[0].original_price;
-            currentProduct.sale_price = styles.data.results[0].sale_price;
-          });
-        })
-        .then(() => {
-          let requestBody = {
-            widget: 'reviews/meta',
-            queryParams: {
-              product_id: productID
-            }
-          }
-          return axios.get('/get', {params: requestBody})
-            .then((reviews) => {
-              currentProduct.ratings = reviews.data.ratings;
-            });
-        })
-        .then(() => {
-          setCurProduct(() => ({
-            id: currentProduct.id,
-            name: currentProduct.name,
-            category: currentProduct.category,
-            features: [...currentProduct.features],
-            styles: [...currentProduct.styles],
-            original_price: currentProduct.original_price,
-            sale_price: currentProduct.sale_price,
-            ratings: currentProduct.ratings
-          }))
-        })
-        .catch((err) => {
-          console.log("comparison data fetch error: ");
-          console.log(err);
-        });
-    }
-    fetchData();
-  }, [])
+//     let requestBodyForStyles = {
+//       widget: 'products',
+//       pathVariable: targetID,
+//       subCategory: 'styles'
+//     }
+//    axios.get('/get', {params: requestBodyForStyles})
+//     .then((styles) => {
+//       setTargetStyles(styles.data.results)
+//     })
+//     .catch((err) => {
+//       console.log("Comparison data fetch error (features): ", err);
+//     })
 
-  return (
-    <ComparisonTable curProduct={curProduct} comProduct={comProduct}/>
-  )
-}
+//   }, [])
 
-export default ComparisonFetch;
+//   return (
+//     <ComparisonTable
+//       curProduct={curProduct}
+//       targetCategory={targetCategory}
+//       targetName={targetName}
+//       targetOriginal_price={targetOriginal_price}
+//       targetSale_price={targetSale_price}
+//       targetRatings={targetRatings}
+//       targetFeatures={targetFeatures}
+//       targetStyles={targetStyles}
+//     />
+//   )
+// }
+
+// export default ComparisonFetch;
