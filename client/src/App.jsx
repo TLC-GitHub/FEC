@@ -1,5 +1,5 @@
 import React from 'react';
-import RelatedProducts from './RelatedItems/Components/RelatedProducts.jsx';
+import RelatedProductsFetch from './RelatedItems/Components/RelatedProductsFetch.jsx';
 import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import MyOutfit from './RelatedItems/Components/MyOutfit.jsx';
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
@@ -14,7 +14,7 @@ function App() {
       </div>
       <div>
         <h3>YOU MAY ALSO LIKE</h3>
-        <RelatedProducts />
+        <RelatedProductsFetch />
       </div>
       <div>
         <h3>MY OUTFITS</h3>
