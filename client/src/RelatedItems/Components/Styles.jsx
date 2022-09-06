@@ -44,7 +44,7 @@ export const ImageStyled = styled.img`
   object-fit: cover;
 
   ${ImgContainer}:hover & {
-    opacity: 0.3;
+    opacity: 0.8;
   }
 `;
 
@@ -69,6 +69,7 @@ export const ImageOverlay = styled.div`
 
   ${ImgContainer}:hover & {
     visibility: visible;
+    opacity: 0.8;
   }
 `;
 

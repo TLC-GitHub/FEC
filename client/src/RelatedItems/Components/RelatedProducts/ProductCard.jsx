@@ -12,19 +12,19 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
   const {showModal, toggle} = useModal();
 
   const handleIconClick = (e) => {
-    console.log('compare icon was clicked: ', e.target.value)
     setTarget(e.target.value);
     toggle();
   }
 
   const handleProductClick = (e) => {
     console.log('what is being clicked: ', e.target)
-    console.log('product card was clicked: ', e.target.id);
     selectFromRelated(e.target.id);
   }
 
-  const changeOfImage = (e) => {
-    setDisplayImg(e);
+  const changeOfImage = (value) => {
+    setDisplayImg((preValue) => {
+      return value;
+    });
   }
 
   return (
@@ -32,8 +32,7 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
       <ImgContainer>
         {image !== null ?
           <ImageStyled
-            src={displayImg}
-            src={image} alt="apiImg"
+            src={displayImg} alt="apiImg"
             id={id} onClick={handleProductClick}
           /> :
           <ImageStyled
@@ -42,7 +41,7 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
           />
         }
         <ImageOverlay>
-          <ImageSlider id={id}
+          <ImageSlider
             photos={photos}
             changeOfImage={changeOfImage}
           >

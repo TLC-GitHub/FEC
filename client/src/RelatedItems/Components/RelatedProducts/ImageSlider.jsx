@@ -36,7 +36,6 @@ function ImageSlider({ id, photos, changeOfImage }) {
   };
 
   const selectImage = (e) => {
-    console.log(e.target.src);
     changeOfImage(e.target.src);
   }
 
