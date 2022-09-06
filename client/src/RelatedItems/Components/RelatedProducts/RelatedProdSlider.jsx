@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
@@ -8,8 +8,21 @@ function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelate
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);
     const [leftDisplay, setLeftDisplay] = useState('none');
-    const [rightDisplay, setRightDisplay] = useState('');
-    const length = Object.keys(relatedProd).length;
+    const [rightDisplay, setRightDisplay] = useState('none');
+    let length = relatedProd.length;
+
+    useEffect (() => {
+      length = relatedProd.length;
+      setStart(0);
+      setEnd(4);
+      setLeftDisplay('none');
+
+      if(length > 5) {
+        setRightDisplay('');
+      } else {
+        setRightDisplay('none');
+      }
+    }, [relatedProd])
 
     const nextSlide = () => {
       if (end + 1 <= length - 1) {
@@ -40,7 +53,7 @@ function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelate
       </StyledArrow>
 
       <InnerSlider>
-        {relatedProd.map(({ id, image, category, name, original_price, sale_price, ratings, features, styles }, n) => {
+        {relatedProd.map(({ id, image, category, name, original_price, sale_price, ratings, features, styles, photos }, n) => {
           if (n < start || n > end) {
             return (
               <StyledInactiveItems key={id}>
@@ -54,6 +67,7 @@ function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelate
                   ratings={ratings}
                   features={features}
                   styles={styles}
+                  photos={photos}
                   curProduct={curProduct}
                   curStyle={curStyle}
                   selectFromRelated={selectFromRelated}
@@ -73,6 +87,7 @@ function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelate
               ratings={ratings}
               features={features}
               styles={styles}
+              photos={photos}
               curProduct={curProduct}
               curStyle={curStyle}
               selectFromRelated={selectFromRelated}
