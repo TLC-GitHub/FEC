@@ -110,7 +110,6 @@ function AnswerModal({questionID, toggle}) {
         <input type="submit" value="submit answer"/>
       </form>
     </div>
-
   )
 }
 
