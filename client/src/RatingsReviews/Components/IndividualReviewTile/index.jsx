@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Moment from 'moment';
 import  { Tile, User, U, Img, Response, Star } from '../styles.jsx';
-import Modal from './Modal.jsx';
-import useModal from './useModal.jsx';
+// import Modal from './Modal.jsx';
+// import useModal from './useModal.jsx';
 import Images from './Images.jsx'
 
 
@@ -40,9 +40,6 @@ function IndividualReviewTile ({ body, date, helpfulness, photos, rating, recomm
           <U onClick={() => setWholeBody(!wholeBody)}>Show Less</U>
         </div>}
       </div>
-
-
-
 
       <div>{recommend ? <b>&#10003; &nbsp;{' I recommend this product'}
 </b> : null}</div>

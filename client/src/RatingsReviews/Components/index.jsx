@@ -13,20 +13,21 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
 
 //porduct sample: 65651
+//product sample: 65647
 
 
 function RatingsAndReviews () {
   const [reviews, setReviews] = useState();
 
   useEffect(() => {
-    axios.get(`${API_URL}/reviews?product_id=65651&sort=newest&count=200`, {
+    axios.get(`${API_URL}/reviews?product_id=65651&sort=relevant&count=200`, {
       headers: Auth
     })
       .then((response) => {
         setReviews(response.data.results)
       })
       .catch((err) => {
-        console.log(err)
+        console.log('RATING AND REVIEWS', err)
       })
 
 
@@ -37,7 +38,7 @@ function RatingsAndReviews () {
     <div>
       {/* <h2>Ratings and Reviews</h2> */}
       <div>
-        {reviews ? <ReviewList allReviews={reviews} /> : '🗿'}
+        {reviews ? <ReviewList allReviews={reviews} /> : 'There was an error lol🗿'}
       </div>
 
 
