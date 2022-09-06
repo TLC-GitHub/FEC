@@ -21,37 +21,49 @@ function RatingsAndReviews () {
   const [allReviews, setAllReviews] = useState();
   const [metaData, setMetaData] = useState();
 
-  var [toggleFive, setToggleFive] = useState(false);
-  var [toggleFour, setToggleFour] = useState(false);
-  var [toggleThree, setToggleThree] = useState(false);
-  var [toggleTwo, setToggleTwo] = useState(false);
-  var [toggleOne, setToggleOne] = useState(false);
+  var [ratingSort, setRatingSort] = useState([]);
+  var [sortedList, setSortedList] = useState([]);
+  var [tracker, setTracker] = useState([]);
+
 
   useEffect(() => {
     axios.get(`${API_URL}/reviews?product_id=65651&sort=relevant&count=200`, {
       headers: Auth
     })
-      .then((response) => {
-        setAllReviews(response.data.results)
-      })
-      .catch((err) => {
-        console.log('RATING AND REVIEWS', err)
-      })
-      axios.get(`${API_URL}/reviews/meta?product_id=65651`, {
-        headers: Auth
-      })
-        .then((response) => {
-          setMetaData(response.data)
+      .then((reviews) => {
+
+        // console.log('ELO', reviews.data.results)
+        axios.get(`${API_URL}/reviews/meta?product_id=65651`, {
+          headers: Auth
         })
+          .then((meta) => {
+            setMetaData(meta.data)
+            setAllReviews(reviews.data.results)
+          })
+          .catch((err) => console.log('Error Meta', err))
+      })
+      .catch((err) => console.log('Error Reviews', err))
 
     // Add product ID into second param so that it changes each time you change product ID
   }, [])
 
 
+  var filterSort = (value) => {
 
-  var filterSort = () => {
-    //AYO LOL
-  }
+    if (tracker.includes(value)) {
+      var indexTracker = tracker.indexOf(value)
+
+      tracker.splice(indexTracker, 1);
+      var filteredArr = allReviews.filter(element => tracker.includes(element.rating))
+
+    } else {
+      tracker.push(value)
+      var filteredArr = allReviews.filter(element => tracker.includes(element.rating))
+
+    }
+      setRatingSort(filteredArr);
+    }
+
 
   return (
     <div>
@@ -60,10 +72,16 @@ function RatingsAndReviews () {
         {allReviews && metaData ?
           <RatingsWithReviews>
             <RatingsStyle>
-              <Breakdown metaData={metaData} filterSort={filterSort}/>
+              <Breakdown
+                metaData={metaData}
+                filterSort={filterSort}/>
             </RatingsStyle>
             <ReviewStyle>
-              <ReviewList allReviews={allReviews} />
+              {!tracker.length  &&  <ReviewList allReviews={allReviews}/>}
+              {tracker.length  &&  <ReviewList allReviews={ratingSort}/>}
+
+
+
             </ReviewStyle>
           </RatingsWithReviews> :
           <div>
@@ -103,3 +121,10 @@ const RatingsStyle = styled.div`
 const ReviewStyle = styled.div`
   margin: 0em 3em 0em .25em
 `;
+
+// toggleFive={toggleFive}
+// toggleFour={toggleFour}
+// toggleThree={toggleThree}
+// toggleTwo={toggleTwo}
+// toggleOne={toggleOne}
+

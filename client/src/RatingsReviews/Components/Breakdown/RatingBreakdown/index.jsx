@@ -6,6 +6,12 @@ import styled from 'styled-components';
 
 
 function RatingBreakdown({ ratings, recommended, filterSort }) {
+  var [fiveToggle, setFiveToggle] = useState(false)
+  var [fourToggle, setFourToggle] = useState(false)
+  var [threeToggle, setThreeToggle] = useState(false)
+  var [twoToggle, setTwoToggle] = useState(false)
+  var [oneToggle, setOneToggle] = useState(false)
+
   var recAverage = Math.round((Number(recommended.true) / (Number(recommended.true) + Number(recommended.false))) * 100);
 
   var totalRating = 0;
@@ -47,11 +53,26 @@ function RatingBreakdown({ ratings, recommended, filterSort }) {
   var twoBar = `${Math.round((totalTwo/totalEach)*100)}%`
   var oneBar = `${Math.round((totalOne/totalEach)*100)}%`
 
+  var handleColor = (value) => {
+    filterSort(value)
+
+    if (value === 5) {
+      setFiveToggle(!fiveToggle)
+    } else if (value === 4) {
+      setFourToggle(!fourToggle)
+    } else if (value === 3) {
+      setThreeToggle(!threeToggle);
+    } else if (value === 2) {
+      setTwoToggle(!twoToggle);
+    } else if (value === 1) {
+      setOneToggle(!oneToggle);
+    }
+  }
 
 
   return(
     <div>
-      {console.log('RATING BREAK', filterSort)}
+      {/* {console.log('RATING BREAK', filterSort)} */}
       <StarAverage>
         <Rating>
           {starAve}
@@ -63,40 +84,46 @@ function RatingBreakdown({ ratings, recommended, filterSort }) {
       </h3>
       <div>
         <StarRating>
-          <BarSpace>
-            5 star
+          <BarSpace onClick={() => handleColor(5)}>
+            {!fiveToggle && <BarSpace>5 star</BarSpace>}
+            {fiveToggle && <BarSpaceClicked>5 star</BarSpaceClicked>}
+            {/* {console.log(fiveToggle)} */}
           </BarSpace>
           <BarRate>
             <FiveStar rating={fiveBar}></FiveStar>
           </BarRate>
         </StarRating>
         <StarRating>
-          <BarSpace>
-            4 star
+          <BarSpace onClick={() => handleColor(4)}>
+            {!fourToggle && <BarSpace>4 star</BarSpace>}
+            {fourToggle && <BarSpaceClicked>4 star</BarSpaceClicked>}
           </BarSpace>
           <BarRate>
             <FourStar rating={fourBar}></FourStar>
           </BarRate>
         </StarRating>
         <StarRating>
-          <BarSpace>
-            3 star
+          <BarSpace onClick={() => handleColor(3)}>
+            {!threeToggle && <BarSpace>3 star</BarSpace>}
+            {threeToggle && <BarSpaceClicked>3 star</BarSpaceClicked>}
           </BarSpace>
           <BarRate>
             <ThreeStar rating={threeBar}></ThreeStar>
           </BarRate>
         </StarRating>
         <StarRating>
-          <BarSpace>
-            2 star
+          <BarSpace onClick={() => handleColor(2)}>
+            {!twoToggle && <BarSpace>2 star</BarSpace>}
+            {twoToggle && <BarSpaceClicked>2 star</BarSpaceClicked>}
           </BarSpace>
           <BarRate>
             <TwoStar rating={twoBar}></TwoStar>
           </BarRate>
         </StarRating>
         <StarRating>
-          <BarSpace>
-            1 star
+          <BarSpace onClick={() => handleColor(1)}>
+            {!oneToggle && <BarSpace>1 star</BarSpace>}
+            {oneToggle && <BarSpaceClicked>1 star</BarSpaceClicked>}
           </BarSpace>
           <BarRate>
             <OneStar rating={oneBar}></OneStar>
@@ -118,8 +145,8 @@ const BarRate = styled.span`
   border-color: #ddd;
   background-color: #ddd;
   border-radius: 15px;
-  width: 80%;
-  margin: 0.3em 0em 0em 0em;
+  width: 70%;
+  margin: 0.3em 0em 0em -.8em;
 `;
 
 const FiveStar = styled.div`
@@ -131,8 +158,10 @@ const FiveStar = styled.div`
   background-color: #1A1A1A;
   border-radius: 15px;
   width: ${props => props.rating};
-  margin-top: -.09em;
-  margin-left: -.09em
+  margin-top: -.2em; // on monitor
+  margin-left: -.2em; // on monitor
+  // margin-top: -.09em; // on laptop
+  // margin-left: -.09em; // on laptop
 `;
 
 const FourStar = styled.div`
@@ -144,8 +173,10 @@ const FourStar = styled.div`
   background-color: #1A1A1A;
   border-radius: 15px;
   width: ${props => props.rating};
-  margin-top: -.09em;
-  margin-left: -.09em
+  margin-top: -.2em; // on monitor
+  margin-left: -.2em; // on monitor
+  // margin-top: -.09em; // on laptop
+  // margin-left: -.09em; // on laptop
 `;
 
 const ThreeStar = styled.div`
@@ -157,8 +188,10 @@ const ThreeStar = styled.div`
   background-color: #1A1A1A;
   border-radius: 15px;
   width: ${props => props.rating};
-  margin-top: -.09em;
-  margin-left: -.09em
+  margin-top: -.2em; // on monitor
+  margin-left: -.2em; // on monitor
+  // margin-top: -.09em; // on laptop
+  // margin-left: -.09em; // on laptop
 `;
 
 const TwoStar = styled.div`
@@ -170,8 +203,10 @@ const TwoStar = styled.div`
   background-color: #1A1A1A;
   border-radius: 15px;
   width: ${props => props.rating};
-  margin-top: -.09em;
-  margin-left: -.09em
+  margin-top: -.2em; // on monitor
+  margin-left: -.2em; // on monitor
+  // margin-top: -.09em; // on laptop
+  // margin-left: -.09em; // on laptop
 `;
 
 const OneStar = styled.div`
@@ -183,8 +218,10 @@ const OneStar = styled.div`
   background-color: #1A1A1A;
   border-radius: 15px;
   width: ${props => props.rating};
-  margin-top: -.09em;
-  margin-left: -.09em
+  margin-top: -.2em; // on monitor
+  margin-left: -.2em; // on monitor
+  // margin-top: -.09em; // on laptop
+  // margin-left: -.09em; // on laptop
 `;
 
 const StarAverage = styled.div`
@@ -196,6 +233,12 @@ const BarSpace = styled.u`
   margin: 0em 0.8em 0em 0em;
   cursor: pointer;
   color: #FF0080;
+`;
+
+const BarSpaceClicked = styled.u`
+  margin: 0em 0.8em 0em 0em;
+  cursor: pointer;
+  color: #330033;
 `;
 
 const StarRating = styled.div`
