@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
 export const VerticalImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 10rem;
+  height: 10rem;
+  bottom: 21rem;
+  left: 6.5rem;
   object-fit: cover;
+  z-index: 1;
+  position:absolute;
+  border: 3px solid black;
 
 `;
 
