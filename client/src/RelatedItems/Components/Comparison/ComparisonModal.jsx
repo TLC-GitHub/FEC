@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-// import { ModalOverlay, ModalWrapper, Modal, ModalHeader, ModalCloseBtn, Table, TableHead, StyledHead } from './ModalStyles.jsx'
 import { ModalOverlay, ModalWrapper, Modal, ModalHeader, ModalCloseBtn, Table, TableHead, StyledHead } from '../Styles.jsx'
 import ComparisonTable from './ComparisonTable.jsx';
 
