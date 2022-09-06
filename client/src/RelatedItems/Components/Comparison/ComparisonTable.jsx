@@ -1,9 +1,9 @@
 import React from 'react';
-import { Table, StyledHead, StyledCell } from './Styles.jsx';
+import { Table, StyledHead, StyledCell, Star } from '../Styles.jsx';
 
-const ComparisonTable = ({curProduct, comProduct}) => {
+const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => {
   const [curStyles, curFeatures, curValues] = [[], [], []];
-  //const [comStyles, comFeatures, comValues] = [[], [], []];
+  const [comStyles, comFeatures, comValues] = [[], [], []];
 
   const helper = (array, targetVal, resArray) => {
     return array.map((value) => {
@@ -13,10 +13,10 @@ const ComparisonTable = ({curProduct, comProduct}) => {
   helper(curProduct.styles, 'name', curStyles);
   helper(curProduct.features, 'feature', curFeatures);
   helper(curProduct.features, 'value', curValues);
+  helper(targetStyles, 'name', comStyles);
+  helper(targetFeatures, 'feature', comFeatures);
+  helper(targetFeatures, 'value', comValues);
 
-  // sample data... to be deleted
-  const comFeatures = ['Material', 'Mid-Sole', 'Stitching'];
-  const comValues = ['FullControlSkin', 'ControlSupport Arch Bridge', 'Single Stitch'];
   const duplicateIndex = [];
   const remainingIndex = [];
 
@@ -29,35 +29,38 @@ const ComparisonTable = ({curProduct, comProduct}) => {
         <tr>
           <StyledHead>{curProduct.name}</StyledHead>
           <StyledHead></StyledHead>
-          <StyledHead>{curProduct.name}</StyledHead>
+          <StyledHead>{targetName}</StyledHead>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <StyledCell>placeholder</StyledCell>
+          <StyledCell><Star percentage={((curProduct.ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></StyledCell>
           <StyledCell><strong>Reviews</strong></StyledCell>
-          <StyledCell>placeholder</StyledCell>
+          <StyledCell><Star percentage={((targetRatings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></StyledCell>
         </tr>
 
         <tr>
           <StyledCell>
-            { curProduct.sale_price === null ?
-              <span>${curProduct.original_price}</span> :
-              <div><span style={{color: "red"}}>${curProduct.sale_price}</span> <span><s>${curProduct.original_price}</s></span></div>
+            { curProduct.sale_price === undefined && curStyle.sale_price === null ?
+              <span>${curStyle.original_price}</span> :
+              <div>
+                <span style={{color: "red"}}>${curStyle.sale_price}</span>
+                <span><s>${curStyle.original_price}</s></span>
+              </div>
             }
           </StyledCell>
           <StyledCell><strong>Price</strong></StyledCell>
           <StyledCell>
-            { curProduct.sale_price === null ?
-              <span>${curProduct.original_price}</span> :
-              <div><span style={{color: "red"}}>${curProduct.sale_price}</span> <span><s>${curProduct.original_price}</s></span></div>
+            { targetSale_price === null ?
+              <span>${targetOriginal_price}</span> :
+              <div><span style={{color: "red"}}>${targetSale_price}</span> <span><s>${targetOriginal_price}</s></span></div>
             }
           </StyledCell>
         </tr>
         <tr>
           <StyledCell>{curProduct.category}</StyledCell>
           <StyledCell><strong>Category</strong></StyledCell>
-          <StyledCell>{curProduct.category}</StyledCell>
+          <StyledCell>{targetCategory}</StyledCell>
         </tr>
         <tr>
           <StyledCell>
@@ -67,7 +70,12 @@ const ComparisonTable = ({curProduct, comProduct}) => {
             }
           </StyledCell>
           <StyledCell><strong>Styles</strong></StyledCell>
-          <StyledCell>placeholder</StyledCell>
+          <StyledCell>
+            { comStyles.map((style) => (
+              <div key={style}>{style} </div>
+              ))
+            }
+          </StyledCell>
         </tr>
         <tr>
           <StyledCell></StyledCell>
