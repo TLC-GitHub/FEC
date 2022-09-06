@@ -4,15 +4,16 @@ import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider, OutfitButt
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
+  console.log("outfit slider: ", curProduct);
   // initial state for outfits will be deleted
-  const [outfits, setOutfits] = useState([
-    {id: 1, category: 'shirt', name: 'a shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.8, image: null},
-    {id: 2, category: 'hat', name: 'good hat', original_price: 29.99, sale_price: 19.99, ratings: 3.8, image: null},
-    {id: 3, category: 'shoes', name: 'a pair of nice shoes', original_price: 29.99, sale_price: 19.99, ratings: 2.8, image: null},
-    {id: 4, category: 'funny', name: 'a funny looking shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.2, image: null},
-    {id: 5, category: 'clothing', name: 'nice looking shirt', original_price: 89.99, sale_price: 19.99, ratings: 4.2, image: null}
-  ]);
-  // const [outfits, setOutfits] = useState([]);
+  // const [outfits, setOutfits] = useState([
+  //   {id: 1, category: 'shirt', name: 'a shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.8, image: null},
+  //   {id: 2, category: 'hat', name: 'good hat', original_price: 29.99, sale_price: 19.99, ratings: 3.8, image: null},
+  //   {id: 3, category: 'shoes', name: 'a pair of nice shoes', original_price: 29.99, sale_price: 19.99, ratings: 2.8, image: null},
+  //   {id: 4, category: 'funny', name: 'a funny looking shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.2, image: null},
+  //   {id: 5, category: 'clothing', name: 'nice looking shirt', original_price: 89.99, sale_price: 19.99, ratings: 4.2, image: null}
+  // ]);
+  const [outfits, setOutfits] = useState([]);
   const [first, setFirst] = useState(0);
   const [last, setLast] = useState(3);
   const [leftArrow, setLeftArrow] = useState('none');
@@ -48,6 +49,8 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
     });
     if (!alreadyAdded) {
       if (length + 1 > 4) { setRightArrow(''); }
+      curProduct = {...curProduct, photos: curStylePhoto, styles: curStyle}
+      console.log("adding photos and style: ", curProduct);
       setOutfits((outfits) => (
         [curProduct, ...outfits]
       ));
@@ -73,9 +76,6 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
         <FaChevronLeft className="" onClick={prevSlide} style={{display: leftArrow}}/>
       </StyledArrow>
 
-      {/* <AddOutfitBtn onClick={onButtonClick}>
-      &#10133; Add to Outfit
-      </AddOutfitBtn> */}
       <OutfitButton onClick={addOutfit}>
       &#10133; Add to Outfit
       </OutfitButton>
@@ -96,7 +96,7 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
                   curStyle={curStyle}
                   curStylePhoto={curStylePhoto}
                   removeOutfit={removeOutfit}
-                  />
+                />
               </StyledInactiveItems>
             )
           } else {

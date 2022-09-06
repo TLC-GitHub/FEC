@@ -42,6 +42,9 @@ function App() {
             style = styles.data.results[0];
             photos = style.photos;
             currentProduct.styles = styles.data.results;
+            currentProduct.image = styles.data.results[0].photo;
+            currentProduct.original_price = styles.data.results[0].original_price;
+            currentProduct.sale_price = styles.data.results[0].sale_price;
           })
           .then(() => {
             let requestBodyForReviews = {
@@ -69,6 +72,9 @@ function App() {
                   category: currentProduct.category,
                   features: [...currentProduct.features],
                   styles: [...currentProduct.styles],
+                  image: currentProduct.image,
+                  original_price: currentProduct.original_price,
+                  sale_price: currentProduct.sale_price,
                   default_price: currentProduct.default_price,
                   ratings: currentProduct.ratings
                 }));
