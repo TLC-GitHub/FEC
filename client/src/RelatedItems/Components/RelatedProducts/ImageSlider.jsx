@@ -48,23 +48,25 @@ function ImageSlider({ id, photos, changeOfImage }) {
       </StyledArrow>
 
         {photos.map((photo, n) => {
-          if (n < firstImg || n > lastImg) {
-            return (
-              <StyledInactiveItems key={photo.thumbnail_url}>
+          if (photo.thumbnail_url !== null) {
+            if (n < firstImg || n > lastImg) {
+              return (
+                <StyledInactiveItems key={photo.thumbnail_url}>
                 <ImageSlide
                   src={photo.thumbnail_url}
                   onClick={selectImage}
-                />
+                  />
               </StyledInactiveItems>
             )
           } else {
             return (
               <ImageSlide
-                key={photo.thumbnail_url}
-                src={photo.thumbnail_url}
-                onClick={selectImage}
+              key={photo.thumbnail_url}
+              src={photo.thumbnail_url}
+              onClick={selectImage}
               />
-            )
+              )
+            }
           }
         })}
 

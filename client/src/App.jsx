@@ -17,7 +17,6 @@ function App() {
   // setProduct(randomID)
   // console.log('logging out the random product_id: ', randomID);
   useEffect(() => {
-    console.log("I should be here when something is clicked");
     let currentProduct = { id: productID };
     let style = {};
     let photos = [];
@@ -85,7 +84,7 @@ function App() {
   }, [productID]);
 
   const selectFromRelated = (value) => {
-    console.log('i got clicked. New product ID is: ', value);
+    // console.log('i got clicked. New product ID is: ', value);
     setProductID(value);
   }
 

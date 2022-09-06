@@ -4,7 +4,6 @@ import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider } from "../
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelated }) {
-    console.log('related products in slider: ', relatedProd)
 
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);
