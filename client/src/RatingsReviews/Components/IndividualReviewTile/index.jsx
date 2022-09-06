@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Moment from 'moment';
 import  { Tile, User, U, Img, Response, Star } from '../styles.jsx';
-import Modal from './Modal.jsx';
-import useModal from './useModal.jsx';
+// import Modal from './Modal.jsx';
+// import useModal from './useModal.jsx';
 import Images from './Images.jsx'
 
 
@@ -13,9 +13,8 @@ function IndividualReviewTile ({ body, date, helpfulness, photos, rating, recomm
 
   let time = Moment(date).format("MMMM D, YYYY");
 
-  // create a function to update the helpfullness into the database
+  // create a axios put to update the helpfullness into the database
 
-  // Modal for pictures
 
   return(
     <Tile>
@@ -26,7 +25,7 @@ function IndividualReviewTile ({ body, date, helpfulness, photos, rating, recomm
       </div>
       <h2>
         {summary.length <= 60 ? <div>{summary}</div> :
-        <div>{summary.split('').slice(0,60).join('')}...</div>
+          <div>{summary.split('').slice(0,60).join('')}...</div>
         }
       </h2>
 
@@ -41,11 +40,7 @@ function IndividualReviewTile ({ body, date, helpfulness, photos, rating, recomm
         </div>}
       </div>
 
-
-
-
-      <div>{recommend ? <b>&#10003; &nbsp;{' I recommend this product'}
-</b> : null}</div>
+      <div>{recommend ? <b>&#10003; &nbsp;{' I recommend this product'}</b> : null}</div>
 
       <div>
         {response ? <Response><b>Response from seller: </b><div>{response}</div></Response> : null}
