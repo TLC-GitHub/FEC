@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-
-
-
-
+import {ModalContainer, Form, ExitFormButton} from '.././styles.jsx'
 
 
 
@@ -83,7 +80,7 @@ function QuestionModal({productID, toggle}) {
 
 
   return (
-      <div className="modal-container">
+      <ModalContainer>
       <button className="exit-button" onClick={toggle}> X </button>
       <form className="form" onSubmit={sendQuestion}>
         <button className="exit-button" onClick={toggle}> X </button>
@@ -108,7 +105,7 @@ function QuestionModal({productID, toggle}) {
           : null}
         <input type="submit" value="submit question"/>
       </form>
-    </div>
+    </ModalContainer>
   )
 }
 

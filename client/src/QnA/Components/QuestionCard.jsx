@@ -4,7 +4,7 @@ import AnswerModule from './AnswerModule.jsx';
 import axios from 'axios';
 import AnswerModal from './Modals/AnswerModal.jsx';
 import styled from 'styled-components';
-import {Button, Wrapper, QuestionCardContainer, QuestionBody} from './styles.jsx';
+import {Button, QuestionInfo, QuestionCardContainer, QuestionBody} from './styles.jsx';
 
 
 function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
@@ -74,17 +74,16 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
     return (
     <QuestionCardContainer>
       <QuestionBody> Q: {question.question_body} </QuestionBody>
-        <Wrapper>
+      <QuestionInfo>
           <div> Helpful? </div>
-          <Button onClick={handleHelpfulness}> <u> Yes </u> </Button>
-          <div>({helpfulCount})</div>
+          <Button onClick={handleHelpfulness}> <u> Yes  </u> ({helpfulCount}) </Button>
           <Button onClick={toggleAnswerModal}> <u>Add Answer</u> </Button>
           <Button onClick = {handleReport}> <u>
             {reportStatusQ
               ? 'Reported'
               : 'Report Question'} </u>
           </Button>
-        </Wrapper>
+        </QuestionInfo>
       <AnswerModule questionID={question.question_id} />
     </QuestionCardContainer>
   )

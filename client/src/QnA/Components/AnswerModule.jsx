@@ -69,14 +69,14 @@ function AnswerModule({questionID}) {
       {answers.slice(0, answerCount).map(answer => {
       return <AnswerCard answer={answer} key={answer.answer_id}/>
       })}
-      <Wrapper className="answer-buttons">
+      <div className="answer-buttons">
         {answers.length <= 2
           ? null
           : answerCount < answers.length
           ? <Button onClick={addMoreAnswers}> <b>Load More Answers</b> </Button>
           : <Button onClick={resetAnswers}> <b>Hide Answers</b> </Button>
         }
-      </Wrapper>
+      </div>
     </AnswerContainer>
     )
 }

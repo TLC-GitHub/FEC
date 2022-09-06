@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import styled from 'styled-components';
-import {Button, Wrapper, AnswerCardContainer, Answer, AnswerInfo, AnswerStatus, ImageWrapper, Images} from './styles.jsx';
+import {Button, AnswerDetails, AnswerCardContainer, Answer, AnswerInfo, AnswerStatus, ImageWrapper, Images} from './styles.jsx';
 
 function AnswerCard({answer, setHelpfulCount}) {
   console.log(answer, 'answer');
@@ -71,13 +71,14 @@ function AnswerCard({answer, setHelpfulCount}) {
           : null
         }
       </ImageWrapper>
-      <Wrapper>
-        <AnswerInfo> by
+        <AnswerInfo>
+          <AnswerDetails>
+             by
           {answer.answerer_name.toLowerCase() === 'seller'
             ? <b> {answer.answerer_name} </b>
             : answer.answerer_name}, {date}
-        </AnswerInfo>
-        <AnswerStatus>
+          </AnswerDetails>
+          <AnswerStatus>
             <Button onClick={handleAnswerReport}>
               <u>
                 {!reportStatus
@@ -86,11 +87,10 @@ function AnswerCard({answer, setHelpfulCount}) {
                 }
               </u>
             </Button>
-            | ({helpfulCountA}) |
-            <Button onClick={handleAnswerHelpful}><u> Yes </u></Button>
-            Helpful? |
-        </AnswerStatus>
-      </Wrapper>
+            <Button onClick={handleAnswerHelpful}><u> Yes </u> ({helpfulCountA}) </Button>
+            Helpful?
+          </AnswerStatus>
+        </AnswerInfo>
     </AnswerCardContainer>
   )
 }

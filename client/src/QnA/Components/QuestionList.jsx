@@ -4,7 +4,7 @@ import SearchBar from './SearchBar.jsx';
 import axios from 'axios';
 import QuestionModal from './Modals/QuestionModal.jsx';
 import styled from "styled-components";
-import {QuestionContainer, BigButton, Wrapper} from './styles.jsx';
+import {QuestionContainer, BigButton } from './styles.jsx';
 
 
 
@@ -90,7 +90,6 @@ function QuestionList() {
           {filteredQ.slice(0, questionCount).map(question => {
             return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
           })}
-        <Wrapper>
           {filteredQ.length < 1
         ? null
         : questionCount >= filteredQ.length
@@ -100,7 +99,6 @@ function QuestionList() {
         ? <BigButton onClick={toggleQuestionModal}> <b>ADD A QUESTION</b></BigButton>
         : <QuestionModal productID={65656} toggle={toggleQuestionModal}/>
         }
-        </Wrapper>
       </QuestionContainer>
   )
 }
