@@ -31,7 +31,6 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
       requestBody.subCategory = 'helpful';
       return axios.put('/put', requestBody)
         .then((success) => {
-          console.log(answers)
           console.log('successfully voted');
           incrementHelpful();
         })
@@ -47,7 +46,6 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
       requestBody.subCategory = 'report'
       return axios.put('/put', requestBody)
       .then((success) => {
-
         setReportStatusQ(!reportStatusQ);
         console.log('successfully reported');
       })

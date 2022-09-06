@@ -40,7 +40,6 @@ function AnswerModule({questionID}) {
   }
 
   const getAnswers = () => {
-    console.log(questionID, 'questionID')
     return axios.get('/get', {
       params: requestBodyGet
     })

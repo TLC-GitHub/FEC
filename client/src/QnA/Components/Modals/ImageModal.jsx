@@ -10,7 +10,6 @@ function ImageModal({setImageModal, setState, photos, showImageModal}) {
   useEffect(() => {
     if (currentFiles.length === 5) {
       setMaxFiles(true);
-    console.log(currentFiles, 'current files in effect hook');
     }
   }, [currentFiles])
 
@@ -18,7 +17,6 @@ function ImageModal({setImageModal, setState, photos, showImageModal}) {
   const handleChange = (e) => {
     let selectedFile = e.target.files[0];
     var imgSrc = URL.createObjectURL(e.target.files[0]);
-    console.log(currentFiles, 'currentFiles');
     if (!maxFiles) {
         setCurrentFiles([...currentFiles, imgSrc]);
         setState(prev => ({

@@ -17,8 +17,6 @@ function QuestionModal({productID, toggle}) {
   const [errEmail, setErrEmail] = useState(false);
 
   useEffect(() => {
-    console.log(errName, errEmail, errBody)
-
   }, [state])
 
   const isValidEmail = (email) => {
