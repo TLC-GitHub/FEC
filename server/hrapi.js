@@ -6,6 +6,13 @@ let apiLink = "";
 module.exports = {
 
   getInfo: function (widget, queryParams, pathVariable, subCategory='') {
+<<<<<<< HEAD
+=======
+    // console.log('params: ', queryParams);
+    // console.log(typeof queryParams);
+    // console.log()
+    // if (typeof queryParams === 'object') {
+>>>>>>> main
     if (pathVariable === '') {
       const params = new url.URLSearchParams(queryParams);
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
@@ -13,7 +20,7 @@ module.exports = {
     } else {
       // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${pathVariable}/${subCategory}`;
-      console.log('else api: ', apiLink);
+      // console.log('else api: ', apiLink);
     }
     let options = {
       url: apiLink,
@@ -39,6 +46,7 @@ module.exports = {
         'Authorization': process.env.API_TOKEN
       }
     };
+    // console.log(options, 'this is options')
     return axios(options);
   },
 
@@ -46,11 +54,11 @@ module.exports = {
     if (pathVariable === '') {
       const params = new url.URLSearchParams(queryParams);
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
-      console.log('api: ', apiLink);
+      // console.log('api: ', apiLink);
     } else {
       // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${pathVariable}/${subCategory}`;
-      console.log('else api: ', apiLink);
+      // console.log('else api: ', apiLink);
     }
     let options = {
       url: apiLink,

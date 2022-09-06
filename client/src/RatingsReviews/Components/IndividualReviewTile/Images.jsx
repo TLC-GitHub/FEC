@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from './Modal.jsx';
 import useModal from './useModal.jsx';
 import  { Img } from '../styles.jsx';
+import styled from 'styled-components';
 
 const Images = ({ src, id }) => {
   const {showModal, toggle} = useModal();
@@ -11,13 +12,20 @@ const Images = ({ src, id }) => {
       <Modal
         showModal={showModal}
         hide={toggle}
-        img={<div>
-
-          <Img src={src} key={id} onClick={toggle}/>
-        </div>}
+        img={
+          <div>
+            <ModalImg src={src} key={id} onClick={toggle}/>
+          </div>
+        }
       />
     </b>
   )
 }
 
 export default Images;
+
+const ModalImg = styled.img`
+  width: 150%;
+  height: 150%;
+  border-radius: .5em;
+`;

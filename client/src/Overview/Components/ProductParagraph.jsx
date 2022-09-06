@@ -7,16 +7,16 @@ const Bar = styled.div`
   background-color: black;
 `;
 
-const ProductParagraph = () => {
+const ProductParagraph = (props) => {
   const [paragraph, setParagraph] = useState('');
   const getParagraph = () => setParagraph(paragraph);
 
   return (
   <div>
     <p>
-      <b>You've got to wear shades</b>
+      <b>{props.slogan}</b>
       <br />
-      Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.
+      {props.paragraph}
     </p>
     <Bar></Bar>
   </div>
