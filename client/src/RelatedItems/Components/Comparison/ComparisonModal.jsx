@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { ModalOverlay, ModalWrapper, Modal, ModalHeader, ModalCloseBtn, Table, TableHead, StyledHead } from './ModalStyles.jsx'
-// import ProductCard from './ProductCard.jsx';
+// import { ModalOverlay, ModalWrapper, Modal, ModalHeader, ModalCloseBtn, Table, TableHead, StyledHead } from './ModalStyles.jsx'
+import { ModalOverlay, ModalWrapper, Modal, ModalHeader, ModalCloseBtn, Table, TableHead, StyledHead } from '../Styles.jsx'
 import ComparisonTable from './ComparisonTable.jsx';
-
-import './Modal.css';  // to be deleted
 
 const ComparisonModal = ({ showModal, hide, curProduct, curStyle, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => showModal ? ReactDOM.createPortal(
   <React.Fragment>
@@ -31,7 +29,6 @@ const ComparisonModal = ({ showModal, hide, curProduct, curStyle, targetID, targ
             <ComparisonTable
               targetID={targetID}
               targetCategory={targetCategory}
-              // targetName={targetName}
               targetOriginal_price={targetOriginal_price}
               targetSale_price={targetSale_price}
               targetRatings={targetRatings}
