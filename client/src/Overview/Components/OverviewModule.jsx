@@ -1,30 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Logo from './Logo.jsx';
-import Search from './Search.jsx';
 import Announcement from './Announcement.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import AddToCart from './AddToCart.jsx';
 import ProductOverview from './ProductOverview.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import './styles.css';
+
+
 
 const OverviewModule = () => {
   const [data, setData] = useState('');
   const getData = () => setData(data);
 
   return (
-    <div>
-      <div>
+  <div>
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+    <div className="overview">
+      <div className="logo">
         <Logo />
       </div>
-      <div>
-        <Search />
-      </div>
-      <div>
+      <div className="announcement">
         <Announcement />
-      </div>
-      <div>
-        <h1>Overview</h1>
       </div>
       <div>
         <ImageGallery />
@@ -39,10 +38,11 @@ const OverviewModule = () => {
         <ProductOverview />
       </div>
       <div>
-        <StyleSelector />
+        <StyleSelector/>
       </div>
 
     </div>
+  </div>
   );
 }
 
