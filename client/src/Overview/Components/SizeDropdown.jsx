@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const Display = styled.div `
-display: inline-block
+display: inline-block;
 `;
 
 const SizeDropdown = () => {

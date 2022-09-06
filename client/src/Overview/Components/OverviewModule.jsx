@@ -5,6 +5,8 @@ import Announcement from './Announcement.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import AddToCart from './AddToCart.jsx';
 import ProductOverview from './ProductOverview.jsx';
+import ProductInformation from './ProductInformation.jsx';
+import StyleSelector from './StyleSelector.jsx';
 
 const OverviewModule = () => {
   const [data, setData] = useState('');
@@ -31,8 +33,15 @@ const OverviewModule = () => {
         <AddToCart />
       </div>
       <div>
+        <ProductInformation />
+      </div>
+      <div>
         <ProductOverview />
       </div>
+      <div>
+        <StyleSelector />
+      </div>
+
     </div>
   );
 }
