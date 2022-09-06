@@ -4,7 +4,7 @@ import AnswerModule from './AnswerModule.jsx';
 import axios from 'axios';
 import AnswerModal from './Modals/AnswerModal.jsx';
 import styled from 'styled-components';
-import {Button, QuestionInfo, QuestionCardContainer, QuestionBody} from './styles.jsx';
+import {Button, QuestionInfo, QuestionCardContainer, QuestionBody, QuestionWrapper} from './styles.jsx';
 
 
 function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
@@ -31,6 +31,7 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
       requestBody.subCategory = 'helpful';
       return axios.put('/put', requestBody)
         .then((success) => {
+          console.log(answers)
           console.log('successfully voted');
           incrementHelpful();
         })
@@ -42,17 +43,18 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
   }
 
   const handleReport = () => {
-    requestBody.subCategory = 'report'
-    return axios.put('/put', requestBody)
-    .then((success) => {
+    if (!reportStatusQ) {
+      requestBody.subCategory = 'report'
+      return axios.put('/put', requestBody)
+      .then((success) => {
 
-      setReportStatusQ(true);
-      console.log('successfully reported');
-    })
-    .catch((err) => {
-      console.log('error, could not report');
-    })
-
+        setReportStatusQ(!reportStatusQ);
+        console.log('successfully reported');
+      })
+      .catch((err) => {
+        console.log('error, could not report');
+      })
+    }
   }
 
 
@@ -73,17 +75,18 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
 
     return (
     <QuestionCardContainer>
-      <QuestionBody> Q: {question.question_body} </QuestionBody>
-      <QuestionInfo>
-          <div> Helpful? </div>
-          <Button onClick={handleHelpfulness}> <u> Yes  </u> ({helpfulCount}) </Button>
-          <Button onClick={toggleAnswerModal}> <u>Add Answer</u> </Button>
-          <Button onClick = {handleReport}> <u>
-            {reportStatusQ
-              ? 'Reported'
-              : 'Report Question'} </u>
-          </Button>
-        </QuestionInfo>
+      <QuestionWrapper>
+        <QuestionBody> Q: {question.question_body} </QuestionBody>
+        <QuestionInfo>
+            <Button onClick={handleHelpfulness}> Helpful? <u> Yes  </u> ({helpfulCount}) </Button>
+            <Button onClick={toggleAnswerModal}> <u>Add Answer</u> </Button>
+            <Button onClick = {handleReport}> <u>
+              {reportStatusQ
+                ? 'Reported'
+                : 'Report Question'} </u>
+            </Button>
+          </QuestionInfo>
+        </QuestionWrapper>
       <AnswerModule questionID={question.question_id} />
     </QuestionCardContainer>
   )

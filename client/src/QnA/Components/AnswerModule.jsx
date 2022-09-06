@@ -40,10 +40,12 @@ function AnswerModule({questionID}) {
   }
 
   const getAnswers = () => {
+    console.log(questionID, 'questionID')
     return axios.get('/get', {
       params: requestBodyGet
     })
     .then((answers) => {
+      console.log(answers.data.results);
       let result = answers.data.results.sort((a, b) => {
         if (a.answerer_name.toLowerCase() === 'seller') {
           return -1
@@ -64,7 +66,7 @@ function AnswerModule({questionID}) {
     <AnswerContainer>
       {answers.length < 1
         ? null
-        : <h1> A: </h1>
+        : <b> A: </b>
       }
       {answers.slice(0, answerCount).map(answer => {
       return <AnswerCard answer={answer} key={answer.answer_id}/>

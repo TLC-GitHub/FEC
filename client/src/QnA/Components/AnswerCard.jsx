@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import {Button, AnswerDetails, AnswerCardContainer, Answer, AnswerInfo, AnswerStatus, ImageWrapper, Images} from './styles.jsx';
 
 function AnswerCard({answer, setHelpfulCount}) {
-  console.log(answer, 'answer');
   const [helpfulCountA, setHelpfulCountA] = useState(answer.helpfulness)
   const [helpfulClicked, setHelpfulClicked] = useState(false)
   const [reportStatus, setReportStatus] = useState(false)
@@ -42,21 +41,23 @@ function AnswerCard({answer, setHelpfulCount}) {
   }
 
   const handleAnswerReport = () => {
+    if (!reportStatus) {
+      let requestBody = {
+        widget: 'qa/answers',
+        pathVariable: answer.answer_id,
+        subCategory: 'report'
+      }
 
-    let requestBody = {
-      widget: 'qa/questions',
-      pathVariable: answer.answer_id,
-      subCategory: 'report'
+      return axios.put('/put', requestBody)
+        .then((success) => {
+          setReportStatus(!reportStatus);
+          console.log('successfully reported answer');
+          console.log(answer);
+        })
+        .catch((err) => {
+          console.log('error, could not report answer');
+        })
     }
-
-    return axios.put('/put', requestBody)
-      .then((success) => {
-        setReportStatus(true);
-        console.log('successfully reported answer');
-      })
-      .catch((err) => {
-        console.log('error, could not report answer');
-      })
   }
 
 
@@ -87,8 +88,7 @@ function AnswerCard({answer, setHelpfulCount}) {
                 }
               </u>
             </Button>
-            <Button onClick={handleAnswerHelpful}><u> Yes </u> ({helpfulCountA}) </Button>
-            Helpful?
+            <Button onClick={handleAnswerHelpful}> Helpful? <u> Yes </u> ({helpfulCountA}) </Button>
           </AnswerStatus>
         </AnswerInfo>
     </AnswerCardContainer>

@@ -59,11 +59,18 @@ QUESTION LIST MODULE
 */
 
 export const QuestionContainer = styled.div`
-  max-height: 500px;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  max height: 350rem;
   overflow: auto;
   justify-content: space-between;
   border: 4px solid black;
+`
+
+export const QuestionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid blue;
 `
 
 
@@ -75,8 +82,6 @@ QUESTION CARD
 
 export const QuestionCardContainer = styled.div`
   display: flex;
-  max-height: 300%;
-  max-width: 100%;
   overflow: auto;
   border: 4px solid yellow;
   flex-direction: column;
@@ -88,14 +93,19 @@ export const QuestionBody = styled.h1`
   height: 40%;
   flex-wrap: nowrap;
   border: 4px solid orange;
+  font-size: 18px;
+  width: 40rem;
 `
 
 export const QuestionInfo = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   border: 4px solid red;
-  gap: .8rem;
+  gap: .2rem;
+  width: 30rem;
+  align-items: center;
+
 `
 
 /*
@@ -105,10 +115,8 @@ ANSWER LIST MODULE
 
 export const AnswerContainer = styled.div`
   display: flex;
-  max-height: 300px;
-  align-content: space-between;
   flex-direction: column;
-  border: 4px solid red;
+  border: 4px solid green;
 `
 
 
@@ -118,15 +126,15 @@ ANSWER CARD
 */
 
 export const AnswerCardContainer = styled.div`
-  assign-align: baseline;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 0.5rem;
   border: 4px solid blue;
+
 `
 export const Answer = styled.div`
   justify-content: flex-start;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
   assign-align: base-line;
   border: 4px solid green;
 `
@@ -134,7 +142,7 @@ export const Answer = styled.div`
 export const AnswerInfo = styled.div`
   display: flex;
   justify-content: flex-start;
-  border: 4px solid orange
+  border: 4px solid orange;
 `
 export const AnswerStatus = styled.div`
   display: flex;
@@ -151,14 +159,11 @@ export const AnswerDetails = styled.div`
 
 export const ImageWrapper = styled.div`
   display: flex;
-  width: 100px;
-  justify-content: space-between;
-  border: 4px solid black
+  gap: .25rem;
 `
 export const Images = styled.img`
   max-width: 150px;
   max-height: 150px;
-  padding: 5px;
 `
 
 
