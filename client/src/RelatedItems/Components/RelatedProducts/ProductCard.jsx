@@ -5,9 +5,10 @@ import ComparisonModal from "../Comparison/ComparisonModal.jsx";
 import useModal from "../Comparison/useModal.jsx";
 import ImageSlider from "./ImageSlider.jsx";
 
-const ProductCard = ({ id, image, category, name, original_price, sale_price, ratings, features, styles, curProduct, curStyle, selectFromRelated }) => {
+const ProductCard = ({ id, image, category, name, original_price, sale_price, ratings, features, styles, photos, curProduct, curStyle, selectFromRelated }) => {
 
   const [target, setTarget] = useState(0);
+  const [displayImg, setDisplayImg] = useState(image);
   const {showModal, toggle} = useModal();
 
   const handleIconClick = (e) => {
@@ -22,24 +23,30 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
     selectFromRelated(e.target.id);
   }
 
+  const changeOfImage = (e) => {
+    setDisplayImg(e);
+  }
+
   return (
     <CardContainer>
       <ImgContainer>
         {image !== null ?
           <ImageStyled
-          src={image} alt="apiImg"
-          id={id} onClick={handleProductClick}
+            src={displayImg}
+            src={image} alt="apiImg"
+            id={id} onClick={handleProductClick}
           /> :
           <ImageStyled
-          src={require("../../images/imgComingSoon.png")} alt="noImg"
-          id={id} onClick={handleProductClick}
+            src={require("../../images/imgComingSoon.png")} alt="noImg"
+            id={id} onClick={handleProductClick}
           />
         }
         <ImageOverlay>
-          <ImageSlider styles={styles}>
-
+          <ImageSlider id={id}
+            photos={photos}
+            changeOfImage={changeOfImage}
+          >
           </ImageSlider>
-            Hello
         </ImageOverlay>
 
         <StyledStarBtn>

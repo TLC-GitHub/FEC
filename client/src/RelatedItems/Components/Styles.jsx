@@ -36,12 +36,16 @@ export const ImgContainer = styled.div`
   position: relative;
   width: 100%;
   height: 70%;
-  `;
+`;
 
 export const ImageStyled = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  ${ImgContainer}:hover & {
+    opacity: 0.3;
+  }
 `;
 
 export const StyledStarBtn = styled.div`
@@ -66,6 +70,18 @@ export const ImageOverlay = styled.div`
   ${ImgContainer}:hover & {
     visibility: visible;
   }
+`;
+
+export const ImagesSlider = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+
+export const ImageSlide = styled.img`
+  width: 30%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const AddOutfitBtn = styled.div`
