@@ -40,7 +40,8 @@ export const Star = styled.span`
     top: 0;
     width: ${(props) => props.percentage};
     overflow: hidden;
-    color: #f80;
+    color: #ffc107;
+    color: #1A1A1A;
   }
 `;
 
