@@ -7,14 +7,17 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
 
 const Category = styled.h3`
   text-transform: uppercase;
+  font-size: 2rem;
 `;
 
 const ExpandedProductName = styled.h1`
   font-weight: bold;
+  font-size: 4rem;
 `;
 
 const Price = styled.h4`
   font-weight: lighter;
+  font-size: 1.5rem;
 `;
 
 const ProductInformation = () => {

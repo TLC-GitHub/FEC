@@ -51,7 +51,7 @@ const HorizontalCarousel = () => {
       <HorizontalSlider>
         <LeftButton previousImage={previousImage} />
         <RightButton nextImage={nextImage} />
-        <button onClick = {(event) => expand(!expanded)}>&#9744;</button>
+        <button className="expand" onClick = {(event) => expand(!expanded)}>&#9744;</button>
         {resultImages.map((slide, i) => {
           return (
             <div key={i}>

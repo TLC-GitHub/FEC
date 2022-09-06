@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Authorization from '../../../../config.js';
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
@@ -10,38 +11,48 @@ display: inline-block;
 `;
 
 const SizeDropdown = (props) => {
-  const [sizes, setSizes] = useState('');
-  const getSize = () => setSize(sizes);
 
   useEffect(() => {
     axios.get(`${API_URL}/products/65651/styles`, {
       headers: Authorization
     })
       .then((response) => {
-        setSizes(response.data.results[0].skus)
+        let sizes = [];
+        for(let sku in response.data.results[0].skus){
+          sizes.push([response.data.results[0].skus[sku].size, response.data.results[0].skus[sku].quantity, sku]);
+        }
+        props.setSizeNumbers(sizes);
       })
       .catch((err) => {
         console.log(err);
       })
   }, []);
 
-  for(let sku in sizes){
-    props.sizeNumbers.push([sizes[sku].quantity, sizes[sku].size, sku]);
-  }
 
+  // for(let sku in sizes){
+  //   props.sizeNumbers.push([sizes[sku].quantity, sizes[sku].size, sku]);
+  // }
+  // console.log('sizeNumbers', props.sizeNumbers)
 
-  const sizeOptions = props.sizeNumbers.map((size, i) => {
-    return <option key={i} value={size[1]}>{size[1]}</option>
+  let sizeData =props.sizeNumbers.map((size, i) => {
+    console.log(size);
+    return <option key={i} value={size}>{size[0]}</option>
   });
+  console.log(props.sizeNumbers);
+  //console.log('sizeData', sizeData[0].props.value);
+  console.log('sizes', sizeData)
+  console.log('menu option', props.menuOption[1], props.menuOption[2]);
+
+
 
   return (
   <Display>
       <div>
-    <label>Choose a size:</label>
 
-    <select onChange={props.changeMenuOption} name="sizes" id="size-select">
-      <option value="">Please choose a size--</option>
-      {sizeOptions}
+    <select className="size" onChange={(event) => setMenuOption(event.target.value.split(','))}
+    name="sizes" id="size-select">
+      <option value="">Select Size</option>
+      {sizeData}
     </select>
   </div>
   </Display>
