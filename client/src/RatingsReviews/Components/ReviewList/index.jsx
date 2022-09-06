@@ -6,9 +6,10 @@ import UseReviewModal from './UseReviewModal.jsx';
 
 let num = 2;
 
-function ReviewList ({allReviews}) {
-  let [currSort, setCurrSort] = useState('Relevant');
-  let [someReviews, setSomeReviews] = useState(allReviews.slice(0, num));
+function ReviewList ({ allReviews }) {
+  var [currSort, setCurrSort] = useState('Relevant');
+
+  var [someReviews, setSomeReviews] = useState(allReviews.slice(0, num));
 
   let helpSort = allReviews.slice().sort((a, b) => b.helpfulness - a.helpfulness);
   let newSort = allReviews.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -21,6 +22,7 @@ function ReviewList ({allReviews}) {
     if (event.target.value === 'Helpful') {
       num = 2
       setSomeReviews(helpSort.slice(0, num))
+      // setSomeReviews(fivesArr.slice(0, num))
     } else if (event.target.value === 'Newest') {
       num = 2
       setSomeReviews(newSort.slice(0, num))
@@ -48,9 +50,13 @@ function ReviewList ({allReviews}) {
 
   return (
     <div>
-      {/* {console.log('afterasdasd', sortHelp)} */}
-      {/* {reviews.map((el, i) => console.log('SHEEESH', el.helpfulness))} */}
+      {/* {console.log('FVIE REVIEWWWSS', fiveArr)} */}
       <h3>
+        {/* {console.log("TOGGLE FIVE List", toggleFive)}
+        {console.log("TOGGLE FOUR List", toggleFour)}
+        {console.log("TOGGLE THREE List", toggleThree)}
+        {console.log("TOGGLE TWO List", toggleTwo)}
+        {console.log("TOGGLE ONE List", toggleOne)} */}
         <form onSubmit={handleSubmit}>
           {allReviews.length} reviews, sorted by&nbsp;
           <select value={currSort} onChange={handleChange}>

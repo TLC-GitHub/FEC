@@ -4,7 +4,7 @@ const DownButton = (props) => {
   const [current, setCurrent] = useState(0);
 
   return (
-    <button onClick = { () => props.nextImage() }>&#8595;</button>
+    <button className="button-vertical" onClick = { () => props.nextImage() }>&#10095;</button>
   );
 }
 

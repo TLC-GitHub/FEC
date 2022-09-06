@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import './styles.css';
 
 const LeftButton = (props) => {
   const [current, setCurrent] = useState(0);
 
   return (
-    <button onClick = { () => props.previousImage() }>&#8592;</button>
+    <button className="button" onClick = { () => props.previousImage() }>&#8592;</button>
   );
 }
 
