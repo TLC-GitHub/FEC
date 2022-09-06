@@ -2,31 +2,30 @@ import React, { useState, useEffect } from 'react';
 import QuestionCard from './QuestionCard.jsx';
 import SearchBar from './SearchBar.jsx';
 import axios from 'axios';
-import {setAnswerCount} from './AnswerModule.jsx';
-import styled from 'styled-components';
-import './styles.css'
+import QuestionModal from './Modals/QuestionModal.jsx';
+import styled from "styled-components";
+import {QuestionContainer, BigButton } from './styles.jsx';
+
+
+
+
+
+
 
 
 function QuestionList() {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
-  let productID = 5;
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
-
-  // const [expandStatus, setExpandStatus] = useState(false)
   const [filteredQ, setFilteredQ] = useState([]);
-  const [questionModal, setQuestionModal] = useState(false)
-
-  let prevQuestions = questions;
-
+  const [questionModal, setQuestionModal] = useState(false);
 
 
   let requestBody = {
     widget: 'qa/questions',
     queryParams: {
       page: 1,
-      count: 10,
-      count: 20,
+      count: 50,
       product_id:65656
     }
   };
@@ -48,22 +47,22 @@ function QuestionList() {
         params: requestBody
     })
     .then((data) => {
-      console.log(data.data.results, 'this is data.results');
       setQuestions(data.data.results)
     })
     .catch((err) => {
       console.log('error rendering');
     })
   }, [])
+
+
     const getQuestions = () => {
       axios.get('/get', {
         params: requestBody
       })
       .then((data) => {
-        console.log(data.data.results.sort(), 'this is the data being sorted');
-        console.log(data.data.results, 'this is data.results');
         setQuestions(data.data.results)
         setFilteredQ(data.data.results)
+
       })
       .catch((err) => {
         console.log('error rendering');
@@ -80,27 +79,27 @@ function QuestionList() {
     setQuestionCount(questionCount + 2);
   }
 
-  const addQuestion = () => {
-    axios.post
+  const toggleQuestionModal = () => {
+    setQuestionModal(!questionModal);
   }
 
+
   return(
-    <div className="question-parent">
-    <div className="question-list">
-      <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={prevQuestions}/>
-        {filteredQ.slice(0, questionCount).map(question => {
-          return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
-        })}
-    </div>
-      <div className="button-container">
-        {filteredQ.length < 1
-      ? <div></div>
-      : questionCount >= filteredQ.length
-      ? <div></div>
-      : <button type="button" name="loadQuestions" text="Load More Questions" onClick={addMoreQuestions}> Load More Questions </button>}
-      <button type="button" name="addQuestion" text="Add A Question" onClick={addQuestion}> Add A Question </button>
-      </div>
-      </div>
+      <QuestionContainer>
+        <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={questions}/>
+          {filteredQ.slice(0, questionCount).map(question => {
+            return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
+          })}
+          {filteredQ.length < 1
+        ? null
+        : questionCount >= filteredQ.length
+        ? null
+        : <BigButton onClick={addMoreQuestions}> <b>MORE ANSWERED QUESTIONS</b> </BigButton>}
+        {!questionModal
+        ? <BigButton onClick={toggleQuestionModal}> <b>ADD A QUESTION</b></BigButton>
+        : <QuestionModal productID={65656} toggle={toggleQuestionModal}/>
+        }
+      </QuestionContainer>
   )
 }
 

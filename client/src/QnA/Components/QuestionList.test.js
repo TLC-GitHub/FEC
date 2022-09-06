@@ -1,6 +1,17 @@
-import {cleanup, fireEvent, render} from '@testing-library/react';
-import QuestionList from '/QuestionList.jsx';
+import { screen, render } from '@testing-library/react';
+import QuestionList, {addQuestion} from './QuestionList.jsx';
+import React from 'react';
+import "@testing-library/jest-dom";
 
-afterEach(cleanup);
 
-it('should pull data accordingly ')
+// describe('question modal', () => {
+//   it('should render the question modal', () => {
+//     const handleClick = jest.fn()
+//     render(<QuestionList onClick={handleClick}/>)
+
+//     const input = getByTestID("test-element").click();
+
+//     expect(handleClick).toBeInTheDocument();
+//   })
+// })
+

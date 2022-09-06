@@ -1,5 +1,4 @@
 module.exports = {
-
   testEnvironment: "jsdom",
 
   "modulePaths": ["/shared/vendor/modules"],
@@ -12,5 +11,4 @@ module.exports = {
 
     "^config$": "<rootDir>/configs/app-config.js"
   }
-
 }

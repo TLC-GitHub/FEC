@@ -1,46 +1,12 @@
 import React from 'react';
-import SearchBar from './SearchBar.jsx';
-import {render, fireEvent} from '@testing-library/react';
+import SearchBar, {handleChange} from './SearchBar.jsx';
+import {render, screen} from '@testing-library/react';
+import '@testing-library/jest-dom'
 
+it('should exist in the document', () => {
+  render(<SearchBar searchInputValue="testing"/>);
 
-const handleSearch = (query) => {
-  //product ID is queryParams
-  return helper.getInfo('qa/questions', {product_id: 5})
-}
+  const searchInput = screen.getByPlaceholderText("Have a question? Search for answers")
 
-const searchFilter = (query) => {
-  //on keystroke < 3, should start to filter out responses
-  //filter our get requests for possible questions
-  handleSearch(query)
-    .then((questions) => {
-      if (query.length >= 3) {
-      //filter through the array of objects and only keep objects that include query
-        setQuestions(questions.filter(question => question.contains(query)))
-      } else {
-        setQuestions(questions);
-    }
-  })
-}
-
-it('should alter the text of the form', () => {
-  const setSearch = jest.fn((value) => {})
-
-  const {queryByPlaceholderText} = render(<SearchBar handleSearch={searchFilter}/>)
-
-  const searchInput = queryByPlaceholderText('Search...')
-
-  fireEvent.change(searchInput, { target: { value: 'test' } })
-
-
-
-it.only('should alter the text of the form', () => {
-
-  const {queryByPlaceholderText} = render(<SearchBar/>)
-
-  const searchInput = queryByPlaceholderText('Need answers? Search here')
-
-  fireEvent.change(searchInput, { target: { value: 'te' } })
-
-
-  expect(searchInput.value).toBe('test')
+  expect(searchInput).toBeInTheDocument();
 })

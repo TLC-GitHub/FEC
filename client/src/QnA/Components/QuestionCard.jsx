@@ -2,6 +2,10 @@
 import React, {useState, useEffect } from 'react';
 import AnswerModule from './AnswerModule.jsx';
 import axios from 'axios';
+import AnswerModal from './Modals/AnswerModal.jsx';
+import styled from 'styled-components';
+import {Button, QuestionInfo, QuestionCardContainer, QuestionBody, QuestionWrapper} from './styles.jsx';
+
 
 function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
 
@@ -15,10 +19,12 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
   const [reportedQuestions, setReportedQuestions] = useState([]);
   const [helpfulStatusQ, setHelpfulStatusQ] = useState(false);
   const [reportStatusQ, setReportStatusQ] = useState(false);
+  const [answerModal, setAnswerModal] = useState(false);
+
+  console.log(setAnswerModal);
 
   useEffect(() => {
-    console.log(helpfulStatusQ, reportStatusQ)
-  }, [helpfulStatusQ, reportStatusQ])
+  }, [helpfulStatusQ, reportStatusQ, answerModal])
 
   const handleHelpfulness = () => {
     if (!helpfulStatusQ) {
@@ -36,17 +42,17 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
   }
 
   const handleReport = () => {
-    requestBody.subCategory = 'report'
-    return axios.put('/put', requestBody)
-    .then((success) => {
-
-      setReportStatusQ(true);
-      console.log('successfully reported');
-    })
-    .catch((err) => {
-      console.log('error, could not report');
-    })
-
+    if (!reportStatusQ) {
+      requestBody.subCategory = 'report'
+      return axios.put('/put', requestBody)
+      .then((success) => {
+        setReportStatusQ(!reportStatusQ);
+        console.log('successfully reported');
+      })
+      .catch((err) => {
+        console.log('error, could not report');
+      })
+    }
   }
 
 
@@ -55,24 +61,34 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
     setHelpfulCount(helpfulCount + 1)
   }
 
-  return (
-    <div className="question-card">
-        <h1> Q: {question.question_body} </h1>
-        <div> Helpful?
-        <button onClick={handleHelpfulness}> Yes </button> {helpfulCount}
-        </div>
-        <div>
+  const toggleAnswerModal = () => {
+      setAnswerModal(!answerModal);
+  }
 
-        <button onClick = {handleReport}> Report Question </button>
+  if (answerModal) {
+    return(
+        <AnswerModal questionID={question.question_id} toggle={toggleAnswerModal}/>
+    )
+  } else {
 
-        <button onClick = {handleReport}> {reportStatusQ ? 'Reported' : 'Report Question'} </button>
-
-        </div>
-        <div>
-          {<AnswerModule questionID={question.question_id}/>}
-        </div>
-    </div>
+    return (
+    <QuestionCardContainer>
+      <QuestionWrapper>
+        <QuestionBody> Q: {question.question_body} </QuestionBody>
+        <QuestionInfo>
+            <Button onClick={handleHelpfulness}> Helpful? <u> Yes  </u> ({helpfulCount}) </Button>
+            <Button onClick={toggleAnswerModal}> <u>Add Answer</u> </Button>
+            <Button onClick = {handleReport}> <u>
+              {reportStatusQ
+                ? 'Reported'
+                : 'Report Question'} </u>
+            </Button>
+          </QuestionInfo>
+        </QuestionWrapper>
+      <AnswerModule questionID={question.question_id} />
+    </QuestionCardContainer>
   )
+  }
 }
 
 export default QuestionCard;
