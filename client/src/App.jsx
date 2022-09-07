@@ -10,8 +10,7 @@ const axios = require('axios');
 function App() {
   const [productID, setProductID] = useState(65637);
   const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
-  const [curStyle, setCurStyle] = useState({});
-  const [curStylePhoto, setCurStylePhoto] = useState([]);
+  const [outfitList, setOutfitList] = useState([]);
 
   // let randomID = Math.floor(Math.random() * (65660 - 65631) + 65631); // to generate a random productID first 30 ID's
   // setProduct(randomID)
@@ -42,6 +41,9 @@ function App() {
             style = styles.data.results[0];
             photos = style.photos;
             currentProduct.styles = styles.data.results;
+            currentProduct.image = styles.data.results[0].photo;
+            currentProduct.original_price = styles.data.results[0].original_price;
+            currentProduct.sale_price = styles.data.results[0].sale_price;
           })
           .then(() => {
             let requestBodyForReviews = {
@@ -64,16 +66,19 @@ function App() {
               })
               .then(() => {
                 setCurProduct(() => ({
-                  id: currentProduct.id,
+                  id: Number(currentProduct.id),
                   name: currentProduct.name,
                   category: currentProduct.category,
                   features: [...currentProduct.features],
                   styles: [...currentProduct.styles],
+                  image: currentProduct.image,
+                  // original_price: currentProduct.original_price,
+                  // sale_price: currentProduct.sale_price,
                   default_price: currentProduct.default_price,
-                  ratings: currentProduct.ratings
+                  ratings: currentProduct.ratings,
+                  selectedStyle: currentProduct.styles[0]
                 }));
-                setCurStyle(style);
-                setCurStylePhoto(photos);
+
               })
           })
       })
@@ -88,27 +93,62 @@ function App() {
     setProductID(value);
   }
 
+  const selectFromStyles = (value) => {
+    console.log("what style is selected (app.js): ", value[0]);
+    setCurProduct(() => (
+      {...curProduct, "selectedStyle": value[0]}
+    ));
+  }
+
+  const addOutfit = () => {
+    let alreadyAdded = false;
+    outfitList.map((outfit) => {
+      if (Number(outfit.id) === Number(productID)) { alreadyAdded = true; }
+    });
+    if (!alreadyAdded) {
+      setOutfitList((outfits) => (
+        [curProduct, ...outfits]
+      ));
+    } else {
+      alert("Item is already in your outfit list!")
+    }
+  }
+
+  const removeOutfit = (value) => {
+    setOutfitList((outfits) => {
+      return outfits.filter((outfit) => {
+        return outfit.id !== Number(value)
+      })
+    })
+  }
+
   return (
     <div>
       <div>
-        <OverviewModule />
+        <OverviewModule
+          styles={curProduct.styles}
+          selectFromStyles={selectFromStyles}
+          productID={productID}
+          addOutfit={addOutfit}
+          removeOutfit={removeOutfit}
+        />
       </div>
       <div>
         <h1>You May Also Like</h1>
         <RelatedProductsFetch
           productID={productID}
           curProduct={curProduct}
-          curStyle={curStyle}
           selectFromRelated={selectFromRelated}
         />
       </div>
       <div>
         <h1>Your Outfit</h1>
         <OutfitSlider
+          outfitList={outfitList}
+          addOutfit={addOutfit}
+          removeOutfit={removeOutfit}
           productID={productID}
           curProduct={curProduct}
-          curStyle={curStyle}
-          curStylePhoto={curStylePhoto}
         />
       </div>
       <div>

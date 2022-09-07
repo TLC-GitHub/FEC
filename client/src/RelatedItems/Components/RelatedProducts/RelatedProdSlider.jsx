@@ -3,7 +3,7 @@ import ProductCard from './ProductCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
-function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelated }) {
+function RelatedProdSlider({ relatedProd, curProduct, selectFromRelated }) {
 
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);
@@ -69,7 +69,6 @@ function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelate
                   styles={styles}
                   photos={photos}
                   curProduct={curProduct}
-                  curStyle={curStyle}
                   selectFromRelated={selectFromRelated}
                   />
               </StyledInactiveItems>
@@ -89,7 +88,6 @@ function RelatedProdSlider({ relatedProd, curProduct, curStyle, selectFromRelate
               styles={styles}
               photos={photos}
               curProduct={curProduct}
-              curStyle={curStyle}
               selectFromRelated={selectFromRelated}
               />
             )
