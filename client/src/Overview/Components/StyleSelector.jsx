@@ -62,9 +62,10 @@ const StyleSelector = ({styles, selectFromStyles}) => {
 
   const [resultImages, setResultsImages] = useState([]);
   const [style, setStyle] = useState(false);
+
   const [curStyle, setCurStyle] = useState('');
   const [curStyleId, setCurStyleId] = useState(0);
-  const prevStyle = useRef('');
+  const prevStyle = useRef(0);
 
   // useEffect(() => {
   //   axios.get(`${API_URL}/reviews?product_id=65651&sort=newest&count=200`, {
@@ -81,6 +82,14 @@ const StyleSelector = ({styles, selectFromStyles}) => {
   useEffect(() => {
     prevStyle.current = curStyleId
   }, [curStyleId]);
+
+  useEffect(() => {
+    prevStyle.current = 0;
+    styles.map((style) => {
+      let node = document.getElementById(style.style_id);
+      node.style.opacity = '0';
+    })
+  }, [styles])
 
   const selectStyle = (e) => {
     // console.log("what style has been selected: ", e.target.name);
@@ -114,11 +123,10 @@ return (
       <StylesContainer>
         {styles.map((style) => (
           <EachStyle>
-            <Checkmark id={style.style_id}> &#10003; </Checkmark>
+            <Checkmark id={style.style_id} className="checkmark"> &#10003; </Checkmark>
             <Thumbnail
               key={style.style_id}
               name={style.style_id}
-              // id={style.style_id}
               src={style.photos[0].thumbnail_url}
               onClick={selectStyle}
             />
