@@ -6,11 +6,12 @@ import AddToCart from './AddToCart.jsx';
 import ProductOverview from './ProductOverview.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import BookmarkButton from './BookmarkButton.jsx';
 import './styles.css';
 
 
-
-const OverviewModule = () => {
+const OverviewModule = ({ styles, selectFromStyles, productID, addOutfit, removeOutfit }) => {
+  console.log("OverviewModule - what is the current product: ", styles);
   const [data, setData] = useState('');
   const getData = () => setData(data);
 
@@ -29,7 +30,14 @@ const OverviewModule = () => {
         <ImageGallery />
       </div>
       <div>
-        <AddToCart />
+        <AddToCart/>
+      </div>
+      <div>
+        <BookmarkButton
+          productID={productID}
+          addOutfit={addOutfit}
+          removeOutfit={removeOutfit}
+        />
       </div>
       <div>
         <ProductInformation />
@@ -38,7 +46,10 @@ const OverviewModule = () => {
         <ProductOverview />
       </div>
       <div>
-        <StyleSelector/>
+        <StyleSelector
+          styles={styles}
+          selectFromStyles={selectFromStyles}
+        />
       </div>
 
     </div>

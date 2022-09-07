@@ -74,7 +74,7 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
       >
           <div id={id} onClick={handleProductClick}>{category}</div>
           <div id={id}><strong id={id} onClick={handleProductClick}>{name}</strong></div>
-            { sale_price === null ?
+            { sale_price === 0 ?
               <div id={id} onClick={handleProductClick}>
                 <span id={id}>${original_price}</span>
               </div> :
