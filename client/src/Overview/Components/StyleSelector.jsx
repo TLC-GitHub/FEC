@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Authorization from '../../../../config.js';
@@ -32,6 +32,7 @@ const Checkmark =styled.div`
   position: absolute;
   top: 3px;
   left: 35px;
+  opacity: 0;
 `;
 
 const List = styled.ul`
@@ -41,15 +42,17 @@ const List = styled.ul`
 const StylesContainer = styled.div`
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
-  width: 500px;
+  padding-top: 10px;
+  width: 300px;
   height: 200px;
   background-color: yellow;
 `;
 
 const EachStyle = styled.div`
   position: relative;
-
+  height: 60px;
 `;
 
 //const images = [
@@ -57,62 +60,69 @@ const EachStyle = styled.div`
 // ];
 
 const StyleSelector = ({styles, selectFromStyles}) => {
-  console.log("sytle selector - what is the current product: ", styles);
+
   const [resultImages, setResultsImages] = useState([]);
   const [style, setStyle] = useState(false);
+  const [curStyle, setCurStyle] = useState('');
+  const [curStyleId, setCurStyleId] = useState(0);
+  const prevStyle = useRef('');
+
+  // useEffect(() => {
+  //   axios.get(`${API_URL}/reviews?product_id=65651&sort=newest&count=200`, {
+  //     headers: Authorization
+  //   })
+  //     .then((response) => {
+  //       setResultsImages(response.data.results[0].photos)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  // }, []);
 
   useEffect(() => {
-    axios.get(`${API_URL}/reviews?product_id=65651&sort=newest&count=200`, {
-      headers: Authorization
-    })
-      .then((response) => {
-        setResultsImages(response.data.results[0].photos)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, []);
+    prevStyle.current = curStyleId
+  }, [curStyleId]);
 
   const selectStyle = (e) => {
-    console.log("what style has been selected: ", e.target.id);
-    // selectFromStyles(Number(e.target.id));
+    // console.log("what style has been selected: ", e.target.name);
     let selected = styles.filter((style) => {
-      console.log("in filter: ", style)
-      return style.style_id === Number(e.target.id);
+      return style.style_id === Number(e.target.name);
     });
-    console.log("selected style array: ", selected);
     selectFromStyles(selected);
+    setCurStyle(() => (selected[0].name));
+    setCurStyleId(() => (selected[0].style_id));
 
-    let node = document.getElementById(e.target.id);
-    // node.innerHTML += "&#10003";
-    node.insertAdjacentHTML('afterend', `<Checkmark>&#10003;</Checkmark>`);
+    if (prevStyle.current !== 0) {
+      let prevTarget = document.getElementById(prevStyle.current);
+      prevTarget.style.opacity = '0';
+    }
+    let curTarget = document.getElementById(e.target.name);
+    curTarget.style.opacity = '1';
+
   }
 
-  const thumbnails = resultImages.map((thumbnail, i) => {
-    return (style ? <li key={i} onClick={() => setStyle(!style) }><Checkmark>&#10003;</Checkmark><Thumbnail src={thumbnail.url} /></li> : <li key={i} onClick = {() => setStyle(!style)}><Thumbnail src={thumbnail.url} /></li>);
-  });
+  // const thumbnails = resultImages.map((thumbnail, i) => {
+  //   return (style ? <li key={i} onClick={() => setStyle(!style) }><Checkmark>&#10003;</Checkmark><Thumbnail src={thumbnail.url} /></li> : <li key={i} onClick = {() => setStyle(!style)}><Thumbnail src={thumbnail.url} /></li>);
+  // });
+
 return (
   <div>
     <div>
       <Style>Style ></Style>
-      <Selected>Selected Style</Selected>
+      <Selected> {curStyle}</Selected>
     </div>
     <div>
       <StylesContainer>
         {styles.map((style) => (
           <EachStyle>
-
-          {/* <div key={style.style_id}> */}
-            <Checkmark id={style.style_id} >
-            &#10003; </Checkmark>
-              <Thumbnail
-                key={style.style_id}
-                id={style.style_id}
-                src={style.photos[0].thumbnail_url}
-                onClick={selectStyle}
-                >
-              </Thumbnail>
-          {/* </div> */}
+            <Checkmark id={style.style_id}> &#10003; </Checkmark>
+            <Thumbnail
+              key={style.style_id}
+              name={style.style_id}
+              // id={style.style_id}
+              src={style.photos[0].thumbnail_url}
+              onClick={selectStyle}
+            />
           </EachStyle>
         ))}
 

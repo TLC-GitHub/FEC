@@ -117,8 +117,6 @@ function App() {
         <RelatedProductsFetch
           productID={productID}
           curProduct={curProduct}
-          // curStyleID={curStyleID}
-          // curStyle={curStyle}
           selectFromRelated={selectFromRelated}
         />
       </div>

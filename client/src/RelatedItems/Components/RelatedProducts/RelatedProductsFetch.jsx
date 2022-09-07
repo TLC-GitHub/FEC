@@ -123,51 +123,6 @@ function RelatedProductsFetch({ productID, curProduct, selectFromRelated }) {
         console.log(err);
       })
 
-    // no chaining
-    // axios.get(`${API_URL}/products/${productID}/related`, { headers: Auth })
-    //   .then((products) => {
-    //     const noDuplicateIDs = [...new Set(products.data)];
-    //     for(let product of noDuplicateIDs) {
-    //       let productInfo = { id: product };
-    //       axios.get(`${API_URL}/products/${product}`, { headers: Auth })
-    //         .then((result) => {
-    //           productInfo.category = result.data.category;
-    //           productInfo.name = result.data.name;
-    //           productInfo.features = result.data.features;
-    //         })
-    //       axios.get(`${API_URL}/products/${product}/styles`, { headers: Auth })
-    //         .then((styles) => {
-    //           productInfo.styles = styles.data.results;
-    //           productInfo.photos = styles.data.results[0].photos;  // array of photos for the first style
-    //           productInfo.original_price = styles.data.results[0].original_price;
-    //           productInfo.sale_price = styles.data.results[0].sale_price;
-    //           productInfo.original_price = styles.data.results[0].original_price;
-    //           productInfo.image = styles.data.results[0].photos[0].thumbnail_url;
-    //         })
-    //       axios.get(`${API_URL}/reviews/meta?product_id=${product}`, { headers: Auth })
-    //         .then((ratings) => {
-    //           let ratingsObj = ratings.data.ratings;
-    //           let numOfRatings = 0
-    //           let total = 0;
-    //           for (let key in ratings.data.ratings) {
-    //             total += Number(key) * Number(ratingsObj[key]);
-    //             numOfRatings += Number(ratingsObj[key]);
-    //           }
-    //           let average = total / numOfRatings;
-    //           productInfo.ratings = average;
-    //         })
-    //         .then(() => {
-    //           setRelatedProd((oldArray) => {
-    //             return [...oldArray, productInfo];
-    //           })
-    //         })
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log("related products fetch errors: ");
-    //     console.log(err);
-    //   })
-
     }, [productID])
 
   return (
