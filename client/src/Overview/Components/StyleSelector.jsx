@@ -47,7 +47,6 @@ const StylesContainer = styled.div`
   padding-top: 10px;
   width: 300px;
   height: 200px;
-  background-color: yellow;
 `;
 
 const EachStyle = styled.div`

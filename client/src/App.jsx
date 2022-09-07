@@ -110,6 +110,8 @@ function App() {
         <OverviewModule
           styles={curProduct.styles}
           selectFromStyles={selectFromStyles}
+          productID={productID}
+          curProduct={curProduct}
         />
       </div>
       <div>
