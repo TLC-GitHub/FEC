@@ -9,8 +9,8 @@ import StyleSelector from './StyleSelector.jsx';
 import './styles.css';
 
 
-
-const OverviewModule = () => {
+const OverviewModule = ({styles, selectFromStyles}) => {
+  console.log("OverviewModule - what is the current product: ", styles);
   const [data, setData] = useState('');
   const getData = () => setData(data);
 
@@ -38,7 +38,10 @@ const OverviewModule = () => {
         <ProductOverview />
       </div>
       <div>
-        <StyleSelector/>
+        <StyleSelector
+          styles={styles}
+          selectFromStyles={selectFromStyles}
+        />
       </div>
 
     </div>

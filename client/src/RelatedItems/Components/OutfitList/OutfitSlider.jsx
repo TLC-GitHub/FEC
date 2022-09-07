@@ -3,8 +3,10 @@ import OutfitCard from './OutfitCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider, OutfitButton, AddOutfitBtn } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
-function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
-  console.log("outfit slider: ", curProduct);
+function OutfitSlider({ productID, curProduct, curStyleID, curStyle, curStylePhoto }) {
+  console.log("outfit slider - curProduct: ", curProduct);
+  console.log("outfit slider - current styles ID: ", curStyleID);
+
   // initial state for outfits will be deleted
   // const [outfits, setOutfits] = useState([
   //   {id: 1, category: 'shirt', name: 'a shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.8, image: null},
@@ -49,7 +51,6 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
     });
     if (!alreadyAdded) {
       if (length + 1 > 4) { setRightArrow(''); }
-      curProduct = {...curProduct, photos: curStylePhoto, styles: curStyle}
       console.log("adding photos and style: ", curProduct);
       setOutfits((outfits) => (
         [curProduct, ...outfits]
@@ -81,20 +82,20 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
       </OutfitButton>
 
       <InnerSlider style={{"marginLeft": "14px"}}>
-        {outfits.map(({ id, image, category, name, original_price, sale_price, ratings }, n) => {
+        {outfits.map(({ id, category, name, ratings, selectedStyle }, n) => {
           if (n < first || n > last) {
             return (
               <StyledInactiveItems key={id}>
                 <OutfitCard
                   id={id}
-                  image={image}
                   category={category}
                   name={name}
-                  original_price={original_price}
-                  sale_price={sale_price}
+                  // original_price={original_price}
+                  // sale_price={sale_price}
                   ratings={ratings}
-                  curStyle={curStyle}
-                  curStylePhoto={curStylePhoto}
+                  selectedStyle={selectedStyle}
+                  // curStyle={curStyle}
+                  // curStylePhoto={curStylePhoto}
                   removeOutfit={removeOutfit}
                 />
               </StyledInactiveItems>
@@ -104,14 +105,15 @@ function OutfitSlider({ productID, curProduct, curStyle, curStylePhoto }) {
               <OutfitCard
               key={id}
               id={id}
-              image={image}
+              // image={image}
               category={category}
               name={name}
-              original_price={original_price}
-              sale_price={sale_price}
+              // original_price={original_price}
+              // sale_price={sale_price}
               ratings={ratings}
-              curStyle={curStyle}
-              curStylePhoto={curStylePhoto}
+              selectedStyle={selectedStyle}
+              // curStyle={curStyle}
+              // curStylePhoto={curStylePhoto}
               removeOutfit={removeOutfit}
               />
             )

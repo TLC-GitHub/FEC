@@ -10,6 +10,7 @@ const axios = require('axios');
 function App() {
   const [productID, setProductID] = useState(65637);
   const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
+  const [curStyleID, setCurStyleID] = useState();
   const [curStyle, setCurStyle] = useState({});
   const [curStylePhoto, setCurStylePhoto] = useState([]);
 
@@ -73,11 +74,13 @@ function App() {
                   features: [...currentProduct.features],
                   styles: [...currentProduct.styles],
                   image: currentProduct.image,
-                  original_price: currentProduct.original_price,
-                  sale_price: currentProduct.sale_price,
+                  // original_price: currentProduct.original_price,
+                  // sale_price: currentProduct.sale_price,
                   default_price: currentProduct.default_price,
-                  ratings: currentProduct.ratings
+                  ratings: currentProduct.ratings,
+                  selectedStyle: currentProduct.styles[0]
                 }));
+                setCurStyleID(currentProduct.styles[0].style_id);
                 setCurStyle(style);
                 setCurStylePhoto(photos);
               })
@@ -94,16 +97,30 @@ function App() {
     setProductID(value);
   }
 
+  const selectFromStyles = (value) => {
+    console.log("what style is selected (app.js): ", value[0]);
+    // setCurStyleID(value);
+    setCurProduct(() => (
+      {...curProduct, "selectedStyle": value[0]}
+    ));
+    // setCurStyle(value[0]);
+    // setCurStylePhoto(value[0].photos);
+  }
+
   return (
     <div>
       <div>
-        <OverviewModule />
+        <OverviewModule
+          styles={curProduct.styles}
+          selectFromStyles={selectFromStyles}
+        />
       </div>
       <div>
         <h1>You May Also Like</h1>
         <RelatedProductsFetch
           productID={productID}
           curProduct={curProduct}
+          curStyleID={curStyleID}
           curStyle={curStyle}
           selectFromRelated={selectFromRelated}
         />
@@ -113,6 +130,7 @@ function App() {
         <OutfitSlider
           productID={productID}
           curProduct={curProduct}
+          curStyleID={curStyleID}
           curStyle={curStyle}
           curStylePhoto={curStylePhoto}
         />

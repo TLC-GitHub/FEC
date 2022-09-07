@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { StyledCell, Star } from '../Styles.jsx';
 
 const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => {
+
   const [curStyles, curFeatures, curValues] = [[], [], []];
   const [comStyles, comFeatures, comValues] = [[], [], []];
 
