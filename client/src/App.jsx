@@ -99,12 +99,9 @@ function App() {
 
   const selectFromStyles = (value) => {
     console.log("what style is selected (app.js): ", value[0]);
-    // setCurStyleID(value);
     setCurProduct(() => (
       {...curProduct, "selectedStyle": value[0]}
     ));
-    // setCurStyle(value[0]);
-    // setCurStylePhoto(value[0].photos);
   }
 
   return (
@@ -120,8 +117,8 @@ function App() {
         <RelatedProductsFetch
           productID={productID}
           curProduct={curProduct}
-          curStyleID={curStyleID}
-          curStyle={curStyle}
+          // curStyleID={curStyleID}
+          // curStyle={curStyle}
           selectFromRelated={selectFromRelated}
         />
       </div>
@@ -130,9 +127,6 @@ function App() {
         <OutfitSlider
           productID={productID}
           curProduct={curProduct}
-          curStyleID={curStyleID}
-          curStyle={curStyle}
-          curStylePhoto={curStylePhoto}
         />
       </div>
       <div>

@@ -3,9 +3,7 @@ import OutfitCard from './OutfitCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider, OutfitButton, AddOutfitBtn } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
-function OutfitSlider({ productID, curProduct, curStyleID, curStyle, curStylePhoto }) {
-  console.log("outfit slider - curProduct: ", curProduct);
-  console.log("outfit slider - current styles ID: ", curStyleID);
+function OutfitSlider({ productID, curProduct }) {
 
   // initial state for outfits will be deleted
   // const [outfits, setOutfits] = useState([
@@ -90,12 +88,8 @@ function OutfitSlider({ productID, curProduct, curStyleID, curStyle, curStylePho
                   id={id}
                   category={category}
                   name={name}
-                  // original_price={original_price}
-                  // sale_price={sale_price}
                   ratings={ratings}
                   selectedStyle={selectedStyle}
-                  // curStyle={curStyle}
-                  // curStylePhoto={curStylePhoto}
                   removeOutfit={removeOutfit}
                 />
               </StyledInactiveItems>
@@ -105,15 +99,10 @@ function OutfitSlider({ productID, curProduct, curStyleID, curStyle, curStylePho
               <OutfitCard
               key={id}
               id={id}
-              // image={image}
               category={category}
               name={name}
-              // original_price={original_price}
-              // sale_price={sale_price}
               ratings={ratings}
               selectedStyle={selectedStyle}
-              // curStyle={curStyle}
-              // curStylePhoto={curStylePhoto}
               removeOutfit={removeOutfit}
               />
             )

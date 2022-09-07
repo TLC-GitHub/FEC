@@ -5,7 +5,7 @@ import Auth from '../../../../../config.js';
 const axios = require('axios');
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
-function RelatedProductsFetch({ productID, curProduct, curStyle, selectFromRelated }) {
+function RelatedProductsFetch({ productID, curProduct, selectFromRelated }) {
   const [relatedProd, setRelatedProd] = useState([]);
 
   useEffect(() => {
@@ -92,9 +92,8 @@ function RelatedProductsFetch({ productID, curProduct, curStyle, selectFromRelat
                 .then((styles) => {
                   productInfo.styles = styles.data.results;
                   productInfo.photos = styles.data.results[0].photos;
-                  productInfo.original_price = styles.data.results[0].original_price;
-                  productInfo.sale_price = styles.data.results[0].sale_price;
-                  productInfo.original_price = styles.data.results[0].original_price;
+                  productInfo.original_price = Number(styles.data.results[0].original_price);
+                  productInfo.sale_price = Number(styles.data.results[0].sale_price);
                   productInfo.image = styles.data.results[0].photos[0].thumbnail_url;
                 })
                 .then(() => {
@@ -175,7 +174,6 @@ function RelatedProductsFetch({ productID, curProduct, curStyle, selectFromRelat
     <RelatedProdSlider
       relatedProd={relatedProd}
       curProduct={curProduct}
-      curStyle={curStyle}
       selectFromRelated={selectFromRelated}
     />
   )

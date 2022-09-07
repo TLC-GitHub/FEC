@@ -76,14 +76,12 @@ const StyleSelector = ({styles, selectFromStyles}) => {
   const selectStyle = (e) => {
     console.log("what style has been selected: ", e.target.id);
     // selectFromStyles(Number(e.target.id));
-
     let selected = styles.filter((style) => {
       console.log("in filter: ", style)
       return style.style_id === Number(e.target.id);
     });
     console.log("selected style array: ", selected);
     selectFromStyles(selected);
-
 
     let node = document.getElementById(e.target.id);
     // node.innerHTML += "&#10003";
