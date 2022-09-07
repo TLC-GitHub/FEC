@@ -11,6 +11,7 @@ function App() {
   const [productID, setProductID] = useState(65637);
   const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
   const [outfitList, setOutfitList] = useState([]);
+  const [curStyle, setCurStyle] = useState({});
 
   // let randomID = Math.floor(Math.random() * (65660 - 65631) + 65631); // to generate a random productID first 30 ID's
   // setProduct(randomID)
@@ -78,7 +79,9 @@ function App() {
                   ratings: currentProduct.ratings,
                   selectedStyle: currentProduct.styles[0]
                 }));
-
+                setCurStyle((curStyle) => (
+                  {...curStyle, ...currentProduct.styles[0]}
+                ));
               })
           })
       })
@@ -98,6 +101,7 @@ function App() {
     setCurProduct(() => (
       {...curProduct, "selectedStyle": value[0]}
     ));
+    setCurStyle((curStyle) => ( { ...curStyle, ...value[0]} ))
   }
 
   const addOutfit = () => {
@@ -135,6 +139,7 @@ function App() {
         <OverviewModule
           styles={curProduct.styles}
           selectFromStyles={selectFromStyles}
+          curStyle={curStyle.photos}
           productID={productID}
           addOutfit={addOutfit}
           removeOutfit={removeOutfit}
