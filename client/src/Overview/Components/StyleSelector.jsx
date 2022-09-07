@@ -122,10 +122,9 @@ return (
     <div>
       <StylesContainer>
         {styles.map((style) => (
-          <EachStyle>
+          <EachStyle key={style.style_id}>
             <Checkmark id={style.style_id} className="checkmark"> &#10003; </Checkmark>
             <Thumbnail
-              key={style.style_id}
               name={style.style_id}
               src={style.photos[0].thumbnail_url}
               onClick={selectStyle}

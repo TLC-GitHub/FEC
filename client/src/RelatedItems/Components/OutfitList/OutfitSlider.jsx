@@ -3,7 +3,9 @@ import OutfitCard from './OutfitCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider, OutfitButton, AddOutfitBtn } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
-function OutfitSlider({ productID, curProduct }) {
+function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutfit }) {
+
+  console.log("what is in my outfits in outfit slider: ", outfitList);
 
   // initial state for outfits will be deleted
   // const [outfits, setOutfits] = useState([
@@ -42,32 +44,32 @@ function OutfitSlider({ productID, curProduct }) {
     }
   };
 
-  const addOutfit = (e) => {
-    let alreadyAdded = false;
-    outfits.map((outfit) => {
-      if (outfit.id === productID) { alreadyAdded = true; }
-    });
-    if (!alreadyAdded) {
-      if (length + 1 > 4) { setRightArrow(''); }
-      console.log("adding photos and style: ", curProduct);
-      setOutfits((outfits) => (
-        [curProduct, ...outfits]
-      ));
-      setLength(length + 1);
-    } else {
-      alert("Item is already in your outfit list!")
-    }
-  }
+  // const addOutfit = (e) => {
+  //   let alreadyAdded = false;
+  //   outfits.map((outfit) => {
+  //     if (outfit.id === productID) { alreadyAdded = true; }
+  //   });
+  //   if (!alreadyAdded) {
+  //     if (length + 1 > 4) { setRightArrow(''); }
+  //     console.log("adding photos and style: ", curProduct);
+  //     setOutfits((outfits) => (
+  //       [curProduct, ...outfits]
+  //     ));
+  //     setLength(length + 1);
+  //   } else {
+  //     alert("Item is already in your outfit list!")
+  //   }
+  // }
 
-  const removeOutfit = (value) => {
-    if (length - 1 <= 4) { setRightArrow('none'); }
-    setOutfits((outfits) => {
-      return outfits.filter((outfit) => {
-        return outfit.id !== Number(value)
-      })
-    })
-    setLength(length - 1);
-  }
+  // const removeOutfit = (value) => {
+  //   if (length - 1 <= 4) { setRightArrow('none'); }
+  //   setOutfits((outfits) => {
+  //     return outfits.filter((outfit) => {
+  //       return outfit.id !== Number(value)
+  //     })
+  //   })
+  //   setLength(length - 1);
+  // }
 
   return (
     <StyledSlider>
@@ -75,12 +77,12 @@ function OutfitSlider({ productID, curProduct }) {
         <FaChevronLeft className="" onClick={prevSlide} style={{display: leftArrow}}/>
       </StyledArrow>
 
-      <OutfitButton onClick={addOutfit}>
+      <OutfitButton onClick={()=>addOutfit()}>
       &#10133; Add to Outfit
       </OutfitButton>
 
       <InnerSlider style={{"marginLeft": "14px"}}>
-        {outfits.map(({ id, category, name, ratings, selectedStyle }, n) => {
+        {outfitList.map(({ id, category, name, ratings, selectedStyle }, n) => {
           if (n < first || n > last) {
             return (
               <StyledInactiveItems key={id}>

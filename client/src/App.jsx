@@ -10,9 +10,7 @@ const axios = require('axios');
 function App() {
   const [productID, setProductID] = useState(65637);
   const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
-  const [curStyleID, setCurStyleID] = useState();
-  const [curStyle, setCurStyle] = useState({});
-  const [curStylePhoto, setCurStylePhoto] = useState([]);
+  const [outfitList, setOutfitList] = useState([]);
 
   // let randomID = Math.floor(Math.random() * (65660 - 65631) + 65631); // to generate a random productID first 30 ID's
   // setProduct(randomID)
@@ -68,7 +66,7 @@ function App() {
               })
               .then(() => {
                 setCurProduct(() => ({
-                  id: currentProduct.id,
+                  id: Number(currentProduct.id),
                   name: currentProduct.name,
                   category: currentProduct.category,
                   features: [...currentProduct.features],
@@ -80,9 +78,7 @@ function App() {
                   ratings: currentProduct.ratings,
                   selectedStyle: currentProduct.styles[0]
                 }));
-                setCurStyleID(currentProduct.styles[0].style_id);
-                setCurStyle(style);
-                setCurStylePhoto(photos);
+
               })
           })
       })
@@ -104,6 +100,28 @@ function App() {
     ));
   }
 
+  const addOutfit = () => {
+    let alreadyAdded = false;
+    outfitList.map((outfit) => {
+      if (Number(outfit.id) === Number(productID)) { alreadyAdded = true; }
+    });
+    if (!alreadyAdded) {
+      setOutfitList((outfits) => (
+        [curProduct, ...outfits]
+      ));
+    } else {
+      alert("Item is already in your outfit list!")
+    }
+  }
+
+  const removeOutfit = (value) => {
+    setOutfitList((outfits) => {
+      return outfits.filter((outfit) => {
+        return outfit.id !== Number(value)
+      })
+    })
+  }
+
   return (
     <div>
       <div>
@@ -111,7 +129,8 @@ function App() {
           styles={curProduct.styles}
           selectFromStyles={selectFromStyles}
           productID={productID}
-          curProduct={curProduct}
+          addOutfit={addOutfit}
+          removeOutfit={removeOutfit}
         />
       </div>
       <div>
@@ -125,6 +144,9 @@ function App() {
       <div>
         <h1>Your Outfit</h1>
         <OutfitSlider
+          outfitList={outfitList}
+          addOutfit={addOutfit}
+          removeOutfit={removeOutfit}
           productID={productID}
           curProduct={curProduct}
         />
