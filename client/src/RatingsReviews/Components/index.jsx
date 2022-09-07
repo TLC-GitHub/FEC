@@ -21,6 +21,13 @@ function RatingsAndReviews () {
   const [allReviews, setAllReviews] = useState();
   const [metaData, setMetaData] = useState();
 
+  const [metaSize, setMetaSize] = useState('');
+  const [metaWidth, setMetaWidth] = useState('');
+  const [metaComfort, setMetaComfort] = useState('');
+  const [metaQuality, setMetaQuality] = useState('');
+  const [metaLength, setMetaLength] = useState('');
+  const [metaFit, setMetaFit] = useState('');
+
   var [ratingSort, setRatingSort] = useState([]);
   var [sortedList, setSortedList] = useState([]);
   var [tracker, setTracker] = useState([]);
@@ -39,6 +46,24 @@ function RatingsAndReviews () {
           .then((meta) => {
             setMetaData(meta.data)
             setAllReviews(reviews.data.results)
+            if (meta.data.characteristics.Size) {
+              setMetaSize(meta.data.characteristics.Size)
+            }
+            if (meta.data.characteristics.Width) {
+              setMetaWidth(meta.data.characteristics.Width)
+            }
+            if (meta.data.characteristics.Comfort) {
+              setMetaComfort(meta.data.characteristics.Comfort)
+            }
+            if (meta.data.characteristics.Quality) {
+              setMetaQuality(meta.data.characteristics.Quality)
+            }
+            if (meta.data.characteristics.Length) {
+              setMetaLength(meta.data.characteristics.Length)
+            }
+            if (meta.data.characteristics.Fit) {
+              setMetaFit(meta.data.characteristics.Fit)
+            }
           })
           .catch((err) => console.log('Error Meta', err))
       })
@@ -73,8 +98,15 @@ function RatingsAndReviews () {
           <RatingsWithReviews>
             <RatingsStyle>
               <Breakdown
+                filterSort={filterSort}
                 metaData={metaData}
-                filterSort={filterSort}/>
+                metaSize={metaSize}
+                metaWidth={metaWidth}
+                metaComfort={metaComfort}
+                metaQuality={metaQuality}
+                metaLength={metaLength}
+                metaFit={metaFit}
+              />
             </RatingsStyle>
             <ReviewStyle>
               {!tracker.length  &&  <ReviewList allReviews={allReviews}/>}

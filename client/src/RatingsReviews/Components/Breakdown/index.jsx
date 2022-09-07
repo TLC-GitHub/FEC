@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 
-function Breakdown ({ metaData, filterSort }) {
+function Breakdown ({ metaData, filterSort, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
 
   return (
     <Mains>
@@ -16,6 +16,12 @@ function Breakdown ({ metaData, filterSort }) {
       />
       <ProductBreakdown
         characteristics={metaData.characteristics}
+        metaSize={metaSize}
+        metaWidth={metaWidth}
+        metaComfort={metaComfort}
+        metaQuality={metaQuality}
+        metaLength={metaLength}
+        metaFit={metaFit}
       />
     </Mains>
   )
