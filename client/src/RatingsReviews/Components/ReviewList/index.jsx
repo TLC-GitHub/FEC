@@ -50,13 +50,7 @@ function ReviewList ({ allReviews }) {
 
   return (
     <div>
-      {/* {console.log('FVIE REVIEWWWSS', fiveArr)} */}
       <h3>
-        {/* {console.log("TOGGLE FIVE List", toggleFive)}
-        {console.log("TOGGLE FOUR List", toggleFour)}
-        {console.log("TOGGLE THREE List", toggleThree)}
-        {console.log("TOGGLE TWO List", toggleTwo)}
-        {console.log("TOGGLE ONE List", toggleOne)} */}
         <form onSubmit={handleSubmit}>
           {allReviews.length} reviews, sorted by&nbsp;
           <select value={currSort} onChange={handleChange}>
@@ -83,7 +77,11 @@ function ReviewList ({ allReviews }) {
           />
         )}
         <>
-          {num < allReviews.length ? <ReviewListButton onClick={increment}>More Reviews</ReviewListButton> : null}
+          {
+            num < allReviews.length ?
+              <ReviewListButton onClick={increment}>More Reviews</ReviewListButton> :
+              null
+          }
         </>
         <>
           <ReviewListButton onClick={toggleReviewModal}>

@@ -87,7 +87,6 @@ function RatingBreakdown({ ratings, recommended, filterSort }) {
           <BarSpace onClick={() => handleColor(5)}>
             {!fiveToggle && <BarSpace>5 star</BarSpace>}
             {fiveToggle && <BarSpaceClicked>5 star</BarSpaceClicked>}
-            {/* {console.log(fiveToggle)} */}
           </BarSpace>
           <BarRate>
             <FiveStar rating={fiveBar}></FiveStar>

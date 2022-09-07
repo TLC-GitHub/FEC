@@ -78,15 +78,12 @@ function RatingsAndReviews () {
             </RatingsStyle>
             <ReviewStyle>
               {!tracker.length  &&  <ReviewList allReviews={allReviews}/>}
-              {tracker.length  &&  <ReviewList allReviews={ratingSort}/>}
-
-
-
+              {tracker.length > 0 &&  <ReviewList allReviews={ratingSort}/>}
             </ReviewStyle>
           </RatingsWithReviews> :
           <div>
             <img src='https://thumbs.gfycat.com/DismalRemarkableHochstettersfrog-max-1mb.gif' width="200"/>
-            <h3>THERE IS AN ERROR</h3>
+            <h3>❌THERE IS AN ERROR❌</h3>
           </div>
         }
       </div>
