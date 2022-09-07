@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import {SearchbarInput} from './styles.jsx';
 
 function SearchBar({setQuestions, questions, prevQuestions}) {
   // const [query, setQuery] = useState('');
@@ -7,7 +9,6 @@ function SearchBar({setQuestions, questions, prevQuestions}) {
 
   const handleChange = (e) => {
     val = e.target.value;
-    console.log(val);
       if (val.length >= 3) {
         setQuestions(questions.filter(question => question.question_body.includes(val)))
       } else {
@@ -16,11 +17,11 @@ function SearchBar({setQuestions, questions, prevQuestions}) {
   }
 
   return (
-    <div>
-      <form>
-      <input
+    <div className="search-bar-container">
+      <form className="search-bar">
+      <SearchbarInput
         type="text"
-        placeholder="Need answers? Search here"
+        placeholder="Have a question? Search for answers"
         value={val}
         onChange={handleChange}
       />
