@@ -2,15 +2,16 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const BookmarkButton = ({ productID, addOutfit, removeOutfit }) => {
-  const [bookmarked, addBookmark] = useState(false);
+  // const [bookmarked, addBookmark] = useState(false);
+  const [bookmark, setBookmark] = useState(false);
 
   const handleBookmarkClick = () => {
-    if (!bookmarked) {
+    if (!bookmark) {
       addOutfit();
-      addBookmark(true);
+      setBookmark(true);
     } else {
       removeOutfit(productID);
-      addBookmark(false);
+      setBookmark(false);
     }
   }
 
@@ -29,7 +30,7 @@ const BookmarkButton = ({ productID, addOutfit, removeOutfit }) => {
       {/* {star} */}
         <button className="bookmark" onClick={handleBookmarkClick}>
           {
-            bookmarked ?
+            bookmark ?
             <span>&#9733;</span> :
             <span>&#9734;</span>
           }

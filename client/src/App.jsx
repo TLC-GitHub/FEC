@@ -103,7 +103,14 @@ function App() {
   const addOutfit = () => {
     let alreadyAdded = false;
     outfitList.map((outfit) => {
-      if (Number(outfit.id) === Number(productID)) { alreadyAdded = true; }
+      console.log("outfit.id: ", outfit.id);
+        console.log("productID: ", productID);
+      if (Number(outfit.id) === Number(productID)) {
+        console.log("i should be here when product already exist ----- ");
+        console.log("outfit.id: ", outfit.id);
+        console.log("productID: ", productID);
+        alreadyAdded = true;
+      }
     });
     if (!alreadyAdded) {
       setOutfitList((outfits) => (
