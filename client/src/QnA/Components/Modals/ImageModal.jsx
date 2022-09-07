@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
+import {ModalOverlay, ModalWrapper, ModalHeader, ModalForm, ModalCloseButton, ModalContainer, ModalImageWrapper, ModalThumbnails} from '.././styles.jsx'
+import cloudinary from "cloudinary-react";
+//figure out how to implement cloudinary
 function ImageModal({setImageModal, setState, photos, showImageModal}) {
 
   const [currentFiles, setCurrentFiles] = useState([]);
@@ -35,24 +37,38 @@ function ImageModal({setImageModal, setState, photos, showImageModal}) {
   }
 
   return (
-    <div className="modal-container">
-      <div className='image-modal-wrapper'>
+    <React.Fragment>
+    <ModalOverlay />
+    <ModalContainer>
+      <ModalWrapper>
+        <ModalHeader>
+          <label>
+          Add Photos
+          </label>
+        <ModalForm>
+          <ModalCloseButton
+            type="button" data-dismiss="modal" aria-label="Close" onClick={showImageModal}>
+            <span aria-hidden="true">&times;</span>
+          </ModalCloseButton>
         <form className='form' onSubmit={showImageModal}>
           {maxFiles
-          ? <div></div>
+          ? null
           :<input id='upload-photos' type="file" multiple accept=".jpeg, .jpg, .png" onChange={handleChange}/>}
           <input id='photo-submit-button' type="submit" value="submit photos" />
         </form>
-        <div>
+        <ModalImageWrapper>
           {currentFiles.length > 0
           ? currentFiles.map((photo, index) => {
-            return <img className="image-thumbnails-modal" src={photo} key={index} />
+            return <ModalThumbnails className="image-thumbnails-modal" src={photo} key={index} />
           })
           : null
-          }
-        </div>
-      </div>
-    </div>
+        }
+        </ModalImageWrapper>
+        </ModalForm>
+        </ModalHeader>
+      </ModalWrapper>
+      </ModalContainer>
+    </React.Fragment>
   )
 }
 

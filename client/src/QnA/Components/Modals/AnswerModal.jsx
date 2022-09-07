@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ImageModal from './ImageModal.jsx';
 import styled from 'styled-components';
+import {ModalForm, ModalOverlay, ModalCloseButton, ModalHeader, ModalWrapper, ModalContainer} from '.././styles.jsx';
 
-function AnswerModal({questionID, toggle}) {
+
+function AnswerModal({questionID, toggle, question}) {
 
   const [state, setState] = useState({body: '', name: '', email: ''});
   const [imageModal, setImageModal] = useState(false);
@@ -78,38 +81,52 @@ function AnswerModal({questionID, toggle}) {
     }
   }
 
-  return(
-    <div className="modal-container">
+  return (
+    <React.Fragment>
+    <ModalOverlay />
+    <ModalContainer>
+      <ModalWrapper>
       {imageModal ? <ImageModal setState={setState} showImageModal={showImageModal} photos={state.photos}/> : null}
-      <form className="form" onSubmit={sendAnswer}>
-      <button className="exit-button" onClick={toggle}> X </button>
-        <input name="body" type="text" maxLength="1000" placeholder="Write Answer here" onChange={handleChange}/>
-        {errBody
-          ? <div> this field is required </div>
-          : null}
-        <br />
-        <label>
-          <p>Write Name Here</p>
-          <input name="name" placeholder="Example: jack543" onChange={handleChange}/>
-          <div> For privacy reasons, do not use your full name or email address </div>
-          {errName
-          ? <div> this field is required </div>
-          : null}
+      <ModalHeader>
+        {question}
+      <ModalForm>
+        <ModalCloseButton
+          type="button"
+          className="exit-button"
+          onClick={toggle}
+          data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </ModalCloseButton>
+        <form onSubmit={sendAnswer}>
+          <input name="body" type="text" maxLength="1000" placeholder="Write Answer here" onChange={handleChange}/>
+          {errBody
+            ? <div> this field is required </div>
+            : null}
+          <label>
+            <div><br />Write Name Here</div>
+            <input name="name" placeholder="Example: jack543" onChange={handleChange}/>
+            {errName
+            ? <div> this field is required </div>
+            :  <div> For privacy reasons, do not use your full name or email address </div>}
+            </label>
+            <br />
+          <label>
+            <div>Write Email Here</div>
+          <input name="email" placeholder="Example: jack@email.com" onChange={handleChange}/>
+          {errEmail
+            ? <div> this field is required </div>
+            : <div> For authentication reasons, you will not be emailed </div>}
           </label>
           <br />
-        <label>
-          <p>Write Email Here</p>
-        <input name="email" placeholder="Example: jack@email.com" onChange={handleChange}/>
-        <div> For authentication reasons, you will not be emailed </div>
-        {errEmail
-          ? <div> this field is required </div>
-          : null}
-        </label>
-        <br />
-        <input name="photos" type="button" value="Upload Photos" onClick={showImageModal}/>
-        <input type="submit" value="submit answer"/>
-      </form>
-    </div>
+          <input name="photos" type="button" value="Upload Photos" onClick={showImageModal}/>
+          <input type="submit" value="submit answer"/>
+        </form>
+      </ModalForm>
+      </ModalHeader>
+      </ModalWrapper>
+      </ModalContainer>
+      </React.Fragment>
   )
 }
 

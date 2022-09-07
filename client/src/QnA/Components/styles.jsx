@@ -53,6 +53,10 @@ export const BigButton = styled.button`
   ;
 `
 
+
+export const ButtonContainer = styled.div`
+  flex-direction: row;
+`
 /*
 QUESTION LIST MODULE
 ----------------------------------------
@@ -61,16 +65,14 @@ QUESTION LIST MODULE
 export const QuestionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max height: 350rem;
   overflow: auto;
   justify-content: space-between;
-  border: 4px solid black;
+  height: 40rem;
 `
 
 export const QuestionWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  border: 4px solid blue;
 `
 
 
@@ -82,9 +84,9 @@ QUESTION CARD
 
 export const QuestionCardContainer = styled.div`
   display: flex;
-  overflow: auto;
-  border: 4px solid yellow;
   flex-direction: column;
+  margin-top: 1rem;
+  height: 40%;
 `
 
 export const QuestionBody = styled.h1`
@@ -92,7 +94,6 @@ export const QuestionBody = styled.h1`
   width: 100%;
   height: 40%;
   flex-wrap: nowrap;
-  border: 4px solid orange;
   font-size: 18px;
   width: 40rem;
 `
@@ -101,8 +102,7 @@ export const QuestionInfo = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 4px solid red;
-  gap: .2rem;
+  gap: .4rem;
   width: 30rem;
   align-items: center;
 
@@ -116,7 +116,7 @@ ANSWER LIST MODULE
 export const AnswerContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 4px solid green;
+  overflow: auto;
 `
 
 
@@ -128,33 +128,31 @@ ANSWER CARD
 export const AnswerCardContainer = styled.div`
   font-size: 14px;
   margin-top: 0.5rem;
-  border: 4px solid blue;
 
 `
 export const Answer = styled.div`
   justify-content: flex-start;
   margin-top: .25rem;
-  margin-bottom: .25rem;
+  margin-bottom: .75rem;
   assign-align: base-line;
-  border: 4px solid green;
+  font-size: 16px;
 `
 
 export const AnswerInfo = styled.div`
   display: flex;
   justify-content: flex-start;
-  border: 4px solid orange;
+
 `
 export const AnswerStatus = styled.div`
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-evenly;
-  border: 4px solid pink;
+  flex-direction: row;
+  justify-content: flex-start;
   width: 20rem;
 `
 
 export const AnswerDetails = styled.div`
-  border: 4px solid green;
   width: 15rem;
+  font-weight: 100;
 `
 
 export const ImageWrapper = styled.div`
@@ -173,11 +171,10 @@ SEARCH BAR
 */
 
 export const SearchbarInput = styled.input`
-  width: 95%;
-  height: 28px;
-  text-align: center;
-  font-size: 25px
-  position: absolute;
+  width: 70%;
+  height: 1.5rem;
+  text-align: flex-start;
+  font-size: 25px;
 `
 
 export const SearchBarContainer = styled.div`
@@ -191,13 +188,18 @@ MODAL WINDOWS
 */
 
 export const ModalContainer = styled.div`
-  z-index: 100;
-  background: black;
-  position: absolute;
-  top: 40px; left: 40px;
+  z-index: 1050;
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
   margin: 1.75rem auto;
   border-radius: 3px;
-  max-width: 500px;
   padding: 2rem;
 `
 export const Form = styled.form`
@@ -224,6 +226,12 @@ export const ExitFormButton = styled.button`
 IMAGE MODAL WINDOW
 ----------------------------------------
 */
+export const ModalImageWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
+
+
 
 export const ModalThumbnails = styled.img`
   max-height: 80px;
@@ -231,12 +239,7 @@ export const ModalThumbnails = styled.img`
 
 `
 
-const ImageModal = styled.p`
-  width: 50%;
-  height: 50%;
-`;
-
-const ModalOverlay = styled.div`
+export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -247,7 +250,7 @@ const ModalOverlay = styled.div`
   opacity: .5;
 `;
 
-const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -259,7 +262,7 @@ const ModalWrapper = styled.div`
   outline: 0;
 `;
 
-const MainModal = styled.div`
+export const ModalForm = styled.div`
   z-index: 100;
   position: absolute;
   top: 15%; left: 15%;
@@ -269,19 +272,19 @@ const MainModal = styled.div`
   padding: 1rem;
 `;
 
-const ModalHeader = styled.div`
+export const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
 
-const ModalCloseButton = styled.div`
+export const ModalCloseButton = styled.button`
   font-size: 2.5rem;
   font-weight: 700;
   line-height: .5;
   color: white;
   cursor: pointer;
   border: none;
-  margin: 0px 140px 0px 0px;
+  margin: 0px 70px 0px 0px;
   &:hover {
     opacity: .5;
     color: black;

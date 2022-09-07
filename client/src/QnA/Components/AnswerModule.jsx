@@ -44,7 +44,6 @@ function AnswerModule({questionID}) {
       params: requestBodyGet
     })
     .then((answers) => {
-      console.log(answers.data.results);
       let result = answers.data.results.sort((a, b) => {
         if (a.answerer_name.toLowerCase() === 'seller') {
           return -1
