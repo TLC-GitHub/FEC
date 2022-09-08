@@ -64,7 +64,7 @@ QUESTION LIST MODULE
 
 export const QuestionContainer = styled.div`
   display: flex;
-  position: static;
+  position: relative;
   flex-direction: column;
   overflow: auto;
   justify-content: center;
@@ -86,9 +86,7 @@ QUESTION CARD
 export const QuestionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 15em;
-  border: 2px solid black;
-  border-radius: .5rem;
+  max-height: 20rem;
   margin: 0em .25em 0em 3em;
 `
 
@@ -165,10 +163,12 @@ export const ImageWrapper = styled.div`
   gap: .25rem;
 `
 export const Images = styled.img`
-  max-width: 150px;
-  max-height: 150px;
+  width: 10rem;
+  height: 10rem;
   margin-right: .25rem;
   margin-bottom: .25rem;
+  border: 1px solid grey;
+  border-radius: 5px;
 `
 
 export const LoadMoreAnswers = styled.div`
@@ -237,7 +237,7 @@ export const ModalContainer = styled.div`
   overflow-y: auto;
   outline: 0;
   margin-left: -25%;
-  margin-top: -25%;
+  margin-top: -15%;
   border-radius: 3px;
   padding: 2rem;
 `
@@ -289,7 +289,7 @@ export const ModalForm = styled.div`
   height: 50%;
   width: 50%;
   margin-left: -25%;
-  margin-top: -25%;
+  margin-top: -15%;
   border-radius: 3px;
 `;
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {SearchbarInput, SearchBarContainer} from './styles.jsx';
-import searchIcon from './icons/searchicon.png';
 
 
 function SearchBar({setQuestions, questions, prevQuestions}) {
