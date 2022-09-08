@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OutfitCard from './OutfitCard.jsx';
 import { StyledSlider, StyledInactiveItems, StyledArrow, InnerSlider, OutfitButton, AddOutfitBtn } from "../Styles.jsx";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
@@ -7,20 +7,25 @@ function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutf
 
   console.log("what is in my outfits in outfit slider: ", outfitList);
 
-  // initial state for outfits will be deleted
-  // const [outfits, setOutfits] = useState([
-  //   {id: 1, category: 'shirt', name: 'a shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.8, image: null},
-  //   {id: 2, category: 'hat', name: 'good hat', original_price: 29.99, sale_price: 19.99, ratings: 3.8, image: null},
-  //   {id: 3, category: 'shoes', name: 'a pair of nice shoes', original_price: 29.99, sale_price: 19.99, ratings: 2.8, image: null},
-  //   {id: 4, category: 'funny', name: 'a funny looking shirt', original_price: 29.99, sale_price: 19.99, ratings: 4.2, image: null},
-  //   {id: 5, category: 'clothing', name: 'nice looking shirt', original_price: 89.99, sale_price: 19.99, ratings: 4.2, image: null}
-  // ]);
-  const [outfits, setOutfits] = useState([]);
   const [first, setFirst] = useState(0);
   const [last, setLast] = useState(3);
   const [leftArrow, setLeftArrow] = useState('none');
-  const [rightArrow, setRightArrow] = useState('');
-  const [length, setLength] = useState(5);
+  const [rightArrow, setRightArrow] = useState('none');
+
+  let length = outfitList.length;
+
+  useEffect (() => {
+    length = outfitList.length;
+    setFirst(0);
+    setLast(3);
+    setLeftArrow('none');
+
+    if(length > 4) {
+      setRightArrow('');
+    } else {
+      setRightArrow('none');
+    }
+  }, [outfitList])
 
   const nextSlide = () => {
     if (last + 1 <= length - 1) {
@@ -43,33 +48,6 @@ function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutf
       setLeftArrow('none');
     }
   };
-
-  // const addOutfit = (e) => {
-  //   let alreadyAdded = false;
-  //   outfits.map((outfit) => {
-  //     if (outfit.id === productID) { alreadyAdded = true; }
-  //   });
-  //   if (!alreadyAdded) {
-  //     if (length + 1 > 4) { setRightArrow(''); }
-  //     console.log("adding photos and style: ", curProduct);
-  //     setOutfits((outfits) => (
-  //       [curProduct, ...outfits]
-  //     ));
-  //     setLength(length + 1);
-  //   } else {
-  //     alert("Item is already in your outfit list!")
-  //   }
-  // }
-
-  // const removeOutfit = (value) => {
-  //   if (length - 1 <= 4) { setRightArrow('none'); }
-  //   setOutfits((outfits) => {
-  //     return outfits.filter((outfit) => {
-  //       return outfit.id !== Number(value)
-  //     })
-  //   })
-  //   setLength(length - 1);
-  // }
 
   return (
     <StyledSlider>

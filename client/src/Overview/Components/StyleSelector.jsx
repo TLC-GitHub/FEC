@@ -80,7 +80,7 @@ const StyleSelector = ({styles, selectFromStyles}) => {
   // }, []);
 
   useEffect(() => {
-    prevStyle.current = curStyleId
+    prevStyle.current = curStyleId;
   }, [curStyleId]);
 
   useEffect(() => {
@@ -124,11 +124,19 @@ return (
         {styles.map((style) => (
           <EachStyle key={style.style_id}>
             <Checkmark id={style.style_id} className="checkmark"> &#10003; </Checkmark>
-            <Thumbnail
-              name={style.style_id}
-              src={style.photos[0].thumbnail_url}
-              onClick={selectStyle}
-            />
+            {
+              style.photos[0].thumbnail_url === null ?
+              <Thumbnail
+                src={require("../../RelatedItems/images/imgComingSoon.png")}
+                name={style.style_id}
+                onClick={selectStyle}
+              /> :
+              <Thumbnail
+                src={style.photos[0].thumbnail_url}
+                name={style.style_id}
+                onClick={selectStyle}
+              />
+            }
           </EachStyle>
         ))}
 

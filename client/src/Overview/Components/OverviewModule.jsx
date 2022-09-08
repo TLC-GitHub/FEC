@@ -10,8 +10,8 @@ import BookmarkButton from './BookmarkButton.jsx';
 import './styles.css';
 
 
-const OverviewModule = ({ styles, selectFromStyles, productID, addOutfit, removeOutfit }) => {
-  console.log("OverviewModule - what is the current product: ", styles);
+const OverviewModule = ({ productID, originalPrice, salePrice, curProduct, images, curStyle, styles, selectFromStyles, addOutfit, removeOutfit }) => {
+  console.log("OverviewModule - what is the current product: ", curStyle);
   const [data, setData] = useState('');
   const getData = () => setData(data);
 
@@ -27,7 +27,9 @@ const OverviewModule = ({ styles, selectFromStyles, productID, addOutfit, remove
         <Announcement />
       </div>
       <div>
-        <ImageGallery />
+        <ImageGallery
+          images={images}
+        />
       </div>
       <div>
         <AddToCart/>
@@ -40,10 +42,16 @@ const OverviewModule = ({ styles, selectFromStyles, productID, addOutfit, remove
         />
       </div>
       <div>
-        <ProductInformation />
+        <ProductInformation
+          curProduct={curProduct}
+          originalPrice={originalPrice}
+          salePrice={salePrice}
+        />
       </div>
       <div>
-        <ProductOverview />
+        <ProductOverview
+          productID={productID}
+        />
       </div>
       <div>
         <StyleSelector
