@@ -66,8 +66,9 @@ export const QuestionContainer = styled.div`
   display: flex;
   position: static;
   flex-direction: column;
-  overflow: auto;
-  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  justify-content: flex-start;
   padding: 0 15% 0 15%;
   max-height: 60rem;
 `
@@ -191,7 +192,6 @@ export const SearchbarInput = styled.input`
   width: 80%;
   border: 5px solid #C9D6DF;
   border-radius: 2rem;
-  height: 2rem;
 `
 
 export const SearchBarContainer = styled.div`
@@ -295,6 +295,7 @@ export const ModalForm = styled.div`
   margin-left: -25%;
   margin-top: -15%;
   border-radius: 3px;
+  font-size: 16px;
 `;
 
 export const ModalHeader = styled.div`
