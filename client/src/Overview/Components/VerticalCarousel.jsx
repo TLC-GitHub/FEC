@@ -1,46 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VerticalImage, VerticalSlider } from './VerticalScrollEntry.jsx';
 import DownButton from './DownButton.jsx';
+import axios from 'axios';
+import Authorization from '../../../../config.js';
+const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
 
-
-const VerticalCarousel = () => {
-
+const VerticalCarousel = ({ images }) => {
   const [current, setCurrent] = useState(0);
-
-  const images = [
-    {image: 'https://images.unsplash.com/photo-1521338488115-be37accc5bd6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270&q=80'},
-
-    {image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80'},
-
-    {image: 'https://images.unsplash.com/photo-1428790067070-0ebf4418d9d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'},
-
-    {image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2120&q=80'}
-  ]
+  const [resultImages, setResultsImages] = useState([]);
+  const [expanded, expand] = useState(false);
 
   const length = images.length;
 
   const nextImage = () => {
-    setCurrent(current === length ? 0 : current + 1);
+    if (current + 1 === length) {
+      setCurrent(0);
+    } else {
+      setCurrent((current) => ( current + 1 ))
+    }
   };
 
-    return (
+  return (
     <div>
       <VerticalSlider>
         <DownButton nextImage={nextImage} />
-        {images.map((slide, i) => {
-          return (
-            <div key={i}>
-              {i === current && (
-                <VerticalImage src={slide.image} alt="some ad image" />
-              )}
-            </div>
-          );
-        })}
+        {
+          images.map((slide, i) => {
+            return (
+              <div key={i}>
+                {i === current && (
+                  slide.url !== null ?
+                  <VerticalImage src={slide.url} alt="some ad image" /> :
+                  <VerticalImage src={require("../../RelatedItems/images/imgComingSoon.png")} />
+                )}
+              </div>
+            )
+          })
+        }
         <hr />
       </VerticalSlider>
     </div>
-    );
-  };
+  );
+};
 
 
 

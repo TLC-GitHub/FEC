@@ -1,0 +1,101 @@
+
+
+.overview{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1e2022;
+  margin: 5rem;
+
+}
+
+.logo{
+  background-color: #1e2022;
+  padding: 3rem;
+  text-decoration: underline;
+  color: #f0f5f9;
+  height: 10rem;
+}
+
+.announcement{
+  font-weight: lighter;
+  padding-top: 5rem;
+  font-family: 'Yanone Kaffeesatz';
+  text-align: center;
+}
+
+.button{
+  position: relative;
+  padding-right: 35rem;
+  padding-left: 3rem;
+  top: 20rem;
+  font-size: 2rem;
+  background: none;
+  z-index: 1;
+}
+
+.button-vertical {
+  position: relative;
+  font-size: 2rem;
+  top: -23rem;
+  padding-left: 9rem;
+  background: none;
+  z-index: 1;
+  transform: rotate(90deg);
+}
+
+.expand{
+  position: relative;
+  padding-left: 47rem;
+  top: 3rem;
+  font-size: 2rem;
+  background: none;
+  z-index: 1;
+}
+
+.size{
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  padding: 1rem;
+  padding-right: 10rem;
+  border: solid 3px black;
+  left: 52rem;
+  bottom: 12rem;
+}
+
+.quantity{
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  padding: 1rem;
+  padding-right:8rem;
+  margin-left: 10rem;
+  border: solid 3px black;
+  left: 61rem;
+  bottom: 15.4rem;
+}
+
+.bag{
+  text-transform: uppercase;
+  font-weight: 600;
+  background: none;
+  position: relative;
+  padding: 1rem;
+  padding-right:10rem;
+  margin-left: 10rem;
+  margin-top: 1rem;
+  border: solid 3px black;
+  left: 42rem;
+  bottom: 15.4rem;
+}
+
+.bookmark{
+  text-transform: uppercase;
+  font-weight: 600;
+  background: none;
+  position: relative;
+  padding: 1rem;
+  margin-left: 10rem;
+  border: solid 3px black;
+  left: 61rem;
+  bottom: 19rem;
+}

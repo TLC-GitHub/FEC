@@ -1,48 +1,67 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Logo from './Logo.jsx';
-import Search from './Search.jsx';
 import Announcement from './Announcement.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import AddToCart from './AddToCart.jsx';
 import ProductOverview from './ProductOverview.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import StyleSelector from './StyleSelector.jsx';
+import BookmarkButton from './BookmarkButton.jsx';
+import './styles.css';
 
-const OverviewModule = () => {
+
+const OverviewModule = ({ productID, originalPrice, salePrice, curProduct, images, curStyle, styles, selectFromStyles, addOutfit, removeOutfit }) => {
+  console.log("OverviewModule - what is the current product: ", curStyle);
   const [data, setData] = useState('');
   const getData = () => setData(data);
 
   return (
-    <div>
-      <div>
+  <div>
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
+    <div className="overview">
+      <div className="logo">
         <Logo />
       </div>
-      <div>
-        <Search />
-      </div>
-      <div>
+      <div className="announcement">
         <Announcement />
       </div>
       <div>
-        <h1>Overview</h1>
+        <ImageGallery
+          images={images}
+        />
       </div>
       <div>
-        <ImageGallery />
+        <AddToCart/>
       </div>
       <div>
-        <AddToCart />
+        <BookmarkButton
+          productID={productID}
+          addOutfit={addOutfit}
+          removeOutfit={removeOutfit}
+        />
       </div>
       <div>
-        <ProductInformation />
+        <ProductInformation
+          curProduct={curProduct}
+          originalPrice={originalPrice}
+          salePrice={salePrice}
+        />
       </div>
       <div>
-        <ProductOverview />
+        <ProductOverview
+          productID={productID}
+        />
       </div>
       <div>
-        <StyleSelector />
+        <StyleSelector
+          styles={styles}
+          selectFromStyles={selectFromStyles}
+        />
       </div>
 
     </div>
+  </div>
   );
 }
 

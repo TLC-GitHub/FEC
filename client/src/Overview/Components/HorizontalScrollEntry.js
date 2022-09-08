@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const HorizontalImage = styled.img`
-  width: ${(props) => (props.expanded ? "600px" : "400px")};
-  height: 300px;
+  width: ${(props) => (props.expanded ? "60rem" : "50rem")};
+  height: 30rem;
   object-fit: cover;
 `;
 

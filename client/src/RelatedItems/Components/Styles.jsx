@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-// export const StyledSlider = styled.div`
-//   position: relative;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-wrap: wrap;
-// `;
-
 export const StyledSlider = styled.div`
   position: relative;
   display: flex;
@@ -46,6 +38,53 @@ export const ImgContainer = styled.div`
   height: 70%;
 `;
 
+export const ImageStyled = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  ${ImgContainer}:hover & {
+    opacity: 0.8;
+  }
+`;
+
+export const StyledStarBtn = styled.div`
+  position: absolute;
+  left: 80%;
+  top: 3%;
+`;
+
+export const ImageOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30%;
+  background: rgb(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  transition: .1s ease;
+  font-size: 20px;
+  text-align: center;
+  visibility: hidden;
+  cursor: pointer;
+
+  ${ImgContainer}:hover & {
+    visibility: visible;
+    opacity: 0.8;
+  }
+`;
+
+export const ImagesSlider = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+
+export const ImageSlide = styled.img`
+  width: 30%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const AddOutfitBtn = styled.div`
   width: 253px;
   height: 320px;
@@ -61,37 +100,12 @@ export const OutfitButton = styled.button`
   cursor: pointer;
   border: 1px solid #A2B5BB;
   background-color: white;
+  &:hover {
+    background-color: #C9D6DF;
+    font-size: 1rem;
+  }
 `;
 
-export const StyledStarBtn = styled.div`
-  position: absolute;
-  left: 70%;
-  top: 3%;
-`;
-
-export const ModalBox = styled.div`
-  position: fixed;
-  top: 10%;
-  width: 500px;
-  height: 500px;
-  background-color: #000;
-`;
-
-export const Table = styled.table`
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  table-layout: fixed;
-`;
-
-const tableDataStyles = [`
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  padding: 1rem 0rem;
-`];
-
-export const StyledHead = styled.th(tableDataStyles);
-export const StyledCell = styled.td(tableDataStyles);
 
 export const Star = styled.span`
   display: inline-block;
@@ -109,3 +123,76 @@ export const Star = styled.span`
     color: #f80;
   }
 `;
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .5;
+`;
+
+export const ModalWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  `;
+
+export const Modal = styled.div`
+  z-index: 100;
+  background: white;
+  position: relative;
+  margin: 1.75rem auto;
+  border-radius: 10px;
+  max-width: 700px;
+  max-height: 800px;
+  padding: 2rem;
+  overflow-y: auto;
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const ModalCloseBtn = styled.button`
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  opacity: .3;
+  cursor: pointer;
+  border: none;
+`;
+
+export const Table = styled.table`
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  table-layout: fixed;
+  position: relative;
+`;
+
+export const TableHead = styled.thead`
+  position: sticky;
+  top: 0;
+  background: white;
+`;
+
+const tableDataStyles = [`
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  padding: 1rem 0rem;
+`];
+
+export const StyledHead = styled.th(tableDataStyles);
+export const StyledCell = styled.td(tableDataStyles);

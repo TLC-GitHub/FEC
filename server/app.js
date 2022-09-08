@@ -2,7 +2,8 @@ require("dotenv").config();
 const helper = require('./hrapi.js');
 const express = require("express");
 const path = require("path");
-let app = express();
+const app = express();
+const cloudinary = require('cloudinary-core');
 
 // app.use(express.static("client/dist"));
 app.use(express.static(__dirname + '/../client/dist'));
@@ -42,6 +43,7 @@ app.put('/put', (req, res) => {
   // console.log(typeof req.body.queryParams);
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
 
+  console.log(pathVariable);
   helper.updateInfo(widget, queryParams, pathVariable, subCategory)
     .then((result) => {
       res.status(204).send('successfully updated')
@@ -55,9 +57,9 @@ app.post('/post', (req, res) => {
   let widget = req.body.widget;
   let subCategory = req.body.subCategory || '';
   let queryParams = req.body.queryParams === undefined ? '' : req.body.queryParams;
-  let bodyParams = req.body.params
+  let bodyParams = req.body.bodyParams
 
-  helper.postInfo(widget, queryParams, bodyParams, subCategory)
+  helper.postInfo(widget, bodyParams, queryParams, subCategory)
     .then(() => {
       res.status(201).send('succesfully posted');
     })
@@ -67,3 +69,5 @@ app.post('/post', (req, res) => {
 })
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
+
+

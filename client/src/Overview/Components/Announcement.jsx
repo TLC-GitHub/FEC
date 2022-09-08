@@ -5,7 +5,7 @@ const Announcement = () => {
   const getData = () => setData(data);
 
   return (
-    <h2>Our new pants are all yours, only on the app. Download the App</h2>
+    <h2><i>Our new pants are all yours</i> - only on the app. Download the App</h2>
   );
 }
 

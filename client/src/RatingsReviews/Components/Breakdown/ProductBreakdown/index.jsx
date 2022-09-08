@@ -32,7 +32,6 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
     fitAverage = `${((Number(characteristics.Fit.value)/5)*100)-2}%`;
   }
 
-
   return(
     <ProductBreakdownMain>
 
@@ -216,7 +215,6 @@ const BarBack = styled.div`
   border-radius: 15px;
   width: 33%;
 `;
-
 
 const EachChar = styled.div`
   margin: 1em 0em 1em 0em;

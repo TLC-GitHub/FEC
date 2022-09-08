@@ -1,11 +1,14 @@
 import React, { useState }from 'react';
-import { CardContainer, ImgContainer, StyledStarBtn, Star } from "../Styles.jsx";
+import { CardContainer, ImgContainer, ImageStyled, StyledStarBtn, Star, ImageOverlay, OverlayText } from "../Styles.jsx";
 import NoPhotoImg from "../../images/imgComingSoon.png";
 import ComparisonModal from "../Comparison/ComparisonModal.jsx";
-import useModal from "./useModal.jsx";
+import useModal from "../Comparison/useModal.jsx";
+import ImageSlider from "./ImageSlider.jsx";
 
-const ProductCard = ({ id, image, category, name, original_price, sale_price, ratings, features, styles, curProduct, curStyle, selectFromRelated }) => {
+const ProductCard = ({ id, image, category, name, original_price, sale_price, ratings, features, styles, photos, curProduct, curStyle, selectFromRelated }) => {
+
   const [target, setTarget] = useState(0);
+  const [displayImg, setDisplayImg] = useState(image);
   const {showModal, toggle} = useModal();
 
   const handleIconClick = (e) => {
@@ -13,17 +16,38 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
     toggle();
   }
 
-  const handleButtonClick = (e) => {
-    console.log('id: ', e.target.id);
+  const handleProductClick = (e) => {
+    console.log('what is being clicked: ', e.target)
+    selectFromRelated(e.target.id);
+  }
+
+  const changeOfImage = (value) => {
+    setDisplayImg((preValue) => {
+      return value;
+    });
   }
 
   return (
     <CardContainer>
       <ImgContainer>
         {image !== null ?
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={image} alt="apiImg" /> :
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={require("../../images/imgComingSoon.png")} alt="noImg" />
+          <ImageStyled
+            src={displayImg} alt="apiImg"
+            id={id} onClick={handleProductClick}
+          /> :
+          <ImageStyled
+            src={require("../../images/imgComingSoon.png")} alt="noImg"
+            id={id} onClick={handleProductClick}
+          />
         }
+        <ImageOverlay>
+          <ImageSlider
+            photos={photos}
+            changeOfImage={changeOfImage}
+          >
+          </ImageSlider>
+        </ImageOverlay>
+
         <StyledStarBtn>
           <button type="button" value={id} onClick={handleIconClick}
             style={{border: "none", fontSize: "1.5rem", cursor: "pointer", backgroundColor: "rgba(0,0,0,0)", color: "#7F8487"}}
@@ -45,20 +69,20 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
           />
         </StyledStarBtn>
       </ImgContainer>
-      <div style={{padding: "0 8px", marginTop: "8px"}} id={id}
-           onClick={event => selectFromRelated(event.target.id)}
-          // onClick={handleButtonClick}
-          // name='testing'
+      <div style={{padding: "0 8px", marginTop: "8px"}}
+        id={id} onClick={handleProductClick}
       >
-        <div>{category}</div>
-        <div><strong>{name}</strong></div>
-          { sale_price === null ?
-            <span>${original_price}</span> :
-            <div>
-              <span style={{color: "red"}}>${sale_price}</span>
-              <span> <s>${original_price}</s></span>
-            </div> }
-        <div><Star percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
+          <div id={id} onClick={handleProductClick}>{category}</div>
+          <div id={id}><strong id={id} onClick={handleProductClick}>{name}</strong></div>
+            { sale_price === 0 ?
+              <div id={id} onClick={handleProductClick}>
+                <span id={id}>${original_price}</span>
+              </div> :
+              <div id={id} onClick={handleProductClick}>
+                <span id={id} style={{color: "red"}}>${sale_price}</span>
+                <span id={id}> <s id={id}>${original_price}</s></span>
+              </div> }
+          <div id={id} onClick={handleProductClick}><Star id={id} percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
       </div>
     </CardContainer>
   );
