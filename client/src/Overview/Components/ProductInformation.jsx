@@ -20,7 +20,7 @@ const Price = styled.h4`
   font-size: 1.5rem;
 `;
 
-const ProductInformation = () => {
+const ProductInformation = ({ curProduct, originalPrice, salePrice }) => {
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -41,10 +41,20 @@ const ProductInformation = () => {
 
   return (
     <div>
-    <Category>{category}</Category>
-    <ExpandedProductName>{name}</ExpandedProductName>
-    <Price>${price}</Price>
-    <Ratings />
+    {/* <Category>{category}</Category> */}
+    {/* <ExpandedProductName>{name}</ExpandedProductName> */}
+    {/* <Price>${price}</Price> */}
+    <Category>{curProduct.category}</Category>
+    <ExpandedProductName>{curProduct.name}</ExpandedProductName>
+    {
+      salePrice !== 0 ?
+      <Price>${originalPrice}</Price> :
+      <Price>
+        <span style={{color: "red"}}>${salePrice}</span>
+        <span> <s>${originalPrice}</s></span>
+      </Price>
+    }
+    <Ratings ratings={curProduct.ratings}/>
     </div>
   );
 }
