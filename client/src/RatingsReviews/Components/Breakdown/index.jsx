@@ -9,7 +9,6 @@ function Breakdown ({ metaData, filterSort, metaSize, metaWidth, metaComfort, me
 
   return (
     <Mains>
-      Ratings and Reviews
       <RatingBreakdown
         ratings={metaData.ratings}
         recommended={metaData.recommended}

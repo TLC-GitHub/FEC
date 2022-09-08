@@ -117,6 +117,7 @@ const Select = styled.select`
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;
+  background-color: #F0F5F9;
 `;
 
 const KeywordSearch = styled.input`

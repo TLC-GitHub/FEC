@@ -231,13 +231,16 @@ const StarAverage = styled.div`
 const BarSpace = styled.u`
   margin: 0em 0.8em 0em 0em;
   cursor: pointer;
-  color: #FF0080;
+  color: #1E2022;
+  &:hover {
+    color: #C9D6DF;
+  }
 `;
 
 const BarSpaceClicked = styled.u`
   margin: 0em 0.8em 0em 0em;
   cursor: pointer;
-  color: #330033;
+  color: #C9D6DF;
 `;
 
 const StarRating = styled.div`

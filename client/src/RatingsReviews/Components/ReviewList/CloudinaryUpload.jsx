@@ -95,18 +95,8 @@ function CloudinaryUpload ({ addFromCloud, postPhoto }) {
 
   return (
     <Cloud>
-      <></>
-      {/* {console.log('addFromCloud', addFromCloud)} */}
-      {/* {console.log('Image 1', image1)} */}
-      {/* {console.log('Image 2', image2)} */}
-      {/* {console.log('Image 3', image3)} */}
-      {/* {console.log('Image 4', image4)} */}
-      {/* {console.log('Image 5', image5)} */}
-      {/* {console.log('ALL', [image1, image2, image3, image4, image5])} */}
-
       <ClickMePls onClick={uploadImageWidget}>
         UPLOAD PHOTO
-        {/* <FaFileImport size={30} /> */}
       </ClickMePls>
       <GroupDivPic>
         <DivPic>
@@ -141,7 +131,7 @@ const ClickMePls = styled.u`
   display: flex;
   justify-content: center;
   cursor: pointer;
-  color: black;
+  color: #1E2022;
 
   border-radius: 15px;
   font-size: 25px;
@@ -164,7 +154,7 @@ const GroupDivPic = styled.div`
 const DivPic = styled.div`
   display: flex;
   flex-direction: center;
-  color: gray;
+  color: #52616B;
   margin: 0em 0.5em 0em 0.5em;
   border-radius: 15px;
 `;

@@ -114,13 +114,13 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
           <Name>
             <InfoTitle>Name<Required> *</Required></InfoTitle>
 
-            <input name="name" type="text" value={name} minlength="3" maxlength="60"
+            <Input name="name" type="text" value={name} minlength="3" maxlength="60"
             onChange={(e) => setName(e.target.value)} required/>
           </Name>
 
           <Email>
             <InfoTitle>E-Mail<Required> *</Required></InfoTitle>
-            <input name="email" type="email" value={email} minlength="3" maxlength="60"
+            <Input name="email" type="email" value={email} minlength="3" maxlength="60"
             onChange={(e) => setEmail(e.target.value)} required/>
           </Email>
         </Info>
@@ -143,7 +143,7 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
 
                 <FaStar
                   className="add-star-rev"
-                  color={ratingValue <= (starHover || starRate) ? "#1A1A1A" : "#e4e5e9"}
+                  color={ratingValue <= (starHover || starRate) ? "#52616B" : "#e4e5e9"}
                   size={30}
                   onMouseEnter={() => setStarHover(ratingValue)}
                   onMouseLeave={() => setStarHover(null)}
@@ -155,7 +155,7 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
         </Review>
         <InfoTitle>Summary<Required> *</Required></InfoTitle>
         <Review>
-          <input
+          <Input
             type="text"
             value={reviewSummary}
             minlength="10"
@@ -168,12 +168,12 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
 
         <InfoTitle>Review Body<Required> *</Required></InfoTitle>
         <Body>
-          <textarea
+          <Textarea
             minlength="51"
             maxlength="1000"
             rows="10"
             cols="100"
-            onChange={(e) => bodyChange(e.target.value, e.target.value.length)} required></textarea>
+            onChange={(e) => bodyChange(e.target.value, e.target.value.length)} required></Textarea>
         </Body>
         {bodyCount <= 50 ? <Review><Re>{50 - bodyCount} characters remaining</Re></Review> :
         <Review>{bodyCount} / 1000</Review>}
@@ -282,6 +282,22 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
 export default AddReviewForm;
 
 
+
+const Input = styled.input`
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
+  font-size: 1em;
+  border-radius: 5px;
+  border-width: .1em;
+  border-style: solid;
+`
+const Textarea = styled.textarea`
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
+  font-size: 1em;
+  border-radius: 5px;
+`
+
 const MainHeader = styled.h1`
   display: flex;
   justify-content: center;
@@ -323,6 +339,8 @@ const Body = styled.div`
   display: flex;
   justify-content: center;
   line-height: 140%;
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
   // margin: 0em 0em 1em 0em;
 `;
 
@@ -365,6 +383,8 @@ const Info = styled.div`
 const ReviewForm = styled.div`
   // display: flex;
   // place-content: center;
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
 `;
 
 const Photo = styled.div`

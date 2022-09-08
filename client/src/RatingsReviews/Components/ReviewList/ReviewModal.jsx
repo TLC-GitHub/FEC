@@ -58,14 +58,16 @@ const ModalWrapper = styled.div`
 
   const MainModal = styled.div`
   z-index: 100;
-  background: white;
+  background: #F0F5F9;
   position: relative;
   margin: 10rem auto;
   // margin: 1.75rem auto;
   border-radius: 1.5rem;
   width: 1000px;
-  height: 1000px;
+  height: 900px;
   padding: 2rem;
+  // border-style: inset;
+  // border-width: 2em;
   `;
 
 const ModalHeader = styled.div`
