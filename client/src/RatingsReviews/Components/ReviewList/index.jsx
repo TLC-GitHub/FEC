@@ -117,7 +117,9 @@ const Select = styled.select`
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;
-  background-color: #F0F5F9;
+  // opacity: 0;
+  background: rgba(0,0,0,0);
+  // background-color: #F0F5F9;
 `;
 
 const KeywordSearch = styled.input`
@@ -126,6 +128,7 @@ const KeywordSearch = styled.input`
   height: 2em;
   width: 45em;
   text-indent: 20px;
+  margin-right: 2em;
 `;
 
 const SearchDiv = styled.div`
@@ -157,7 +160,7 @@ const SearchButton = styled.button`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 10em;
+  width: 8em;
   will-change: transform;
   &:disabled {
     pointer-events: none;

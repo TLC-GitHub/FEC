@@ -167,8 +167,8 @@ export const ImageWrapper = styled.div`
   gap: .25rem;
 `
 export const Images = styled.img`
-  width: 6rem;
-  height: 6rem;
+  width: 10rem;
+  height: 10rem;
   margin-right: .25rem;
   margin-bottom: .25rem;
   border: 1px solid grey;

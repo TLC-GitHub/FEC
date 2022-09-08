@@ -49,8 +49,8 @@ function IndividualReviewTile ({ elem, body, date, helpfulness, photos, rating, 
 
   return(
     <Tile>
-      {console.log('helpfulness, ', helpfulness)}
-      {console.log('elem, ', elem)}
+      {/* {console.log('helpfulness, ', helpfulness)} */}
+      {/* {console.log('elem, ', elem)} */}
       <div>
         <Star percentage={((rating/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
         <User><FaUser />&nbsp;{reviewer_name}, {time}</User>
