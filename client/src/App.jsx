@@ -4,6 +4,7 @@ import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import OutfitSlider from './RelatedItems/Components/OutfitList/OutfitSlider.jsx';
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
 import QuestionList from './QnA/Components/QuestionList.jsx'
+import styled from 'styled-components';
 
 const axios = require('axios');
 
@@ -99,7 +100,7 @@ function App() {
   }
 
   const selectFromStyles = (value) => {
-    console.log("what style is selected (app.js): ", value[0]);
+    // console.log("what style is selected (app.js): ", value[0]);
     setCurProduct(() => (
       {...curProduct, "selectedStyle": value[0]}
     ));
@@ -132,6 +133,7 @@ function App() {
   }
 
   return (
+    // <div style={{backgroundColor: "#F0F5F9"}}>
     <div>
       <div>
         <OverviewModule
@@ -146,16 +148,23 @@ function App() {
           removeOutfit={removeOutfit}
         />
       </div>
-      <div>
+      <RelatedProductAndOutfits>
+      <Item>
         <h1>You May Also Like</h1>
-        <RelatedProductsFetch
-          productID={productID}
-          curProduct={curProduct}
-          selectFromRelated={selectFromRelated}
-        />
-      </div>
-      <div>
+      </Item>
+      <Item>
+          <RelatedProductsFetch
+            productID={productID}
+            curProduct={curProduct}
+            selectFromRelated={selectFromRelated}
+            />
+      </Item>
+      </RelatedProductAndOutfits>
+      <RelatedProductAndOutfits>
+      <Item>
         <h1>Your Outfit</h1>
+      </Item>
+      <Item>
         <OutfitSlider
           outfitList={outfitList}
           addOutfit={addOutfit}
@@ -163,7 +172,9 @@ function App() {
           productID={productID}
           curProduct={curProduct}
         />
-      </div>
+      </Item>
+      </RelatedProductAndOutfits>
+
       <div>
         <h1>Questions and Answers</h1>
         <QuestionList />
@@ -177,3 +188,21 @@ function App() {
 }
 
 export default App;
+
+
+export const RelatedProductAndOutfits = styled.div`
+  margin: auto;
+  width: 70%;
+`;
+// display: flex;
+// flex-direction: column;
+
+const Item = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+
+`;

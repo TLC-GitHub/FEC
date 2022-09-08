@@ -29,8 +29,12 @@ export const CardContainer = styled.div`
   flex-direction: column;
   width: 200px;
   height: 100%;
-  border: 1px solid #A2B5BB;
-`;
+  border: 1px solid #C9D6DF;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #F0F5F9;
+  `;
+  // border: 1px solid #A2B5BB;
 
 export const ImgContainer = styled.div`
   position: relative;
@@ -52,6 +56,15 @@ export const StyledStarBtn = styled.div`
   position: absolute;
   left: 80%;
   top: 3%;
+`;
+
+export const CornerButton = styled.button`
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0);
+  color: #7F8487;
+  cursor: pointer;
 `;
 
 export const ImageOverlay = styled.div`
@@ -85,27 +98,20 @@ export const ImageSlide = styled.img`
   object-fit: cover;
 `;
 
-export const AddOutfitBtn = styled.div`
-  width: 253px;
-  height: 320px;
-  cursor: pointer;
-  border: 1px solid #A2B5BB;
-`;
-
 export const OutfitButton = styled.button`
-  width: 248.1px;
+  min-width: 200px;
   height: 100%;
   margin-left: 0px;
   padding: 0px;
   cursor: pointer;
-  border: 1px solid #A2B5BB;
+  border: 1px solid #C9D6DF;
+  border-radius: 10px;
   background-color: white;
   &:hover {
-    background-color: #C9D6DF;
+    background-color: #EEEEEE;
     font-size: 1rem;
   }
 `;
-
 
 export const Star = styled.span`
   display: inline-block;
@@ -145,19 +151,19 @@ export const ModalWrapper = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
-  `;
+`;
 
 export const Modal = styled.div`
   z-index: 100;
-  background: white;
+  background-color: #F0F5F9;
   position: relative;
   margin: 1.75rem auto;
+  padding: 2rem;
   border-radius: 10px;
   max-width: 700px;
-  max-height: 800px;
-  padding: 2rem;
+  max-height: 700px;
   overflow-y: auto;
-`;
+  `;
 
 export const ModalHeader = styled.div`
   display: flex;
@@ -185,13 +191,13 @@ export const Table = styled.table`
 export const TableHead = styled.thead`
   position: sticky;
   top: 0;
-  background: white;
+  background: #F0F5F9;
 `;
 
 const tableDataStyles = [`
   border-bottom: 1px solid #ddd;
   text-align: center;
-  padding: 1rem 0rem;
+  padding: 1.5rem 0rem;
 `];
 
 export const StyledHead = styled.th(tableDataStyles);
