@@ -94,6 +94,19 @@ function App() {
       })
   }, [productID]);
 
+  useEffect(() => {
+    const outfitList = JSON.parse(localStorage.getItem('outfitList'));
+    if (outfitList) {
+      setOutfitList(outfitList);
+      console.log("when page refresh", outfitList);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("outfitList", JSON.stringify(outfitList));
+  }, [outfitList]);
+
+
   const selectFromRelated = (value) => {
     // console.log('i got clicked. New product ID is: ', value);
     setProductID(value);
