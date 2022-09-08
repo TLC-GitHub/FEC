@@ -12,6 +12,7 @@ function App() {
   const [curProduct, setCurProduct] = useState({ features: [], styles: [], related: [] });
   const [outfitList, setOutfitList] = useState([]);
   const [curStyle, setCurStyle] = useState({});
+  const [curImages, setCurImages] = useState([]);
 
   // let randomID = Math.floor(Math.random() * (65660 - 65631) + 65631); // to generate a random productID first 30 ID's
   // setProduct(randomID)
@@ -73,8 +74,6 @@ function App() {
                   features: [...currentProduct.features],
                   styles: [...currentProduct.styles],
                   image: currentProduct.image,
-                  // original_price: currentProduct.original_price,
-                  // sale_price: currentProduct.sale_price,
                   default_price: currentProduct.default_price,
                   ratings: currentProduct.ratings,
                   selectedStyle: currentProduct.styles[0]
@@ -82,6 +81,9 @@ function App() {
                 setCurStyle((curStyle) => (
                   {...curStyle, ...currentProduct.styles[0]}
                 ));
+                setCurImages((curImages) => (
+                  [...currentProduct.styles[0].photos]
+                ))
               })
           })
       })
@@ -101,18 +103,14 @@ function App() {
     setCurProduct(() => (
       {...curProduct, "selectedStyle": value[0]}
     ));
-    setCurStyle((curStyle) => ( { ...curStyle, ...value[0]} ))
+    setCurStyle((curStyle) => ( { ...curStyle, ...value[0]} ));
+    setCurImages((curImages) => ( [...value[0].photos] ));
   }
 
   const addOutfit = () => {
     let alreadyAdded = false;
     outfitList.map((outfit) => {
-      console.log("outfit.id: ", outfit.id);
-        console.log("productID: ", productID);
       if (Number(outfit.id) === Number(productID)) {
-        console.log("i should be here when product already exist ----- ");
-        console.log("outfit.id: ", outfit.id);
-        console.log("productID: ", productID);
         alreadyAdded = true;
       }
     });
@@ -139,7 +137,10 @@ function App() {
         <OverviewModule
           styles={curProduct.styles}
           selectFromStyles={selectFromStyles}
-          curStyle={curStyle.photos}
+          curProduct={curProduct}
+          images={curImages}
+          originalPrice={curStyle.original_price}
+          salePrice={curStyle.sale_price}
           productID={productID}
           addOutfit={addOutfit}
           removeOutfit={removeOutfit}
