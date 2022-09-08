@@ -85,8 +85,9 @@ function QuestionList({productID, curProduct, curStyle}) {
 
 
   return(
+    <div>
+      <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={questions}/>
       <QuestionContainer>
-        <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={questions}/>
           {filteredQ.slice(0, questionCount).map(question => {
             return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
           })}
@@ -99,9 +100,10 @@ function QuestionList({productID, curProduct, curStyle}) {
         {!questionModal
         ? <BigButton onClick={toggleQuestionModal}> <b>Add A Question</b></BigButton>
         : <QuestionModal productID={productID} toggle={toggleQuestionModal} curProduct={curProduct.name} curStyle={curStyle.name}/>
-        }
+      }
         </ButtonContainer>
       </QuestionContainer>
+      </div>
   )
 }
 

@@ -67,6 +67,20 @@ app.post('/post', (req, res) => {
       res.status(500).send('could not post');
     })
 })
+
+app.post('/interaction', (req, res) => {
+  let widget = req.body.widget;
+  let element = req.body.element;
+  let time = req.body.time;
+
+  helper.postInteraction(element, widget, time)
+    .then(() => {
+      res.status(201).send('INTERACTION CREATED')
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+})
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
 
