@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {SearchbarInput} from './styles.jsx';
+import {SearchbarInput, SearchBarContainer} from './styles.jsx';
+
 
 function SearchBar({setQuestions, questions, prevQuestions}) {
   // const [query, setQuery] = useState('');
 
-  let val;
+  useEffect(() => {
 
+  }, [questions])
+
+
+  let val;
+//need to filter constantly on keystrokes as long as val is greater than 3
+//at the moment filters from select list and will only use that select list instead of getting all questions once again
   const handleChange = (e) => {
     val = e.target.value;
       if (val.length >= 3) {
@@ -17,16 +24,14 @@ function SearchBar({setQuestions, questions, prevQuestions}) {
   }
 
   return (
-    <div className="search-bar-container">
-      <form className="search-bar">
+    <SearchBarContainer>
       <SearchbarInput
         type="text"
-        placeholder="Have a question? Search for answers"
+        placeholder="Have a question? Search for answers..."
         value={val}
         onChange={handleChange}
       />
-      </form>
-    </div>
+    </SearchBarContainer>
   )
 }
 

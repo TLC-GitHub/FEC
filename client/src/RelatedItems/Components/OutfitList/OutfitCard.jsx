@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { CardContainer, ImgContainer, StyledStarBtn, Star } from "../Styles.jsx";
 
-const OutfitCard = ({ id, image, category, name, original_price, sale_price, ratings, curProduct, curStyle, curStylePhoto, removeOutfit }) => {
+const OutfitCard = ({ id, category, name, ratings, selectedStyle, removeOutfit }) => {
 
   return (
     <CardContainer>
       <ImgContainer>
-        { image === undefined && curStylePhoto[0].thumbnail_url !== null ?
+        {
+          selectedStyle.photos[0].thumbnail_url !== null ?
           <img style={{width: "100%", height: "100%", objectFit: "cover"}}
-               src={curStylePhoto[0].thumbnail_url} alt="apiImg" /> :
-          image === undefined ?
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={require("../../images/imgComingSoon.png")} alt="noImg" /> :
-         image !== null ?
-          <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={image} alt="apiImg" /> :
+            src={selectedStyle.photos[0].thumbnail_url} alt="apiImg" /> :
           <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={require("../../images/imgComingSoon.png")} alt="noImg" />
         }
         <StyledStarBtn>
@@ -28,19 +25,14 @@ const OutfitCard = ({ id, image, category, name, original_price, sale_price, rat
       <div style={{padding: "0 8px", marginTop: "8px"}}>
         <div>{category}</div>
         <div><strong>{name}</strong></div>
-          { original_price === undefined && curStyle.sale_price === null ?
-            <span>${curStyle.original_price}</span> :
-            original_price === undefined ?
+          {
+            selectedStyle.sale_price === null ?
+            <span>${selectedStyle.original_price}</span> :
             <div>
-              <span style={{color: "red"}}>${curStyle.sale_price}</span>
-              <span> <s>${curStyle.original_price}</s></span>
-            </div> :
-            sale_price === null ?
-            <span>${original_price}</span> :
-            <div>
-              <span style={{color: "red"}}>${sale_price}</span>
-              <span> <s>${original_price}</s></span>
-            </div> }
+              <span style={{color: "red"}}>${selectedStyle.sale_price}</span>
+              <span> <s>${selectedStyle.original_price}</s></span>
+            </div>
+          }
         <div><Star percentage={((ratings/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star></div>
       </div>
     </CardContainer>

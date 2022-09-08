@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { StyledCell, Star } from '../Styles.jsx';
 
 const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targetName, targetOriginal_price, targetSale_price, targetRatings, targetFeatures, targetStyles }) => {
+
+  const [oriPrice, setOriPrice] = useState(Number(curProduct.selectedStyle.original_price));
+  const [salePrice, setSalePrice] = useState(Number(curProduct.selectedStyle.sale_price));
   const [curStyles, curFeatures, curValues] = [[], [], []];
   const [comStyles, comFeatures, comValues] = [[], [], []];
+
+  useEffect(() => {
+
+    setOriPrice(()=> (Number(curProduct.selectedStyle.original_price)));
+    setSalePrice(()=> (Number(curProduct.selectedStyle.sale_price)));
+
+  }, [curProduct]);
 
   const helper = (array, targetVal, resArray) => {
     return array.map((value) => {
@@ -31,19 +41,25 @@ const ComparisonTable = ({ curProduct, curStyle, targetID, targetCategory, targe
 
         <tr>
           <StyledCell>
-            { curProduct.sale_price === undefined && curStyle.sale_price === null ?
-              <span>${curStyle.original_price}</span> :
+            {
+              salePrice === 0 ?
+              <span>${oriPrice}</span> :
               <div>
-                <span style={{color: "red"}}>${curStyle.sale_price}</span>
-                <span><s>${curStyle.original_price}</s></span>
+                <span style={{color: "red"}}>${salePrice} </span>
+                <span><s>${oriPrice}</s></span>
               </div>
+
             }
           </StyledCell>
           <StyledCell><strong>Price</strong></StyledCell>
           <StyledCell>
-            { targetSale_price === null ?
+            {
+              targetSale_price === 0 ?
               <span>${targetOriginal_price}</span> :
-              <div><span style={{color: "red"}}>${targetSale_price}</span> <span><s>${targetOriginal_price}</s></span></div>
+              <div>
+                <span style={{color: "red"}}>${targetSale_price} </span>
+                <span><s>${targetOriginal_price}</s></span>
+              </div>
             }
           </StyledCell>
         </tr>
