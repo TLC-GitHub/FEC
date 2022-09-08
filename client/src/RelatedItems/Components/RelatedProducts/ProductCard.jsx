@@ -1,5 +1,5 @@
 import React, { useState }from 'react';
-import { CardContainer, ImgContainer, ImageStyled, StyledStarBtn, Star, ImageOverlay, OverlayText } from "../Styles.jsx";
+import { CardContainer, ImgContainer, ImageStyled, StyledStarBtn, CornerButton, Star, ImageOverlay, OverlayText } from "../Styles.jsx";
 import NoPhotoImg from "../../images/imgComingSoon.png";
 import ComparisonModal from "../Comparison/ComparisonModal.jsx";
 import useModal from "../Comparison/useModal.jsx";
@@ -49,10 +49,9 @@ const ProductCard = ({ id, image, category, name, original_price, sale_price, ra
         </ImageOverlay>
 
         <StyledStarBtn>
-          <button type="button" value={id} onClick={handleIconClick}
-            style={{border: "none", fontSize: "1.5rem", cursor: "pointer", backgroundColor: "rgba(0,0,0,0)", color: "#7F8487"}}
+          <CornerButton type="button" value={id} onClick={handleIconClick}
           >&#9734;
-          </button>
+          </CornerButton>
           <ComparisonModal
             showModal={showModal}
             hide={toggle}
