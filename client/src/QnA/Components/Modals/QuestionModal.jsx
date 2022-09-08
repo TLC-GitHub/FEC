@@ -84,22 +84,22 @@ function QuestionModal({productID, toggle, curProduct, curStyle}) {
       <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
         <ModalHeader>
         <ModalForm>
-        {curProduct} {curStyle}
-      <ModalCloseButton type="button" data-dismiss="modal" aria-label="Close" onClick={toggle}>
+        <ModalCloseButton type="button" data-dismiss="modal" aria-label="Close" onClick={toggle}>
         <span aria-hidden="true">&times;</span>
       </ModalCloseButton>
+        <h1>{curProduct} {curStyle} </h1> <br /> <br />
       <form className="form" onSubmit={sendQuestion}>
-        <div> Question </div>
+        <div> Question* </div>
         <input type="text" name="body" onChange={handleChange} placeholder="Write Question here"/>
         {errBody
           ? <div> this field is required <br /></div>
           : null}
-        <div><br /> Enter Username Here </div>
+        <div><br /> Enter Username* </div>
         <input type="text" name="name" placeholder="Example: jackson11!" onChange={handleChange}/>
         {errName
           ? <div> this field is required </div>
           :  <div> For privacy reasons, do not use your full name or email address  <br /></div>}
-        <div> <br /> Enter email here </div>
+        <div> <br /> Enter email* </div>
         <input type="text" name="email" placeholder='Why did you like the product or not?' onChange={handleChange}/>
         {errEmail
           ? <div> this field is required <br /></div>

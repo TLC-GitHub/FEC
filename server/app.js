@@ -2,7 +2,8 @@ require("dotenv").config();
 const helper = require('./hrapi.js');
 const express = require("express");
 const path = require("path");
-let app = express();
+const app = express();
+const cloudinary = require('cloudinary-core');
 
 // app.use(express.static("client/dist"));
 app.use(express.static(__dirname + '/../client/dist'));
@@ -68,3 +69,5 @@ app.post('/post', (req, res) => {
 })
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
+
+

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {SearchbarInput, SearchBarContainer} from './styles.jsx';
+import searchIcon from './icons/searchicon.png';
+
 
 function SearchBar({setQuestions, questions, prevQuestions}) {
   // const [query, setQuery] = useState('');
@@ -24,14 +26,12 @@ function SearchBar({setQuestions, questions, prevQuestions}) {
 
   return (
     <SearchBarContainer>
-      <form className="search-bar">
       <SearchbarInput
         type="text"
         placeholder="Have a question? Search for answers..."
         value={val}
         onChange={handleChange}
       />
-      </form>
     </SearchBarContainer>
   )
 }

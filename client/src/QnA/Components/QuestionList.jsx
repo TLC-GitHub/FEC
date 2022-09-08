@@ -95,9 +95,9 @@ function QuestionList({productID, curProduct, curStyle}) {
         ? null
         : questionCount >= filteredQ.length
         ? null
-        : <BigButton onClick={addMoreQuestions}> <b>MORE ANSWERED QUESTIONS</b> </BigButton>}
+        : <BigButton onClick={addMoreQuestions}> <b>More Questions</b> </BigButton>}
         {!questionModal
-        ? <BigButton onClick={toggleQuestionModal}> <b>ADD A QUESTION</b></BigButton>
+        ? <BigButton onClick={toggleQuestionModal}> <b>Add A Question</b></BigButton>
         : <QuestionModal productID={productID} toggle={toggleQuestionModal} curProduct={curProduct.name} curStyle={curStyle.name}/>
         }
         </ButtonContainer>

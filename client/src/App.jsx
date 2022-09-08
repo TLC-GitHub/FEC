@@ -156,7 +156,7 @@ function App() {
         <QuestionList
           productID={productID}
           curProduct={curProduct}
-          curStyle={curStyle}
+          curStyle={curProduct.selectedStyle}
         />
       </div>
       <div>

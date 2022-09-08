@@ -3,6 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import styled from 'styled-components';
 import {Button, AnswerDetails, AnswerCardContainer, Answer, AnswerInfo, AnswerStatus, ImageWrapper, Images} from './styles.jsx';
+import ExpandImageModal from './Modals/ExpandImageModal.jsx';
 
 
 
@@ -12,7 +13,7 @@ function AnswerCard({answer, setHelpfulCount}) {
   const [helpfulCountA, setHelpfulCountA] = useState(answer.helpfulness)
   const [helpfulClicked, setHelpfulClicked] = useState(false)
   const [reportStatus, setReportStatus] = useState(false)
-
+  const [clickedImage, setClickedImage] = useState(null)
 
   useEffect(() => {
   }, [reportStatus, helpfulClicked])
@@ -64,15 +65,21 @@ function AnswerCard({answer, setHelpfulCount}) {
     }
   }
 
+  const expandImage = (e) => {
+    setClickedImage(e.target.src);
+  }
 
 
   return (
     <AnswerCardContainer>
       <Answer> {answer.body} </Answer>
       <ImageWrapper>
+        {clickedImage
+        ? <ExpandImageModal setClickedImage={setClickedImage} clickedImage={clickedImage}/>
+        : null}
         {answer.photos
           ? answer.photos.map(photo => {
-            return <Images src={photo.url} key={photo.id}></Images>})
+            return <Images src={photo.url} value={photo.url} key={photo.id} onClick={expandImage}></Images>})
           : null
         }
       </ImageWrapper>
@@ -97,6 +104,7 @@ function AnswerCard({answer, setHelpfulCount}) {
               </Button>
           </AnswerStatus>
         </AnswerInfo>
+        <hr/>
     </AnswerCardContainer>
   )
 }

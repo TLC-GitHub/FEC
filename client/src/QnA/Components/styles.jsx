@@ -64,10 +64,11 @@ QUESTION LIST MODULE
 
 export const QuestionContainer = styled.div`
   display: flex;
+  position: static;
   flex-direction: column;
   overflow: auto;
-  justify-content: space-between;
-  height: 40rem;
+  justify-content: center;
+  padding: 0 15% 0 15%;
 `
 
 export const QuestionWrapper = styled.div`
@@ -85,8 +86,10 @@ QUESTION CARD
 export const QuestionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
-  height: 40%;
+  height: 15em;
+  border: 2px solid black;
+  border-radius: .5rem;
+  margin: 0em .25em 0em 3em;
 `
 
 export const QuestionBody = styled.h1`
@@ -128,6 +131,7 @@ ANSWER CARD
 export const AnswerCardContainer = styled.div`
   font-size: 14px;
   margin-top: 0.5rem;
+  gap: 1rem;
 
 `
 export const Answer = styled.div`
@@ -141,6 +145,7 @@ export const Answer = styled.div`
 export const AnswerInfo = styled.div`
   display: flex;
   justify-content: flex-start;
+  margin-top: 1rem;
 
 `
 export const AnswerStatus = styled.div`
@@ -162,6 +167,12 @@ export const ImageWrapper = styled.div`
 export const Images = styled.img`
   max-width: 150px;
   max-height: 150px;
+  margin-right: .25rem;
+  margin-bottom: .25rem;
+`
+
+export const LoadMoreAnswers = styled.div`
+
 `
 
 
@@ -171,37 +182,24 @@ SEARCH BAR
 */
 
 export const SearchbarInput = styled.input`
-  width: 70%;
-  height: 1.5rem;
+  justify-content: center;
   text-align: flex-start;
   font-size: 25px;
+  width: 80%;
+  border: 5px solid #C9D6DF;
+  border-radius: 2rem;
 `
 
 export const SearchBarContainer = styled.div`
-
-
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 3rem;
 `
-
 /*
 MODAL WINDOWS
 --------------------------------------
 */
 
-export const ModalContainer = styled.div`
-  z-index: 1050;
-  background: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 50%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
-  margin: 1.75rem auto;
-  border-radius: 3px;
-  padding: 2rem;
-`
 export const Form = styled.form`
   display: flex;
   position: relative;
@@ -226,6 +224,24 @@ export const ExitFormButton = styled.button`
 IMAGE MODAL WINDOW
 ----------------------------------------
 */
+
+export const ModalContainer = styled.div`
+  z-index: 1050;
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  margin-left: -25%;
+  margin-top: -25%;
+  border-radius: 3px;
+  padding: 2rem;
+`
+
 export const ModalImageWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -234,8 +250,8 @@ export const ModalImageWrapper = styled.div`
 
 
 export const ModalThumbnails = styled.img`
-  max-height: 80px;
-  max-width: 80px;
+  max-height: 10rem;
+  max-width: 10rem;
 
 `
 
@@ -263,13 +279,18 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalForm = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   z-index: 100;
   position: absolute;
-  top: 15%; left: 15%;
-  margin: 1.75rem auto;
+  top: 50%; left: 50%;
+  height: 50%;
+  width: 50%;
+  margin-left: -25%;
+  margin-top: -25%;
   border-radius: 3px;
-  max-width: 700px;
-  padding: 1rem;
 `;
 
 export const ModalHeader = styled.div`
@@ -289,5 +310,12 @@ export const ModalCloseButton = styled.button`
     opacity: .5;
     color: black;
   }
+  width: 3rem;
+  align-self: flex-start;
 `;
 
+export const ExpandedImage = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+`

@@ -88,7 +88,6 @@ function AnswerModal({questionID, toggle, question}) {
       <ModalWrapper>
       {imageModal ? <ImageModal setState={setState} showImageModal={showImageModal} photos={state.photos}/> : null}
       <ModalHeader>
-        {question}
       <ModalForm>
         <ModalCloseButton
           type="button"
@@ -98,30 +97,31 @@ function AnswerModal({questionID, toggle, question}) {
           aria-label="Close">
           <span aria-hidden="true">&times;</span>
           </ModalCloseButton>
-        <form onSubmit={sendAnswer}>
-          <input name="body" type="text" maxLength="1000" placeholder="Write Answer here" onChange={handleChange}/>
-          {errBody
-            ? <div> this field is required </div>
-            : null}
-          <label>
-            <div><br />Write Name Here</div>
-            <input name="name" placeholder="Example: jack543" onChange={handleChange}/>
-            {errName
-            ? <div> this field is required </div>
-            :  <div> For privacy reasons, do not use your full name or email address </div>}
+          <h1>{question}</h1>
+          <form onSubmit={sendAnswer}>
+            <input name="body" type="text" maxLength="1000" placeholder="Write Answer here" onChange={handleChange}/>
+            {errBody
+              ? <div> this field is required </div>
+              : null}
+            <label>
+              <div><br />Name*</div>
+              <input name="name" placeholder="Example: jack543" onChange={handleChange}/>
+              {errName
+              ? <div> this field is required </div>
+              :  <div> For privacy reasons, do not use your full name or email address </div>}
+              </label>
+              <br />
+            <label>
+              <div>Email*</div>
+            <input name="email" placeholder="Example: jack@email.com" onChange={handleChange}/>
+            {errEmail
+              ? <div> this field is required </div>
+              : <div> For authentication reasons, you will not be emailed </div>}
             </label>
             <br />
-          <label>
-            <div>Write Email Here</div>
-          <input name="email" placeholder="Example: jack@email.com" onChange={handleChange}/>
-          {errEmail
-            ? <div> this field is required </div>
-            : <div> For authentication reasons, you will not be emailed </div>}
-          </label>
-          <br />
-          <input name="photos" type="button" value="Upload Photos" onClick={showImageModal}/>
-          <input type="submit" value="submit answer"/>
-        </form>
+            <input name="photos" type="button" value="Upload Photos" onClick={showImageModal}/>
+            <input type="submit" value="submit answer"/>
+          </form>
       </ModalForm>
       </ModalHeader>
       </ModalWrapper>
