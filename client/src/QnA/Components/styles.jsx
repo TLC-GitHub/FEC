@@ -68,9 +68,9 @@ export const QuestionContainer = styled.div`
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
-  justify-content: flex-start;
-  padding: 0 15% 0 15%;
-  max-height: 60rem;
+  justify-content: center;
+  max-height: 1044px;
+  max-width:  1168px;
 `
 
 export const QuestionWrapper = styled.div`
@@ -228,6 +228,23 @@ export const ExitFormButton = styled.button`
 IMAGE MODAL WINDOW
 ----------------------------------------
 */
+export const ImageModalContainer = styled.div`
+  z-index: 1050;
+  background: transparent;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  margin-left: -25%;
+  margin-top: -15%;
+  border-radius: 3px;
+  padding: 2rem;
+`
+
 
 export const ModalContainer = styled.div`
   z-index: 1050;
@@ -295,7 +312,7 @@ export const ModalForm = styled.div`
   margin-left: -25%;
   margin-top: -15%;
   border-radius: 3px;
-  font-size: 16px;
+  font-size: 1.35rem;
 `;
 
 export const ModalHeader = styled.div`
@@ -323,4 +340,5 @@ export const ExpandedImage = styled.img`
   height: 100%;
   width: 100%;
   object-fit: contain;
+  overflow: hidden;
 `
