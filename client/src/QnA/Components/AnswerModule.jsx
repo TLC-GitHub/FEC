@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AnswerCard from './AnswerCard.jsx';
 import styled from 'styled-components';
-import { AnswerContainer, Button, Wrapper } from './styles.jsx';
+import { AnswerContainer, Button, Wrapper, LoadMoreAnswers } from './styles.jsx';
 
 function AnswerModule({questionID}) {
   //should sort the incoming answers according to seller > helpfulness > rest
@@ -44,7 +44,6 @@ function AnswerModule({questionID}) {
       params: requestBodyGet
     })
     .then((answers) => {
-      console.log(answers.data.results);
       let result = answers.data.results.sort((a, b) => {
         if (a.answerer_name.toLowerCase() === 'seller') {
           return -1
@@ -70,14 +69,14 @@ function AnswerModule({questionID}) {
       {answers.slice(0, answerCount).map(answer => {
       return <AnswerCard answer={answer} key={answer.answer_id}/>
       })}
-      <div className="answer-buttons">
+      <LoadMoreAnswers>
         {answers.length <= 2
           ? null
           : answerCount < answers.length
           ? <Button onClick={addMoreAnswers}> <b>Load More Answers</b> </Button>
           : <Button onClick={resetAnswers}> <b>Hide Answers</b> </Button>
         }
-      </div>
+      </LoadMoreAnswers>
     </AnswerContainer>
     )
 }

@@ -189,7 +189,11 @@ function App() {
 
       <div>
         <h1>Questions and Answers</h1>
-        <QuestionList />
+        <QuestionList
+          productID={productID}
+          curProduct={curProduct}
+          curStyle={curProduct.selectedStyle}
+        />
       </div>
       <div>
         <div><h1>Ratings and Reviews</h1></div>

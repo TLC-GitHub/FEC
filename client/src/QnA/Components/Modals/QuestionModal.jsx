@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import {ModalContainer, Form, ExitFormButton} from '.././styles.jsx'
+import {ModalOverlay, ModalWrapper, ModalHeader, ModalForm, ModalCloseButton, ModalContainer} from '.././styles.jsx'
 
 
 
 
 
 
-function QuestionModal({productID, toggle}) {
+function QuestionModal({productID, toggle, curProduct, curStyle}) {
 
   const [state, setState] = useState({name: '', body: '', email: ''});
   const [errBody, setErrBody] = useState(false);
@@ -60,7 +60,7 @@ function QuestionModal({productID, toggle}) {
           body: state.body,
           name: state.name,
           email: state.email,
-          product_id:65656
+          product_id:productID
         }
       }
       console.log(requestBody, 'request-body')
@@ -78,32 +78,39 @@ function QuestionModal({productID, toggle}) {
 
 
   return (
-      <ModalContainer>
-      <button className="exit-button" onClick={toggle}> X </button>
+    <React.Fragment>
+    <ModalOverlay />
+    <ModalContainer>
+      <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
+        <ModalHeader>
+        <ModalForm>
+        <ModalCloseButton type="button" data-dismiss="modal" aria-label="Close" onClick={toggle}>
+        <span aria-hidden="true">&times;</span>
+      </ModalCloseButton>
+        <h1>{curProduct} {curStyle} </h1> <br /> <br />
       <form className="form" onSubmit={sendQuestion}>
-        <button className="exit-button" onClick={toggle}> X </button>
-        <input name="body" onChange={handleChange} placeholder="Write Question here"/>
+        <div> Question* </div>
+        <input type="text" name="body" onChange={handleChange} placeholder="Write Question here"/>
         {errBody
-          ? <div> this field is required </div>
+          ? <div> this field is required <br /></div>
           : null}
-        <label>
-        <p> Enter Username Here </p>
-        <input name="name" placeholder="Example: jackson11!" onChange={handleChange}/>
-        <div> For privacy reasons, do not use your full name or email address </div>
+        <div><br /> Enter Username* </div>
+        <input type="text" name="name" placeholder="Example: jackson11!" onChange={handleChange}/>
         {errName
           ? <div> this field is required </div>
-          : null}
-        </label>
-        <br />
-        <p> Enter email here </p>
-        <input name="email" placeholder='Why did you like the product or not?' onChange={handleChange}/>
-        <div> For authentication reasons, you will not be emailed </div>
+          :  <div> For privacy reasons, do not use your full name or email address  <br /></div>}
+        <div> <br /> Enter email* </div>
+        <input type="text" name="email" placeholder='Why did you like the product or not?' onChange={handleChange}/>
         {errEmail
-          ? <div> this field is required </div>
-          : null}
+          ? <div> this field is required <br /></div>
+          :  <div> For authentication reasons, you will not be emailed <br /></div>}
         <input type="submit" value="submit question"/>
       </form>
-    </ModalContainer>
+      </ModalForm>
+      </ModalHeader>
+      </ModalWrapper>
+      </ModalContainer>
+      </React.Fragment>
   )
 }
 

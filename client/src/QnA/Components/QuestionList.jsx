@@ -4,7 +4,7 @@ import SearchBar from './SearchBar.jsx';
 import axios from 'axios';
 import QuestionModal from './Modals/QuestionModal.jsx';
 import styled from "styled-components";
-import {QuestionContainer, BigButton } from './styles.jsx';
+import { QuestionContainer, BigButton, ButtonContainer } from './styles.jsx';
 
 
 
@@ -13,7 +13,7 @@ import {QuestionContainer, BigButton } from './styles.jsx';
 
 
 
-function QuestionList() {
+function QuestionList({productID, curProduct, curStyle}) {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
   const [questionCount, setQuestionCount] = useState(2);
   const [questions, setQuestions] = useState([]);
@@ -26,7 +26,7 @@ function QuestionList() {
     queryParams: {
       page: 1,
       count: 50,
-      product_id:65656
+      product_id: productID
     }
   };
 
@@ -90,15 +90,17 @@ function QuestionList() {
           {filteredQ.slice(0, questionCount).map(question => {
             return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
           })}
+          <ButtonContainer>
           {filteredQ.length < 1
         ? null
         : questionCount >= filteredQ.length
         ? null
-        : <BigButton onClick={addMoreQuestions}> <b>MORE ANSWERED QUESTIONS</b> </BigButton>}
+        : <BigButton onClick={addMoreQuestions}> <b>More Questions</b> </BigButton>}
         {!questionModal
-        ? <BigButton onClick={toggleQuestionModal}> <b>ADD A QUESTION</b></BigButton>
-        : <QuestionModal productID={65656} toggle={toggleQuestionModal}/>
+        ? <BigButton onClick={toggleQuestionModal}> <b>Add A Question</b></BigButton>
+        : <QuestionModal productID={productID} toggle={toggleQuestionModal} curProduct={curProduct.name} curStyle={curStyle.name}/>
         }
+        </ButtonContainer>
       </QuestionContainer>
   )
 }
