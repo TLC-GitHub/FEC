@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 let num = 2;
 
-function ReviewList ({ allReviews }) {
+function ReviewList ({ allReviews, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
   var [currSort, setCurrSort] = useState('Relevant');
 
   var [someReviews, setSomeReviews] = useState(allReviews.slice(0, num));
@@ -58,16 +58,17 @@ function ReviewList ({ allReviews }) {
       <h3>
         <form onSubmit={handleSubmit}>
           {allReviews.length} reviews, sorted by&nbsp;
-          <select value={currSort} onChange={handleChange}>
+          <Select value={currSort} onChange={handleChange}>
             <option value={'Relevant'}>Relevant</option>
             <option value={'Newest'}>Newest</option>
             <option value={'Helpful'}>Helpful</option>
-          </select>
+          </Select>
         </form>
       </h3>
       <StyleList>
         {someReviews.map((el, i) =>
           <IndividualReviewTile
+            elem={el}
             body={el.body}
             date={el.date}
             helpfulness={el.helpfulness}
@@ -95,6 +96,12 @@ function ReviewList ({ allReviews }) {
           <ReviewModal
             showReviewModal={showReviewModal}
             hide={toggleReviewModal}
+            metaSize={metaSize}
+            metaWidth={metaWidth}
+            metaComfort={metaComfort}
+            metaQuality={metaQuality}
+            metaLength={metaLength}
+            metaFit={metaFit}
           />
         </>
       </StyleList>
@@ -103,12 +110,22 @@ function ReviewList ({ allReviews }) {
 }
 export default ReviewList;
 
+const Select = styled.select`
+  border-style: none;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 1em;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
 const KeywordSearch = styled.input`
   border-radius: 15px;
   border-style: inset;
   height: 2em;
   width: 45em;
-  `;
+  text-indent: 20px;
+`;
 
 const SearchDiv = styled.div`
   display: flex;
@@ -116,7 +133,7 @@ const SearchDiv = styled.div`
 `;
 
 const SearchButton = styled.button`
-appearance: none;
+  appearance: none;
   background-color: transparent;
   border: 2px solid #1A1A1A;
   border-radius: 15px;
@@ -124,7 +141,6 @@ appearance: none;
   color: #3B3B3B;
   cursor: pointer;
   display: inline-block;
-  // font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 16px;
   font-weight: 600;
   line-height: normal;
@@ -156,9 +172,3 @@ appearance: none;
     transform: translateY(0);
   }
 `
-// const SearchButton = styled.button`
-//   height: 2.25em;
-//   width: 10em;
-//   border-radius: 15px;
-//   cursor: pointer;
-// `

@@ -39,7 +39,7 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
       <h2>Product Breakdown</h2>
       {/*===============================================*/}
       {metaSize ? <EachChar>
-        <div>Size</div>
+        <CharTitle>Size</CharTitle>
         <BarDirection>
           <SizeRating sizeAverage={sizeAverage}><>&#9660;</></SizeRating>
           <BarBack></BarBack>
@@ -48,15 +48,15 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
         </BarDirection>
 
         <FeedbackRow>
-          <div>Too small</div>
-          <div>Perfect</div>
-          <div>Too large</div>
+          <CharDes>Too small</CharDes>
+          <CharDes>Perfect</CharDes>
+          <CharDes>Too large</CharDes>
         </FeedbackRow>
       </EachChar> : null}
 
       {/*===============================================*/}
       {metaWidth ? <EachChar>
-        <div>Width</div>
+        <CharTitle>Width</CharTitle>
         <BarDirection>
           <WidthRating widthAverage={widthAverage}><>&#9660;</></WidthRating>
           <BarBack></BarBack>
@@ -65,14 +65,14 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
         </BarDirection>
 
         <FeedbackRow>
-          <div>Too narrow</div>
-          <div>Perfect</div>
-          <div>Too wide</div>
+          <CharDes>Too narrow</CharDes>
+          <CharDes>Perfect</CharDes>
+          <CharDes>Too wide</CharDes>
         </FeedbackRow>
       </EachChar> : null}
       {/*===============================================*/}
       {metaComfort ? <EachChar>
-        <div>Comfort</div>
+        <CharTitle>Comfort</CharTitle>
         <BarDirection>
           <ComfortRating comfortAverage={comfortAverage}><>&#9660;</></ComfortRating>
           <BarBack></BarBack>
@@ -80,14 +80,14 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
           <BarBack></BarBack>
         </BarDirection>
         <FeedbackRow>
-          <div>Uncomfortable</div>
-          <div></div>
-          <div>Perfect</div>
+          <CharDes>Uncomfortable</CharDes>
+          <CharDes></CharDes>
+          <CharDes>Perfect</CharDes>
         </FeedbackRow>
       </EachChar> : null}
       {/*===============================================*/}
       {metaQuality ? <EachChar>
-        <div>Quality</div>
+        <CharTitle>Quality</CharTitle>
         <BarDirection>
           <QualityRating qualityAverage={qualityAverage}><>&#9660;</></QualityRating>
           <BarBack></BarBack>
@@ -95,29 +95,29 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
           <BarBack></BarBack>
         </BarDirection>
         <FeedbackRow>
-          <div>Poor</div>
-          <div></div>
-          <div>Perfect</div>
+          <CharDes>Poor</CharDes>
+          <CharDes></CharDes>
+          <CharDes>Perfect</CharDes>
         </FeedbackRow>
       </EachChar> : null}
       {/*===============================================*/}
       {metaLength ? <EachChar>
-        <div>Length</div>
+        <CharTitle>Length</CharTitle>
         <BarDirection>
-        <LengthRating lengthAverage={lengthAverage}><>&#9660;</></LengthRating>
+          <LengthRating lengthAverage={lengthAverage}><>&#9660;</></LengthRating>
           <BarBack></BarBack>
           <BarBackMid></BarBackMid>
           <BarBack></BarBack>
         </BarDirection>
         <FeedbackRow>
-          <div>Runs short</div>
-          <div>Perfect</div>
-          <div>Runs long</div>
+          <CharDes>Runs short</CharDes>
+          <CharDes>Perfect</CharDes>
+          <CharDes>Runs long</CharDes>
         </FeedbackRow>
       </EachChar> : null}
       {/*===============================================*/}
       {metaFit ? <EachChar>
-        <div>Fit</div>
+        <CharTitle>Fit</CharTitle>
         <BarDirection>
           <FitRating fitAverage={fitAverage}><>&#9660;</></FitRating>
           <BarBack></BarBack>
@@ -125,9 +125,9 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
           <BarBack></BarBack>
         </BarDirection>
         <FeedbackRow>
-          <div>Too tight</div>
-          <div>Perfect</div>
-          <div>Runs long</div>
+          <CharDes>Too tight</CharDes>
+          <CharDes>Perfect</CharDes>
+          <CharDes>Runs long</CharDes>
         </FeedbackRow>
       </EachChar> : null}
     </ProductBreakdownMain>
@@ -136,6 +136,14 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
 
 export default ProductBreakdown;
 
+const CharTitle = styled.div`
+  font-size: 1.2em;
+  font-weight: 300;
+`;
+
+const CharDes = styled.div`
+  font-size: .9em;
+`;
 const SizeRating = styled.div`
   position: absolute;
   top: -.12em;
@@ -185,7 +193,6 @@ const BarDirection = styled.div`
   margin-top: .5em;
   margin-bottom: .5em;
   z-index: 1;
-  // padding-top: -2em;
 `;
 
 const BarBackMid = styled.div`
@@ -209,21 +216,7 @@ const BarBack = styled.div`
   border-radius: 15px;
   width: 33%;
 `;
-const ArrowPosition = styled.div`
-  // position: relative;
-  // height: 1px;
 
-  // border-style: solid;
-  // border-color: #1A1A1A;
-  // background-color: #1A1A1A;
-  // border-radius: 15px;
-  // width: 50%;
-  // margin: -5em 0em 0em -13em;
-  // margin-left: -.5em
-  // margin-bottom: -5em
-  // margin: -2em
-
-`;
 
 const EachChar = styled.div`
   margin: 1em 0em 1em 0em;

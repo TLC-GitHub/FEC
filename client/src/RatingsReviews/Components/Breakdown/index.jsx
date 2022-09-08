@@ -9,6 +9,7 @@ function Breakdown ({ metaData, filterSort, metaSize, metaWidth, metaComfort, me
 
   return (
     <Mains>
+      Ratings and Reviews
       <RatingBreakdown
         ratings={metaData.ratings}
         recommended={metaData.recommended}
@@ -32,6 +33,6 @@ export default Breakdown;
 var Mains = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1em 0em 0em 0em;
+  // margin: 1em 0em 0em 0em;
   width: 23em;
 `;

@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReviewList from './ReviewList/index.jsx'
 import IndividualReviewTile from './IndividualReviewTile/index.jsx';
 import Breakdown from './Breakdown/index.jsx';
-// import ProductBreakdown from './ProductBreakdown/index.jsx';
-// import RatingBreakdown from './RatingBreakdown/index.jsx';
-// import Sorting from './Sorting/index.jsx';
-// import WriteNewReview from './WriteNewReview/index.jsx';
 // import KeywordSearch from './KeywordSearch/index.jsx';
 import Auth from '../../../../config.js'
 import axios from 'axios';
@@ -38,8 +34,6 @@ function RatingsAndReviews () {
       headers: Auth
     })
       .then((reviews) => {
-
-        // console.log('ELO', reviews.data.results)
         axios.get(`${API_URL}/reviews/meta?product_id=65651`, {
           headers: Auth
         })
@@ -74,20 +68,16 @@ function RatingsAndReviews () {
 
 
   var filterSort = (value) => {
-
     if (tracker.includes(value)) {
       var indexTracker = tracker.indexOf(value)
-
       tracker.splice(indexTracker, 1);
       var filteredArr = allReviews.filter(element => tracker.includes(element.rating))
-
     } else {
       tracker.push(value)
       var filteredArr = allReviews.filter(element => tracker.includes(element.rating))
-
     }
       setRatingSort(filteredArr);
-    }
+  };
 
 
   return (
@@ -109,8 +99,26 @@ function RatingsAndReviews () {
               />
             </RatingsStyle>
             <ReviewStyle>
-              {!tracker.length  &&  <ReviewList allReviews={allReviews}/>}
-              {tracker.length > 0 &&  <ReviewList allReviews={ratingSort}/>}
+              {!tracker.length  &&
+                <ReviewList
+                  allReviews={allReviews}
+                  metaSize={metaSize}
+                  metaWidth={metaWidth}
+                  metaComfort={metaComfort}
+                  metaQuality={metaQuality}
+                  metaLength={metaLength}
+                  metaFit={metaFit}
+                />}
+              {tracker.length > 0 &&
+                <ReviewList
+                  allReviews={ratingSort}
+                  metaSize={metaSize}
+                  metaWidth={metaWidth}
+                  metaComfort={metaComfort}
+                  metaQuality={metaQuality}
+                  metaLength={metaLength}
+                  metaFit={metaFit}
+                />}
             </ReviewStyle>
           </RatingsWithReviews> :
           <div>
@@ -119,19 +127,7 @@ function RatingsAndReviews () {
           </div>
         }
       </div>
-      {/* {console.log('REVIEWS INDEX mEATTATA', metaReviews)} */}
-
-
-      {/* <RatingBreakdown /> */}
-      {/* <ProductBreakdown /> */}
-
-
       {/* <KeywordSearch /> */}
-
-
-      {/* <IndividualReviewTile /> */}
-      {/* <Sorting /> */}
-      {/* <WriteNewReview /> */}
     </div>
   )
 };
@@ -142,18 +138,13 @@ const RatingsWithReviews = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  font-family: 'Trebuchet MS', sans-serif;
 `;
 
 const RatingsStyle = styled.div`
-  margin: 0em .25em 0em 3em
+  margin: 0em .25em 0em 3em;
 `;
+
 const ReviewStyle = styled.div`
-  margin: 0em 3em 0em .25em
+  margin: 0em 3em 0em .25em;
 `;
-
-// toggleFive={toggleFive}
-// toggleFour={toggleFour}
-// toggleThree={toggleThree}
-// toggleTwo={toggleTwo}
-// toggleOne={toggleOne}
-

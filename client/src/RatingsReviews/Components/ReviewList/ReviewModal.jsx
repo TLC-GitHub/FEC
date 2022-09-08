@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import AddReviewForm from './AddReviewForm.jsx';
 
-const ReviewModal = ({ showReviewModal, hide }) => showReviewModal ? ReactDOM.createPortal(
+const ReviewModal = ({ showReviewModal, hide, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) => showReviewModal ? ReactDOM.createPortal(
   <React.Fragment>
     <ModalOverlay/>
     <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
@@ -18,7 +18,14 @@ const ReviewModal = ({ showReviewModal, hide }) => showReviewModal ? ReactDOM.cr
           </ModalCloseButton>
         </ModalHeader>
         <p>
-          <AddReviewForm />
+          <AddReviewForm
+            metaSize={metaSize}
+            metaWidth={metaWidth}
+            metaComfort={metaComfort}
+            metaQuality={metaQuality}
+            metaLength={metaLength}
+            metaFit={metaFit}
+          />
         </p>
       </MainModal>
     </ModalWrapper>

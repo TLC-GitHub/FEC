@@ -79,9 +79,9 @@ function RatingBreakdown({ ratings, recommended, filterSort }) {
         </Rating>
         <Star percentage={forStar}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
       </StarAverage>
-      <h3>
+      <h4>
         {recAverage}% of reviews recommend this product
-      </h3>
+      </h4>
       <div>
         <StarRating>
           <BarSpace onClick={() => handleColor(5)}>
