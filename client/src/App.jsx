@@ -221,6 +221,3 @@ const Item = styled.div`
   justify-content: flex-start;
 `;
 
-const InnerContainer = styled.div`
-  display: flex;
-`;

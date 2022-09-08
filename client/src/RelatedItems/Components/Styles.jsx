@@ -27,7 +27,7 @@ export const CardContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 220px;
   height: 100%;
   border: 1px solid #C9D6DF;
   border-radius: 10px;
@@ -99,7 +99,7 @@ export const ImageSlide = styled.img`
 `;
 
 export const OutfitButton = styled.button`
-  min-width: 200px;
+  min-width: 220px;
   height: 100%;
   margin-left: 0px;
   padding: 0px;
@@ -126,7 +126,8 @@ export const Star = styled.span`
     top: 0;
     width: ${(props) => props.percentage};
     overflow: hidden;
-    color: #f80;
+    color: #ffc107;
+    color: #1A1A1A;
   }
 `;
 

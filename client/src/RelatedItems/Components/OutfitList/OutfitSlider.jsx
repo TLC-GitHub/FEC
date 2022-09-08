@@ -5,7 +5,7 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutfit }) {
 
-  console.log("what is in my outfits in outfit slider: ", outfitList);
+  // console.log("what is in my outfits in outfit slider: ", outfitList);
 
   const [first, setFirst] = useState(0);
   const [last, setLast] = useState(3);
@@ -52,7 +52,7 @@ function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutf
   return (
     <StyledSlider>
       <StyledArrow>
-        <FaChevronLeft className="" onClick={prevSlide} style={{display: leftArrow}}/>
+        <FaChevronLeft className="" onClick={prevSlide} style={{display: leftArrow, marginRight: "0.5rem"}}/>
       </StyledArrow>
 
       <OutfitButton onClick={()=>addOutfit()}>
@@ -91,7 +91,7 @@ function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutf
       </InnerSlider>
 
       <StyledArrow>
-        <FaChevronRight className="" onClick={nextSlide} style={{display: rightArrow}}/>
+        <FaChevronRight className="" onClick={nextSlide} style={{display: rightArrow, marginLeft: "0.5rem"}}/>
       </StyledArrow>
     </StyledSlider>
   )

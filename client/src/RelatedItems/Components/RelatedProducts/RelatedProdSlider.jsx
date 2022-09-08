@@ -49,7 +49,7 @@ function RelatedProdSlider({ relatedProd, curProduct, selectFromRelated }) {
   return (
     <StyledSlider>
       <StyledArrow>
-        <FaChevronLeft className="" onClick={prevSlide} style={{display: leftDisplay}}/>
+        <FaChevronLeft className="" onClick={prevSlide} style={{display: leftDisplay, marginRight: "0.3rem"}}/>
       </StyledArrow>
 
       <InnerSlider>
@@ -96,7 +96,7 @@ function RelatedProdSlider({ relatedProd, curProduct, selectFromRelated }) {
       </InnerSlider>
 
       <StyledArrow>
-        <FaChevronRight className="" onClick={nextSlide} style={{display: rightDisplay}}/>
+        <FaChevronRight className="" onClick={nextSlide} style={{display: rightDisplay, marginLeft: "0.5rem"}}/>
       </StyledArrow>
     </StyledSlider>
   )
