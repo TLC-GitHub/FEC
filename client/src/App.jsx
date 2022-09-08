@@ -98,7 +98,6 @@ function App() {
     const outfitList = JSON.parse(localStorage.getItem('outfitList'));
     if (outfitList) {
       setOutfitList(outfitList);
-      console.log("when page refresh", outfitList);
     }
   }, []);
 
@@ -207,8 +206,6 @@ export const RelatedProductAndOutfits = styled.div`
   margin: auto;
   width: 70%;
 `;
-// display: flex;
-// flex-direction: column;
 
 const Item = styled.div`
   display: flex;
@@ -217,5 +214,4 @@ const Item = styled.div`
 
 const InnerContainer = styled.div`
   display: flex;
-
 `;

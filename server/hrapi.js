@@ -15,7 +15,7 @@ module.exports = {
     if (pathVariable === '') {
       const params = new url.URLSearchParams(queryParams);
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}?${params}`;
-      console.log('api: ', apiLink);
+      // console.log('api: ', apiLink);
     } else {
       // apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${queryParams}/${subCategory}`;
       apiLink = `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${widget}/${pathVariable}/${subCategory}`;
@@ -27,7 +27,7 @@ module.exports = {
         'Authorization': process.env.API_TOKEN
       }
     };
-    console.log(options);
+    // console.log(options);
     return axios(options);
   },
 

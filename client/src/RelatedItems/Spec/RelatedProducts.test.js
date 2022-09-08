@@ -20,10 +20,18 @@ describe('Related Products', () => {
     render(<App >
              <RelatedProdSlider />
            </App>);
-
   });
 });
 
-describe('Outfit button', () => {
-  test('calls the onClick ')
-})
+// describe('Outfit button', () => {
+//   test('calls the onClick ')
+// })
+
+describe('', () => {
+  it('Renders related products carousel to the DOM', () => {
+    const component = renderer.create(<WriteNewReview />);
+
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
