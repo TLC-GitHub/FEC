@@ -64,13 +64,12 @@ QUESTION LIST MODULE
 
 export const QuestionContainer = styled.div`
   display: flex;
-  position: relative;
+  position: static;
   flex-direction: column;
   overflow: auto;
   justify-content: center;
   padding: 0 15% 0 15%;
-  max-height: 50rem;
-  margin: 0;
+  max-height: 60rem;
 `
 
 export const QuestionWrapper = styled.div`
@@ -88,7 +87,7 @@ QUESTION CARD
 export const QuestionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 55rem;
+  max-height: 50rem;
   margin: 0em .25em 0em 3em;
 `
 

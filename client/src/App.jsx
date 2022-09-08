@@ -165,7 +165,7 @@ function App() {
         />
       </div>
       <div>
-        <h1>Questions and Answers </h1>
+        {/* <h1>Questions and Answers </h1> */}
         <QuestionList
           productID={productID}
           curProduct={curProduct}
