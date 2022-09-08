@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Moment from 'moment';
 import  { Tile, User, U, Img, Response, Star } from '../styles.jsx';
-// import Modal from './Modal.jsx';
-// import useModal from './useModal.jsx';
-import Images from './Images.jsx'
+import { FaUser } from 'react-icons/fa';
+import Images from './Images.jsx';
+import axios from 'axios';
+const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
+import Auth from '../../../../../config.js'
 
 
-function IndividualReviewTile ({ body, date, helpfulness, photos, rating, recommend, response, reviewer_name, review_id, summary }) {
+function IndividualReviewTile ({ elem, body, date, helpfulness, photos, rating, recommend, response, reviewer_name, review_id, summary }) {
   let [helpful, setHelpful] = useState(false);
   let [wholeBody, setWholeBody] = useState(false);
 
@@ -15,13 +17,43 @@ function IndividualReviewTile ({ body, date, helpfulness, photos, rating, recomm
 
   // create a axios put to update the helpfullness into the database
 
+  // var updatedHelp = {
+  //   body: body,
+  //   date: date,
+  //   helpfulness: helpfulness + 1,
+  //   photos: photos,
+  //   rating: rating,
+  //   recommend: recommend,
+  //   response: response,
+  //   reviewer_name: reviewer_name,
+  //   review_id: review_id,
+  //   summary: summary
+  // }
+  var updatedHelp = {
+    // review_id: review_id,
+    helpfulness: helpfulness + 1
+  }
+
+  var axiosPut = (data) => {
+    axios.put(`${API_URL}/reviews/:review_id/helpful?product_id=65651`, data, {headers: Auth})
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
+
+  var updateHelp = () => {
+    setHelpful(true)
+    // axiosPut(updatedHelp)
+    // console.log('updateHelp', updatedHelp)
+  }
+
 
   return(
     <Tile>
-
+      {console.log('helpfulness, ', helpfulness)}
+      {console.log('elem, ', elem)}
       <div>
         <Star percentage={((rating/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
-        <User>🗿{reviewer_name}, {time}</User>
+        <User><FaUser />&nbsp;{reviewer_name}, {time}</User>
       </div>
       <h2>
         {summary.length <= 60 ? <div>{summary}</div> :
@@ -51,7 +83,7 @@ function IndividualReviewTile ({ body, date, helpfulness, photos, rating, recomm
         })}
       </div>
       <div>Was this review helpful?
-        <> <U onClick={() => setHelpful(true)}>Yes</U> </>
+        <> <U onClick={() => updateHelp()}>Yes</U> </>
         ({helpful ? helpfulness + 1 : helpfulness}) │
         <U onClick={() => alert('Thank you for reporting')}>Report</U>
       </div>

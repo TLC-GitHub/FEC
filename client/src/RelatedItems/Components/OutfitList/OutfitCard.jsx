@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CardContainer, ImgContainer, StyledStarBtn, Star } from "../Styles.jsx";
+import { CardContainer, ImgContainer, StyledStarBtn, CornerButton, Star } from "../Styles.jsx";
 
 const OutfitCard = ({ id, category, name, ratings, selectedStyle, removeOutfit }) => {
 
@@ -13,13 +13,12 @@ const OutfitCard = ({ id, category, name, ratings, selectedStyle, removeOutfit }
           <img style={{width: "100%", height: "100%", objectFit: "cover"}} src={require("../../images/imgComingSoon.png")} alt="noImg" />
         }
         <StyledStarBtn>
-          <button
+          <CornerButton
             type="button"
             value={id}
             onClick={event => removeOutfit(event.target.value)}
-            style={{border: "none", fontSize: "1.5rem", cursor: "pointer", backgroundColor: "rgba(0,0,0,0)", color: "#7F8487"}}
           >&times;
-          </button>
+          </CornerButton>
         </StyledStarBtn>
       </ImgContainer>
       <div style={{padding: "0 8px", marginTop: "8px"}}>

@@ -4,6 +4,7 @@ import OverviewModule from './Overview/Components/OverviewModule.jsx'
 import OutfitSlider from './RelatedItems/Components/OutfitList/OutfitSlider.jsx';
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
 import QuestionList from './QnA/Components/QuestionList.jsx'
+import styled from 'styled-components';
 
 const axios = require('axios');
 
@@ -93,13 +94,25 @@ function App() {
       })
   }, [productID]);
 
+  useEffect(() => {
+    const outfitList = JSON.parse(localStorage.getItem('outfitList'));
+    if (outfitList) {
+      setOutfitList(outfitList);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("outfitList", JSON.stringify(outfitList));
+  }, [outfitList]);
+
+
   const selectFromRelated = (value) => {
     // console.log('i got clicked. New product ID is: ', value);
     setProductID(value);
   }
 
   const selectFromStyles = (value) => {
-    console.log("what style is selected (app.js): ", value[0]);
+    // console.log("what style is selected (app.js): ", value[0]);
     setCurProduct(() => (
       {...curProduct, "selectedStyle": value[0]}
     ));
@@ -132,6 +145,7 @@ function App() {
   }
 
   return (
+    // <div style={{backgroundColor: "#F0F5F9"}}>
     <div>
       <div>
         <OverviewModule
@@ -146,16 +160,23 @@ function App() {
           removeOutfit={removeOutfit}
         />
       </div>
-      <div>
+      <RelatedProductAndOutfits>
+      <Item>
         <h1>You May Also Like</h1>
-        <RelatedProductsFetch
-          productID={productID}
-          curProduct={curProduct}
-          selectFromRelated={selectFromRelated}
-        />
-      </div>
-      <div>
+      </Item>
+      <Item>
+          <RelatedProductsFetch
+            productID={productID}
+            curProduct={curProduct}
+            selectFromRelated={selectFromRelated}
+            />
+      </Item>
+      </RelatedProductAndOutfits>
+      <RelatedProductAndOutfits>
+      <Item>
         <h1>Your Outfit</h1>
+      </Item>
+      <Item>
         <OutfitSlider
           outfitList={outfitList}
           addOutfit={addOutfit}
@@ -163,7 +184,9 @@ function App() {
           productID={productID}
           curProduct={curProduct}
         />
-      </div>
+      </Item>
+      </RelatedProductAndOutfits>
+
       <div>
         {/* <h1>Questions and Answers </h1> */}
         <QuestionList
@@ -174,10 +197,30 @@ function App() {
       </div>
       <div>
         <div><h1>Ratings and Reviews</h1></div>
-        <RatingsAndReviews />
+        <RatingsAndReviews
+          productID={productID}
+          curProduct={curProduct}
+          curStyle={curStyle}
+          selectFromRelated={selectFromRelated}
+        />
       </div>
     </div>
   )
 }
 
 export default App;
+
+
+export const RelatedProductAndOutfits = styled.div`
+  margin: auto;
+  width: 70%;
+`;
+
+const Item = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+`;

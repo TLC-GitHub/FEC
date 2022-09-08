@@ -79,15 +79,14 @@ function RatingBreakdown({ ratings, recommended, filterSort }) {
         </Rating>
         <Star percentage={forStar}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
       </StarAverage>
-      <h3>
+      <h4>
         {recAverage}% of reviews recommend this product
-      </h3>
+      </h4>
       <div>
         <StarRating>
           <BarSpace onClick={() => handleColor(5)}>
             {!fiveToggle && <BarSpace>5 star</BarSpace>}
             {fiveToggle && <BarSpaceClicked>5 star</BarSpaceClicked>}
-            {/* {console.log(fiveToggle)} */}
           </BarSpace>
           <BarRate>
             <FiveStar rating={fiveBar}></FiveStar>
@@ -232,13 +231,16 @@ const StarAverage = styled.div`
 const BarSpace = styled.u`
   margin: 0em 0.8em 0em 0em;
   cursor: pointer;
-  color: #FF0080;
+  color: #1E2022;
+  &:hover {
+    color: #C9D6DF;
+  }
 `;
 
 const BarSpaceClicked = styled.u`
   margin: 0em 0.8em 0em 0em;
   cursor: pointer;
-  color: #330033;
+  color: #C9D6DF;
 `;
 
 const StarRating = styled.div`

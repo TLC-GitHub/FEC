@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import AddReviewForm from './AddReviewForm.jsx';
 
-const ReviewModal = ({ showReviewModal, hide }) => showReviewModal ? ReactDOM.createPortal(
+const ReviewModal = ({ showReviewModal, hide, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) => showReviewModal ? ReactDOM.createPortal(
   <React.Fragment>
     <ModalOverlay/>
     <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
@@ -18,7 +18,14 @@ const ReviewModal = ({ showReviewModal, hide }) => showReviewModal ? ReactDOM.cr
           </ModalCloseButton>
         </ModalHeader>
         <p>
-          <AddReviewForm />
+          <AddReviewForm
+            metaSize={metaSize}
+            metaWidth={metaWidth}
+            metaComfort={metaComfort}
+            metaQuality={metaQuality}
+            metaLength={metaLength}
+            metaFit={metaFit}
+          />
         </p>
       </MainModal>
     </ModalWrapper>
@@ -51,14 +58,16 @@ const ModalWrapper = styled.div`
 
   const MainModal = styled.div`
   z-index: 100;
-  background: white;
+  background: #F0F5F9;
   position: relative;
   margin: 10rem auto;
   // margin: 1.75rem auto;
   border-radius: 1.5rem;
   width: 1000px;
-  height: 1000px;
+  height: 900px;
   padding: 2rem;
+  // border-style: inset;
+  // border-width: 2em;
   `;
 
 const ModalHeader = styled.div`

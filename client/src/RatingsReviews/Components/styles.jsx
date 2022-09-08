@@ -11,7 +11,10 @@ export const User = styled.div`
 
 export const U = styled.u`
   cursor: pointer;
-  color: #FF0080;
+  color: #1E2022;
+  &:hover {
+    color: #C9D6DF;
+  }
 `;
 
 export const Img = styled.img`

@@ -3,10 +3,11 @@ import IndividualReviewTile from '../IndividualReviewTile/index.jsx';
 import { StyleList, ReviewListButton } from '../styles.jsx';
 import ReviewModal from './ReviewModal.jsx';
 import UseReviewModal from './UseReviewModal.jsx';
+import styled from 'styled-components';
 
 let num = 2;
 
-function ReviewList ({ allReviews }) {
+function ReviewList ({ allReviews, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
   var [currSort, setCurrSort] = useState('Relevant');
 
   var [someReviews, setSomeReviews] = useState(allReviews.slice(0, num));
@@ -50,25 +51,24 @@ function ReviewList ({ allReviews }) {
 
   return (
     <div>
-      {/* {console.log('FVIE REVIEWWWSS', fiveArr)} */}
+      <SearchDiv>
+        <KeywordSearch type="text" placeholder="Search for Reviews"/>
+        <SearchButton>Search</SearchButton>
+      </SearchDiv>
       <h3>
-        {/* {console.log("TOGGLE FIVE List", toggleFive)}
-        {console.log("TOGGLE FOUR List", toggleFour)}
-        {console.log("TOGGLE THREE List", toggleThree)}
-        {console.log("TOGGLE TWO List", toggleTwo)}
-        {console.log("TOGGLE ONE List", toggleOne)} */}
         <form onSubmit={handleSubmit}>
           {allReviews.length} reviews, sorted by&nbsp;
-          <select value={currSort} onChange={handleChange}>
+          <Select value={currSort} onChange={handleChange}>
             <option value={'Relevant'}>Relevant</option>
             <option value={'Newest'}>Newest</option>
             <option value={'Helpful'}>Helpful</option>
-          </select>
+          </Select>
         </form>
       </h3>
       <StyleList>
         {someReviews.map((el, i) =>
           <IndividualReviewTile
+            elem={el}
             body={el.body}
             date={el.date}
             helpfulness={el.helpfulness}
@@ -83,7 +83,11 @@ function ReviewList ({ allReviews }) {
           />
         )}
         <>
-          {num < allReviews.length ? <ReviewListButton onClick={increment}>More Reviews</ReviewListButton> : null}
+          {
+            num < allReviews.length ?
+              <ReviewListButton onClick={increment}>More Reviews</ReviewListButton> :
+              null
+          }
         </>
         <>
           <ReviewListButton onClick={toggleReviewModal}>
@@ -92,6 +96,12 @@ function ReviewList ({ allReviews }) {
           <ReviewModal
             showReviewModal={showReviewModal}
             hide={toggleReviewModal}
+            metaSize={metaSize}
+            metaWidth={metaWidth}
+            metaComfort={metaComfort}
+            metaQuality={metaQuality}
+            metaLength={metaLength}
+            metaFit={metaFit}
           />
         </>
       </StyleList>
@@ -99,3 +109,67 @@ function ReviewList ({ allReviews }) {
   )
 }
 export default ReviewList;
+
+const Select = styled.select`
+  border-style: none;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 1em;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #F0F5F9;
+`;
+
+const KeywordSearch = styled.input`
+  border-radius: 15px;
+  border-style: inset;
+  height: 2em;
+  width: 45em;
+  text-indent: 20px;
+`;
+
+const SearchDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const SearchButton = styled.button`
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  height: 2em;
+  // margin: 5px 15px 5px 15px;
+  // min-height: 60px;
+  min-width: 0;
+  outline: none;
+  // padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 10em;
+  will-change: transform;
+  &:disabled {
+    pointer-events: none;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
+  &:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+`

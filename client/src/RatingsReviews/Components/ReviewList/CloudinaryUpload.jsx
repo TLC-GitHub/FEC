@@ -7,7 +7,7 @@ var cloudName = "dwnmhqqjn";
 var uploadPreset = "fec_test";
 
 
-function CloudinaryUpload ({ addFromCloud }) {
+function CloudinaryUpload ({ addFromCloud, postPhoto }) {
   var [image1, setImage1] = useState('')
   var [image2, setImage2] = useState('')
   var [image3, setImage3] = useState('')
@@ -28,38 +28,61 @@ function CloudinaryUpload ({ addFromCloud }) {
             id: result.info.public_id,
             url: result.info.secure_url
           }
+          var firstPost = {
+            url: result.info.secure_url
+          }
           setImage1(first);
           addFromCloud(first);
+          postPhoto(result.info.secure_url);
 
         } else if (!image2) {
           var second = {
             id: result.info.public_id,
             url: result.info.secure_url
           }
+          var secondPost = {
+            url: result.info.secure_url
+          }
           setImage2(second);
-          addFromCloud(second)
+          addFromCloud(second);
+          postPhoto(result.info.secure_url);
 
         } else if (!image3) {
           var third = {
             id: result.info.public_id,
             url: result.info.secure_url
           }
+          var thirdPost = {
+            url: result.info.secure_url
+          }
           setImage3(third);
           addFromCloud(third);
+          postPhoto(result.info.secure_url);
+
         } else if (!image4) {
           var fourth = {
             id: result.info.public_id,
             url: result.info.secure_url
           }
+          var fourthPost = {
+            url: result.info.secure_url
+          }
           setImage4(fourth);
           addFromCloud(fourth);
+          postPhoto(result.info.secure_url);
+
         } else if (!image5) {
           var fifth = {
             id: result.info.public_id,
             url: result.info.secure_url
           }
+          var fifthPost = {
+            id: result.info.public_id,
+            url: result.info.secure_url
+          }
           setImage5(fifth);
           addFromCloud(fifth);
+          postPhoto(result.info.secure_url);
         }
       }
     })
@@ -72,18 +95,8 @@ function CloudinaryUpload ({ addFromCloud }) {
 
   return (
     <Cloud>
-      <></>
-      {/* {console.log('addFromCloud', addFromCloud)} */}
-      {/* {console.log('Image 1', image1)} */}
-      {/* {console.log('Image 2', image2)} */}
-      {/* {console.log('Image 3', image3)} */}
-      {/* {console.log('Image 4', image4)} */}
-      {/* {console.log('Image 5', image5)} */}
-      {/* {console.log('ALL', [image1, image2, image3, image4, image5])} */}
-
       <ClickMePls onClick={uploadImageWidget}>
         UPLOAD PHOTO
-        {/* <FaFileImport size={30} /> */}
       </ClickMePls>
       <GroupDivPic>
         <DivPic>
@@ -118,12 +131,12 @@ const ClickMePls = styled.u`
   display: flex;
   justify-content: center;
   cursor: pointer;
-  color: black;
+  color: #1E2022;
 
   border-radius: 15px;
   font-size: 25px;
   &:hover {
-    opacity: 50%;
+    opacity: 80%;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
   }
@@ -141,7 +154,7 @@ const GroupDivPic = styled.div`
 const DivPic = styled.div`
   display: flex;
   flex-direction: center;
-  color: gray;
+  color: #52616B;
   margin: 0em 0.5em 0em 0.5em;
   border-radius: 15px;
 `;
