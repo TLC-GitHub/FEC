@@ -17,7 +17,7 @@ const ComparisonModal = ({ showModal, hide, curProduct, curStyle, targetID, targ
           <Table>
             <TableHead>
               <tr style={{backgroundColor: '#C9D6DF'}}>
-                <StyledHead colSpan='3'>Comparing</StyledHead>
+                <StyledHead colSpan='3' style={{borderRadius: "10px"}}>Comparing</StyledHead>
               </tr>
               <tr>
                 <StyledHead>{curProduct.name}</StyledHead>
