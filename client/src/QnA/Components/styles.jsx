@@ -69,6 +69,8 @@ export const QuestionContainer = styled.div`
   overflow: auto;
   justify-content: center;
   padding: 0 15% 0 15%;
+  max-height: 50rem;
+  margin: 0;
 `
 
 export const QuestionWrapper = styled.div`
@@ -86,7 +88,7 @@ QUESTION CARD
 export const QuestionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 20rem;
+  max-height: 55rem;
   margin: 0em .25em 0em 3em;
 `
 
@@ -95,7 +97,7 @@ export const QuestionBody = styled.h1`
   width: 100%;
   height: 40%;
   flex-wrap: nowrap;
-  font-size: 18px;
+  font-size: 25px;
   width: 40rem;
 `
 
@@ -117,6 +119,7 @@ ANSWER LIST MODULE
 export const AnswerContainer = styled.div`
   display: flex;
   flex-direction: column;
+  max-height: 40rem;
   overflow: auto;
 `
 
@@ -130,6 +133,7 @@ export const AnswerCardContainer = styled.div`
   font-size: 14px;
   margin-top: 0.5rem;
   gap: 1rem;
+  max-height: 20rem;
 
 `
 export const Answer = styled.div`
@@ -137,7 +141,7 @@ export const Answer = styled.div`
   margin-top: .25rem;
   margin-bottom: .75rem;
   assign-align: base-line;
-  font-size: 16px;
+  font-size: 18px;
 `
 
 export const AnswerInfo = styled.div`
@@ -188,6 +192,7 @@ export const SearchbarInput = styled.input`
   width: 80%;
   border: 5px solid #C9D6DF;
   border-radius: 2rem;
+  height: 2rem;
 `
 
 export const SearchBarContainer = styled.div`
