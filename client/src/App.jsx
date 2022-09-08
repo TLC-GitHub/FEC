@@ -197,7 +197,12 @@ function App() {
       </div>
       <div>
         <div><h1>Ratings and Reviews</h1></div>
-        <RatingsAndReviews />
+        <RatingsAndReviews
+          productID={productID}
+          curProduct={curProduct}
+          curStyle={curStyle}
+          selectFromRelated={selectFromRelated}
+        />
       </div>
     </div>
   )

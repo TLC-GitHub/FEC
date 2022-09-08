@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { showModal, toggle } from './index.jsx';
 import styled from 'styled-components'
 
 

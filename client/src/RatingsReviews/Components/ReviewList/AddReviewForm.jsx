@@ -7,7 +7,7 @@ import axios from 'axios';
 import Auth from '../../../../../config.js'
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
-function AddReviewForm () {
+function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
 
   // Info
   let [name, setName] = useState('');
@@ -22,7 +22,7 @@ function AddReviewForm () {
   let [bodyCount, setBodyCount] = useState(''); // No Need ❌
 
   // summary
-  let [reviewSummary, setReviewSummary] = useState('');  // Optional
+  let [reviewSummary, setReviewSummary] = useState('');
 
   // characteristics
   let [sizeChar, setSizeChar] = useState('');
@@ -37,26 +37,49 @@ function AddReviewForm () {
 
   // photos
   let [photos, setPhotos] = useState([]); // Optional
+  let [photosForm, setPhotosForm] = useState([]); // Optional
 
+  var allCharacteristics = {}
 
-  var axiosPost = () => {
-    axios.post(`${API_URL}/reviews`,
-      {
-        product_id: 65651, // CHANGE, HARDCODE FOR NOW
-        rating: starRate,
-        summary: reviewSummary,
-        body: reviewBody,
-        recommend: recommend,
-        name: name,
-        email: email,
-        photos: photos,
-        characteristics: {},
-      },
-      {headers: Auth}
-    )
-
+  if (metaSize) {
+    allCharacteristics[metaSize.id] = Number(sizeChar);
+  }
+  if (metaWidth) {
+    allCharacteristics[metaWidth.id] = Number(widthChar);
+  }
+  if (metaComfort) {
+    allCharacteristics[metaComfort.id] = Number(comfortChar);
+  }
+  if (metaQuality) {
+    allCharacteristics[metaQuality.id] = Number(qualityChar);
+  }
+  if (metaLength) {
+    allCharacteristics[metaLength.id] = Number(lengthChar);
+  }
+  if (metaFit) {
+    allCharacteristics[metaFit.id] = Number(fitChar);
   }
 
+  var dataPost = {
+    product_id: 65651, // CHANGE, HARDCODE FOR NOW
+    rating: starRate,
+    summary: reviewSummary,
+    body: reviewBody,
+    recommend: recommend,
+    name: name,
+    email: email,
+    photos: photosForm,
+    characteristics: allCharacteristics,
+  }
+
+  var axiosPost = (data) => {
+    axios.post(`${API_URL}/reviews`,
+      data,
+      {headers: Auth}
+    )
+    .then((response) => console.log(response))
+    .catch((err) => console.log(err))
+  }
 
   let addFromCloud = (image) => {
     var copyArr = photos.slice()
@@ -64,6 +87,11 @@ function AddReviewForm () {
     setPhotos(copyArr)
   }
 
+  let postPhoto = (imagePost) => {
+    var copyArr = photosForm.slice()
+    var add = copyArr.push(imagePost)
+    setPhotosForm(copyArr)
+  }
 
   var bodyChange = (val, count) => {
     setReviewBody(val);
@@ -72,24 +100,27 @@ function AddReviewForm () {
 
   var handleSubmit = (e) => {
     e.preventDefault()
+    axiosPost(dataPost);
+    console.log(dataPost);
   }
 
   return (
     <ReviewForm>
+      {/* {console.log('PLEASE', allCharacteristics)} */}
       <MainHeader>Write Your Review</MainHeader>
       <ProductName>About Your {'{Product Name Here}'}</ProductName>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Info>
           <Name>
             <InfoTitle>Name<Required> *</Required></InfoTitle>
 
-            <input name="name" type="text" value={name} minlength="3" maxlength="60"
+            <Input name="name" type="text" value={name} minlength="3" maxlength="60"
             onChange={(e) => setName(e.target.value)} required/>
           </Name>
 
           <Email>
             <InfoTitle>E-Mail<Required> *</Required></InfoTitle>
-            <input name="email" type="email" value={email} minlength="3" maxlength="60"
+            <Input name="email" type="email" value={email} minlength="3" maxlength="60"
             onChange={(e) => setEmail(e.target.value)} required/>
           </Email>
         </Info>
@@ -112,7 +143,7 @@ function AddReviewForm () {
 
                 <FaStar
                   className="add-star-rev"
-                  color={ratingValue <= (starHover || starRate) ? "#ffc107" : "#e4e5e9"}
+                  color={ratingValue <= (starHover || starRate) ? "#52616B" : "#e4e5e9"}
                   size={30}
                   onMouseEnter={() => setStarHover(ratingValue)}
                   onMouseLeave={() => setStarHover(null)}
@@ -122,28 +153,29 @@ function AddReviewForm () {
             )
           })}
         </Review>
-        <InfoTitle>Summary</InfoTitle>
+        <InfoTitle>Summary<Required> *</Required></InfoTitle>
         <Review>
-          <input
+          <Input
             type="text"
             value={reviewSummary}
             minlength="10"
             maxlength="60"
             size="65"
             onChange={(e) => setReviewSummary(e.target.value)}
+            required
           />
         </Review>
 
         <InfoTitle>Review Body<Required> *</Required></InfoTitle>
         <Body>
-          <textarea
+          <Textarea
             minlength="51"
             maxlength="1000"
             rows="10"
             cols="100"
-            onChange={(e) => bodyChange(e.target.value, e.target.value.length)} required></textarea>
+            onChange={(e) => bodyChange(e.target.value, e.target.value.length)} required></Textarea>
         </Body>
-        {bodyCount <= 50 ? <Review>{50 - bodyCount} characters remaining</Review> :
+        {bodyCount <= 50 ? <Review><Re>{50 - bodyCount} characters remaining</Re></Review> :
         <Review>{bodyCount} / 1000</Review>}
 
 
@@ -151,11 +183,11 @@ function AddReviewForm () {
         <Rec>
           <legend>Do you recommend this product?<Required> *</Required></legend>
           <div>
-            <input type="radio" value="Yes" name="rec" required/>
+            <input type="radio" value={true} name="rec" onClick={(e) => setRecommend(true)} required/>
             <label for="Yes">Yes</label>
           </div>
           <div>
-            <input type="radio" value="No" name="rec" required/>
+            <input type="radio" value={false} name="rec" onClick={(e) => setRecommend(false)} required/>
             <label for="No">No</label>
           </div>
         </Rec>
@@ -233,7 +265,10 @@ function AddReviewForm () {
 
         <Photo>
           {/* {console.log('TEST IN FORM', photos)} */}
-          <CloudinaryUpload addFromCloud={addFromCloud}/>
+          <CloudinaryUpload
+            addFromCloud={addFromCloud}
+            postPhoto={postPhoto}
+          />
         </Photo>
 
         <SubButtWrap>
@@ -246,6 +281,22 @@ function AddReviewForm () {
 
 export default AddReviewForm;
 
+
+
+const Input = styled.input`
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
+  font-size: 1em;
+  border-radius: 5px;
+  border-width: .1em;
+  border-style: solid;
+`
+const Textarea = styled.textarea`
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
+  font-size: 1em;
+  border-radius: 5px;
+`
 
 const MainHeader = styled.h1`
   display: flex;
@@ -275,16 +326,21 @@ const Required = styled.b`
   color: red;
 `;
 
+const Re = styled.div`
+  color: red;
+`;
+
 const Summary = styled.div`
   display: flex;
   margin: 0em 0em 1em 0em;
-  //
 `;
 
 const Body = styled.div`
   display: flex;
   justify-content: center;
   line-height: 140%;
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
   // margin: 0em 0em 1em 0em;
 `;
 
@@ -327,6 +383,8 @@ const Info = styled.div`
 const ReviewForm = styled.div`
   // display: flex;
   // place-content: center;
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #1E2022;
 `;
 
 const Photo = styled.div`
