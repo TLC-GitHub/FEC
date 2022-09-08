@@ -128,6 +128,7 @@ const KeywordSearch = styled.input`
   height: 2em;
   width: 45em;
   text-indent: 20px;
+  margin-right: 2em;
 `;
 
 const SearchDiv = styled.div`
@@ -159,7 +160,7 @@ const SearchButton = styled.button`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 10em;
+  width: 8em;
   will-change: transform;
   &:disabled {
     pointer-events: none;
