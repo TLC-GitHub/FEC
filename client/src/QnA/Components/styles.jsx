@@ -68,8 +68,8 @@ export const QuestionContainer = styled.div`
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
-  justify-content: center;
-  max-height: 1044px;
+  justify-content: flex-start;
+  max-height: 800px;
   max-width:  1168px;
 `
 
@@ -167,8 +167,8 @@ export const ImageWrapper = styled.div`
   gap: .25rem;
 `
 export const Images = styled.img`
-  width: 10rem;
-  height: 10rem;
+  width: 6rem;
+  height: 6rem;
   margin-right: .25rem;
   margin-bottom: .25rem;
   border: 1px solid grey;
@@ -198,6 +198,8 @@ export const SearchBarContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-left: 3rem;
+  margin-bottom: 2rem;
+  width: 50%;
 `
 /*
 MODAL WINDOWS
