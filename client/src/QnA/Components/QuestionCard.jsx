@@ -21,8 +21,6 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
   const [reportStatusQ, setReportStatusQ] = useState(false);
   const [answerModal, setAnswerModal] = useState(false);
 
-  console.log(setAnswerModal);
-
   useEffect(() => {
   }, [helpfulStatusQ, reportStatusQ, answerModal])
 
@@ -67,7 +65,7 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
 
   if (answerModal) {
     return(
-        <AnswerModal questionID={question.question_id} toggle={toggleAnswerModal}/>
+        <AnswerModal questionID={question.question_id} toggle={toggleAnswerModal} question={question.question_body}/>
     )
   } else {
 
@@ -76,8 +74,8 @@ function QuestionCard ({question, setCount, answerCount, answers, setAnswers}) {
       <QuestionWrapper>
         <QuestionBody> Q: {question.question_body} </QuestionBody>
         <QuestionInfo>
-            <Button onClick={handleHelpfulness}> Helpful? <u> Yes  </u> ({helpfulCount}) </Button>
-            <Button onClick={toggleAnswerModal}> <u>Add Answer</u> </Button>
+            <Button onClick={handleHelpfulness}> Helpful? <u>Yes</u> ({helpfulCount}) &nbsp;  | </Button>
+            <Button onClick={toggleAnswerModal}> <u>Add Answer</u> &nbsp; |</Button>
             <Button onClick = {handleReport}> <u>
               {reportStatusQ
                 ? 'Reported'
