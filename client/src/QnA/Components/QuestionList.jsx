@@ -21,16 +21,17 @@ function QuestionList({productID, curProduct, curStyle}) {
   const [questionModal, setQuestionModal] = useState(false);
 
 
-  let requestBody = {
-    widget: 'qa/questions',
-    queryParams: {
-      page: 1,
-      count: 50,
-      product_id: productID
-    }
-  };
-
   const handleSearch = (query) => {
+
+    let requestBody = {
+      widget: 'qa/questions',
+      queryParams: {
+        page: 1,
+        count: 50,
+        product_id: productID
+      }
+    };
+
     return axios.get('/get', {
         params: requestBody
     })
@@ -43,36 +44,58 @@ function QuestionList({productID, curProduct, curStyle}) {
     }
 
   useEffect(() => {
+    let requestBody = {
+      widget: 'qa/questions',
+      queryParams: {
+        page: 1,
+        count: 50,
+        product_id: productID
+      }
+    };
+
     axios.get('/get', {
         params: requestBody
     })
     .then((data) => {
       setQuestions(data.data.results)
+      setFilteredQ(data.data.results)
+      console.log(questions, 'after setting questions state')
+      console.log(filteredQ, 'after setting state')
     })
     .catch((err) => {
       console.log('error rendering');
     })
-  }, [])
+  }, [productID])
 
 
-    const getQuestions = () => {
-      axios.get('/get', {
-        params: requestBody
-      })
-      .then((data) => {
-        setQuestions(data.data.results)
-        setFilteredQ(data.data.results)
+  const getQuestions = () => {
 
-      })
-      .catch((err) => {
-        console.log('error rendering');
-      })
-    }
+    let requestBody = {
+      widget: 'qa/questions',
+      queryParams: {
+        page: 1,
+        count: 50,
+        product_id: productID
+      }
+    };
 
-    useEffect(() => {
-     getQuestions();
-     console.log(questionModal);
-    }, [questionCount, questionModal])
+    axios.get('/get', {
+      params: requestBody
+    })
+    .then((data) => {
+      setQuestions(data.data.results)
+      setFilteredQ(data.data.results)
+
+    })
+    .catch((err) => {
+      console.log('error rendering');
+    })
+  }
+
+  useEffect(() => {
+    getQuestions();
+    console.log(questionModal);
+  }, [questionCount, questionModal])
 
 
   const addMoreQuestions = () => {

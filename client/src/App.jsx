@@ -105,6 +105,9 @@ function App() {
     localStorage.setItem("outfitList", JSON.stringify(outfitList));
   }, [outfitList]);
 
+  useEffect(() => {
+    console.log(productID, 'before rerender')
+  }, [productID])
 
   const selectFromRelated = (value) => {
     // console.log('i got clicked. New product ID is: ', value);
