@@ -5,13 +5,9 @@ import axios from 'axios';
 import QuestionModal from './Modals/QuestionModal.jsx';
 import styled from "styled-components";
 import { QuestionContainer, BigButton, ButtonContainer } from './styles.jsx';
+import {logInteractions} from '../.././Interactions.jsx';
 
-
-
-
-
-
-
+document.addEventListener('click', logInteractions)
 
 function QuestionList({productID, curProduct, curStyle}) {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
@@ -21,16 +17,17 @@ function QuestionList({productID, curProduct, curStyle}) {
   const [questionModal, setQuestionModal] = useState(false);
 
 
-  let requestBody = {
-    widget: 'qa/questions',
-    queryParams: {
-      page: 1,
-      count: 50,
-      product_id: productID
-    }
-  };
-
   const handleSearch = (query) => {
+
+    let requestBody = {
+      widget: 'qa/questions',
+      queryParams: {
+        page: 1,
+        count: 50,
+        product_id: productID
+      }
+    };
+
     return axios.get('/get', {
         params: requestBody
     })
@@ -43,36 +40,56 @@ function QuestionList({productID, curProduct, curStyle}) {
     }
 
   useEffect(() => {
+    let requestBody = {
+      widget: 'qa/questions',
+      queryParams: {
+        page: 1,
+        count: 50,
+        product_id: productID
+      }
+    };
+
     axios.get('/get', {
         params: requestBody
     })
     .then((data) => {
       setQuestions(data.data.results)
+      setFilteredQ(data.data.results)
     })
     .catch((err) => {
       console.log('error rendering');
     })
-  }, [])
+  }, [productID])
 
 
-    const getQuestions = () => {
-      axios.get('/get', {
-        params: requestBody
-      })
-      .then((data) => {
-        setQuestions(data.data.results)
-        setFilteredQ(data.data.results)
+  const getQuestions = () => {
 
-      })
-      .catch((err) => {
-        console.log('error rendering');
-      })
-    }
+    let requestBody = {
+      widget: 'qa/questions',
+      queryParams: {
+        page: 1,
+        count: 50,
+        product_id: productID
+      }
+    };
 
-    useEffect(() => {
-     getQuestions();
-     console.log(questionModal);
-    }, [questionCount, questionModal])
+    axios.get('/get', {
+      params: requestBody
+    })
+    .then((data) => {
+      setQuestions(data.data.results)
+      setFilteredQ(data.data.results)
+
+    })
+    .catch((err) => {
+      console.log('error rendering');
+    })
+  }
+
+  useEffect(() => {
+    getQuestions();
+    console.log(questionModal);
+  }, [questionCount, questionModal])
 
 
   const addMoreQuestions = () => {
@@ -85,9 +102,9 @@ function QuestionList({productID, curProduct, curStyle}) {
 
 
   return(
-    <div>
+    <div id="QNA">
       <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={questions}/>
-      <QuestionContainer>
+      <QuestionContainer id="QNA">
           {filteredQ.slice(0, questionCount).map(question => {
             return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
           })}

@@ -87,7 +87,7 @@ function AnswerCard({answer, setHelpfulCount}) {
           <AnswerDetails>
             by &nbsp;
           {answer.answerer_name.toLowerCase() === 'seller'
-            ? <b> {answer.answerer_name} </b>
+            ? <b style={{fontSize: 18}}> {answer.answerer_name} </b>
             : answer.answerer_name}, {date}
           </AnswerDetails>
           <AnswerStatus>

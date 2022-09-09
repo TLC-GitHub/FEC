@@ -19,7 +19,7 @@ const OverviewModule = ({ productID, originalPrice, salePrice, curProduct, image
   <div>
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" />
-    <div className="overview">
+    <div id="overview">
       <div className="logo">
         <Logo />
       </div>

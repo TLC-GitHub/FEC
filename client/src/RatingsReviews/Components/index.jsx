@@ -7,6 +7,7 @@ import Auth from '../../../../config.js'
 import axios from 'axios';
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
 import styled from 'styled-components';
+import {logInteractions} from '../.././Interactions.jsx';
 
 
 //porduct sample: 65651
@@ -95,7 +96,7 @@ function RatingsAndReviews ({ productID, curProduct, curStyle, selectFromRelated
 
 
   return (
-    <div>
+    <div id="RatingsAndReviews">
       <div>
         {allReviews && metaData ?
           <RatingsWithReviews>
