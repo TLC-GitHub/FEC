@@ -34,8 +34,7 @@ function ProductBreakdown({ characteristics, metaSize, metaWidth, metaComfort, m
 
   return(
     <ProductBreakdownMain>
-
-      <h2>Product Breakdown</h2>
+      <h3>Product Breakdown</h3>
       {/*===============================================*/}
       {metaSize ? <EachChar>
         <CharTitle>Size</CharTitle>

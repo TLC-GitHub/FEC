@@ -13,7 +13,7 @@ export const U = styled.u`
   cursor: pointer;
   color: #1E2022;
   &:hover {
-    color: #C9D6DF;
+    color: #F0F5F9;
   }
 `;
 
@@ -95,3 +95,7 @@ export const ReviewListButton = styled.button`
     transform: translateY(0);
   }
 `;
+
+export const Recommends = styled.div`
+  margin: 1em 0em 1em 0em;
+`

@@ -56,8 +56,8 @@ const ModalWrapper = styled.div`
 
 const MainModal = styled.div`
   z-index: 100;
-  position: absolute;
-  top: 15%; left: 15%;
+  position: relative;
+  top: 15%;
   margin: 1.75rem auto;
   border-radius: 3px;
   max-width: 700px;
