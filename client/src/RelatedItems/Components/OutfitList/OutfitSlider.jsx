@@ -5,7 +5,7 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutfit }) {
 
-  console.log("what is in my outfits in outfit slider: ", outfitList);
+  // console.log("what is in my outfits in outfit slider: ", outfitList);
 
   const [first, setFirst] = useState(0);
   const [last, setLast] = useState(3);

@@ -7,17 +7,17 @@ const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
 
 const Category = styled.h3`
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 1rem;
 `;
 
 const ExpandedProductName = styled.h1`
   font-weight: bold;
-  font-size: 4rem;
+  font-size: 2rem;
 `;
 
 const Price = styled.h4`
   font-weight: lighter;
-  font-size: 1.5rem;
+  font-size: 1rem;
 `;
 
 const ProductInformation = ({ curProduct, originalPrice, salePrice }) => {
@@ -44,6 +44,7 @@ const ProductInformation = ({ curProduct, originalPrice, salePrice }) => {
     {/* <Category>{category}</Category> */}
     {/* <ExpandedProductName>{name}</ExpandedProductName> */}
     {/* <Price>${price}</Price> */}
+    <Ratings ratings={curProduct.ratings}/>
     <Category>{curProduct.category}</Category>
     <ExpandedProductName>{curProduct.name}</ExpandedProductName>
     {
@@ -54,9 +55,25 @@ const ProductInformation = ({ curProduct, originalPrice, salePrice }) => {
         <span> <s>${originalPrice}</s></span>
       </Price>
     }
-    <Ratings ratings={curProduct.ratings}/>
     </div>
   );
 }
 
 export default ProductInformation;
+
+// {/* <div>
+// {/* <Category>{category}</Category> */}
+// {/* <ExpandedProductName>{name}</ExpandedProductName> */}
+// {/* <Price>${price}</Price> */}
+// <Category>{curProduct.category}</Category>
+// <ExpandedProductName>{curProduct.name}</ExpandedProductName>
+// {
+//   salePrice !== 0 ?
+//   <Price>${originalPrice}</Price> :
+//   <Price>
+//     <span style={{color: "red"}}>${salePrice}</span>
+//     <span> <s>${originalPrice}</s></span>
+//   </Price>
+// }
+// <Ratings ratings={curProduct.ratings}/>
+// </div> */}

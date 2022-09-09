@@ -28,7 +28,7 @@ const QuantityDropdown = (props) => {
   for(let i = 0; i < currentQuantity; i++){
     availableQuantities.push(i + 1);
   }
-  console.log('current quantity', currentQuantity, props.sizeNumbers);
+  // console.log('current quantity', currentQuantity, props.sizeNumbers);
 
   const quantityOptions = availableQuantities.map((quantity, i) => {
     return <option key={i} value={quantity}>{quantity}</option>

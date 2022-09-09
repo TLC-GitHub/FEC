@@ -10,11 +10,6 @@ function ImageSlider({ id, photos, changeOfImage }) {
   const [rightDisplay, setRightDisplay] = useState('');
   let numOfImg = photos.length;
 
-  useEffect (() => {
-
-
-  }, [])
-
   const nextImage = () => {
     if (lastImg + 1 <= numOfImg - 1) {
       setFirstImg(firstImg + 1)
