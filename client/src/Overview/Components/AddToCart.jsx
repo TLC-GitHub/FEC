@@ -24,7 +24,7 @@ const AddToCart = () => {
     <AddToBagButton sizeNumbers={sizeNumbers} menuOption={menuOption} setMenuOption={setMenuOption} />
     </div>
     <div>
-    {/* <BookmarkButton /> */}
+    <BookmarkButton />
     </div>
   </div>
   );
