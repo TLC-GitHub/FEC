@@ -8,16 +8,16 @@ const ImageGallery = ({ images }) => {
 
   return(
   <div>
-    <div>
+    {/* <div> */}
       <HorizontalCarousel
         images={images}
       />
-    </div>
-    <div>
+    {/* </div> */}
+    {/* <div>
       <VerticalCarousel
         images={images}
       />
-    </div>
+    </div> */}
   </div>
 
   );

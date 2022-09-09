@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ProductParagraph from './ProductParagraph.jsx';
 import ProductBullets from './ProductBullets.jsx';
+import styled from 'styled-components';
 import axios from 'axios';
 import Authorization from '../../../../config.js';
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
@@ -26,16 +27,29 @@ const ProductOverview = ({productID}) => {
       })
   }, [productID]);
   return (
-  <div>
-    <div>
+   <ProductDescriptionRow>
       <ProductParagraph slogan={slogan} paragraph={description} />
-    </div>
-    <div>
       <ProductBullets features={features} />
-    </div>
-  </div>
+  </ProductDescriptionRow>
   )
 
 }
 
 export default ProductOverview;
+
+const ProductDescriptionRow = styled.div`
+  display:flex;
+  flex-display:row;
+  margin-top: 10px;
+  margin-left: 2rem;
+  `;
+  // gap: 30px;
+
+{/* <div>
+<div>
+  <ProductParagraph slogan={slogan} paragraph={description} />
+</div>
+<div>
+  <ProductBullets features={features} />
+</div>
+</div> */}

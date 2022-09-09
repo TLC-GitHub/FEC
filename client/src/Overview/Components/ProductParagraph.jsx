@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
+
+const ProductParagraphDisplay = styled.div`
+  display: flex;
+`;
+
 const Bar = styled.div`
   width: 1px;
   height 100px;
@@ -12,14 +17,17 @@ const ProductParagraph = (props) => {
   const getParagraph = () => setParagraph(paragraph);
 
   return (
+    <ProductParagraphDisplay>
+
   <div>
     <p>
       <b>{props.slogan}</b>
       <br />
       {props.paragraph}
     </p>
-    <Bar></Bar>
+    {/* <Bar></Bar> */}
   </div>
+    </ProductParagraphDisplay>
 
   );
 }

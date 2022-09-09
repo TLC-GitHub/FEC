@@ -122,7 +122,7 @@ return (
       <Style>Style ></Style>
       <Selected> {curStyle}</Selected>
     </div>
-    <div>
+    {/* <div> */}
       <StylesContainer>
         {styles.map((style) => (
 
@@ -143,9 +143,8 @@ return (
             }
           </EachStyle>
         ))}
-
       </StylesContainer>
-    </div>
+    {/* </div> */}
   </div>
 );
 
