@@ -186,12 +186,12 @@ SEARCH BAR
 */
 
 export const SearchbarInput = styled.input`
-  justify-content: center;
-  text-align: flex-start;
-  font-size: 25px;
-  width: 80%;
-  border: 5px solid #C9D6DF;
-  border-radius: 2rem;
+  border-radius: 15px;
+  border-style: inset;
+  height: 2em;
+  width: 45em;
+  text-indent: 20px;
+  margin-right: 2em;
 `
 
 export const SearchBarContainer = styled.div`
@@ -250,7 +250,7 @@ export const ImageModalContainer = styled.div`
 
 export const ModalContainer = styled.div`
   z-index: 1050;
-  background: white;
+  background: #F0F5F9;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -314,7 +314,7 @@ export const ModalForm = styled.div`
   margin-left: -25%;
   margin-top: -15%;
   border-radius: 3px;
-  font-size: 1.35rem;
+  font-size: 1.80rem;
 `;
 
 export const ModalHeader = styled.div`
