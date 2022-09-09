@@ -52,7 +52,7 @@ function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutf
   return (
     <StyledSlider>
       <StyledArrow>
-        <FaChevronLeft className="" onClick={prevSlide} style={{display: leftArrow, marginRight: "0.5rem"}}/>
+        <FaChevronLeft className="" onClick={prevSlide} style={{display: leftArrow}}/>
       </StyledArrow>
 
       <OutfitButton onClick={()=>addOutfit()}>
@@ -91,7 +91,7 @@ function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutf
       </InnerSlider>
 
       <StyledArrow>
-        <FaChevronRight className="" onClick={nextSlide} style={{display: rightArrow, marginLeft: "0.5rem"}}/>
+        <FaChevronRight className="" onClick={nextSlide} style={{display: rightArrow}}/>
       </StyledArrow>
     </StyledSlider>
   )

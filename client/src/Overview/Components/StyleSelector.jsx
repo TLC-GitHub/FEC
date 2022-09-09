@@ -67,6 +67,8 @@ const StyleSelector = ({styles, selectFromStyles}) => {
   const [curStyleId, setCurStyleId] = useState(0);
   const prevStyle = useRef(0);
 
+  const [selected, setSelected] = useState('');
+
   // useEffect(() => {
   //   axios.get(`${API_URL}/reviews?product_id=65651&sort=newest&count=200`, {
   //     headers: Authorization
@@ -85,10 +87,11 @@ const StyleSelector = ({styles, selectFromStyles}) => {
 
   useEffect(() => {
     prevStyle.current = 0;
-    styles.map((style) => {
+    styles.forEach((style) => {
       let node = document.getElementById(style.style_id);
       node.style.opacity = '0';
     })
+    console.log('stying are changing');
   }, [styles])
 
   const selectStyle = (e) => {
@@ -122,6 +125,7 @@ return (
     <div>
       <StylesContainer>
         {styles.map((style) => (
+
           <EachStyle key={style.style_id}>
             <Checkmark id={style.style_id} className="checkmark"> &#10003; </Checkmark>
             {
@@ -144,6 +148,38 @@ return (
     </div>
   </div>
 );
+
+// return (
+//   <div>
+//     <div>
+//       <Style>Style ></Style>
+//       <Selected> {curStyle}</Selected>
+//     </div>
+//     <div>
+//       <StylesContainer>
+//         {styles.map((style) => (
+//           <EachStyle key={style.style_id}>
+//             <Checkmark id={style.style_id} className="checkmark"> &#10003; </Checkmark>
+//             {
+//               style.photos[0].thumbnail_url === null ?
+//               <Thumbnail
+//                 src={require("../../RelatedItems/images/imgComingSoon.png")}
+//                 name={style.style_id}
+//                 onClick={selectStyle}
+//               /> :
+//               <Thumbnail
+//                 src={style.photos[0].thumbnail_url}
+//                 name={style.style_id}
+//                 onClick={selectStyle}
+//               />
+//             }
+//           </EachStyle>
+//         ))}
+
+//       </StylesContainer>
+//     </div>
+//   </div>
+// );
 
 };
 

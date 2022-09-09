@@ -235,8 +235,6 @@ const ItemTitle = styled.div`
   margin: 0em 0em 0em 0em;
 `;
 
-<<<<<<< HEAD
-=======
 const InnerContainer = styled.div`
   display: flex;
 `;
@@ -250,4 +248,3 @@ const MainApp = styled.div`
   font-family: 'Trebuchet MS', sans-serif;
   width: 100em;
 `
->>>>>>> main
