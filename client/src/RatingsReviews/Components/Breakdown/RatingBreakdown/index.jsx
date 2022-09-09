@@ -72,16 +72,15 @@ function RatingBreakdown({ ratings, recommended, filterSort }) {
 
   return(
     <div>
-      {/* {console.log('RATING BREAK', filterSort)} */}
+      <h3>Rating Breakdown</h3>
       <StarAverage>
         <Rating>
           {starAve}
         </Rating>
         <Star percentage={forStar}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
       </StarAverage>
-      <h4>
-        {recAverage}% of reviews recommend this product
-      </h4>
+
+      {recAverage ? <h4>{recAverage}% of reviews recommend this product</h4> : <h4>0% of reviews recommend this product</h4>}
       <div>
         <StarRating>
           <BarSpace onClick={() => handleColor(5)}>
@@ -234,6 +233,7 @@ const BarSpace = styled.u`
   color: #1E2022;
   &:hover {
     color: #C9D6DF;
+    color: #F0F5F9;
   }
 `;
 

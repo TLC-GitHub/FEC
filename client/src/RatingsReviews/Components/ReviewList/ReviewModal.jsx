@@ -2,36 +2,54 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import AddReviewForm from './AddReviewForm.jsx';
+import axios from 'axios';
+import Auth from '../../../../../config.js'
+const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
-const ReviewModal = ({ showReviewModal, hide, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) => showReviewModal ? ReactDOM.createPortal(
-  <React.Fragment>
-    <ModalOverlay/>
-    <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
-      <MainModal>
-        <ModalHeader>
-          <ModalCloseButton
-            type="button"
-            data-dismiss="modal"
-            aria-label="Close"
-            onClick={hide}>
-            <span aria-hidden="true">&times;</span>
-          </ModalCloseButton>
-        </ModalHeader>
-        <p>
-          <AddReviewForm
-            metaSize={metaSize}
-            metaWidth={metaWidth}
-            metaComfort={metaComfort}
-            metaQuality={metaQuality}
-            metaLength={metaLength}
-            metaFit={metaFit}
-          />
-        </p>
-      </MainModal>
-    </ModalWrapper>
-  </React.Fragment>, document.body
-) : null;
+const ReviewModal = ({ productName, productID, showReviewModal, hide, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) => {
 
+  var axiosPost = (data) => {
+    axios.post(`${API_URL}/reviews`,
+      data,
+      {headers: Auth}
+    )
+    .then((response) => {
+      hide();
+      return console.log(response)
+    })
+    .catch((err) => console.log(err))
+  }
+  return showReviewModal ? ReactDOM.createPortal(
+    <React.Fragment>
+      <ModalOverlay/>
+      <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog">
+        <MainModal>
+          <ModalHeader>
+            <ModalCloseButton
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+              onClick={hide}>
+              <span aria-hidden="true">&times;</span>
+            </ModalCloseButton>
+          </ModalHeader>
+          <p>
+            <AddReviewForm
+              axiosPost={axiosPost}
+              productName={productName}
+              productID={productID}
+              metaSize={metaSize}
+              metaWidth={metaWidth}
+              metaComfort={metaComfort}
+              metaQuality={metaQuality}
+              metaLength={metaLength}
+              metaFit={metaFit}
+            />
+          </p>
+        </MainModal>
+      </ModalWrapper>
+    </React.Fragment>, document.body
+) : null};
 
 const ModalOverlay = styled.div`
   position: fixed;
