@@ -11,7 +11,7 @@ const AddToBagButton = (props) => {
 
 
 
-  console.log('menu state outside of click handler', props.menuOption);
+  // console.log('menu state outside of click handler', props.menuOption);
 
 
   useEffect(() => {

@@ -38,7 +38,7 @@ const Ratings = (props) => {
       // let percent = (averageRating / 5) * 100;
 
       let percent = (props.ratings / 5) * 100;
-      console.log('percent', percent);
+      // console.log('percent', percent);
   return(
   <div>
     <Star percentage={percent + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>

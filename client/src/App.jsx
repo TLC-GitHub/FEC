@@ -250,4 +250,9 @@ const MainApp = styled.div`
   color: #1E2022;
   font-family: 'Trebuchet MS', sans-serif;
   width: 100em;
+<<<<<<< HEAD
 `
+=======
+  `;
+  // border-style: solid;
+>>>>>>> 81d99121fb30d766a1806af0cc37562d3f7ce60c

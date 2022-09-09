@@ -35,11 +35,12 @@ const SizeDropdown = (props) => {
   // console.log('sizeNumbers', props.sizeNumbers)
 
   let sizeData =props.sizeNumbers.map((size, i) => {
-    // console.log(size);
+
+   // console.log(size);
     return <option key={i} value={size}>{size[0]}</option>
   });
   // console.log(props.sizeNumbers);
-  //console.log('sizeData', sizeData[0].props.value);
+  // //console.log('sizeData', sizeData[0].props.value);
   // console.log('sizes', sizeData)
   // console.log('menu option', props.menuOption[1], props.menuOption[2]);
 
