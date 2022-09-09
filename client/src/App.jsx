@@ -146,8 +146,8 @@ function App() {
 
   return (
     // <div style={{backgroundColor: "#F0F5F9"}}>
-    <div>
-      <div>
+    <MainApp>
+      <RelatedProductAndOutfits>
         <OverviewModule
           styles={curProduct.styles}
           selectFromStyles={selectFromStyles}
@@ -159,52 +159,59 @@ function App() {
           addOutfit={addOutfit}
           removeOutfit={removeOutfit}
         />
-      </div>
+      </RelatedProductAndOutfits>
       <RelatedProductAndOutfits>
-      <Item>
-        <h1>You May Also Like</h1>
-      </Item>
-      <Item>
-          <RelatedProductsFetch
+        <ItemTitle>
+          <h1>You May Also Like</h1>
+        </ItemTitle>
+        <Item>
+            <RelatedProductsFetch
+              productID={productID}
+              curProduct={curProduct}
+              selectFromRelated={selectFromRelated}
+            />
+        </Item>
+      </RelatedProductAndOutfits>
+      <RelatedProductAndOutfits>
+        <ItemTitle>
+          <h1>Your Outfit</h1>
+        </ItemTitle>
+        <Item>
+          <OutfitSlider
+            outfitList={outfitList}
+            addOutfit={addOutfit}
+            removeOutfit={removeOutfit}
             productID={productID}
             curProduct={curProduct}
-            selectFromRelated={selectFromRelated}
-            />
-      </Item>
+          />
+        </Item>
       </RelatedProductAndOutfits>
       <RelatedProductAndOutfits>
-      <Item>
-        <h1>Your Outfit</h1>
-      </Item>
-      <Item>
-        <OutfitSlider
-          outfitList={outfitList}
-          addOutfit={addOutfit}
-          removeOutfit={removeOutfit}
-          productID={productID}
-          curProduct={curProduct}
-        />
-      </Item>
+        <ItemTitle>
+          <h1>Questions and Answers</h1>
+        </ItemTitle>
+        <Item>
+          <QuestionList
+            productID={productID}
+            curProduct={curProduct}
+            curStyle={curProduct.selectedStyle}
+          />
+        </Item>
       </RelatedProductAndOutfits>
-
-      <div>
-        <h1>Questions and Answers</h1>
-        <QuestionList
-          productID={productID}
-          curProduct={curProduct}
-          curStyle={curProduct.selectedStyle}
-        />
-      </div>
-      <div>
-        <div><h1>Ratings and Reviews</h1></div>
-        <RatingsAndReviews
-          productID={productID}
-          curProduct={curProduct}
-          curStyle={curStyle}
-          selectFromRelated={selectFromRelated}
-        />
-      </div>
-    </div>
+      <RelatedProductAndOutfits>
+        <ItemTitle>
+          <h1>Ratings and Reviews</h1>
+        </ItemTitle>
+        <Item>
+          <RatingsAndReviews
+            productID={productID}
+            curProduct={curProduct}
+            curStyle={curStyle}
+            selectFromRelated={selectFromRelated}
+          />
+        </Item>
+      </RelatedProductAndOutfits>
+    </MainApp>
   )
 }
 
@@ -219,5 +226,28 @@ export const RelatedProductAndOutfits = styled.div`
 const Item = styled.div`
   display: flex;
   justify-content: flex-start;
+  margin: 0em 0em 3em 0em;
 `;
 
+const ItemTitle = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin: 0em 0em 0em 0em;
+`;
+
+<<<<<<< HEAD
+=======
+const InnerContainer = styled.div`
+  display: flex;
+`;
+
+const MainApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  color: #1E2022;
+  font-family: 'Trebuchet MS', sans-serif;
+  width: 100em;
+`
+>>>>>>> main

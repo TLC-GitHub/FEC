@@ -64,11 +64,13 @@ QUESTION LIST MODULE
 
 export const QuestionContainer = styled.div`
   display: flex;
-  position: relative;
+  position: static;
   flex-direction: column;
-  overflow: auto;
-  justify-content: center;
-  padding: 0 15% 0 15%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  justify-content: flex-start;
+  max-height: 800px;
+  max-width:  1168px;
 `
 
 export const QuestionWrapper = styled.div`
@@ -86,7 +88,7 @@ QUESTION CARD
 export const QuestionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 20rem;
+  max-height: 50rem;
   margin: 0em .25em 0em 3em;
 `
 
@@ -95,7 +97,7 @@ export const QuestionBody = styled.h1`
   width: 100%;
   height: 40%;
   flex-wrap: nowrap;
-  font-size: 18px;
+  font-size: 25px;
   width: 40rem;
 `
 
@@ -117,6 +119,7 @@ ANSWER LIST MODULE
 export const AnswerContainer = styled.div`
   display: flex;
   flex-direction: column;
+  max-height: 40rem;
   overflow: auto;
 `
 
@@ -130,6 +133,7 @@ export const AnswerCardContainer = styled.div`
   font-size: 14px;
   margin-top: 0.5rem;
   gap: 1rem;
+  max-height: 20rem;
 
 `
 export const Answer = styled.div`
@@ -137,7 +141,7 @@ export const Answer = styled.div`
   margin-top: .25rem;
   margin-bottom: .75rem;
   assign-align: base-line;
-  font-size: 16px;
+  font-size: 18px;
 `
 
 export const AnswerInfo = styled.div`
@@ -194,6 +198,8 @@ export const SearchBarContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-left: 3rem;
+  margin-bottom: 2rem;
+  width: 50%;
 `
 /*
 MODAL WINDOWS
@@ -224,6 +230,23 @@ export const ExitFormButton = styled.button`
 IMAGE MODAL WINDOW
 ----------------------------------------
 */
+export const ImageModalContainer = styled.div`
+  z-index: 1050;
+  background: transparent;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  margin-left: -25%;
+  margin-top: -15%;
+  border-radius: 3px;
+  padding: 2rem;
+`
+
 
 export const ModalContainer = styled.div`
   z-index: 1050;
@@ -291,6 +314,7 @@ export const ModalForm = styled.div`
   margin-left: -25%;
   margin-top: -15%;
   border-radius: 3px;
+  font-size: 1.35rem;
 `;
 
 export const ModalHeader = styled.div`
@@ -318,4 +342,5 @@ export const ExpandedImage = styled.img`
   height: 100%;
   width: 100%;
   object-fit: contain;
+  overflow: hidden;
 `
