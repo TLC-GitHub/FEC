@@ -7,15 +7,19 @@ import styled from 'styled-components';
 
 let num = 2;
 
-function ReviewList ({ allReviews, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
+function ReviewList ({ productName, productID, allReviews, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
   var [currSort, setCurrSort] = useState('Relevant');
 
-  var [someReviews, setSomeReviews] = useState(allReviews.slice(0, num));
+  var [someReviews, setSomeReviews] = useState([]);
 
   let helpSort = allReviews.slice().sort((a, b) => b.helpfulness - a.helpfulness);
   let newSort = allReviews.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const {showReviewModal, toggleReviewModal} = UseReviewModal();
+
+  React.useEffect(() => {
+    setSomeReviews(allReviews.slice(0, num))
+  }, [allReviews]);
 
   // reset num
   var handleChange = (event) => {
@@ -94,6 +98,8 @@ function ReviewList ({ allReviews, metaSize, metaWidth, metaComfort, metaQuality
             Add a Review &#65291;
           </ReviewListButton>
           <ReviewModal
+            productName={productName}
+            productID={productID}
             showReviewModal={showReviewModal}
             hide={toggleReviewModal}
             metaSize={metaSize}

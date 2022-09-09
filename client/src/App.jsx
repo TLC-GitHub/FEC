@@ -5,6 +5,7 @@ import OutfitSlider from './RelatedItems/Components/OutfitList/OutfitSlider.jsx'
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
 import QuestionList from './QnA/Components/QuestionList.jsx'
 import styled from 'styled-components';
+import {logInteractions} from './Interactions.jsx';
 
 const axios = require('axios');
 
@@ -105,6 +106,8 @@ function App() {
     localStorage.setItem("outfitList", JSON.stringify(outfitList));
   }, [outfitList]);
 
+  useEffect(() => {
+  }, [productID])
 
   const selectFromRelated = (value) => {
     // console.log('i got clicked. New product ID is: ', value);
@@ -147,7 +150,7 @@ function App() {
   return (
     // <div style={{backgroundColor: "#F0F5F9"}}>
     <MainApp>
-      <RelatedProductAndOutfits>
+      <RelatedProductAndOutfits id="overview">
         <OverviewModule
           styles={curProduct.styles}
           selectFromStyles={selectFromStyles}
@@ -247,4 +250,5 @@ const MainApp = styled.div`
   color: #1E2022;
   font-family: 'Trebuchet MS', sans-serif;
   width: 100em;
+  border-style: solid;
 `

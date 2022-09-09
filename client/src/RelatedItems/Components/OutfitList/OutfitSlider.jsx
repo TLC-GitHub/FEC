@@ -50,7 +50,7 @@ function OutfitSlider({ productID, curProduct, outfitList, addOutfit, removeOutf
   };
 
   return (
-    <StyledSlider>
+    <StyledSlider id="OutfitsList">
       <StyledArrow>
         <FaChevronLeft className="" onClick={prevSlide} style={{display: leftArrow}}/>
       </StyledArrow>

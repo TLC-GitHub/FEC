@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import {ModalOverlay, ModalWrapper, ModalHeader, ModalForm, ModalCloseButton, ModalContainer} from '.././styles.jsx'
+import {ModalOverlay, ModalWrapper, ModalHeader, ModalForm, ModalCloseButton, ModalContainer, ModalTextArea} from '.././styles.jsx'
 
 
 
@@ -90,7 +90,7 @@ function QuestionModal({productID, toggle, curProduct, curStyle}) {
         <h1>{curProduct} {curStyle} </h1> <br /> <br />
       <form className="form" onSubmit={sendQuestion}>
         <div> Question* </div>
-        <input type="text" name="body" onChange={handleChange} placeholder="Write Question here"/>
+        <ModalTextArea type="text" name="body" onChange={handleChange} placeholder="Write Question here"/>
         {errBody
           ? <div> this field is required <br /></div>
           : null}

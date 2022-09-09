@@ -6,8 +6,9 @@ import CloudinaryUpload from './CloudinaryUpload.jsx';
 import axios from 'axios';
 import Auth from '../../../../../config.js'
 const API_URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
+import UseReviewModal from './UseReviewModal.jsx';
 
-function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
+function AddReviewForm ({ axiosPost, productName, productID, metaSize, metaWidth, metaComfort, metaQuality, metaLength, metaFit }) {
 
   // Info
   let [name, setName] = useState('');
@@ -39,6 +40,8 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
   let [photos, setPhotos] = useState([]); // Optional
   let [photosForm, setPhotosForm] = useState([]); // Optional
 
+  const { toggleReviewModal, showReviewModal } = UseReviewModal();
+
   var allCharacteristics = {}
 
   if (metaSize) {
@@ -61,7 +64,7 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
   }
 
   var dataPost = {
-    product_id: 65651, // CHANGE, HARDCODE FOR NOW
+    product_id: Number(productID), // CHANGE, HARDCODE FOR NOW
     rating: starRate,
     summary: reviewSummary,
     body: reviewBody,
@@ -72,14 +75,14 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
     characteristics: allCharacteristics,
   }
 
-  var axiosPost = (data) => {
-    axios.post(`${API_URL}/reviews`,
-      data,
-      {headers: Auth}
-    )
-    .then((response) => console.log(response))
-    .catch((err) => console.log(err))
-  }
+  // var axiosPost = (data) => {
+  //   axios.post(`${API_URL}/reviews`,
+  //     data,
+  //     {headers: Auth}
+  //   )
+  //   .then((response) => console.log(response))
+  //   .catch((err) => console.log(err))
+  // }
 
   let addFromCloud = (image) => {
     var copyArr = photos.slice()
@@ -101,14 +104,14 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
   var handleSubmit = (e) => {
     e.preventDefault()
     axiosPost(dataPost);
+    toggleReviewModal();
     console.log(dataPost);
   }
 
   return (
     <ReviewForm>
-      {/* {console.log('PLEASE', allCharacteristics)} */}
       <MainHeader>Write Your Review</MainHeader>
-      <ProductName>About Your {'{Product Name Here}'}</ProductName>
+      <ProductName>About Your {`${productName}`}</ProductName>
       <form onSubmit={handleSubmit}>
         <Info>
           <Name>
@@ -264,7 +267,6 @@ function AddReviewForm ({ metaSize, metaWidth, metaComfort, metaQuality, metaLen
 
 
         <Photo>
-          {/* {console.log('TEST IN FORM', photos)} */}
           <CloudinaryUpload
             addFromCloud={addFromCloud}
             postPhoto={postPhoto}
