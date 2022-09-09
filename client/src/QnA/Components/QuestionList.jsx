@@ -59,8 +59,6 @@ function QuestionList({productID, curProduct, curStyle}) {
     .then((data) => {
       setQuestions(data.data.results)
       setFilteredQ(data.data.results)
-      console.log(questions, 'after setting questions state')
-      console.log(filteredQ, 'after setting state')
     })
     .catch((err) => {
       console.log('error rendering');
