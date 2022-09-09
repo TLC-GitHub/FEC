@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Moment from 'moment';
-import  { Tile, User, U, Img, Response, Star } from '../styles.jsx';
+import  { Tile, User, U, Img, Response, Star, Recommends } from '../styles.jsx';
 import { FaUser } from 'react-icons/fa';
 import Images from './Images.jsx';
 import axios from 'axios';
@@ -17,6 +17,9 @@ function IndividualReviewTile ({ elem, body, date, helpfulness, photos, rating, 
 
   // create a axios put to update the helpfullness into the database
 
+
+  // NEED THESE  VV
+
   // var updatedHelp = {
   //   body: body,
   //   date: date,
@@ -29,16 +32,17 @@ function IndividualReviewTile ({ elem, body, date, helpfulness, photos, rating, 
   //   review_id: review_id,
   //   summary: summary
   // }
-  var updatedHelp = {
-    // review_id: review_id,
-    helpfulness: helpfulness + 1
-  }
 
-  var axiosPut = (data) => {
-    axios.put(`${API_URL}/reviews/:review_id/helpful?product_id=65651`, data, {headers: Auth})
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
-  }
+  // var updatedHelp = {
+    // review_id: review_id,
+    // helpfulness: helpfulness + 1
+  // }
+
+  // var axiosPut = (data) => {
+  //   axios.put(`${API_URL}/reviews/:review_id/helpful?product_id=65651`, data, {headers: Auth})
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.log(err))
+  // }
 
   var updateHelp = () => {
     setHelpful(true)
@@ -49,7 +53,7 @@ function IndividualReviewTile ({ elem, body, date, helpfulness, photos, rating, 
 
   return(
     <Tile>
-      {/* {console.log('helpfulness, ', helpfulness)} */}
+      {/* {console.log('helpfulness, ', recommed)} */}
       {/* {console.log('elem, ', elem)} */}
       <div>
         <Star percentage={((rating/5) * 100) + '%'}>&#9733;&#9733;&#9733;&#9733;&#9733;</Star>
@@ -72,7 +76,7 @@ function IndividualReviewTile ({ elem, body, date, helpfulness, photos, rating, 
         </div>}
       </div>
 
-      <div>{recommend ? <b>&#10003; &nbsp;{' I recommend this product'}</b> : null}</div>
+      <Recommends>{recommend ? <b>&#10003; &nbsp;{' I recommend this product'}</b> : null}</Recommends>
 
       <div>
         {response ? <Response><b>Response from seller: </b><div>{response}</div></Response> : null}

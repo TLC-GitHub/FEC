@@ -12,9 +12,11 @@ import {logInteractions} from '../.././Interactions.jsx';
 
 //porduct sample: 65651
 //product sample: 65647
-// document.addEventListener('click', logInteractions)
 
-function RatingsAndReviews () {
+//product sample: 65631
+
+
+function RatingsAndReviews ({ productID, curProduct, curStyle, selectFromRelated }) {
   const [allReviews, setAllReviews] = useState();
   const [metaData, setMetaData] = useState();
 
@@ -29,16 +31,26 @@ function RatingsAndReviews () {
   var [sortedList, setSortedList] = useState([]);
   var [tracker, setTracker] = useState([]);
 
+  // Need these console.logs
+  // console.log('curProductcurProduct', curProduct.name)
+  // console.log('curStylecurStyle', curStyle)
+  // console.log('selectFromRelatedselectFromRelated', selectFromRelated)
 
   useEffect(() => {
-    axios.get(`${API_URL}/reviews?product_id=65651&sort=relevant&count=200`, {
+    axios.get(`${API_URL}/reviews?product_id=${productID}&sort=relevant&count=200`, {
       headers: Auth
     })
       .then((reviews) => {
-        axios.get(`${API_URL}/reviews/meta?product_id=65651`, {
+        axios.get(`${API_URL}/reviews/meta?product_id=${productID}`, {
           headers: Auth
         })
           .then((meta) => {
+            setMetaSize('')
+            setMetaWidth('')
+            setMetaComfort('')
+            setMetaQuality('')
+            setMetaLength('')
+            setMetaFit('')
             setMetaData(meta.data)
             setAllReviews(reviews.data.results)
             if (meta.data.characteristics.Size) {
@@ -65,7 +77,7 @@ function RatingsAndReviews () {
       .catch((err) => console.log('Error Reviews', err))
 
     // Add product ID into second param so that it changes each time you change product ID
-  }, [])
+  }, [productID]);
 
 
   var filterSort = (value) => {
@@ -73,11 +85,13 @@ function RatingsAndReviews () {
       var indexTracker = tracker.indexOf(value)
       tracker.splice(indexTracker, 1);
       var filteredArr = allReviews.filter(element => tracker.includes(element.rating))
+      setRatingSort(filteredArr);
     } else {
       tracker.push(value)
       var filteredArr = allReviews.filter(element => tracker.includes(element.rating))
-    }
       setRatingSort(filteredArr);
+    }
+      // setRatingSort(filteredArr);
   };
 
 
@@ -101,6 +115,8 @@ function RatingsAndReviews () {
             <ReviewStyle>
               {!tracker.length  &&
                 <ReviewList
+                  productName={curProduct.name}
+                  productID={productID}
                   allReviews={allReviews}
                   metaSize={metaSize}
                   metaWidth={metaWidth}
@@ -111,6 +127,8 @@ function RatingsAndReviews () {
                 />}
               {tracker.length > 0 &&
                 <ReviewList
+                  productName={curProduct.name}
+                  productID={productID}
                   allReviews={ratingSort}
                   metaSize={metaSize}
                   metaWidth={metaWidth}
