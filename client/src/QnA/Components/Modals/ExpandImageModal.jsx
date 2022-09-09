@@ -18,4 +18,3 @@ function ExpandImageModal ({setClickedImage, clickedImage}) {
 }
 
 export default ExpandImageModal;
-//set image src as background

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import ImageModal from './ImageModal.jsx';
 import styled from 'styled-components';
-import {ModalForm, ModalOverlay, ModalCloseButton, ModalHeader, ModalWrapper, ModalContainer} from '.././styles.jsx';
+import {ModalForm, ModalOverlay, ModalCloseButton, ModalHeader, ModalWrapper, ModalContainer, ModalTextArea} from '.././styles.jsx';
 
 
 function AnswerModal({questionID, toggle, question}) {
@@ -99,7 +99,7 @@ function AnswerModal({questionID, toggle, question}) {
           </ModalCloseButton>
           <h1>{question}</h1>
           <form onSubmit={sendAnswer}>
-            <input name="body" type="text" maxLength="1000" placeholder="Write Answer here" onChange={handleChange}/>
+            <ModalTextArea name="body" type="text" maxLength="1000" placeholder="Write Answer here" onChange={handleChange}/>
             {errBody
               ? <div> this field is required </div>
               : null}

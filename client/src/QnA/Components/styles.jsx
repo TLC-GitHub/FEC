@@ -173,6 +173,7 @@ export const Images = styled.img`
   margin-bottom: .25rem;
   border: 1px solid grey;
   border-radius: 5px;
+  overflow: hidden;
 `
 
 export const LoadMoreAnswers = styled.div`
@@ -238,8 +239,6 @@ export const ImageModalContainer = styled.div`
   left: 50%;
   width: 50%;
   height: 50%;
-  overflow-x: hidden;
-  overflow-y: auto;
   outline: 0;
   margin-left: -25%;
   margin-top: -15%;
@@ -314,8 +313,24 @@ export const ModalForm = styled.div`
   margin-left: -25%;
   margin-top: -15%;
   border-radius: 3px;
-  font-size: 1.80rem;
+  font-size: 1rem;
 `;
+
+export const ImageModalForm = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+  z-index: 100;
+  position: absolute;
+  top: 50%; left: 50%;
+  height: 50%;
+  width: 50%;
+  margin-left: -25%;
+  margin-top: -15%;
+  border-radius: 3px;
+  font-size: 1rem;
+`
 
 export const ModalHeader = styled.div`
   display: flex;
@@ -343,4 +358,10 @@ export const ExpandedImage = styled.img`
   width: 100%;
   object-fit: contain;
   overflow: hidden;
+`
+
+export const ModalTextArea = styled.textarea`
+  height: 15rem;
+  width: 35rem;
+  resize: none;
 `
