@@ -67,17 +67,5 @@ module.exports = {
       }
     };
     return axios(options);
-  },
-
-  postInteraction: function (element, widget, time) {
-    apiLink = "https://app-hrsei-api.herokuapp.com/api/fec2/rfp/interactions";
-    let options = {
-      url: apiLink,
-      method: "POST",
-      headers: {
-        'Authorization': process.env.API_TOKEN
-      }
-    };
-    return axois(options);
   }
 }

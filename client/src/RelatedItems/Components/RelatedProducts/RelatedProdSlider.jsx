@@ -47,7 +47,7 @@ function RelatedProdSlider({ relatedProd, curProduct, selectFromRelated }) {
     };
 
   return (
-    <StyledSlider>
+    <StyledSlider id="RelatedProducts">
       <StyledArrow>
         <FaChevronLeft className="" onClick={prevSlide} style={{display: leftDisplay}}/>
       </StyledArrow>

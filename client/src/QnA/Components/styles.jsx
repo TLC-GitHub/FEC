@@ -69,7 +69,7 @@ export const QuestionContainer = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   justify-content: flex-start;
-  max-height: 800px;
+  max-height: 900px;
   max-width:  1168px;
 `
 
@@ -242,7 +242,7 @@ export const ImageModalContainer = styled.div`
   outline: 0;
   margin-left: -25%;
   margin-top: -15%;
-  border-radius: 3px;
+  border-radius: 10px;
   padding: 2rem;
 `
 
@@ -260,7 +260,7 @@ export const ModalContainer = styled.div`
   outline: 0;
   margin-left: -25%;
   margin-top: -15%;
-  border-radius: 3px;
+  border-radius: 10px;
   padding: 2rem;
 `
 

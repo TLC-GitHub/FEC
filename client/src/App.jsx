@@ -5,6 +5,7 @@ import OutfitSlider from './RelatedItems/Components/OutfitList/OutfitSlider.jsx'
 import RatingsAndReviews from './RatingsReviews/Components/index.jsx'
 import QuestionList from './QnA/Components/QuestionList.jsx'
 import styled from 'styled-components';
+import {logInteractions} from './Interactions.jsx';
 
 const axios = require('axios');
 
@@ -106,7 +107,6 @@ function App() {
   }, [outfitList]);
 
   useEffect(() => {
-    console.log(productID, 'before rerender')
   }, [productID])
 
   const selectFromRelated = (value) => {
@@ -150,7 +150,7 @@ function App() {
   return (
     // <div style={{backgroundColor: "#F0F5F9"}}>
     <MainApp>
-      <RelatedProductAndOutfits>
+      <RelatedProductAndOutfits id="overview">
         <OverviewModule
           styles={curProduct.styles}
           selectFromStyles={selectFromStyles}

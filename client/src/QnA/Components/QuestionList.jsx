@@ -5,13 +5,9 @@ import axios from 'axios';
 import QuestionModal from './Modals/QuestionModal.jsx';
 import styled from "styled-components";
 import { QuestionContainer, BigButton, ButtonContainer } from './styles.jsx';
+import {logInteractions} from '../.././Interactions.jsx';
 
-
-
-
-
-
-
+document.addEventListener('click', logInteractions)
 
 function QuestionList({productID, curProduct, curStyle}) {
   //state to consider: helpfulness state onClick, answersButton onClick count, questionButton onClick count,
@@ -106,9 +102,9 @@ function QuestionList({productID, curProduct, curStyle}) {
 
 
   return(
-    <div>
+    <div id="QNA">
       <SearchBar setQuestions={setFilteredQ} questions={filteredQ} prevQuestions={questions}/>
-      <QuestionContainer>
+      <QuestionContainer id="QNA">
           {filteredQ.slice(0, questionCount).map(question => {
             return <QuestionCard question={question} key={question.question_id} setCount={setQuestionCount}/>
           })}
