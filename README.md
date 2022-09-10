@@ -59,8 +59,6 @@ The application will be running on http://localhost:3000. This script runs webpa
 - #### Your Outfit List
   Displays a custom list of outfits that the user selects and adds to their outfit collection.
   
-  Clicking on an individual product card navigates to that product's page.
-  
   Users can remove the product from their collection by clicking X on the card.
 
   Outfits are also presented as a carousel to sort through the different products that exist in their collection.
