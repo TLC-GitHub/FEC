@@ -30,7 +30,7 @@ Runs development server:
  yarn run client-dev
  yarn run server-dev
 ```
-The application will be running on http://localhost:3000. This script runs webpack and watches it, auto-refreshing on every new change that you save.
+The application will be running on http://localhost:3000. This script runs webpack and watches it, auto-refreshing on every new change that you save. You will require a Hackreactor API token inside of a config.js file and dotenv file as well as the port set to 3000.
 
 ### Project Details
 <details>
