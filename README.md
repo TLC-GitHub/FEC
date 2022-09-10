@@ -24,11 +24,11 @@ npm install
 ### Running the Project
 Runs development server:
 ```
- npm run build:dev
- npm run start:dev
+ npm run client-dev
+ npm run server-dev
  # or
- yarn build:dev
- yarn start:dev
+ yarn run client-dev
+ yarn run server-dev
 ```
 The application will be running on http://localhost:3000. This script runs webpack and watches it, auto-refreshing on every new change that you save.
 
