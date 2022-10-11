@@ -1,25 +1,22 @@
 <h1 name="readme-top">Lelelime</h1>
 
-## Contributors (from left to right)
+## Contributors 
 <a href="https://github.com/TLC-GitHub/FEC/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=TLC-GitHub/FEC" />
 </a>
+<br />
+Listed from left to right (click component name to view section)
+<br />
 
-- [Shawn Oh](https://github.com/spottyzot) 
-  - <a href="#qna">Questions and Answers</a>
-- [Siming Yum](https://github.com/simingyum) 
-  - <a href="#related">Related Items and Comparison</a>
-- [Aaron Yabut](https://github.com/Aaronyabut) 
-  - <a href="#ratings">Ratings and Reviews</a>
-- [Quargs Greene](https://github.com/quargsgreene) 
-  - <a href="#overview">Product Overview</a>
+[Shawn Oh](https://github.com/spottyzot) • <a href="#qna">Questions and Answers</a> 
+<br />
+[Siming Yum](https://github.com/simingyum) • <a href="#related">Related Items and Comparison</a> 
+<br />
+[Aaron Yabut](https://github.com/Aaronyabut) • <a href="#ratings">Ratings and Reviews</a> 
+<br />
+[Quargs Greene](https://github.com/quargsgreene) • <a href="#overview">Product Overview</a>
+<br />
 
-## Table of Contents
-- [About The Project](https://github.com/TLC-GitHub/FEC/edit/main/README.md#about-the-project)
-- [Getting Started](https://github.com/TLC-GitHub/FEC/edit/main/README.md#getting-started)
-  - [Installing Dependencies](https://github.com/TLC-GitHub/FEC/edit/main/README.md#how-to-install-dependencies)
-  - [Running the Project](https://github.com/TLC-GitHub/FEC/edit/main/README.md#running-the-project)
-- [Project Details](https://github.com/TLC-GitHub/FEC/edit/main/README.md#project-details)
 
 ## About The Project
 Lelelime is a single page e-commerce web application created utilizing React and Node/Express. This project was created by a team of four engineers.
@@ -53,7 +50,7 @@ Runs development server:
 ```
 The application will be running on http://localhost:3000. This script runs webpack and watches it, auto-refreshing on every new change that you save. You will require a Hackreactor API token inside of a config.js file and dotenv file as well as the port set to 3000.
 
-
+<p name="components"></p>
 <h2 name="overview">Product Overview - Quargs Greene</h2>
 <details>
   <summary>Component features: </summary>
